@@ -30,3 +30,10 @@ or visible to friends
 - comparing multiple users watchlist to suggest a movie to watch together
 - recently watched / recent activity page for each user
 - movie search feature: by title or cast member
+
+## Design
+
+* [API design](docs/apis.md)
+* [Data model](docs/data-model.md)
+* [GHI](docs/ghi.md)
+* [Integrations](docs/integrations.md)
