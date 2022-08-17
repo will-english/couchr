@@ -1,18 +1,16 @@
 ## Movie ##
-| movie       | list    | user     |   |   |
-|-------------|---------|----------|---|---|
-| title       | movies  | name     |   |   |
-| year        | name    | username |   |   |
-| rating      | created |          |   |   |
-| picture_url | user_id |          |   |   |
-| genre       |         |          |   |   |
-| actors      |         |          |   |   |
-| directors   |         |          |   |   |
-| plot        |         |          |   |   |
-| runtime     |         |          |   |   |
-| trailer_url |         |          |   |   |
-|             |         |          |   |   |
-
+| Name        | Type   | Unique | Optional |
+|-------------|--------|--------|----------|
+| title       | string | no     | no       |
+| year        | int    | no     | no       |
+| rating      | int    | no     | no       |
+| picture_url | string | no     | no       |
+| genre       | string | no     | no       |
+| actors      | string | no     | no       |
+| directors   | string | no     | no       |
+| plot        | string | no     | no       |
+| runtime     | int    | no     | no       |
+| trailer_url | string | no     | no       |
 
 ## List ##
 
