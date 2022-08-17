@@ -34,6 +34,7 @@ Stretch Goals:
 - comparing multiple users watchlist to suggest a movie to watch together
 - recently watched / recent activity page for each user
     - 5 most recent movies watched
+- add streaming services to the movies detail page
 
 
 ## Design
