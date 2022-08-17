@@ -1,22 +1,24 @@
 # Couchr
 
-Edward
-Jamie
-Sheldon
-Christie
-Will
+A web application for tracking all of your new and favorite movies.
 
-An app for tracking all of your new and favorite movies.
+## Team Members
+
+1. Christie
+2. Edward
+3. Jamie
+4. Sheldon
+5. Will
 
 ## Intended Market
 
 Anyone who enjoys movies and wants to track their watch history, and 
 those indecisive people who watch movies together.
 
-
 ## Functionality
 
 MVP:
+
 - display a large libary of films
 - user creation and authentication
 - track a users liked, watched, and want-to-watch movies
@@ -29,13 +31,13 @@ or visible to friends
     - youtube trailer
 
 Stretch Goals:
+
 - users can leave reviews and ratings on the movies
 - user friends
 - comparing multiple users watchlist to suggest a movie to watch together
 - recently watched / recent activity page for each user
     - 5 most recent movies watched
 - add streaming services to the movies detail page
-
 
 ## Design
 
