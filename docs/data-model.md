@@ -12,6 +12,26 @@
 | runtime     | int    | no     | no       |
 | trailer_url | string | no     | no       |
 
+## Actor ##
+| Name | Type   | Unique | Optional |
+|------|--------|--------|----------|
+| name | string | no     | no       |
+|      |        |        |          |
+
+## Director ##
+| Name | Type   | Unique | Optional |
+|------|--------|--------|----------|
+| name | string | no     | no       |
+|      |        |        |          |
+
+## Genre ##
+| Name | Type   | Unique | Optional |
+|------|--------|--------|----------|
+| name | string | no     | no       |
+|      |        |        |          |
+
+
+
 ## List ##
 
 | name       | type   | unique | optional |
