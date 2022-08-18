@@ -39,6 +39,7 @@
 | name       | string | no     | no       |
 | movie_href | string | no     | no       |
 | user_href  | string | no     | no       |
+| description| string | no     | no       |
 
 ## User ##
 
@@ -46,3 +47,4 @@
 |-----------|--------|--------|----------|
 | name      | string | no     | no       |
 | user_name | string | yes    | no       |
+| email     | string | yes    | no       |
