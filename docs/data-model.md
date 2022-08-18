@@ -1,4 +1,4 @@
-## Movie ##
+## Movie VO ##
 | Name        | Type   | Unique | Optional |
 |-------------|--------|--------|----------|
 | title       | string | no     | no       |
@@ -11,25 +11,7 @@
 | plot        | string | no     | no       |
 | runtime     | int    | no     | no       |
 | trailer_url | string | no     | no       |
-
-## Actor ##
-| Name | Type   | Unique | Optional |
-|------|--------|--------|----------|
-| name | string | no     | no       |
-|      |        |        |          |
-
-## Director ##
-| Name | Type   | Unique | Optional |
-|------|--------|--------|----------|
-| name | string | no     | no       |
-|      |        |        |          |
-
-## Genre ##
-| Name | Type   | Unique | Optional |
-|------|--------|--------|----------|
-| name | string | no     | no       |
-|      |        |        |          |
-
+| api_url     | string | yes    | no       |
 
 
 ## List ##
@@ -37,7 +19,7 @@
 | name       | type   | unique | optional |
 |------------|--------|--------|----------|
 | name       | string | no     | no       |
-| movie_href | string | no     | no       |
+| movies | string | no     | no       |
 | user_href  | string | no     | no       |
 
 ## User ##
