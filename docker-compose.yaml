@@ -1,0 +1,22 @@
+services:
+  react:
+    image: node:latest
+    command: npm start
+    working_dir: /app
+    volumes:
+      - ./ghi/app:/app
+    environment:
+      - HOST=0.0.0.0
+      - PORT=3001
+    ports:
+      - "3001:3001"
+  web:
+    build: 
+      context: ./myproject/api
+      dockerfile: ./Dockerfile.dev
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./myproject/api:/app
+    ports:
+      - "8000:8000"
+    
