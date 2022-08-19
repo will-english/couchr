@@ -12,11 +12,10 @@ services:
       - "3001:3001"
   web:
     build: 
-      context: ./myproject/api
+      context: ./List_service/api
       dockerfile: ./Dockerfile.dev
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./myproject/api:/app
+      - ./List_service/api:/app
     ports:
       - "8000:8000"
-    
