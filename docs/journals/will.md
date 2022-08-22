@@ -10,3 +10,9 @@ but by the end of the day with the help of the seirs and teammates we got a base
 working. We have a lot of different branchesgoing at the moment and we will probably 
 need to be pruning those off in the futureonce we have a better understanding of our 
 project workflow.
+## 8/22
+We went in and recreated the main application, we needed to do this so that everyone 
+was caught up and on the same page. This past weekend I worked a lot on the user auth 
+service and was able to make a little bit of progress this morning. We are going to go 
+over our group process for pushing/pulling and after that we should have a good work-
+flow going forward.
