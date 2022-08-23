@@ -25,12 +25,13 @@ SECRET_KEY = 'django-insecure-=d^yckboqds*f9ovb2@a$ho2y*@j8*h^%h7qo3+o&p)bvglb-x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "couchr"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    "couchr_lists.apps.CouchrListsConfig",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
