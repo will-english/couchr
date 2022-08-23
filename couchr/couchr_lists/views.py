@@ -5,6 +5,7 @@ from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import List, MovieVO
+from .acls import get_movie_data
 
 # Create your views here.
 
@@ -169,3 +170,12 @@ def api_movie(request, pk):
             )
         except MovieVO.DoesNotExist:
             return JsonResponse({"message": "Does not exist"})
+
+@csrf_exempt
+@require_http_methods(["GET"])
+def api_test(request, pk):
+    print("pk: ", pk)
+    response = get_movie_data(pk)
+    return JsonResponse(
+        {"response": response}
+    )
