@@ -15,7 +15,7 @@ class MovieList extends React.Component {
         let movie_id;
         // const MTDB_KET = "742276fc88b89a452ad9c04ac04df00e"
         const result = []
-        for (let i=2; i<5; i++){
+        for (let i=2; i<10; i++){
             movie_id = i;
             const movie_url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`
             console.log(movie_url)
@@ -37,7 +37,7 @@ class MovieList extends React.Component {
         <div>
             {this.state.movies.map(movie => {
                 return (
-                    <Link to={"movie/" + movie.id + "/"} key={movie.id} className="btn btn-primary btn-lg px-4 gap-3">
+                    <Link to={"movie/" + movie.id + "/"} key={movie.id} className="btn btn-primary btn-lg px-4 gap-3 mt-3 ml-3">
                         <div>
                             <p>##################</p>
                             <p>movie_name: { movie.title }</p>
