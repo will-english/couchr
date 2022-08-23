@@ -1,5 +1,5 @@
 ## 8/23/22
-Today we worked on creating the React pages. We took a while reading up on how to make detail pages on React with a specific id in the url and we were able to get it started! As well as starting a browse movie page. I worry about using git branches, we seem to spend a lot of day fixing git merge issues but Im sure we will get better as we practice each day. 
+Today we worked on creating the React pages. We took a while reading up on how to make detail pages on React with a specific id in the url and we were able to get it started! As well as starting a browse movie page. I worry about using git branches, we seem to spend a lot of day fixing git merge issues but Im sure we will get better as we practice each day.
 
 ## 8/22/22
 Today was much better! We used the project advice on learn to completely rebuild our project. Will spent a lot of time over the weekend reviewing the material and was able to walk us through what each step did. We did hit a blocker when it wouldn't build properly on all of our computers but Dalonte and Zack were readily available to help us out. Now we plan to work on our git pushing and fetching and merging to avoid conflicts in the future.
