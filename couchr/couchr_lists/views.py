@@ -1,4 +1,4 @@
-import json, requests
+import json
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
@@ -76,25 +76,18 @@ def api_list(request, pk):
             content = json.loads(request.body)
             list = List.objects.get(id=pk)
             for key in content:
-                if key == "movie":
+                if key == "movie_api_url":
                     value = content[key]
-                    try:
-                        movie = MovieVO.objects.get(id=content[key])
-                        if content['add']:
-                            list.movies.add(movie)
-                        elif not content['add']:
-                            list.movies.remove(movie)
-                        else:
-                            # for now, just in case 'add' attribute is null
-                            # but on frontend, only 2 react buttons add/delete will exist, so this shouldn't be an issue
-                            pass
-                    except:
-                        # post_data = {'title': value}
-                        # response = requests.post('http://localhost:8090/api/movies/', data=post_data)
-                        # content = response.content
-
+                    movie, created = MovieVO.objects.get_or_create(id=content[key])
+                    # once api configured, code should look like this
+                    # movie, created = MovieVO.objects.get_or_create(api_url=content[key])
+                    if content['add'] == True:
+                        list.movies.add(movie)
+                    elif content['add'] == False:
+                        list.movies.remove(movie)
+                    else:
                         response = JsonResponse(
-                            {"message": "Movie does not list"}
+                            {"message": "JSON object key 'add' missing or incorrect. Value must be set to True or False"}
                         )
                         response.status_code = 400
                         return response
@@ -102,7 +95,6 @@ def api_list(request, pk):
                     # setattr(obj to be changed, key to be accessed, value of the change)
                     setattr(list, key, content[key])
             list.save()
-            # just to show the JSON response, but doesn't affect the actual list object above
             response = []
             dict = {}
             dict["id"] = list.id
