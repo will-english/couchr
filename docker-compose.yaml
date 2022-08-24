@@ -14,6 +14,7 @@ services:
             HOST_OS: ${OS}
             NODE_ENV: development
             HOST: "0.0.0.0"
+            REACT_APP_MOVIE_API_KEY: ${REACT_APP_MOVIE_API_KEY}
     postgres:
         build:
             context: ./relational-data
