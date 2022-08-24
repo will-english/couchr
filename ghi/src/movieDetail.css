@@ -111,3 +111,7 @@ body {
     opacity: 0.5;
     font-size: 13px;
   }
+
+  .header-logo {
+    width: 50px
+  }
