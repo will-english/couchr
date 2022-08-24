@@ -22,7 +22,7 @@ class MovieList extends React.Component {
             const response = await fetch(movie_url);
             if (response.ok && response.status === 200) {
                 const data = await response.json();
-                // data.movie_detail_url = `movie/${data.id}/`
+                // data.movie_detail_url = `movie/${data.id}/test`
                 result.push(data)
                 console.log(movie_id)
                 console.log(data)
