@@ -1,6 +1,12 @@
+### 8/23
+- Did pair programming with Will to review my logic
+- Will shared a bit about his progress with user authentication
+- Setup 3rd party API to mimic what would happen on the frontend when integrating the API calls with the backend, this took me a while as I was reviewing older projects that utilized 3rd party APIs
+- Played around with API calls and backend views
 ### 8/22
- - added a boolean field on List model in order to make PUT function work with adding/removing movies
- - all older projects utilized a put function to edit the model, and a delete function to delete the model, but this project requires us to edit the list model by adding/removing a m2m attribute. This is why the boolean field was needed. On the frontend/React side, the add/remove movie buttons will call the list's PUT method, and will not use a DELETE method.
+ - added a boolean logic into the List PUT method in order to add/remove movies
+ - initially thought we'd use the DELETE method to remove movies, but it makes more sense for this logic to be applied in the List's PUT. On the frontend/React side, the add/remove movie buttons will call the list's PUT method, and will not use a DELETE method.
+ - Did pair programming with Sheldon to review my logic
  - Will and Dalonte helped us start up our docker-compose.yaml file - this took a lot of time today
  - blocker: how to call MovieVO's POST function inside List's PUT function?
 ### 8/19
