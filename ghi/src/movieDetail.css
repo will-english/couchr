@@ -6,7 +6,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #181c24;
-    color: white;
+    color: black;
   }
   
   code {
@@ -110,4 +110,21 @@ body {
     color: lightgray;
     opacity: 0.5;
     font-size: 13px;
+  }
+
+  .movie-card {
+    background-color: #415A77;
+    text-align: center;
+  }
+
+  .card-title {
+    font-size: 15px;
+  }
+
+  .card-subtitle {
+    font-size: 15px;
+    font: black;
+  }
+  .header-logo {
+    width: 50px
   }
