@@ -16,3 +16,7 @@ was caught up and on the same page. This past weekend I worked a lot on the user
 service and was able to make a little bit of progress this morning. We are going to go 
 over our group process for pushing/pulling and after that we should have a good work-
 flow going forward.
+## 8/23
+We created our branches, Edward and I connected the new django project to the postgres 
+database. I spent a lot of the day working on the authentication but Zach and I found
+and issue with the cookbook, so that will get put on the backburner until it gets fixed.
