@@ -1,26 +1,27 @@
 from django.db import models
+from couchr_lists.models import MovieVO
 
 # Create your models here.
-
-class MovieVO(models.Model):
-    title = models.CharField(max_length=100, unique=False, null=True, blank=True)
-    api_url = models.URLField(unique=True, null=True, blank=True)
-    api_id = models.CharField(max_length=100, unique=False, null=True, blank=True)
 
 # We will use the user model once auth all figured out
 
 # class User(models.Model):
 #     user_id = models.CharField(max_length=100, unique=False, null=True, blank=True)
 
-class List(models.Model):
+class Review(models.Model):
     name = models.CharField(max_length=100, unique=False, null=True, blank=True)
-    description = models.CharField(max_length=100, unique=False, null=True, blank=True)
-    movies = models.ManyToManyField(
+    description = models.TextField(unique=False, null=True, blank=True)
+    movie = models.ForeignKey(
         MovieVO,
+        related_name="reviews",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
     )
+
     # user = models.ForeignKey(
     #     User,
-    #     related_name="lists",
+    #     related_name="reviews",
     #     on_delete=models.PROTECT,
     #     null=True,
     #     blank=True,

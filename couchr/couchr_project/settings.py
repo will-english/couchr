@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ["localhost", "couchr"]
 # Application definition
 
 INSTALLED_APPS = [
+    "couchr_reviews.apps.CouchrReviewsConfig",
     "couchr_lists.apps.CouchrListsConfig",
     'django.contrib.admin',
     'django.contrib.auth',
