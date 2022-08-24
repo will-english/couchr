@@ -1,3 +1,5 @@
+## 8/24
+Today we have made a big change to the movies list page and movie detail page by using CSS and CSS Bootstrap. On movie list page we made every movie object to a card. We try to set mutiple pages for movie list but it didn't work today. 
 ## 8/23
 Today we have completed the first draft of movie detail page, Merged everying in front-end branch. Compared to yesterday I am happy that today we focused on the functionality of the detail page all day long.
 ## 8/22
