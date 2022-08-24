@@ -117,6 +117,12 @@ body {
     text-align: center;
   }
 
+  .movie-card:hover {
+    background-color: #415A77;
+    text-align: center;
+    transform: scale(1.05);
+  }
+
   .card-title {
     font-size: 15px;
   }
