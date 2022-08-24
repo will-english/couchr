@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import * as React from "react";
-import "./movieDetail.css";
+import "./index.css";
+
 
 
 class MovieDetail extends React.Component {
@@ -16,8 +17,8 @@ class MovieDetail extends React.Component {
 
     async componentDidMount() {
         const currentURL = window.location.href
-        console.log(currentURL)
-        const movie_id = currentURL.slice(-2,-1)
+        const words = currentURL.split("/")
+        const movie_id = words[5]
         console.log(movie_id)
 
         const movie_detail_url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`;
@@ -43,8 +44,11 @@ class MovieDetail extends React.Component {
             // }
             // actors_list = actors_list.slice(1,-1)
             // console.log(actors_list)
-            
-            detail_data.poster_path = "https://image.tmdb.org/t/p/original" + detail_data.poster_path
+            if (detail_data.poster_path !== null){
+                detail_data.poster_path = "https://image.tmdb.org/t/p/original" + detail_data.poster_path
+            } else {
+                detail_data.poster_path = "/couchr-no-photo.png"
+            }
             detail_data.vote_average = detail_data.vote_average.toFixed(1)
             detail_data.release_date = detail_data.release_date.slice(0,4)
 
@@ -60,7 +64,8 @@ class MovieDetail extends React.Component {
         return(
             <div className="detail-page">
                 <div className="detail-head-area">
-                    <h1>Couchr heading area...</h1>
+                    <img className="header-logo" src="/couchr-logo.png" alt="image" />
+                    <h1>Couchr</h1>
                 </div>
                 <div className="detail-content-area">
                     <div className="image-area">
@@ -90,12 +95,12 @@ class MovieDetail extends React.Component {
                                 </svg>
                             </button>
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-bookmark-heart detail-movie-addtolist" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"/>
+                                <path fillRule="evenodd" d="M8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"/>
                                 <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
                             </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-pencil-square detail-movie-addtolist" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-pencil-square detail-movie-addtolist" viewBox="0 0 16 16">
                                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                <path fillRule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                             </svg>
                         </div>
 
