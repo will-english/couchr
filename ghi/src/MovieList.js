@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import "./index.css";
 
 class MovieList extends React.Component {
     constructor(props) {
@@ -37,12 +37,13 @@ class MovieList extends React.Component {
         <div>
             {this.state.movies.map(movie => {
                 return (
-                    <Link to={"movie/" + movie.id + "/"} key={movie.id} className="btn btn-primary btn-lg px-4 gap-3 mt-3 ml-3">
+                    <Link to={"movie/" + movie.id + "/"} key={movie.id} className="btn btn-primary m-2">
                         <div>
                             <p>##################</p>
                             <p>movie_name: { movie.title }</p>
                             <p>movie_rate: { movie.vote_average }</p>
                             <p>movie_id: { movie.id }</p>
+                         
                         </div>
                     </Link>
                 );

@@ -1,3 +1,7 @@
+## 8/23
+Today we have completed the first draft of movie detail page, Merged everying in front-end branch. Compared to yesterday I am happy that today we focused on the functionality of the detail page all day long.
+## 8/22
+Today we re-edited docker-compose file to make sure everyone's container works. I spent a lot of time installing npm, finally when I turned off the wifi and connection to the network cable then the bug went away. We have completed the first draft of movie list page.
 ## 8/19
 It's been a tough day, we spend whole day to try to make our react container work, but it didn't work until 8PM. Finally I deleted my local project and re-cloned from our repo then everything works. 
 ## 8/18
