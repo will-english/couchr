@@ -1,3 +1,6 @@
+## 8/24/22
+Today felt very productive. Jamie, Sheldon and I  spent the day sharing our screens and working on the frontend. We found that some of the movies didnt have posters from the API so I designed an error picture on Canva that would take it's place for those movies. We made coloums to list the movies in cards and made the cards into links bringing the user to the movie's detail page. One small blocker we met today was when we found a bug in our movie detail page, and realized it was only taking the last number of the url to use as the movie id instead of the entire number so we used the split method on the url using the "/" divider to grab the entire movie id. I feel a lot more comfortable with git branches today and am very happy with our progrress.
+
 ## 8/23/22
 Today we worked on creating the React pages. We took a while reading up on how to make detail pages on React with a specific id in the url and we were able to get it started! As well as starting a browse movie page. I worry about using git branches, we seem to spend a lot of day fixing git merge issues but Im sure we will get better as we practice each day.
 
