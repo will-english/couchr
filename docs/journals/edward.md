@@ -1,3 +1,12 @@
+### 8/24
+- Did pair programming with Will to review my logic, he had some suggestions to refactor and organize my code
+- We broke the List's PUT method into 2 separate views, for simplicity and organization
+- One PUT method is the standard version where the Lists's name and description can be updated
+- The other PUT method is to add/remove movies to the List, which is a little bit more complicated and was an eye-sore altogether
+- I learned that even though my code worked (for the most part), it can still be difficult for others to interpret if it's not intuitive
+- Because I couldn't figure out how to use the standard encoders for models with m2m attributes, I created knockoff encoders within the Views file itself - 1 for the List, 1 for the Movie
+- I created and tested the Reviews application models/views in Insomnia
+- Next steps: pair program / review again, and then integrate the User Auth functionality
 ### 8/23
 - Did pair programming with Will to review my logic
 - Will shared a bit about his progress with user authentication
