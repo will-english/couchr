@@ -19,13 +19,11 @@ code {
   color: white;
 }
 
-
 .detail-head-area {
   height: 200px;
   text-align: center;
   padding-top: 50px;
 }
-
 
 .image-area {
   display: inline-block;
@@ -34,7 +32,6 @@ code {
   padding: 30px;
   vertical-align: top;
   text-align: center;
- 
 }
 
 .detail-information-area {
@@ -60,7 +57,6 @@ code {
 }
 
 /* .detail-movie-name-area {
-
 } */
 
 .detail-movie-name {
@@ -69,7 +65,6 @@ code {
 
 .detail-movie-year {
   display: inline-block;
-
 }
 
 .detail-movie-rating {
@@ -98,6 +93,7 @@ code {
 .detail-movie-addtolist:hover {
   margin-left: 20px;
   transform: scale(1.1);
+  /* transition: 1s ease; */
 }
 
 .detail-footer {
@@ -121,6 +117,7 @@ code {
   background-color: #415A77;
   text-align: center;
   transform: scale(1.05);
+  /* transition: 1s ease; */
 }
 
 .card-title {
@@ -131,7 +128,7 @@ code {
   font-size: 15px;
   font: black;
 }
+
 .header-logo {
   width: 50px
 }
-
