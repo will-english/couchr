@@ -2,6 +2,7 @@ import * as React from "react";
 import "./index.css";
 
 
+
 class MovieDetail extends React.Component {
     constructor(props) {
         super(props)
@@ -10,23 +11,30 @@ class MovieDetail extends React.Component {
             movie_credit: {},
             genres: "",
             actors: [],
+            movie_list_id: '',
+            movie_lists: [],
         }
+        this.handleStateChange = this.handleStateChange.bind(this);
+        this.handleAddMovie = this.handleAddMovie.bind(this);
     }
-
+    
     async componentDidMount() {
         const currentURL = window.location.href
         const words = currentURL.split("/")
         const movie_id = words[5]
-
+        
         const movie_detail_url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`;
         const movie_credit_rul = `https://api.themoviedb.org/3/movie/${movie_id}/credits?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`;
+        const movie_lists_url = `http://localhost:8000/api/lists/`
 
         const response_detail = await fetch(movie_detail_url);
         const response_credit = await fetch(movie_credit_rul);
+        const response_lists = await fetch(movie_lists_url);
 
         if (response_detail.ok && response_credit.ok) {
             const detail_data = await response_detail.json();
             const credit_data = await response_credit.json();
+            const lists_data = await response_lists.json();
             //set geners
             let genres_list = "";
             for (const genre of detail_data.genres) {
@@ -42,14 +50,63 @@ class MovieDetail extends React.Component {
 
             detail_data.vote_average = detail_data.vote_average.toFixed(1)
             detail_data.release_date = detail_data.release_date.slice(0,4)
-
+            
             this.setState(
                 {
                     movie_detail: detail_data,
                     movie_credit: credit_data,
-                    genres: genres_list
+                    genres: genres_list,
+                    movie_lists: lists_data.lists,
                 });
         };
+    }
+
+    handleStateChange(event) {
+        // console.log("event.target: ", event.target)
+        const id = event.target.id;
+        // console.log("id: ", id)
+        const value = event.target.value;
+        // console.log("value: ", value)
+        this.setState({[id]: value});
+    }
+
+    async handleAddMovie(event) {
+        event.preventDefault();
+
+        // get the URL to send the JSON to
+        const list_id = event.target.id;
+        const movie_list_url = `http://localhost:8000/api/lists/${list_id}/movies/`;
+        
+        // get the movie ID
+        const currentURL = window.location.href
+        const words = currentURL.split("/")
+        const api_id = words[5]
+
+        // create the JSON object body
+        const movie = {
+            "title": this.state.movie_detail.title,
+            "api_id": api_id,
+            "add": true
+        }
+
+        // Turn the JSON object into a JSON string and then send it in the PUT method
+        const fetchConfig = {
+            method: "PUT",
+            body: JSON.stringify(movie),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+        
+        // call the PUT method
+        const response = await fetch(movie_list_url, fetchConfig)
+        if (response.ok) {
+            console.log("response ok")
+        }
+    }
+
+    async handleCreateList(event) {
+        event.preventDefault();
     }
 
     render() {
@@ -96,10 +153,26 @@ class MovieDetail extends React.Component {
                                 </svg>
                             </button>
                             {/* add to list button */}
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-bookmark-heart detail-movie-addtolist" viewBox="0 0 16 16">
-                                <path fillRule="evenodd" d="M8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"/>
-                                <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
-                            </svg>
+                                    {/* <svg xmlns="http://www.w3.org/2000/svg" width="25" height="16" fill="currentColor" className="bi bi-bookmark-heart detail-movie-addtolist" viewBox="0 0 16 16">
+                                        <path fillRule="evenodd" d="M8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"/>
+                                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                                    </svg> */}
+                            <div className="btn-group detail-add-button">
+                                <button type="button" className="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Add to My Movies
+                                </button>
+                                <div className="dropdown-menu">
+                                    {this.state.movie_lists.map(list => {
+                                        return (
+                                            <a onClick={this.handleAddMovie} className="dropdown-item" key={list.id} id={list.id}>
+                                                {list.name}
+                                            </a>
+                                        );
+                                    })}
+                                    <div className="dropdown-divider"></div>
+                                    <a className="dropdown-item" href="#">Create New list</a>
+                                </div>
+                            </div>
                             {/* add review button */}
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-pencil-square detail-movie-addtolist" viewBox="0 0 16 16">
                                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
