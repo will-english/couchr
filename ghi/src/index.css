@@ -34,6 +34,20 @@ code {
   text-align: center;
 }
 
+.image-area-image {
+  border-radius: 3%;
+  width: 200px; 
+  height: 300px;
+  overflow: hidden;
+  /* box-shadow: 5px 5px 5px 5px black; */
+}
+
+.list-card-image {
+  width: 100%; 
+  height: 350px;
+  overflow: hidden;
+}
+
 .detail-information-area {
   display: inline-block;
   width: 50%;
@@ -48,12 +62,6 @@ code {
   height: 100%;
   padding: 30px;
   vertical-align: top;
-}
-
-.image-area-image {
-  border-radius: 3%;
-  width: 200px; 
-  /* box-shadow: 5px 5px 5px 5px black; */
 }
 
 /* .detail-movie-name-area {
@@ -93,7 +101,7 @@ code {
 .detail-movie-addtolist:hover {
   margin-left: 20px;
   transform: scale(1.1);
-  /* transition: 1s ease; */
+  transition: 0.5s ease;
 }
 
 .detail-footer {
@@ -111,24 +119,30 @@ code {
 .movie-card {
   background-color: #415A77;
   text-align: center;
+  /* height: 20%; */
 }
 
 .movie-card:hover {
   background-color: #415A77;
   text-align: center;
   transform: scale(1.05);
-  /* transition: 1s ease; */
+  transition: 0.5s ease;
 }
 
 .card-title {
   font-size: 15px;
 }
 
-.card-subtitle {
+/* .card-subtitle {
   font-size: 15px;
   font: black;
-}
+} */
 
 .header-logo {
   width: 50px
+}
+
+.card-body {
+  height: 80px;
+  text-align: center;
 }
