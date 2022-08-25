@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 import "./index.css";
 import MovieColumn from './MovieColumns';
 
@@ -11,7 +10,6 @@ class MovieList extends React.Component {
             MovieColumn: [[], [], [], []],
         }
     }
-
     
     async componentDidMount() {
         let movie_id;
@@ -20,20 +18,19 @@ class MovieList extends React.Component {
         for (let i=2; i<30; i++){
             movie_id = i;
             const movie_url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`
-            console.log(movie_url)
             const response = await fetch(movie_url);
             if (response.ok && response.status === 200) {
                 const data = await response.json();
-                console.log(data.poster_path)
+                // set movie picture url
+                if (data.poster_path === null) {
+                    data.poster_path = "/couchr-no-photo.png"
+                } else {
+                    data.poster_path = "https://image.tmdb.org/t/p/original" + data.poster_path
+                }
                 data.vote_average = data.vote_average.toFixed(1)
-            if (data.poster_path === null) {
-                data.poster_path = "/couchr-no-photo.png"
-            } else {
-                data.poster_path = "https://image.tmdb.org/t/p/original" + data.poster_path
-            }
                 data.release_date = data.release_date.slice(0,4)
-                result.push(data)
 
+                result.push(data)
             };
         }
         const MovieColumn= [[], [], [], []]
@@ -41,9 +38,7 @@ class MovieList extends React.Component {
         for (let data of result) {
             MovieColumn[i].push(data)
             i = i + 1
-            if (i > 3) {
-                i = 0
-            }
+            if (i > 3) { i = 0 }
         }
         this.setState({MovieColumn: MovieColumn});
     }
@@ -51,16 +46,14 @@ class MovieList extends React.Component {
 
     render() {
         return(
-        <div className="row">
-            {this.state.MovieColumn.map((movie, index) => {
-                return (
-                    <MovieColumn key={index} list={movie} />
-                );
-            })}
-        </div>
-        )
-    }
-}
+            <div className="row">
+                {this.state.MovieColumn.map((movie, index) => {
+                    return (
+                        <MovieColumn key={index} list={movie} />
+                    );
+                })}
+            </div>
+        )}}
 
 
 export default MovieList;
