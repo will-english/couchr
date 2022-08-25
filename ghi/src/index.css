@@ -14,6 +14,22 @@ code {
     monospace;
 }
 
+.navbar {
+  background-color: #415A77;
+  /* background-color: #1B263B; */
+  color: white;
+  height: 10vh;
+}
+
+.nav-login {
+  float: right;
+  display: inline-block;
+}
+
+.input-group {
+  display: inline-block;
+}
+
 .detail-page {
   background-color: #181c24;
   color: white;
@@ -43,8 +59,8 @@ code {
 }
 
 .list-card-image {
-  width: 100%; 
-  height: 350px;
+  width: 100%;
+  height: 85%;
   overflow: hidden;
 }
 
@@ -119,7 +135,7 @@ code {
 .movie-card {
   background-color: #415A77;
   text-align: center;
-  /* height: 20%; */
+  height: 14%;
 }
 
 .movie-card:hover {
@@ -146,3 +162,4 @@ code {
   height: 80px;
   text-align: center;
 }
+
