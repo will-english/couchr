@@ -7,7 +7,7 @@ class MovieList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            MovieColumn: [[], [], [], []],
+            MovieColumn: [[], [], [], [], []],
         }
     }
     
@@ -33,12 +33,12 @@ class MovieList extends React.Component {
                 result.push(data)
             };
         }
-        const MovieColumn= [[], [], [], []]
+        const MovieColumn= [[], [], [], [], []]
         let i = 0
         for (let data of result) {
             MovieColumn[i].push(data)
             i = i + 1
-            if (i > 3) { i = 0 }
+            if (i > 4) { i = 0 }
         }
         this.setState({MovieColumn: MovieColumn});
     }
