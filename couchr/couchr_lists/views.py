@@ -35,7 +35,7 @@ def api_lists(request):
         return JsonResponse(
             {"lists": response}
         )
-
+    # POST
     else:
         try:
             content = json.loads(request.body)
@@ -88,10 +88,11 @@ def api_list(request, pk):
 
         except List.DoesNotExist:
             return JsonResponse({"message": "Does not exist"})
-
+    # PUT method to update a list's name/description
     else:
         try:
             content = json.loads(request.body)
+            # how does Django know which List object this is referring to without first getting the ID?
             List.objects.update(
                 name = content["name"],
                 description = content["description"]
@@ -120,18 +121,25 @@ def api_list_movies(request, pk):
         list = List.objects.get(id=pk)
         content = json.loads(request.body)
 
-        # use code below when calling this PUT method from insomnia
-        movie, created = MovieVO.objects.get_or_create(id=content["movie_api_url"])
-
-        # use code below when we calling this PUT method from the frontend
-        # movie, created = MovieVO.objects.get_or_create(movie_api_url=content["movie_api_url"])
-
-        # JSON body needs to have an "add" key with a value of "True" or "False"
-        # true adds the movie, false removes the movie
+        # JSON body needs to have an "add" key with a value of "true" or "false"
+        # true adds the movie
         if content['add'] == True:
+            # get MovieVO or create one (using attribute api_id) if it doesn't already exist in the DB
+            movie, created = MovieVO.objects.get_or_create(api_id=content["api_id"])
+            movie.title = content["title"]
+            movie.save()
             list.movies.add(movie)
+        # false removes the movie
         elif content['add'] == False:
-            list.movies.remove(movie)
+            try:
+                movie = MovieVO.objects.get(api_id=content["api_id"])
+                list.movies.remove(movie)
+
+            except MovieVO.DoesNotExist:
+                response = JsonResponse({"message": "Movie does not exist"})
+                response.status_code = 404
+
+                return response
 
         response = []
         list_dict = list_encoder(list)
