@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import Nav from './Nav';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage'
@@ -24,6 +25,7 @@ function App() {
     //   </header>
     // </div>
     <BrowserRouter>
+    <Nav />
       <div className="container">
         <Routes>
           <Route path='/' element={<MainPage />} />
