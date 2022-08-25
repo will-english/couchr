@@ -18,7 +18,16 @@ code {
   background-color: #415A77;
   /* background-color: #1B263B; */
   color: white;
-  height: 5vh;
+  height: 10vh;
+}
+
+.nav-login {
+  float: right;
+  display: inline-block;
+}
+
+.input-group {
+  display: inline-block;
 }
 
 .detail-page {
@@ -153,3 +162,4 @@ code {
   height: 80px;
   text-align: center;
 }
+
