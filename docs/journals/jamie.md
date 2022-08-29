@@ -1,3 +1,5 @@
+8/25/2022
+Today we started to work on the navbar design the layout using css and also add in the logo.  A search bar feature that is not yet functional was added as well.  The movie list page design was also adjusted some because of the cards were not lining up appropriately in comparison to the other cards.  Pagination was added by Will as well to the list page to limit the number of movies listed out at one time.  
 8/24/2022
 We began the day using trello to determine what tasks were top priority.  There was a bug found within the movie detail page that when an image was clicked the wrong movie detail page was shown.  The movie url needed to be split with the slash and the fifth item used to extract the appropriate data to be displayed in the browser.  A lot of fetching and merging was done today to the frontend branch and our own making it easier to get the operational flow down.  We added the movie image, title, year, and rating to the movie list page.  We also created the link that directs to the movie detail page.  Pagination was explored towards the end of the day and will be continued into tomorrow.  
 8/23/2022
