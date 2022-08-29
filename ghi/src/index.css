@@ -14,6 +14,7 @@ code {
     monospace;
 }
 
+
 .navbar {
   background-color: #415A77;
   /* background-color: #1B263B; */
@@ -170,4 +171,26 @@ code {
   justify-content: center;
   margin-top: 10px;
   display: flex;
+}
+
+.detail_actor_img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  
+}
+
+.list_actors_area {
+  margin-bottom: 10px;
+}
+
+.all_actors_link { 
+  text-decoration: none; 
+  color:lightgray;
+  font-size: 15px;
+}
+
+.all_actors_link:hover { 
+  text-decoration: none; 
+  color:white;
 }

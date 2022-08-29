@@ -1,5 +1,6 @@
 import * as React from "react";
 import "./index.css";
+import { NavLink } from 'react-router-dom';
 
 
 class MovieDetail extends React.Component {
@@ -8,11 +9,10 @@ class MovieDetail extends React.Component {
         this.state = {
             movie_detail: {},
             movie_credit: {},
-            genres: "",
+            genres: [],
             actors: [],
             movie_list_id: '',
             movie_lists: [],
-            movie_actors: [],
         }
         this.handleStateChange = this.handleStateChange.bind(this);
         this.handleAddMovie = this.handleAddMovie.bind(this);
@@ -39,19 +39,21 @@ class MovieDetail extends React.Component {
 
             //set actors
             let actors = [];
-            for (const actor of credit_data.cast.slice(0,3)){
+            for (const actor of credit_data.cast.slice(0,5)){
                 let actor_detail = {};
                 actor_detail["name"] = actor.name;
-                actor_detail["profile_path"] = actor.profile_path;
+                actor_detail["profile_path"] = "https://image.tmdb.org/t/p/original" + actor.profile_path;
                 actors.push(actor_detail)
             }
-            this.setState({movie_actors: actors})
+            this.setState({actors: actors})
+
             //set geners
-            let genres_list = "";
+            let genres_list = [];
             for (const genre of detail_data.genres) {
-                genres_list += " " + genre.name + " "
+                genres_list.push(genre)
             }
-            genres_list = genres_list.slice(1,-1)
+            this.setState({genres: genres_list})
+
             //set movie picture url
             if (detail_data.poster_path !== null){
                 detail_data.poster_path = "https://image.tmdb.org/t/p/original" + detail_data.poster_path
@@ -117,11 +119,20 @@ class MovieDetail extends React.Component {
             setTimeout(function(){
                 document.getElementById("popup_message_id").className = "d-none";
             }, 3000);
+        }else{
+            document.getElementById("popup_error_message_id").className = "alert alert-danger popup_message"
+            setTimeout(function(){
+                document.getElementById("popup_error_message_id").className = "d-none";
+            }, 3000);
         }
     }
 
     async handleCreateList(event) {
         event.preventDefault();
+        alert(
+            "Hello"
+        )
+
     }
 
     render() {
@@ -167,15 +178,7 @@ class MovieDetail extends React.Component {
                                     <path d="M10.804 8 5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/>
                                 </svg>
                             </button>
-                            {/* add to list button */}
-                                    {/* <svg xmlns="http://www.w3.org/2000/svg" width="25" height="16" fill="currentColor" className="bi bi-bookmark-heart detail-movie-addtolist" viewBox="0 0 16 16">
-                                        <path fillRule="evenodd" d="M8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"/>
-                                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
-                                    </svg> */}
                             <div className="btn-group detail-add-button">
-                                {/* <button type="button" className="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Add to My Movies
-                                </button> */}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="25" fill="currentColor" className="bi bi-bookmark-heart detail-movie-addtolist" viewBox="0 0 16 16" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <path fillRule="evenodd" d="M8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"/>
                                         <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
@@ -183,13 +186,13 @@ class MovieDetail extends React.Component {
                                 <div className="dropdown-menu">
                                     {this.state.movie_lists.map(list => {
                                         return (
-                                            <a onClick={this.handleAddMovie} className="dropdown-item" key={list.id} id={list.id}>
+                                            <abbr onClick={this.handleAddMovie} className="dropdown-item" key={list.id} id={list.id}>
                                                 {list.name}
-                                            </a>
+                                            </abbr>
                                         );
                                     })}
                                     <div className="dropdown-divider"></div>
-                                    <a className="dropdown-item" href="#">Create New list</a>
+                                    <a onClick={this.handleCreateList} className="dropdown-item" href="#">Create New list</a>
                                 </div>
                             </div>
                             {/* add review button */}
@@ -203,6 +206,9 @@ class MovieDetail extends React.Component {
                             <div id="popup_message_id" className="" role="alert">
                                 You just added a new movie to your list!
                             </div>
+                            <div id="popup_error_message_id" className="d-none" role="alert">
+                                Movie is already in list!
+                            </div>
                         </div>
                         {/* movie description */}
                         <p className="detail-movie-plot">{ this.state.movie_detail.overview }</p>
@@ -214,35 +220,39 @@ class MovieDetail extends React.Component {
                             <p>Runtime:&nbsp;&nbsp;{ this.state.movie_detail.runtime }&nbsp;mins</p>
                         </div>
                     </div>
+
                     {/* actors and geners area */}
                     <div className="detail-right-area">
                         <div className="detail-movie-name mb-2">
                             <h5>Actors</h5>
                         </div>
                         {/* list actors */}
-                        <p>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-bounding-box" viewBox="0 0 16 16">
-                                <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z"/>
-                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                           </svg> actor
-                        </p>
-                        <p>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-bounding-box" viewBox="0 0 16 16">
-                                <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z"/>
-                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                            </svg> actor
-                        </p>
-                        <p>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-bounding-box" viewBox="0 0 16 16">
-                                <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z"/>
-                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                            </svg> actor
-                        </p>
+                        <div>
+                            {this.state.actors.map((actor, index) => {
+                                return (
+                                    <div className="list_actors_area" key={index}>
+                                        <img className="detail_actor_img" src={actor.profile_path} alt="ActorImage" />
+                                        &nbsp;&nbsp;{actor.name}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                        <div>
+                            <NavLink className="all_actors_link" to="#">&nbsp;&nbsp;&nbsp;&nbsp;More...</NavLink>
+                        </div>
+
                         <div className="detail-movie-name mt-3 mb-2">
                             <h5>Genres</h5>
                         </div>
                         {/* list geners */}
-                        <p>{ this.state.genres }</p>
+
+                        {this.state.genres.map((genre, index) => {
+                                return (
+                                    <div className="" key={index}>
+                                         <NavLink className="all_actors_link" to="#">{genre.name}</NavLink>
+                                    </div>
+                                );
+                        })}
 
                     </div>
                 </div>

@@ -128,7 +128,17 @@ def api_list_movies(request, pk):
             movie, created = MovieVO.objects.get_or_create(api_id=content["api_id"])
             movie.title = content["title"]
             movie.save()
-            list.movies.add(movie)
+
+            # if MovieVO isn't already in the list, then add it
+            if movie not in list.movies.all():
+                    list.movies.add(movie)
+
+            # if MovieVO is already in the list, then send an error response
+            else:
+                response = JsonResponse({"message": "Movie already in list"})
+                response.status_code = 409
+
+                return response
         # false removes the movie
         elif content['add'] == False:
             try:
