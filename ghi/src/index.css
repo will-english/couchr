@@ -163,3 +163,11 @@ code {
   text-align: center;
 }
 
+.popup_message {
+  height: 30px;
+  width: 400px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  display: flex;
+}
