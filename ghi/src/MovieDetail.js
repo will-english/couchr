@@ -12,7 +12,7 @@ class MovieDetail extends React.Component {
             actors: [],
             movie_list_id: '',
             movie_lists: [],
-            add_movie_success: false,
+            movie_actors: [],
         }
         this.handleStateChange = this.handleStateChange.bind(this);
         this.handleAddMovie = this.handleAddMovie.bind(this);
@@ -35,6 +35,17 @@ class MovieDetail extends React.Component {
             const detail_data = await response_detail.json();
             const credit_data = await response_credit.json();
             const lists_data = await response_lists.json();
+            // console.log(credit_data)
+
+            //set actors
+            let actors = [];
+            for (const actor of credit_data.cast.slice(0,3)){
+                let actor_detail = {};
+                actor_detail["name"] = actor.name;
+                actor_detail["profile_path"] = actor.profile_path;
+                actors.push(actor_detail)
+            }
+            this.setState({movie_actors: actors})
             //set geners
             let genres_list = "";
             for (const genre of detail_data.genres) {
@@ -102,8 +113,10 @@ class MovieDetail extends React.Component {
         const response = await fetch(movie_list_url, fetchConfig)
         if (response.ok) {
             console.log("response ok")
-            this.setState({add_movie_success: true})
-
+            document.getElementById("popup_message_id").className = "alert alert-success popup_message"
+            setTimeout(function(){
+                document.getElementById("popup_message_id").className = "d-none";
+            }, 3000);
         }
     }
 
@@ -186,8 +199,10 @@ class MovieDetail extends React.Component {
                             </svg>
                         </div >
                         {/* pop-up message */}
-                        <div  id="popup_message_id" className={this.state.add_movie_success? "alert alert-success popup_message" : "d-none"} role="alert">
-                            You just added a new movie to your list!
+                        <div>
+                            <div id="popup_message_id" className="" role="alert">
+                                You just added a new movie to your list!
+                            </div>
                         </div>
                         {/* movie description */}
                         <p className="detail-movie-plot">{ this.state.movie_detail.overview }</p>
