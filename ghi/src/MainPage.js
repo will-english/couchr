@@ -1,16 +1,12 @@
-import { Link } from "react-router-dom";
-import { NavLink } from 'react-router-dom';
-import * as React from "react";
-import "./index.css";
 import MovieColumn from "./MovieColumns";
 import { useState, useEffect } from 'react';
 
 
 function MainPage() {
-  const [popular, setPopular] = React.useState('');
-  const [genres, setGenres] = React.useState('');
-  const [picks, setPicks] = React.useState('');
-  const [error, setError] = React.useState('');
+  const [popular, setPopular] = useState([]);
+  // const [genres, setGenres] = React.useState('');
+  // const [picks, setPicks] = React.useState('');
+  // const [error, setError] = React.useState('');
   const [MovieColumns, setMovieColumns] = useState();
 
   const getPopular = async () => {
@@ -21,30 +17,37 @@ function MainPage() {
       setPopular(data["results"]);
     }
     else {
-      setError("There was a problem with the response")
+      console.log("There was a problem with the response")
     }
+    if (popular.length > 0) {
+      const MovieColumn = [[], [], [], []]
+      let i = 0
+      for (let data of popular) {
+        console.log(data)
+        i = i + 1;
+        if (i > 3) { i = 0 }
+        if (data.poster_path === null) {
+          data.poster_path = "/couchr-no-photo.png"
+        } else {
+          data.poster_path = "https://image.tmdb.org/t/p/original" + data.poster_path
+        }
+        data.vote_average = data.vote_average.toFixed(1);
+        data.release_date = data.release_date.slice(0, 4);
+        data.movie_link = "/movies/movie/" + data.id + "/";
+        MovieColumn[i].push(data);
+      }
+      setMovieColumns(MovieColumn);
+    }
+
   }
+
 
   useEffect(() => {
     getPopular();
-    const MovieColumn = [[], [], [], []]
-    let i = 0
-    for (let data of popular) {
-      MovieColumn[i].push(data);
-      i = i + 1;
-      if (i > 3) { i = 0 }
-      if (data.poster_path === null) {
-        data.poster_path = "/couchr-no-photo.png"
-      } else {
-        data.poster_path = "https://image.tmdb.org/t/p/original" + data.poster_path
-      }
-      data.vote_average = data.vote_average.toFixed(1);
-      data.release_date = data.release_date.slice(0, 4);
-      data.movie_link = "/movies/movie/" + data.id + "/";
-    }
-    setMovieColumns(MovieColumn);
   }, [],
     console.log(popular));
+
+
 
 
   // const movieCard = 
@@ -88,13 +91,13 @@ function MainPage() {
 
 
   return (
-      <div className="row">
-        {MovieColumns?.map((movie, index) => {
-          return (
-            <MovieColumn key={index} list={movie} />
-          );
-        })}
-      </div>
+    <div className="row">
+      {MovieColumns?.map((movie, index) => {
+        return (
+          <MovieColumn key={index} list={movie} />
+        );
+      })}
+    </div>
   );
 }
 
