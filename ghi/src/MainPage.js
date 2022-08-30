@@ -9,7 +9,7 @@ function MainPage() {
   // const [picks, setPicks] = React.useState('');
   // const [error, setError] = React.useState('');
   const [MovieColumns, setMovieColumns] = useState();
-  let [page, setPage] = useState(1);
+  let [Page, setPage] = useState(1);
 
   const getPopular = async () => {
     const url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US&page=1`
@@ -46,7 +46,7 @@ function MainPage() {
 
   useEffect(() => {
     getPopular();
-  }, [page],
+  }, [Page],
     console.log(popular));
 
 
@@ -101,7 +101,7 @@ function MainPage() {
           );
         })}
     </div>
-      <Pager page={page} setPage={setPage}/>
+      <Pager Page={Page} setPage={setPage}/>
     </div>
 
   );
