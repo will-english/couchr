@@ -1,3 +1,5 @@
+8/29/2022
+Today was focused on building the react end of the home page for the website.  We decided to go with a function and use react hooks instead of using a class.  Our frontend team was able to successfully create four columns and get hit the api that list the more popular movies.  Unfortunately, we hit a blocker and the movies do not stay loaded on the home page.  The movies will appear for a second or so and then disappear.  We plan to continue tomorrow and overcome this blocker. 
 8/25/2022
 Today we started to work on the navbar design the layout using css and also add in the logo.  A search bar feature that is not yet functional was added as well.  The movie list page design was also adjusted some because of the cards were not lining up appropriately in comparison to the other cards.  Pagination was added by Will as well to the list page to limit the number of movies listed out at one time.  
 8/24/2022

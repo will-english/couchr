@@ -1,5 +1,6 @@
 import MovieColumn from "./MovieColumns";
 import { useState, useEffect } from 'react';
+import Pager from "./Pager";
 
 
 function MainPage() {
@@ -8,6 +9,7 @@ function MainPage() {
   // const [picks, setPicks] = React.useState('');
   // const [error, setError] = React.useState('');
   const [MovieColumns, setMovieColumns] = useState();
+  let [page, setPage] = useState(1);
 
   const getPopular = async () => {
     const url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US&page=1`
@@ -44,7 +46,7 @@ function MainPage() {
 
   useEffect(() => {
     getPopular();
-  }, [],
+  }, [page],
     console.log(popular));
 
 
@@ -91,13 +93,17 @@ function MainPage() {
 
 
   return (
-    <div className="row">
-      {MovieColumns?.map((movie, index) => {
-        return (
-          <MovieColumn key={index} list={movie} />
-        );
-      })}
+    <div>
+      <div className="row">
+        {MovieColumns?.map((movie, index) => {
+          return (
+            <MovieColumn key={index} list={movie} />
+          );
+        })}
     </div>
+      <Pager page={page} setPage={setPage}/>
+    </div>
+
   );
 }
 

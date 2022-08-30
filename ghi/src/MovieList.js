@@ -86,8 +86,11 @@ class MovieList extends React.Component {
                             <MovieColumn key={index} list={movie} />
                         );
                     })}
+                    <div>
+                        <Pagination moviesPerPage={this.state.moviesPerPage} totalMovies={this.state.totalMovies} paginate={this.paginate} />
+                    </div>
                 </div>
-                <Pagination moviesPerPage={this.state.moviesPerPage} totalMovies={this.state.totalMovies} paginate={this.paginate} />
+              
             </>
         )
     }
