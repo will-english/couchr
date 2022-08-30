@@ -1,7 +1,9 @@
 import * as React from "react";
 import "./index.css";
 import { NavLink } from 'react-router-dom';
-
+import NewList from "./CreateNewListForm";
+// import { Wrap, Center } from "./style";
+// import { Popover } from 'rsuite';
 
 class MovieDetail extends React.Component {
     constructor(props) {
@@ -43,6 +45,7 @@ class MovieDetail extends React.Component {
                 let actor_detail = {};
                 actor_detail["name"] = actor.name;
                 actor_detail["profile_path"] = "https://image.tmdb.org/t/p/original" + actor.profile_path;
+                actor_detail["character"] = actor.character
                 actors.push(actor_detail)
             }
             this.setState({actors: actors})
@@ -118,7 +121,7 @@ class MovieDetail extends React.Component {
             document.getElementById("popup_message_id").className = "alert alert-success popup_message"
             setTimeout(function(){
                 document.getElementById("popup_message_id").className = "d-none";
-            }, 3000);
+            }, 5000);
         }else{
             document.getElementById("popup_error_message_id").className = "alert alert-danger popup_message"
             setTimeout(function(){
@@ -129,10 +132,7 @@ class MovieDetail extends React.Component {
 
     async handleCreateList(event) {
         event.preventDefault();
-        alert(
-            "Hello"
-        )
-
+        alert("Hello")
     }
 
     render() {
@@ -178,11 +178,47 @@ class MovieDetail extends React.Component {
                                     <path d="M10.804 8 5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/>
                                 </svg>
                             </button>
+                            {/* add to list dropdown */}
+                            {/* <div>
+                            <ul>
+                                <li class="nav-item dropdown">
+                                    <a href="#insurance-head-section" class="nav-link dropdown-toggle" data-toggle="dropdown">Insurance</a>
+                                    <div class="dropdown-menu">
+                                    <a href="" class="dropdown-item">New Patient</a>
+                                    <a href="" class="dropdown-item">Established Patient</a>
+                                    <a href="#response"
+                                        class="dropdown-item"
+                                        data-toggle="modal" data-target="#response">Responsibilities</a>
+                                    <a href="" class="dropdown-item">link 4</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="modal" id="response">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title"></h5>
+                                            <button class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="list-group">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h6>Responsibilities</h6>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
+                            </div> */}
                             <div className="btn-group detail-add-button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="25" fill="currentColor" className="bi bi-bookmark-heart detail-movie-addtolist" viewBox="0 0 16 16" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <path fillRule="evenodd" d="M8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"/>
-                                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
-                                    </svg>
+                                    <path fillRule="evenodd" d="M8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"/>
+                                    <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                                </svg>
                                 <div className="dropdown-menu">
                                     {this.state.movie_lists.map(list => {
                                         return (
@@ -191,10 +227,40 @@ class MovieDetail extends React.Component {
                                             </abbr>
                                         );
                                     })}
+                                    
                                     <div className="dropdown-divider"></div>
-                                    <a onClick={this.handleCreateList} className="dropdown-item" href="#">Create New list</a>
+                                    {/* <NavLink onClick={this.handleCreateList} className="dropdown-item" to="#">Create New list</NavLink> */}
+                                    <div className="dropdown-item">
+                                    <button type="button"
+                                        className="btn btn-primary"
+                                        data-bs-toggle="modal" data-bs-target="#response">Responsibilities
+                                    </button>
+
+                                    {/* <div class="modal" id="response">
+                                        <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                            <div class="list-group">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                <h6>Responsibilities</h6>
+
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div> */}
+                                    
+                                    <NewList />
+                                    </div>
                                 </div>
+                                
                             </div>
+                            
+
                             {/* add review button */}
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-pencil-square detail-movie-addtolist" viewBox="0 0 16 16">
                                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -203,7 +269,7 @@ class MovieDetail extends React.Component {
                         </div >
                         {/* pop-up message */}
                         <div>
-                            <div id="popup_message_id" className="" role="alert">
+                            <div id="popup_message_id" className="d-none" role="alert">
                                 You just added a new movie to your list!
                             </div>
                             <div id="popup_error_message_id" className="d-none" role="alert">
@@ -220,6 +286,7 @@ class MovieDetail extends React.Component {
                             <p>Runtime:&nbsp;&nbsp;{ this.state.movie_detail.runtime }&nbsp;mins</p>
                         </div>
                     </div>
+                    
 
                     {/* actors and geners area */}
                     <div className="detail-right-area">
@@ -232,7 +299,8 @@ class MovieDetail extends React.Component {
                                 return (
                                     <div className="list_actors_area" key={index}>
                                         <img className="detail_actor_img" src={actor.profile_path} alt="ActorImage" />
-                                        &nbsp;&nbsp;{actor.name}
+                                        &nbsp;&nbsp;{actor.name} &nbsp;&#40;{actor.character}&#41; 
+                                        {/* &nbsp: space, &#40: left parenthesis, &#41: right parenthesis */}
                                     </div>
                                 );
                             })}
