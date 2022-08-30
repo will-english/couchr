@@ -14,7 +14,6 @@ code {
     monospace;
 }
 
-
 .navbar {
   background-color: #415A77;
   /* background-color: #1B263B; */
@@ -34,6 +33,12 @@ code {
 .detail-page {
   background-color: #181c24;
   color: white;
+}
+
+.detail-content-area {
+  border-style: solid;
+  border-color: grey;
+  border-width: 3px;
 }
 
 .detail-head-area {
@@ -65,12 +70,27 @@ code {
   overflow: hidden;
 }
 
+.image_area_icon {
+  margin-top: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.image_area_icon:hover {
+  margin-top: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+  transform: scale(1.2);
+  transition: 0.5s ease;
+}
+
 .detail-information-area {
   display: inline-block;
   width: 50%;
-  height: 100%;
+  height: 550px;
   padding: 30px;
   vertical-align: top;
+  background-color: #20232b;
 }
 
 .detail-right-area {
@@ -194,6 +214,48 @@ code {
   color:white;
 }
 
-.create_new_list {
-  color: black;
+
+/* ----------------detail page add to list dropdown area---------------- */
+.dropdown_list_ul {
+  margin: 10px;
+  text-align: center;
+  background-color: #2a2e36;
+  color: white;
+}
+
+.dropdown_list_li {
+  height:25px;
+}
+
+.dropdown_list_li:hover {
+  height:25px;
+  background-color: #3c3e45;
+  transform: scale(1.05);
+}
+
+.dropdown_list_button {
+  color: white;
+}
+
+.create_list_form {
+  color:black;
+}
+
+.create_list_form_close_button {
+  margin-right: 250px;
+}
+
+.create_list_form_create_button {
+  display: flex;
+  float: right;
+}
+
+.create_list_success {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.create_list_error {
+  display: inline-block;
+  margin-right: 5px;
 }

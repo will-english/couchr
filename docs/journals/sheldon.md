@@ -1,3 +1,5 @@
+## 8/30
+Make 'add to list' icon to a dropdowm button, and in dropdown list we put a 'create new list' option there. Add pop-up model to 'create new list' option then it pop-up a form which can let us create a new list to database. We also change some CSS style for detail page, like the background and icons. Tomorrow we will work on list lists page.
 ## 8/29
 Today work with Edward together, we list all the actor's name, character's name and gener name to the detail page. Add actor's image to detail page, add success message and error message when add movie to the list, make the gener's name to a link. We try to create a pop-up model to create a new list, will continue work on it tomorrow. 
 ## 8/25
