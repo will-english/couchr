@@ -23,7 +23,7 @@ class MovieList extends React.Component {
         let movie_id;
         // const MTDB_KET = "742276fc88b89a452ad9c04ac04df00e"
         const movies = []
-        for (let i = 2; i < 500; i++) {
+        for (let i = 2; i < 100; i++) {
             movie_id = i;
             const movie_url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`
             const response = await fetch(movie_url);
@@ -86,8 +86,11 @@ class MovieList extends React.Component {
                             <MovieColumn key={index} list={movie} />
                         );
                     })}
+                    <div>
+                        <Pagination moviesPerPage={this.state.moviesPerPage} totalMovies={this.state.totalMovies} paginate={this.paginate} />
+                    </div>
                 </div>
-                <Pagination moviesPerPage={this.state.moviesPerPage} totalMovies={this.state.totalMovies} paginate={this.paginate} />
+              
             </>
         )
     }
