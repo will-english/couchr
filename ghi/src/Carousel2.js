@@ -3,12 +3,15 @@ import Carousel from 'react-bootstrap/Carousel';
 import { Component } from 'react';
 
 
+
 export default class ControlledCarousel extends Component {
     constructor() {
         super();
         this.state = {
             popular: [],
+            index: 0
         };
+        this.handleSelect = this.handleSelect.bind(this);
         // this.handleChange = this.handleChange.bind(this);
         // this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -19,32 +22,45 @@ export default class ControlledCarousel extends Component {
         if (response.ok) {
             const data = await response.json();
             // console.log("xxxxxxxxx",data)
-            const popular = data.slice(0,3)
-            this.setState({popular: popular})
+            const popular = data["results"].slice(0, 3)
+            console.log(popular)
+            for (let movie of popular){
+                movie.poster_path = "https://image.tmdb.org/t/p/original" + movie.poster_path
             }
+            this.setState({ popular: popular })
         }
-
+    }
+    handleSelect(event) {
+        if (this.state.index < 2){
+            this.setState({ index: this.state.index + 1})
+        }
+        else{
+            this.setState({index: 0})
+        }
+    }
     render() {
         return (
             <div>
-                {this.state.popular.map((movie, index) => {
-                    return (
-                        <Carousel activeIndex={index} onSelect={handleSelect}>
-                            <Carousel.Item>
-                                <img
-                                className="d-block w-100"
-                                src= {movie.poster_path}
-                                alt="First slide"
-                                />
-                                <Carousel.Caption>
-                                <h3>First slide label</h3>
-                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                                </Carousel.Caption>
-                            </Carousel.Item> 
-                        </Carousel>
-                    )
-                })}   
+                <Carousel activeIndex={this.state.index} onSelect={this.handleSelect}>
+                    {this.state.popular.map((movie, index) => (
+                            <Carousel.Item key={index} className="carousel-slide" > 
+                                <div className='mydiv'>
+                                    <img className='slide-photo'
+                                        src={movie.poster_path}
+                                        alt="First slide"
+                                    />
+                                </div>
+                                <div>
+                                    <Carousel.Caption className='carousel-caption bg-dark'>
+                                        <h3>{movie.title}</h3>
+                                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                    </Carousel.Caption>
+                                </div>
+                            </Carousel.Item>
+                )
+            )}
+            </Carousel>
             </div>
-          );
+        );
     }
 }

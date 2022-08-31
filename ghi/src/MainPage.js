@@ -1,7 +1,7 @@
 import MovieColumn from "./MovieColumns";
 import { useState, useEffect } from 'react';
 import Pager from "./Pager";
-import ControlledCarousel from "./Carousel"
+import ControlledCarousel from "./Carousel2";
 
 
 
@@ -48,23 +48,29 @@ function MainPage() {
 
   useEffect(() => {
     getPopular();
-  }, [Page],
-    console.log(popular));
+  }, [getPopular],
+  );
 
 
 
 
   return (
     <div>
+      <container>
+      <h1 className="main-page-header">Today's Top Movies</h1>
+        <div className="carousel">
+          <ControlledCarousel />
+        </div>
+      </container>
+      <container>
       <div className="row">
-        <ControlledCarousel />
         {MovieColumns?.map((movie, index) => {
           return (
             <MovieColumn key={index} list={movie} />
           );
         })}
-    </div>
-      <Pager page={Page} setPage={setPage}/>
+      </div>
+      </container>
     </div>
 
   );
