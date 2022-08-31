@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const Pagination = ({ moviesPerPage, totalMovies, paginate }) => {
     const pageNumbers = [];
 

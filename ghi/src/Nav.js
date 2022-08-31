@@ -52,9 +52,9 @@ function Nav() {
          
           </ul>
           <ul className="nav justify-content-end">
-              <NavLink className="nav-link" to="/appointments">Login</NavLink>
+              <NavLink className="nav-link" to="/login">Login</NavLink>
               <NavLink className="nav-link" to="/appointments">Logout</NavLink>
-              <NavLink className="nav-link" to="/appointments">Sign up</NavLink>  
+              <NavLink className="nav-link" to="/signup">Sign up</NavLink>  
           </ul>
         </div>
       </div>

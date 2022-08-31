@@ -164,36 +164,29 @@ code {
   text-align: center;
 }
 
-.popup_message {
-  height: 30px;
-  width: 400px;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-  display: flex;
+.row {
+  height: 350px;
 }
 
-.detail_actor_img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+.pagination {
+  cursor: pointer;
+  margin: 1em 0;
+  margin-left: 25em;
 }
 
-.list_actors_area {
-  margin-bottom: 10px;
-}
-
-.all_actors_link { 
-  text-decoration: none; 
-  color:lightgray;
-  font-size: 15px;
-}
-
-.all_actors_link:hover { 
-  text-decoration: none; 
-  color:white;
-}
-
-.create_new_list {
+.pagination a {
   color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s;
 }
+
+.pagination a.active {
+  background-color: #5d5d5d;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+} 
