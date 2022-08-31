@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -18,10 +19,10 @@ class List(models.Model):
     movies = models.ManyToManyField(
         MovieVO,
     )
-    # user = models.ForeignKey(
-    #     User,
-    #     related_name="lists",
-    #     on_delete=models.PROTECT,
-    #     null=True,
-    #     blank=True,
-    # )
+    user = models.ForeignKey(
+        User,
+        related_name="lists",
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+    )

@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import './index.css'
+import { useToken } from './auth/auth_provider';
 
 function Nav() {
   // const genres = [
@@ -10,6 +11,17 @@ function Nav() {
   //   'mystery', 'romance', 'science fiction', 
   //   'tv movie', 'thriller', 'war', 'western'
   // ]
+  const funcs = useToken();
+  const logout = funcs[2];
+
+  const handleLogout = async e => {
+    e.preventDefault();
+    console.log('logout try');
+    // setErrors(validation(values))
+    // console.log('login inside', login)
+    await logout();
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark mb-5">
       <div className="container-fluid">
@@ -53,7 +65,7 @@ function Nav() {
           </ul>
           <ul className="nav justify-content-end">
               <NavLink className="nav-link" to="/login">Login</NavLink>
-              <NavLink className="nav-link" to="/appointments">Logout</NavLink>
+              <NavLink onClick={handleLogout} className="nav-link" to="">Logout</NavLink>
               <NavLink className="nav-link" to="/signup">Sign up</NavLink>  
           </ul>
         </div>

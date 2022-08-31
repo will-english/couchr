@@ -1,12 +1,13 @@
 import logo from './logo.svg';
 import Nav from './Nav';
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage'
 import MovieDetail from './MovieDetail'
 import MovieList from './MovieList';
 import Login from './auth/login';
 import Signup from './auth/signup';
+import { AuthProvider } from './auth/auth_provider';
 
 function App() {
   return (
@@ -26,8 +27,9 @@ function App() {
     //     </a>
     //   </header>
     // </div>
-    <BrowserRouter>
-    <Nav />
+
+    <AuthProvider>
+      <Nav />
       <div className="container">
         <Routes>
           <Route path='/' element={<MainPage />} />
@@ -37,7 +39,7 @@ function App() {
           <Route path='signup/' element={<Signup />} />
         </Routes>
       </div>
-    </BrowserRouter>
+    </AuthProvider>
   );
 }
 

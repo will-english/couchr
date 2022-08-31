@@ -2,6 +2,8 @@ import json
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
+import djwto.authentication as auth
+from django.contrib.auth.models import User
 
 from .models import List, MovieVO
 
@@ -23,10 +25,12 @@ def list_encoder(list):
     return dict
 
 @csrf_exempt
+@auth.jwt_login_required
 @require_http_methods(["GET", "POST"])
-def api_lists(request):
+def api_lists(request, user_id):
     if request.method == "GET":
-        lists = List.objects.all()
+        user = User.objects.get(id=user_id)
+        lists = List.objects.filter(user=user)
         response = []
         for list in lists:
             list_dict = list_encoder(list)

@@ -1,10 +1,10 @@
 import { useState } from 'react';
-// import { useToken } from '../utils/auth_provider';
+import { useToken } from './auth_provider';
 
 
 function Login() {
-    // const funcs = useToken();
-    // const login = funcs[1];
+    const funcs = useToken();
+    const login = funcs[1];
     const [username, setUsername] = useState([]);
     const [password, setPassword] = useState([]);
 
@@ -12,7 +12,7 @@ function Login() {
         e.preventDefault();
         // setErrors(validation(values))
         // console.log('login inside', login)
-        // await login(username, password);
+        await login(username, password);
         };
 
     return (

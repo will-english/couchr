@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import dj_database_url
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,6 +33,7 @@ ALLOWED_HOSTS = ["localhost", "couchr"]
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts.apps.AccountsConfig',
     "couchr_reviews.apps.CouchrReviewsConfig",
     "couchr_lists.apps.CouchrListsConfig",
     'django.contrib.admin',
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "djwto",
 ]
 
 MIDDLEWARE = [
@@ -47,7 +50,6 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -63,8 +65,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 CORS_ALLOW_CREDENTIALS = True
 
-DJWTO_MODE = "TWO-COOKIES"
-DJWTO_ACCESS_TOKEN_LIFETIME = None
+
 # changed to here ~~~~~~~~~~~~~~~
 
 ROOT_URLCONF = 'couchr_project.urls'
@@ -140,3 +141,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DJWTO_MODE = "TWO-COOKIES"
+DJWTO_CSRF = False
+DJWTO_ACCESS_TOKEN_LIFETIME = timedelta(days=1)
+
+# Your DEBUG value MUST be False in production
+DJWTO_SAME_SITE = "LAX" if DEBUG else "NONE"

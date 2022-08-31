@@ -20,4 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/lists/', include("couchr_lists.urls")),
     path('api/reviews/', include("couchr_reviews.urls")),
+    path("api/accounts/", include("accounts.urls")),
+    path("api/tokens/", include("accounts.urls")),
+    path("", include("djwto.urls")),
 ]
