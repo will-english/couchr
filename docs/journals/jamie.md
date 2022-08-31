@@ -1,3 +1,5 @@
+8/30/2022
+We continued to tackle the same blocker that we had yesterday.  Within the useEffect we determined that the empty array was only rendering once which was why the list of movies disappeared immediately after.  After adding the pagination into the main page and inserting it into the array, we were able to keep the movies listed on the main page.  We have a new blocker of getting the pagination to populate new movies once a different page number is selected.    
 8/29/2022
 Today was focused on building the react end of the home page for the website.  We decided to go with a function and use react hooks instead of using a class.  Our frontend team was able to successfully create four columns and get hit the api that list the more popular movies.  Unfortunately, we hit a blocker and the movies do not stay loaded on the home page.  The movies will appear for a second or so and then disappear.  We plan to continue tomorrow and overcome this blocker. 
 8/25/2022
