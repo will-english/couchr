@@ -1,7 +1,6 @@
-import MovieColumn from "./MovieColumns";
+import MovieColumn from "../ListingMovies/MovieColumns";
 import { useState, useEffect } from 'react';
-import Pager from "./Pager";
-import ControlledCarousel from "./Carousel2";
+import ControlledCarousel from "./PopularCarousel";
 
 
 

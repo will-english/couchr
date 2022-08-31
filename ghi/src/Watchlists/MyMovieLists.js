@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { useAuthContext } from './auth/auth_provider';
+import { useAuthContext } from '../auth/auth_provider';
 
 
 export default function MyMovieLists() {
