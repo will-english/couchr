@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function MovieColumn(props) {
     return (
         <div className="col">
-          {props.list.map(data => {
+          {props.list?.map(data => {
             const movie = data;
             let movie_link = "/movies/movie/" + movie.id + "/"
             return (

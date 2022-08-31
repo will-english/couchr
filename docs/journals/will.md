@@ -1,3 +1,14 @@
+## 8/30
+I ran into a blocker with the authenitcation not sending the requests correctly, but
+we were able to get that solved. I worked with sheldon and edward to implement a form
+that is modal pop up.
+## 8/29
+I worked with Christie and Jamie on a blocker for the main page where we gather popular
+movies. We were able to get it to a place where the movies are render but it is 
+unpredictable and takes a long time to render the small amount of movies.
+## 8/25
+I built the pagination feature for when we list out or movies. The main code if there
+but for now it lacks styling.
 ## 8/24
 Edward and I did some paired programing on our list views. I created a signup feature, 
 but I'm still having issues with the logout giving me a 403 error but its getting closer.

@@ -184,19 +184,14 @@ code {
   text-align: center;
 }
 
-.popup_message {
-  height: 30px;
-  width: 400px;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-  display: flex;
+.row {
+  height: 350px;
 }
 
-.detail_actor_img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+.pagination {
+  cursor: pointer;
+  margin: 1em 0;
+  margin-left: 25em;
 }
 
 .list_actors_area {
@@ -214,6 +209,9 @@ code {
   color:white;
 }
 
+.create_new_list {
+  color: black;
+}
 
 /* ----------------detail page add to list dropdown area---------------- */
 .dropdown_list_ul {
