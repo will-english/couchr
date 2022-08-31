@@ -22,7 +22,7 @@ export default class ControlledCarousel extends Component {
         if (response.ok) {
             const data = await response.json();
             // console.log("xxxxxxxxx",data)
-            const popular = data["results"].slice(0, 3)
+            const popular = data["results"].slice(0, 19)
             console.log(popular)
             for (let movie of popular){
                 movie.poster_path = "https://image.tmdb.org/t/p/original" + movie.poster_path
@@ -31,7 +31,7 @@ export default class ControlledCarousel extends Component {
         }
     }
     handleSelect(event) {
-        if (this.state.index < 2){
+        if (this.state.index < 19){
             this.setState({ index: this.state.index + 1})
         }
         else{
@@ -53,7 +53,7 @@ export default class ControlledCarousel extends Component {
                                 <div>
                                     <Carousel.Caption className='carousel-caption bg-dark'>
                                         <h3>{movie.title}</h3>
-                                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                        <p>{movie.overview}</p>
                                     </Carousel.Caption>
                                 </div>
                             </Carousel.Item>
