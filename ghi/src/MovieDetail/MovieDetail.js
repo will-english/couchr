@@ -1,7 +1,7 @@
 import * as React from "react";
-import "./index.css";
+import "../index.css";
 import { NavLink } from 'react-router-dom';
-import NewList from "./components/CreateNewListForm";
+import NewList from "../Watchlists/CreateNewListForm";
 // import { Wrap, Center } from "./style";
 // import { Popover } from 'rsuite';
 
@@ -84,6 +84,8 @@ class MovieDetail extends React.Component {
         this.setState({ [id]: value });
     }
 
+
+//How to add the current move to one of the lists
     async handleAddMovie(event) {
         event.preventDefault();
 
@@ -132,7 +134,7 @@ class MovieDetail extends React.Component {
         event.preventDefault();
         alert("Hello")
     }
-
+//create a new list
     addList (list) {
         const lists = this.state.movie_lists
         lists.push(list)

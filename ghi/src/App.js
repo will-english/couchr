@@ -2,13 +2,13 @@ import logo from './logo.svg';
 import Nav from './Nav';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import MainPage from './MainPage'
-import MovieDetail from './MovieDetail'
-import MovieList from './MovieList';
+import MainPage from './MainPage/MainPage'
+import MovieDetail from './MovieDetail/MovieDetail'
+import MovieList from './ListingMovies/MovieList';
 import Login from './auth/login';
 import Signup from './auth/signup';
 import { AuthProvider } from './auth/auth_provider';
-import MyMovieLists from './MyMovieLists';
+import MyMovieLists from './Watchlists/MyMovieLists';
 
 
 function App() {
