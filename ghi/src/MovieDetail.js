@@ -1,7 +1,7 @@
 import * as React from "react";
 import "./index.css";
 import { NavLink } from 'react-router-dom';
-import NewList from "./CreateNewListForm";
+import NewList from "./components/CreateNewListForm";
 // import { Wrap, Center } from "./style";
 // import { Popover } from 'rsuite';
 
@@ -18,7 +18,7 @@ class MovieDetail extends React.Component {
         }
         this.handleStateChange = this.handleStateChange.bind(this);
         this.handleAddMovie = this.handleAddMovie.bind(this);
-        this.handleModal = this.handleModal.bind(this);
+        this.addList = this.addList.bind(this);
     }
 
     async componentDidMount() {
@@ -79,11 +79,8 @@ class MovieDetail extends React.Component {
     }
 
     handleStateChange(event) {
-        // console.log("event.target: ", event.target)
         const id = event.target.id;
-        // console.log("id: ", id)
         const value = event.target.value;
-        // console.log("value: ", value)
         this.setState({ [id]: value });
     }
 
@@ -136,8 +133,10 @@ class MovieDetail extends React.Component {
         alert("Hello")
     }
 
-    handleModal () {
-        return <NewList/>;
+    addList (list) {
+        const lists = this.state.movie_lists
+        lists.push(list)
+        this.setState({movie_lists: lists});
     }
 
     render() {
@@ -152,6 +151,21 @@ class MovieDetail extends React.Component {
                     {/* movie image area */}
                     <div className="image-area">
                         <img className="image-area-image" src={this.state.movie_detail.poster_path} alt="movie_image" />
+                        <div>
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="25" fill="currentColor" className="bi bi-star image_area_icon" viewBox="0 0 16 16">
+                                <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                            </svg>
+                    
+                            
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="25" fill="currentColor" className="bi bi-heart image_area_icon" viewBox="0 0 16 16">
+                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="25" fill="currentColor" className="bi bi-clock image_area_icon" viewBox="0 0 16 16">
+                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                            </svg>
+                        </div>
                     </div>
                     {/* movie detail area */}
                     <div className="detail-information-area">
@@ -183,68 +197,34 @@ class MovieDetail extends React.Component {
                                     <path d="M10.804 8 5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z" />
                                 </svg>
                             </button>
+
                             {/* add to list dropdown */}
-                            {/* <div>
-                            <ul>
-                                <li class="nav-item dropdown">
-                                    <a href="#insurance-head-section" class="nav-link dropdown-toggle" data-toggle="dropdown">Insurance</a>
-                                    <div class="dropdown-menu">
-                                    <a href="" class="dropdown-item">New Patient</a>
-                                    <a href="" class="dropdown-item">Established Patient</a>
-                                    <a href="#response"
-                                        class="dropdown-item"
-                                        data-toggle="modal" data-target="#response">Responsibilities</a>
-                                    <a href="" class="dropdown-item">link 4</a>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="modal" id="response">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title"></h5>
-                                            <button class="close" data-dismiss="modal">&times;</button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="list-group">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h6>Responsibilities</h6>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> 
-                            </div>
-                            </div> */}
                             <div className="btn-group detail-add-button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="25" fill="currentColor" className="bi bi-bookmark-heart detail-movie-addtolist" viewBox="0 0 16 16" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <path fillRule="evenodd" d="M8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z" />
-                                    <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
+                                    <path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+                                    <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
                                 </svg>
-                                <ul className="dropdown-menu">
-                                    {this.state.movie_lists.map(list => {
+
+                                <ul className="dropdown-menu dropdown_list_ul">
+                                    {this.state.movie_lists.map((list, index) => {
                                         return (
-                                            <li><a onClick={this.handleAddMovie} key={list.id} id={list.id}>
+                                            <li className="dropdown_list_li" key={index}><p onClick={this.handleAddMovie} key={list.id} id={list.id}>
                                                 {list.name}
-                                            </a></li>
+                                            </p></li>
                                         );
                                     })}
 
                                     <li><div className="dropdown-divider"></div></li>
                                     {/* <NavLink onClick={this.handleCreateList} className="dropdown-item" to="#">Create New list</NavLink> */}
                                     <li>
-                                        <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#listForm">
-                                            Launch demo modal
+                                        <button type="button" className="btn dropdown_list_button" data-bs-toggle="modal" data-bs-target="#listForm">
+                                            + New list
                                         </button>
                                     </li>
                                 </ul>
-                                        <NewList />
-
+                                        <NewList afterSubmit={this.addList} />
                             </div>
-
 
                             {/* add review button */}
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-pencil-square detail-movie-addtolist" viewBox="0 0 16 16">
