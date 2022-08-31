@@ -27,7 +27,6 @@ function MainPage() {
       const MovieColumn = [[], [], [], []]
       let i = 0
       for (let data of popular) {
-        console.log(data)
         i = i + 1;
         if (i > 3) { i = 0 }
         if (data.poster_path === null) {
@@ -35,7 +34,7 @@ function MainPage() {
         } else {
           data.poster_path = "https://image.tmdb.org/t/p/original" + data.poster_path
         }
-        data.vote_average = data.vote_average.toFixed(1);
+        // data.vote_average = data.vote_average.toFixed(1);
         data.release_date = data.release_date.slice(0, 4);
         data.movie_link = "/movies/movie/" + data.id + "/";
         MovieColumn[i].push(data);
@@ -47,8 +46,10 @@ function MainPage() {
 
 
   useEffect(() => {
-    getPopular();
-  }, [getPopular],
+    getPopular()
+      .catch(console.error);;
+  }, [popular.length],
+  console.log(popular)
   );
 
 
@@ -56,13 +57,13 @@ function MainPage() {
 
   return (
     <div>
-      <container>
+      <div className="container">
       <h1 className="main-page-header">Today's Top Movies</h1>
         <div className="carousel">
           <ControlledCarousel />
         </div>
-      </container>
-      <container>
+      </div>
+      <div className="container">
       <div className="row">
         {MovieColumns?.map((movie, index) => {
           return (
@@ -70,7 +71,7 @@ function MainPage() {
           );
         })}
       </div>
-      </container>
+      </div>
     </div>
 
   );
