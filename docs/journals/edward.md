@@ -1,3 +1,20 @@
+### 8/30
+- Did pair programming with Will and Sheldon on the frontend
+- We added a Create New List button to popup a modal form that hits the List POST method from the backend
+- This took all day since the modal was triggered from a drop-down menu item
+- Sheldon and Will primarily coded and I provided support
+### 8/29
+- Did pair programming with Sheldon on the frontend
+- Sheldon primarily coded and I provided support
+- We worked on the Movie Detail page to add popup messages on the Add Movie to List button
+- The popup messages display whether or not the movie was successfully added, or if it was already on the list
+- This functionality required me to tweak the backend views, to send a response code when a movie was already on the list
+- I learned a lot just by watching Sheldon code, how he tackles a problem, and what he Googles
+### 8/25
+- Today I got to familiarize myself with the frontend of our application. It was great to see how much progress the frontend team made
+- I added a button to add movies to Lists, proving that the frontend can in fact speak with the backend
+- This took some time since I had to tweak some backend code to make sure everything worked properly
+- I don't feel as comfortable on the frontend as I do with the backend, simply because we've had more time in this bootcamp to play with the backend
 ### 8/24
 - Did pair programming with Will to review my logic, he had some suggestions to refactor and organize my code
 - We broke the List's PUT method into 2 separate views, for simplicity and organization
