@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useToken } from './auth_provider';
+import { useAuthContext } from './auth_provider';
 
 
 function Login() {
@@ -7,6 +8,7 @@ function Login() {
     const login = funcs[1];
     const [username, setUsername] = useState([]);
     const [password, setPassword] = useState([]);
+    const { userName } = useAuthContext();
 
     const handleSubmit = async e => {
         e.preventDefault();

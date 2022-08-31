@@ -73,16 +73,26 @@ export function useToken() {
     const { userName, setUserName } = useAuthContext();
 
     const navigate = useNavigate();
+    async function fetchToken() {
+        const token = await getTokenInternal();
+        setToken(token);
+    }
+    if (!token) {
+        fetchToken();
+    }
+
+    async function fetchUserName() {
+        const userName = JSON.parse(localStorage.getItem('userName'));
+        setUserName(userName);
+    }
+    if (!userName) {
+        fetchUserName();
+    }
 
     useEffect(() => {
-        async function fetchToken() {
-            const token = await getTokenInternal();
-            setToken(token);
-        }
-        if (!token) {
-            fetchToken();
-        }
-    }, [setToken, token]);
+        fetchToken();
+        fetchUserName();
+    }, [setToken, token, setUserName, userName]);
 
     async function logout() {
         console.log('logout try');
@@ -91,10 +101,11 @@ export function useToken() {
             const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/token/refresh/logout/`;
             await fetch(url, {
                 method: "delete",
-                credentials: "include" 
-                });
+                credentials: "include"
+            });
             internalToken = null;
-            setToken(null, () => {console.log(token)});
+            setToken(null, () => { console.log(token) });
+            localStorage.removeItem('userName');
             console.log('inside logout');
             console.log(token);
             navigate("/");
@@ -114,12 +125,12 @@ export function useToken() {
         const tokens = await response.json()
         if (response.ok) {
             console.log(tokens)
-            
+
             const token = await getTokenInternal();
             setToken(token);
             const token1 = tokens['msg'];
             console.log(token1);
-
+            localStorage.setItem('userName', JSON.stringify(username))
             setUserName(username);
 
             return;
@@ -173,5 +184,5 @@ export function useToken() {
         return false;
     }
 
-    return [token, login, logout, signup, update];
+    return [token, login, logout, signup, update, userName];
 }

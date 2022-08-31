@@ -9,23 +9,23 @@ export default function MyMovieLists() {
     const [title, setTitle] = useState([])
 
     const fetchData = async () => {
-
-        console.log(`Bearer ${token}`);
-        const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/list/${userName}/`;
-        const request = await fetch(url, {
-            credentials: "include",
-            headers: {
-                Authorization: `Bearer ${token}`
-            },
-        });
-        const response = await request.json();
-        console.log(response);
-        setTitle(response.name)
+        if (userName && token) {
+            const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/${userName}/`;
+            const request = await fetch(url, {
+                credentials: "include",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+            });
+            const response = await request.json();
+            console.log(response.lists[0].name);
+            setTitle(response.lists[0].name)
+        }
     }
 
     useEffect(() => {
         fetchData();
-    }, [{token}]);
+    }, [{ token }]);
 
     return (
         <h1>{title}</h1>

@@ -24,7 +24,6 @@ def list_encoder(list):
         dict["movies"].append(movie.id)
     return dict
 
-@csrf_exempt
 @auth.jwt_login_required
 @require_http_methods(["GET", "POST"])
 def api_lists(request, userName):
