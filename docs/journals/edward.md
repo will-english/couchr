@@ -1,3 +1,9 @@
+### 8/31
+- Did pair programming with Will to get the user auth to work
+- Will primarily coded and I provided support
+- I had to tweak some of the backend models/views to accomodate for the auth settings that Will setup
+- We tested the auth by creating a user, logging in, creating a movie list, and then checking if the list pops up when logged out
+- We also discussed our "editor's top picks" of movies to showcase on the website
 ### 8/30
 - Did pair programming with Will and Sheldon on the frontend
 - We added a Create New List button to popup a modal form that hits the List POST method from the backend

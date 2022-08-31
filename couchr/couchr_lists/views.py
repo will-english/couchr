@@ -1,34 +1,33 @@
 import json
-from django.http import JsonResponse
-from django.views.decorators.http import require_http_methods
-from django.views.decorators.csrf import csrf_exempt
 import djwto.authentication as auth
+from django.http import JsonResponse
 from django.contrib.auth.models import User
+from django.views.decorators.http import require_http_methods
 
 from .models import List, MovieVO
 
 # Create your views here.
 
 
-# I was unable to figure out how to pass data with m2m attributes through the encoders
-# so all the list views use knockoff encoders
-
-# knockoff list encoder
+# list encoder
 def list_encoder(list):
     dict = {}
     dict["id"] = list.id
     dict["name"] = list.name
     dict["description"] = list.description
+    # dict["user"] = list.user
     dict["movies"] = []
     for movie in list.movies.all():
         dict["movies"].append(movie.id)
     return dict
 
+# get all movie lists from a user
 @auth.jwt_login_required
 @require_http_methods(["GET", "POST"])
-def api_lists(request, userName):
+def api_lists(request, username):
+    user = User.objects.get(username=username)
+
     if request.method == "GET":
-        user = User.objects.get(username=userName)
         lists = List.objects.filter(user=user)
         response = []
         for list in lists:
@@ -44,6 +43,7 @@ def api_lists(request, userName):
         try:
             content = json.loads(request.body)
             list = List.objects.create(**content)
+            list.user = user
             list.save()
 
             return JsonResponse(
@@ -59,13 +59,15 @@ def api_lists(request, userName):
 
             return response
 
-
-@csrf_exempt
+# get a specific list from a user
+@auth.jwt_login_required
 @require_http_methods(["DELETE", "GET", "PUT"])
-def api_list(request, pk):
+def api_list(request, pk, username):
+    user = User.objects.get(username=username)
+
     if request.method == "GET":
         try:
-            list = List.objects.get(id=pk)
+            list = List.objects.get(id=pk, user=user)
 
             response = []
             list_dict = list_encoder(list)
@@ -83,7 +85,7 @@ def api_list(request, pk):
 
     elif request.method == "DELETE":
         try:
-            list = List.objects.get(id=pk)
+            list = List.objects.get(id=pk, user=user)
             list.delete()
 
             return JsonResponse(
@@ -104,7 +106,7 @@ def api_list(request, pk):
                 description = content["description"]
             )
 
-            list = List.objects.get(id=pk)
+            list = List.objects.get(id=pk, user=user)
             response = []
             list_dict = list_encoder(list)
             response.append(list_dict)
@@ -119,12 +121,13 @@ def api_list(request, pk):
 
             return response
 
-# a separate PUT method to add/remove movies from a list
-@csrf_exempt
+# get a specific list from a user to add/remove movies
 @require_http_methods(["PUT"])
-def api_list_movies(request, pk):
+def api_list_movies(request, pk, username):
+    user = User.objects.get(username=username)
+
     try:
-        list = List.objects.get(id=pk)
+        list = List.objects.get(id=pk, user=user)
         content = json.loads(request.body)
 
         # JSON body needs to have an "add" key with a value of "true" or "false"
@@ -174,7 +177,7 @@ def api_list_movies(request, pk):
             return response
 
 
-# knockoff movie encoder
+# movie encoder
 def movie_encoder(movie):
     dict = {}
     dict["id"] = movie.id
@@ -183,7 +186,7 @@ def movie_encoder(movie):
     dict["api_id"] = movie.api_id
     return dict
 
-@csrf_exempt
+# get all movie VOs in DB
 @require_http_methods(["GET", "POST"])
 def api_movies(request):
     if request.method == "GET":
@@ -216,7 +219,7 @@ def api_movies(request):
 
             return response
 
-@csrf_exempt
+# get a specific movie VO in DB
 @require_http_methods(["DELETE", "GET"])
 def api_movie(request, pk):
     if request.method == "GET":
