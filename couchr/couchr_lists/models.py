@@ -18,6 +18,8 @@ class List(models.Model):
     description = models.CharField(max_length=100, unique=False, null=True, blank=True)
     movies = models.ManyToManyField(
         MovieVO,
+        null=True,
+        blank=True,
     )
     user = models.ForeignKey(
         User,

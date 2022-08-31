@@ -27,9 +27,9 @@ def list_encoder(list):
 @csrf_exempt
 @auth.jwt_login_required
 @require_http_methods(["GET", "POST"])
-def api_lists(request, user_id):
+def api_lists(request, userName):
     if request.method == "GET":
-        user = User.objects.get(id=user_id)
+        user = User.objects.get(username=userName)
         lists = List.objects.filter(user=user)
         response = []
         for list in lists:

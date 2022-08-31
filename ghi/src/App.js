@@ -8,6 +8,8 @@ import MovieList from './MovieList';
 import Login from './auth/login';
 import Signup from './auth/signup';
 import { AuthProvider } from './auth/auth_provider';
+import MyMovieLists from './MyMovieLists';
+
 
 function App() {
   return (
@@ -37,6 +39,7 @@ function App() {
           <Route path='movies/movie/:id/' element={<MovieDetail />} />
           <Route path='login/' element={<Login />} />
           <Route path='signup/' element={<Signup />} />
+          <Route path='mylists/' element={<MyMovieLists />} />
         </Routes>
       </div>
     </AuthProvider>

@@ -46,15 +46,19 @@ function handleErrorMessage(error) {
 // **********************************************************************
 
 export const AuthContext = createContext({
+    userName: null,
+    setUserName: () => null,
+
     token: null,
     setToken: () => null,
 });
 
 export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(null);
+    const [userName, setUserName] = useState(null);
 
     return (
-        <AuthContext.Provider value={{ token, setToken }}>
+        <AuthContext.Provider value={{ token, setToken, userName, setUserName }}>
             {children}
         </AuthContext.Provider>
     );
@@ -66,6 +70,8 @@ export const useAuthContext = () => useContext(AuthContext);
 
 export function useToken() {
     const { token, setToken } = useAuthContext();
+    const { userName, setUserName } = useAuthContext();
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -113,6 +119,9 @@ export function useToken() {
             setToken(token);
             const token1 = tokens['msg'];
             console.log(token1);
+
+            setUserName(username);
+
             return;
         }
         let error = await response.json();
