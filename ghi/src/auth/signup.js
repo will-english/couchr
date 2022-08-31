@@ -1,10 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
-// import { useToken } from '../utils/auth_provider';
+import { useToken } from './auth_provider';
 
 export default function Signup() {
-    // const funcs = useToken();
-    // const signup = funcs[3];
+    const funcs = useToken();
+    const signup = funcs[3];
 
     const [username, setUsername] = useState([]);
     const [password, setPassword] = useState([]);
@@ -18,7 +18,7 @@ export default function Signup() {
         // setErrors(validation(values))
         // console.log('login inside', login)
        
-        // await signup(username, password, email, firstName, lastName);
+        await signup(username, password, email, firstName, lastName);
         };
 
     return (
