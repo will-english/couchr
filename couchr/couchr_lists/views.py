@@ -35,6 +35,7 @@ def api_lists(request):
         return JsonResponse(
             {"lists": response}
         )
+
     # POST
     else:
         try:
@@ -88,10 +89,12 @@ def api_list(request, pk):
 
         except List.DoesNotExist:
             return JsonResponse({"message": "Does not exist"})
+
     # PUT method to update a list's name/description
     else:
         try:
             content = json.loads(request.body)
+
             # how does Django know which List object this is referring to without first getting the ID?
             List.objects.update(
                 name = content["name"],
@@ -124,11 +127,23 @@ def api_list_movies(request, pk):
         # JSON body needs to have an "add" key with a value of "true" or "false"
         # true adds the movie
         if content['add'] == True:
+
             # get MovieVO or create one (using attribute api_id) if it doesn't already exist in the DB
             movie, created = MovieVO.objects.get_or_create(api_id=content["api_id"])
             movie.title = content["title"]
             movie.save()
-            list.movies.add(movie)
+
+            # if MovieVO isn't already in the list, then add it
+            if movie not in list.movies.all():
+                    list.movies.add(movie)
+
+            # if MovieVO is already in the list, then send an error response
+            else:
+                response = JsonResponse({"message": "Movie already in list"})
+                response.status_code = 409
+
+                return response
+
         # false removes the movie
         elif content['add'] == False:
             try:

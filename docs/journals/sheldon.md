@@ -1,3 +1,7 @@
+## 8/29
+Today work with Edward together, we list all the actor's name, character's name and gener name to the detail page. Add actor's image to detail page, add success message and error message when add movie to the list, make the gener's name to a link. We try to create a pop-up model to create a new list, will continue work on it tomorrow. 
+## 8/25
+Add Nav bar to all the pages, make movie list's pagination to shouw 25 movies for each page. Today Edward test add movie to user's list, it works. It's the first time we make connection with frontend and backend. We will spent some time on sync frontend and backend next week.
 ## 8/24
 Today we have made a big change to the movies list page and movie detail page by using CSS and CSS Bootstrap. On movie list page we made every movie object to a card. We try to set mutiple pages for movie list but it didn't work today. 
 ## 8/23
