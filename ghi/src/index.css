@@ -257,3 +257,34 @@ code {
   display: inline-block;
   margin-right: 5px;
 }
+
+.carousel {
+  margin: 10px;
+  height: 650px;
+} 
+
+.carousel_caption {
+  position: fixed;
+  left: auto;
+  right:auto;
+  top: 0;
+  color: white;
+  text-align: center;
+  background-color: #181c24;
+}
+
+.carousel-slide {
+  height: 600px;
+  text-align: center;
+}
+
+.slide-photo {
+  height: 500px;
+  left: auto;
+  right: auto;
+}
+
+.main-page-header {
+  align-self: center;
+  color: white;
+}
