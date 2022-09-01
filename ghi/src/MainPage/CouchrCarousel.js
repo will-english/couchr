@@ -39,12 +39,8 @@ export default class ControlledCarousel2 extends Component {
         
     }
 
-    handleSelect(event) {
-        if (this.state.index < 13){
-            this.setState({index: this.state.index + 1})
-        } else {
-            this.setState({ index: 0})
-        }
+    handleSelect(selectedIndex, e) {
+        this.setState({ index: selectedIndex})
     }
     render() {
         return (
