@@ -268,7 +268,7 @@ code {
 
 .carousel {
   margin: 10px;
-  height: 650px;
+  height: 700px;
 } 
 
 .carousel_caption {
@@ -282,7 +282,7 @@ code {
 }
 
 .carousel-slide {
-  height: 600px;
+  height: 700px;
   text-align: center;
 }
 
