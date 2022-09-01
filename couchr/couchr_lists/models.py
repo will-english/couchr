@@ -18,7 +18,6 @@ class List(models.Model):
     user = models.ForeignKey(
         User,
         related_name="lists",
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         null=True,
-        blank=True,
     )

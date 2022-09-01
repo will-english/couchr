@@ -1,6 +1,7 @@
 import json
+import djwto.authentication as auth
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.models import User
 from django.views.decorators.http import require_http_methods
 
 from .models import Review
@@ -9,17 +10,21 @@ from couchr_lists.models import MovieVO
 
 # Create your views here.
 
-@csrf_exempt
+# get all reviews from a user
+@auth.jwt_login_required
 @require_http_methods(["GET", "POST"])
-def api_reviews(request):
+def api_reviews(request, username):
+    user = User.objects.get(username=username)
+
     if request.method == "GET":
-        reviews = Review.objects.all()
+        reviews = Review.objects.filter(user=user)
 
         return JsonResponse(
             {"reviews": reviews},
             encoder=ReviewEncoder,
         )
 
+    # POST
     else:
         try:
             content = json.loads(request.body)
@@ -28,6 +33,8 @@ def api_reviews(request):
             content["movie"] = movie
 
             review = Review.objects.create(**content)
+            review.user = user
+            review.save()
 
             return JsonResponse(
                 review,
@@ -44,12 +51,15 @@ def api_reviews(request):
             return response
 
 
-@csrf_exempt
+# get a specific reviews from a user
+# @auth.jwt_login_required
 @require_http_methods(["DELETE", "GET", "PUT"])
-def api_review(request, pk):
+def api_review(request, pk, username):
+    user = User.objects.get(username=username)
+
     if request.method == "GET":
         try:
-            review = Review.objects.get(id=pk)
+            review = Review.objects.get(id=pk, user=user)
 
             return JsonResponse(
                 review,
@@ -65,7 +75,7 @@ def api_review(request, pk):
 
     elif request.method == "DELETE":
         try:
-            review = Review.objects.get(id=pk)
+            review = Review.objects.get(id=pk, user=user)
             review.delete()
 
             return JsonResponse(
@@ -83,7 +93,7 @@ def api_review(request, pk):
     else:
         try:
             content = json.loads(request.body)
-            review = Review.objects.get(id=pk)
+            review = Review.objects.get(id=pk, user=user)
 
             props = ["name", "description"]
             for prop in props:

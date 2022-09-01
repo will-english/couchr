@@ -19,12 +19,13 @@ class QuerySetEncoder(JSONEncoder):
         else:
             return super().default(o)
 
-
+# new encoder from Curtis that can encode models with m2m attributes
 class ModelEncoder(DateEncoder, QuerySetEncoder, JSONEncoder):
     encoders = {}
 
     def default(self, o):
         if isinstance(o, self.model):
+            print("ModelEncoder")
             d = {}
             if hasattr(o, "get_api_url"):
                 try:
@@ -32,9 +33,15 @@ class ModelEncoder(DateEncoder, QuerySetEncoder, JSONEncoder):
                 except NoReverseMatch:
                     pass
             for property in self.properties:
+                encoder = self.encoders.get(property)
                 value = getattr(o, property)
-                if property in self.encoders:
-                    encoder = self.encoders[property]
+                if hasattr(value, "all") and callable(value.all):
+                    value = map(
+                        encoder.default if encoder else lambda x: x,
+                        list(value.all()),
+                    )
+                    value = list(value)
+                elif encoder:
                     value = encoder.default(value)
                 d[property] = value
             d.update(self.get_extra_data(o))
@@ -42,5 +49,30 @@ class ModelEncoder(DateEncoder, QuerySetEncoder, JSONEncoder):
         else:
             return super().default(o)
 
-    def get_extra_data(self, o):
-        return {}
+
+# old encoder from previous projects that cannot encode models with m2m attributes
+
+# class ModelEncoder(DateEncoder, QuerySetEncoder, JSONEncoder):
+#     encoders = {}
+
+#     def default(self, o):
+#         if isinstance(o, self.model):
+#             d = {}
+#             if hasattr(o, "get_api_url"):
+#                 try:
+#                     d["href"] = o.get_api_url()
+#                 except NoReverseMatch:
+#                     pass
+#             for property in self.properties:
+#                 value = getattr(o, property)
+#                 if property in self.encoders:
+#                     encoder = self.encoders[property]
+#                     value = encoder.default(value)
+#                 d[property] = value
+#             d.update(self.get_extra_data(o))
+#             return d
+#         else:
+#             return super().default(o)
+
+#     def get_extra_data(self, o):
+#         return {}

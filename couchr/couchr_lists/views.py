@@ -15,7 +15,6 @@ def list_encoder(list):
     dict["id"] = list.id
     dict["name"] = list.name
     dict["description"] = list.description
-    # dict["user"] = list.user
     dict["movies"] = []
     for movie in list.movies.all():
         dict["movies"].append(movie.id)
