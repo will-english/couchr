@@ -1,3 +1,9 @@
+## 8/31/22
+Today felt very productive. Jamie, Sheldon, and I finally got the continuous loop of rendering to stop and added a carousel of the popular movies to our main page! I gathered a list of everyone's favorite movies and got the corresponding movie id's from our third api and look forward to applying what I learned today into a new carousel of our favorite movies tomorrow!
+
+## 8/30/22
+Today was not as productive as some of our others. We found that the useEffect on our Main Page kept rendering on a continuous loop and couldn't figure out how to stop it. Jamie thought of adding pagination but we are only showing 20 movies so it isn't necessary but it does stop the rendering. We spent hours trying to get the pagination to work but seem to have gotten somewhere! It doesnt solve the entire issue but definitely helps.
+
 ## 8/29/22
 Today was a lot of fun trying to figure out the functional React components using hooks. It was cool to use the explorations from over the weekend on our project. We ran into some blockers getting the colummns to populate with our array from the API but I am confident we will figure it out tomorrow! 
 
