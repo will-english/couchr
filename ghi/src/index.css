@@ -213,6 +213,29 @@ code {
   color: black;
 }
 
+
+.detail_actor_img_div {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.detail_actor_name_div {
+  display: inline-block;
+  margin-top: 10px;
+  width: 167px;
+  height: 20px;
+  overflow: hidden;
+ 
+}
+
+.detail_actor_name_div:hover {
+  height: 600px;
+  transform: scale(1.05);
+  transition: 1s ease;
+
+}
+
+
 /* ----------------detail page add to list dropdown area---------------- */
 .dropdown_list_ul {
   margin: 10px;
