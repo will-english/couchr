@@ -4,7 +4,7 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage/MainPage'
 import MovieDetail from './MovieDetail/MovieDetail'
-import MovieList from './ListingMovies/MovieList';
+import MovieList from './ListingMovies/listByGenre';
 import Login from './auth/login';
 import Signup from './auth/signup';
 import { AuthProvider } from './auth/auth_provider';
@@ -35,7 +35,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path='/' element={<MainPage />} />
-          <Route path='movies/' element={<MovieList />} />
+          <Route path='movies/:id' element={<MovieList />} />
           <Route path='movies/movie/:id/' element={<MovieDetail />} />
           <Route path='login/' element={<Login />} />
           <Route path='signup/' element={<Signup />} />
