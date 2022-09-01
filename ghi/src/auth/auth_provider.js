@@ -76,23 +76,16 @@ export function useToken() {
     async function fetchToken() {
         const token = await getTokenInternal();
         setToken(token);
-    }
-    if (!token) {
-        fetchToken();
-    }
-
-    async function fetchUserName() {
         const userName = JSON.parse(localStorage.getItem('userName'));
         setUserName(userName);
     }
-    if (!userName) {
-        fetchUserName();
+    if (!token || !userName) {
+        fetchToken();
     }
 
     useEffect(() => {
         fetchToken();
-        fetchUserName();
-    }, [setToken, token, setUserName, userName]);
+    }, [setToken, token]);
 
     async function logout() {
         console.log('logout try');
