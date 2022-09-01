@@ -6,7 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #181c24;
-  color: black;
+  color: white;
 }
 
 code {
@@ -186,6 +186,14 @@ code {
 
 .row {
   height: 350px;
+}
+
+.h-sm {
+  height: 20px;
+}
+.edit-user-button {
+  height: 30px;
+  padding: 3px 10px;
 }
 
 .pagination {
