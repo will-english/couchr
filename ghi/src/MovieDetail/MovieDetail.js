@@ -4,8 +4,11 @@ import { NavLink } from 'react-router-dom';
 import NewList from "../Watchlists/CreateNewListForm";
 // import { Wrap, Center } from "./style";
 // import { Popover } from 'rsuite';
+import { AuthContext } from '../auth/auth_provider';
 
 class MovieDetail extends React.Component {
+    static contextType = AuthContext;
+
     constructor(props) {
         super(props)
         this.state = {
@@ -22,13 +25,14 @@ class MovieDetail extends React.Component {
     }
 
     async componentDidMount() {
+        const userName = this.context.userName;
         const currentURL = window.location.href
         const words = currentURL.split("/")
         const movie_id = words[5]
 
         const movie_detail_url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`;
         const movie_credit_rul = `https://api.themoviedb.org/3/movie/${movie_id}/credits?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`;
-        const movie_lists_url = `http://localhost:8000/api/lists/`
+        const movie_lists_url = `http://localhost:8000/api/lists/${userName}/`;
 
         const response_detail = await fetch(movie_detail_url);
         const response_credit = await fetch(movie_credit_rul);
@@ -203,13 +207,13 @@ class MovieDetail extends React.Component {
                             {/* add to list dropdown */}
                             <div className="btn-group detail-add-button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="25" fill="currentColor" className="bi bi-bookmark-heart detail-movie-addtolist" viewBox="0 0 16 16" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5z"/>
+                                    <path fillRule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5z"/>
                                     <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
                                     <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
                                 </svg>
 
                                 <ul className="dropdown-menu dropdown_list_ul">
-                                    {this.state.movie_lists.map((list, index) => {
+                                    {this.state.movie_lists?.map((list, index) => {
                                         return (
                                             <li className="dropdown_list_li" key={index}><p onClick={this.handleAddMovie} key={list.id} id={list.id}>
                                                 {list.name}
