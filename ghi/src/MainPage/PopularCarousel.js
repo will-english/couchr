@@ -30,9 +30,12 @@ export default class ControlledCarousel extends Component {
             this.setState({ popular: popular })
         }
     }
+
     handleSelect(selectedIndex, e) {
         this.setState({ index: selectedIndex})
     }
+    
+    
     render() {
         return (
             <div>

@@ -52,6 +52,7 @@ class MovieDetail extends React.Component {
                 actor_detail["profile_path"] = "https://image.tmdb.org/t/p/original" + actor.profile_path;
                 actor_detail["character"] = actor.character
                 actors.push(actor_detail)
+                console.log(actor.character)
             }
             this.setState({ actors: actors })
 
@@ -164,12 +165,12 @@ class MovieDetail extends React.Component {
                             </svg>
                     
                             
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="25" fill="currentColor" className="bi bi-heart image_area_icon" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="22" fill="currentColor" className="bi bi-heart image_area_icon" viewBox="0 0 16 16">
                                 <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
                             </svg>
                             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="25" fill="currentColor" className="bi bi-clock image_area_icon" viewBox="0 0 16 16">
-                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
-                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
                             </svg>
                         </div>
                     </div>
@@ -269,8 +270,12 @@ class MovieDetail extends React.Component {
                             {this.state.actors.map((actor, index) => {
                                 return (
                                     <div className="list_actors_area" key={index}>
-                                        <img className="detail_actor_img" src={actor.profile_path} alt="ActorImage" />
-                                        &nbsp;&nbsp;{actor.name} &nbsp;&#40;{actor.character}&#41;
+                                        <div className="detail_actor_img_div">
+                                            <img className="detail_actor_img" src={actor.profile_path} alt="ActorImage" />
+                                        </div>
+                                        <div className="detail_actor_name_div">
+                                            &nbsp;&nbsp;{actor.name}&nbsp;&nbsp;... <br /> &nbsp;&#40;{actor.character}&#41;
+                                        </div>
                                         {/* &nbsp: space, &#40: left parenthesis, &#41: right parenthesis */}
                                     </div>
                                 );
