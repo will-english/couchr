@@ -64,6 +64,7 @@ function Nav() {
          
           </ul>
           <ul className="nav justify-content-end">
+              <NavLink className="nav-link d-none" to="/user_detail">User Page</NavLink>
               <NavLink className="nav-link" to="/login">Login</NavLink>
               <NavLink onClick={handleLogout} className="nav-link" to="">Logout</NavLink>
               <NavLink className="nav-link" to="/signup">Sign up</NavLink>  
