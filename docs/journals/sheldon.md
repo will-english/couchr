@@ -1,3 +1,7 @@
+## 9/1
+Fixed the actor name and image div display for detail page by changed CSS. Maked it show all the information by hover on actor's name div. Make favorite/wish/history icon hover can show the hint text. Organized detail page's code to three components and detail's CSS code.
+## 8/31
+Today we worked on carousel for movielist page. We searched on bootstrap for carousel but the image and detail's area doesn't show correttly. We spend a lot of time on that.
 ## 8/30
 Make 'add to list' icon to a dropdowm button, and in dropdown list we put a 'create new list' option there. Add pop-up model to 'create new list' option then it pop-up a form which can let us create a new list to database. We also change some CSS style for detail page, like the background and icons. Tomorrow we will work on list lists page and Main page.
 ## 8/29
