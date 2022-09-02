@@ -57,16 +57,20 @@ function MainPage() {
 
   return (
     <div>
-      {/* <SideBar /> */}
       <div className="container">
-      <h1 className="main-page-header">Today's Top Movies</h1>
         <div className="carousel">
+          <h1 className="main-page-header text-center">Today's Top Movies</h1>
           <ControlledCarousel />
         </div>
       </div>
+      <div>
+        Ads
+      </div>
+      <div>
+      </div>
       <div className="container">
-        <h1 className="main-page-header">Couchr's Picks</h1>
         <div className="carousel">
+        <h1 className="main-page-header text-center">Couchr's Picks</h1>
           <ControlledCarousel2 />
         </div>
       </div>

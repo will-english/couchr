@@ -49,8 +49,7 @@ export default class ControlledCarousel extends Component {
                                     />
                                 </div>
                                 <div>
-                                    <Carousel.Caption className='carousel-caption bg-dark'>
-                                        <h3>{movie.title}</h3>
+                                    <Carousel.Caption className='carousel-caption'>
                                         <p>{movie.overview}</p>
                                     </Carousel.Caption>
                                 </div>
