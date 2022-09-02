@@ -11,12 +11,8 @@ class ReviewEncoder(ModelEncoder):
     ]
 
     def get_extra_data(self, o):
-        try:
-            return {
-                "movie_id": o.movie.id,
-                "movie_title": o.movie.title,
-            }
-        except:
-            return {
-                "Cannot get extra data in encoders file"
-            }
+        return {
+            "movie_id": o.movie.id,
+            "movie_api_id": o.movie.api_id,
+            "movie_title": o.movie.title,
+        }

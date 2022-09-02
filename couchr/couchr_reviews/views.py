@@ -28,12 +28,18 @@ def api_reviews(request, username):
     else:
         try:
             content = json.loads(request.body)
-            movie_id = content["movie_id"]
-            movie = MovieVO.objects.get(id=movie_id)
-            content["movie"] = movie
 
-            review = Review.objects.create(**content)
+            # get MovieVO or create one (using attribute api_id) if it doesn't already exist in the DB
+            movie, created = MovieVO.objects.get_or_create(api_id=content["api_id"])
+            movie.title = content["movie_title"]
+            movie.save()
+
+            review = Review.objects.create(
+                title = content["title"],
+                description = content["description"]
+            )
             review.user = user
+            review.movie = movie
             review.save()
 
             return JsonResponse(
@@ -89,7 +95,8 @@ def api_review(request, pk, username):
             response.status_code = 404
 
             return response
-            
+    
+    # PUT
     else:
         try:
             content = json.loads(request.body)

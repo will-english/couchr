@@ -1,3 +1,8 @@
+### 9/2
+- I was going to add the Create New Review modal that I created yesterday onto Movie Detail page, but we ran into some issues with Auth
+- We worked with the SEIRs for a bit before we had to go to Mandatory Fun
+- Afterwards, I tweaked some of the Review models/views/encoders so that when we create a Review, the Movie associated with it will get created in the DB if it doesn't already exist
+- Overall, we didn't have much time to work on the project as a group today due to other assignments in class and Mandatory fun
 ### 9/1
 - Added a Create New Review modal form as an individual component
 - Since our backend is now integrated with Auth methods, I had trouble submitting the form from the frontend to the backend
