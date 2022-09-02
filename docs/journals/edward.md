@@ -1,3 +1,8 @@
+### 9/1
+- Added a Create New Review modal form as an individual component
+- Since our backend is now integrated with Auth methods, I had trouble submitting the form from the frontend to the backend
+- Zach helped me load the Auth context data into the file, which includes the user's token and username
+- With this username data, I was able to successfully create the form and make API calls to the backend methods
 ### 8/31
 - Did pair programming with Will to get the user auth to work
 - Will primarily coded and I provided support

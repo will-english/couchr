@@ -52,7 +52,7 @@ def api_reviews(request, username):
 
 
 # get a specific reviews from a user
-# @auth.jwt_login_required
+@auth.jwt_login_required
 @require_http_methods(["DELETE", "GET", "PUT"])
 def api_review(request, pk, username):
     user = User.objects.get(username=username)
@@ -95,7 +95,7 @@ def api_review(request, pk, username):
             content = json.loads(request.body)
             review = Review.objects.get(id=pk, user=user)
 
-            props = ["name", "description"]
+            props = ["title", "description"]
             for prop in props:
                 if prop in content:
                     setattr(review, prop, content[prop])

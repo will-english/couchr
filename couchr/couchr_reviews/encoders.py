@@ -6,7 +6,7 @@ class ReviewEncoder(ModelEncoder):
     model = Review
     properties = [
         "id",
-        "name",
+        "title",
         "description",
     ]
 
