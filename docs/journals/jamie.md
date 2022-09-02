@@ -1,3 +1,5 @@
+8/31/2022
+Today we were able to render the popular movies within the main page only once by using length of the popular movies.  With that resolved, we moved onto creating a carousel.js file and added it into the main page.  While working on the carousel, we ran into a blocker of the list of popular movies overlapping onto the carousel.  We were able to overcome the blocker by changing the css of the overall carousel to match the height of the carousel image. At the end of the day dried up the code and gathered everyone favorite movies for our Couchr top picks to be displayed on the main page.
 8/30/2022
 We continued to tackle the same blocker that we had yesterday.  Within the useEffect we determined that the empty array was only rendering once which was why the list of movies disappeared immediately after.  After adding the pagination into the main page and inserting it into the array, we were able to keep the movies listed on the main page.  We have a new blocker of getting the pagination to populate new movies once a different page number is selected.    
 8/29/2022
