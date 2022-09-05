@@ -10,9 +10,12 @@ import Login from './auth/login';
 import Signup from './auth/signup';
 import MyMovieLists from './Watchlists/MyMovieLists';
 import NewReviewForm from './Reviews/CreateNewReviewForm';
+import UserDetail from './auth/UserDetail';
+import { useAuthContext } from './auth/auth_provider';
 
 
 function App() {
+  const { token } = useAuthContext();
   return (
     <AuthProvider>
       <Nav />
@@ -20,7 +23,7 @@ function App() {
         <Routes>
           <Route path='/' element={<MainPage />} />
           <Route path='movies/' element={<MovieList />} />
-          <Route path='movies/movie/:id/' element={<MovieDetail />} />
+          <Route path='movies/movie/:id/' element={<MovieDetail token={token}/>} />
           <Route path='login/' element={<Login />} />
           <Route path='signup/' element={<Signup />} />
           <Route path='mylists/' element={<MyMovieLists />} />
