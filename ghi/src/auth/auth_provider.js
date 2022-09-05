@@ -15,7 +15,6 @@ export async function getTokenInternal() {
         if (response.ok) {
             const data = await response.json();
             internalToken = data.token;
-            console.log(data.token);
             return internalToken;
         }
     } catch (e) { }
@@ -125,7 +124,7 @@ export function useToken() {
             console.log(token1);
             localStorage.setItem('userName', JSON.stringify(username))
             setUserName(username);
-
+            navigate("/user_detail");
             return;
         }
         let error = await response.json();
