@@ -19,8 +19,14 @@ export default function Signup() {
         // console.log('login inside', login)
        
         await signup(username, password, email, firstName, lastName);
-        };
 
+        };
+    
+    const createLists = async => {
+        const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/${userName}/`;
+    }
+    
+    
     return (
         <div className="row">
             <div className="offset-3 col-6">

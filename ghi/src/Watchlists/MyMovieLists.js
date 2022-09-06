@@ -20,8 +20,8 @@ export default function MyMovieLists() {
                 },
             });
             const response = await request.json();
-            console.log(response.lists[0].name);
-            setTitle(response.lists[0].name)
+            // console.log(response.lists[0].name);
+            // setTitle(response.lists[0].name)
         }
     }
 

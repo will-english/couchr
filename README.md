@@ -22,16 +22,14 @@ MVP:
 - display a large libary of films
 - user creation and authentication
 - track a users liked, watched, and want-to-watch movies
-- movie search feature: by title or cast member
+- movie search feature: by title
 - allow users to create new movie lists, which can be public or private, 
 or visible to friends
 - a movie details page, that provides in depth information on each title
     - average rating per title
-    - user reviews for each title
-    - youtube trailer
 
 Stretch Goals:
-
+- user reviews for each title
 - users can leave reviews and ratings on the movies
 - user friends
 - comparing multiple users watchlist to suggest a movie to watch together
