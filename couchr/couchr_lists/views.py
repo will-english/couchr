@@ -121,6 +121,7 @@ def api_list(request, pk, username):
             return response
 
 # get a specific list from a user to add/remove movies
+@auth.jwt_login_required
 @require_http_methods(["PUT"])
 def api_list_movies(request, pk, username):
     user = User.objects.get(username=username)
@@ -188,6 +189,7 @@ def movie_encoder(movie):
 # get all movie VOs in DB
 @require_http_methods(["GET", "POST"])
 def api_movies(request):
+    print("request: ", request)
     if request.method == "GET":
         movies = MovieVO.objects.all()
         response = []

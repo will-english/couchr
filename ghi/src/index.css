@@ -26,6 +26,11 @@ code {
   display: inline-block;
 }
 
+.nav-link {
+  color: white;
+
+}
+
 .input-group {
   display: inline-block;
 }

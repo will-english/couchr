@@ -9,7 +9,9 @@ export default function MyMovieLists() {
     const [title, setTitle] = useState([])
 
     const fetchData = async () => {
+        console.log(userName)
         if (userName && token) {
+
             const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/${userName}/`;
             const request = await fetch(url, {
                 credentials: "include",

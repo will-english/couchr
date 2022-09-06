@@ -1,55 +1,43 @@
-// import React from 'react'
-// import { useState, useEffect } from 'react';
-// import { Navigate } from 'react-router-dom';
-// import { useAuthContext } from '../auth/auth_provider';
+import React from 'react'
+import { useState, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
+import NewReviewForm from './CreateNewReviewForm';
 
 
-// export default function MyMovieLists() {
-//     // User props
-//     const { token } = useAuthContext();
-//     const { userName } = useAuthContext();
+export default function MyMovieReviews() {
+    const [input, setInput] = useState({
+        name: '',
+        email: '',
+        book: '',
+    })
 
-//     // Review props
-//     const [name, setName] = useState([])
-//     const [description, setDescription] = useState([])
+    function handleInput(e) {
+        setInput({...input, [e.target.name]:e.target.value})
+    }
 
-//     // fetch user and review data
-//     const fetchData = async () => {
-//         if (userName && token) {
+    function handleSubmit(e) {
+        return
+    }
 
-//             // get all reviews from a user
-//             const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/reviews/${userName}/`;
-
-//             const request = await fetch(url, {
-//                 credentials: "include",
-//                 headers: {
-//                     Authorization: `Bearer ${token}`
-//                 },
-//             });
-//             const response = await request.json();
-//             setName(response.reviews[0].name)
-//         }
-//     }
-
-//     useEffect(() => {
-//         fetchData();
-//     }, [{ token }]);
-
-//     const handleNavigate = (event) => {
-//         event.preventDefault();
-//         Navigate(event.target.name);
-//     }
-
-//     return (
-//         <>
-//             <div className="my-reviews-page">
-//                 <h1>Reviews: {name}</h1>
-//                 <button
-//                     name="newreview/"
-//                     onClick={handleNavigate}
-//                     >Create new review
-//                 </button>
-//             </div>
-//         </>
-//     )
-// }
+    return (
+        <>  
+            <NewReviewForm/>
+            <form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                    <label htmlFor="name" className="col-form-label">name</label>
+                    <input onChange={handleInput} value={input.name} type="text" className="form-control" name="name" placeholder="name"/>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="description">email</label>
+                    <input onChange={handleInput} value={input.email} type="text" className="form-control" name="email" placeholder="email"/>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="description">book</label>
+                    <input onChange={handleInput} value={input.book} type="text" className="form-control" name="book" placeholder="book"/>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#reviewForm">Search books</button>
+                </div>
+                <button className="btn btn-primary" data-bs-dismiss="modal">Create</button>
+            </form>
+        </>
+    )
+}

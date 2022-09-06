@@ -1,16 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import './index.css'
-import { useToken } from './auth/auth_provider';
+import { useToken, useAuthContext } from './auth/auth_provider';
+
 
 function Nav() {
-  // const genres = [
-  //   'action', 'adventure', 'amimation', 
-  //   'comedy', 'crime', 'documentary',
-  //   'drama', 'family', 'fantasy',
-  //   'history', 'horror', 'music',
-  //   'mystery', 'romance', 'science fiction', 
-  //   'tv movie', 'thriller', 'war', 'western'
-  // ]
+  const { token } = useAuthContext();
   const funcs = useToken();
   const logout = funcs[2];
 
@@ -22,23 +16,42 @@ function Nav() {
     await logout();
   };
 
+  const isSignedIn = () => {
+    if (token) {
+      return (
+        <ul className="nav justify-content-end">
+          <NavLink className="nav-link" to="/user_detail">User Page</NavLink>
+          <NavLink onClick={handleLogout} className="nav-link" to="">Logout</NavLink>
+        </ul>
+      )
+    } else {
+      return (
+        <ul className="nav justify-content-end">
+          <NavLink className="nav-link" to="/login">Login</NavLink>
+          <NavLink className="nav-link" to="/signup">Sign up</NavLink>
+        </ul>
+      )
+
+    }
+  }
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark mb-5">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
-            <img src="/couchr-logo.png" className="" 
-            alt="" width="50" height="50"/>Couchr
+          <img src="/couchr-logo.png" className=""
+            alt="" width="50" height="50" />Couchr
         </NavLink>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" 
-        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
-        aria-expanded="false" aria-label="Toggle navigation">
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+          aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Movies
+                Movies
               </a>
               <ul className="dropdown-menu">
                 <li><NavLink className="dropdown-item" to="/sales_records">Genre1</NavLink></li>
@@ -48,7 +61,7 @@ function Nav() {
             </li>
             <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              My Movies
+                My Movies
               </a>
               <ul className="dropdown-menu">
                 <li><NavLink className="dropdown-item" to="/services">Watchlist</NavLink></li>
@@ -59,16 +72,10 @@ function Nav() {
               </ul>
             </li>
             <ul>
-                <input type="search" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />           
+              <input type="search" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
             </ul>
-         
           </ul>
-          <ul className="nav justify-content-end">
-              <NavLink className="nav-link d-none" to="/user_detail">User Page</NavLink>
-              <NavLink className="nav-link" to="/login">Login</NavLink>
-              <NavLink onClick={handleLogout} className="nav-link" to="">Logout</NavLink>
-              <NavLink className="nav-link" to="/signup">Sign up</NavLink>  
-          </ul>
+          {isSignedIn()}
         </div>
       </div>
     </nav>
