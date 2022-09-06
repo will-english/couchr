@@ -10,6 +10,7 @@ import Login from './auth/login';
 import Signup from './auth/signup';
 import MyMovieLists from './Watchlists/MyMovieLists';
 import NewReviewForm from './Reviews/CreateNewReviewForm';
+import UserDetail from './auth/UserDetail'
 
 
 function App() {
