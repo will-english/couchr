@@ -24,24 +24,44 @@ class MovieDetail extends React.Component {
         this.addList = this.addList.bind(this);
     }
 
+
     async componentDidMount() {
-        const userName = this.context.userName;
+        
         const currentURL = window.location.href
         const words = currentURL.split("/")
         const movie_id = words[5]
 
+
         const movie_detail_url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`;
         const movie_credit_rul = `https://api.themoviedb.org/3/movie/${movie_id}/credits?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`;
-        const movie_lists_url = `http://localhost:8000/api/lists/${userName}/`;
 
         const response_detail = await fetch(movie_detail_url);
         const response_credit = await fetch(movie_credit_rul);
-        const response_lists = await fetch(movie_lists_url);
+
+        
+        const movie_lists_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${this.context.userName}/`;
+        console.log("movie_lists_url: ", movie_lists_url)
+        const request = await fetch(movie_lists_url, {
+            credentials: "include",
+            headers: {
+                Authorization: `Bearer ${this.context.token}`
+            },
+        });
+        console.log("request: ", request)
+
+        const response_lists = await request.json();
+        if (response_lists.ok) {
+            console.log("~~~~~response_lists.ok~~~~~")
+            const lists_data = await response_lists.json();
+            this.setState({ movie_lists: lists_data.lists });
+
+        }
+
 
         if (response_detail.ok && response_credit.ok) {
             const detail_data = await response_detail.json();
             const credit_data = await response_credit.json();
-            const lists_data = await response_lists.json();
+
 
             //set actors
             let actors = [];
@@ -76,7 +96,6 @@ class MovieDetail extends React.Component {
                     movie_detail: detail_data,
                     movie_credit: credit_data,
                     genres: genres_list,
-                    movie_lists: lists_data.lists,
                 });
         };
     }
@@ -88,13 +107,13 @@ class MovieDetail extends React.Component {
     }
 
 
-//How to add the current move to one of the lists
+    //How to add the current move to one of the lists
     async handleAddMovie(event) {
         event.preventDefault();
 
         // get the URL to send the JSON to
         const list_id = event.target.id;
-        const movie_list_url = `http://localhost:8000/api/lists/${list_id}/movies/`;
+        const movie_list_url = `http://localhost:8000/api/lists/users/${list_id}/movies/`;
 
         // get the movie ID
         const currentURL = window.location.href
@@ -138,11 +157,11 @@ class MovieDetail extends React.Component {
         alert("Hello")
     }
 
-//create a new list
-    addList (list) {
+    //create a new list
+    addList(list) {
         const lists = this.state.movie_lists
         lists.push(list)
-        this.setState({movie_lists: lists});
+        this.setState({ movie_lists: lists });
     }
 
     render() {
@@ -157,9 +176,9 @@ class MovieDetail extends React.Component {
 
                 {/* Detail area */}
                 <div className="detail_content_area">
-                    <DetailLeftArea  movie={this.state.movie_detail}/>
-                    <DetailMiddleArea movie={this.state.movie_detail} movie_list={this.state.movie_lists} add_list={this.addList} handleAddMovie={this.handleAddMovie}/>
-                    <DetailRightArea actors={this.state.actors} genres={this.state.genres}/>
+                    <DetailLeftArea movie={this.state.movie_detail} />
+                    <DetailMiddleArea movie={this.state.movie_detail} movie_lists={this.state.movie_lists} add_list={this.addList} handleAddMovie={this.handleAddMovie} />
+                    <DetailRightArea actors={this.state.actors} genres={this.state.genres} />
                 </div>
 
                 {/* Footer area */}
