@@ -11,6 +11,49 @@ class MovieVO(models.Model):
 class List(models.Model):
     name = models.CharField(max_length=100, unique=False, null=True, blank=True)
     description = models.CharField(max_length=100, unique=False, null=True, blank=True)
+    public = models.BooleanField(default=False)
+    movies = models.ManyToManyField(
+        MovieVO,
+        blank=True,
+    )
+    user = models.ForeignKey(
+        User,
+        related_name="lists",
+        on_delete=models.CASCADE,
+        null=True,
+    )
+
+class LikedList(models.Model):
+    name = models.CharField(max_length=100, unique=False, null=True, blank=True)
+    description = models.CharField(max_length=100, unique=False, null=True, blank=True)
+    movies = models.ManyToManyField(
+        MovieVO,
+        blank=True,
+    )
+    user = models.ForeignKey(
+        User,
+        related_name="lists",
+        on_delete=models.CASCADE,
+        null=True,
+    )
+
+class WatchedList(models.Model):
+    name = models.CharField(max_length=100, unique=False, null=True, blank=True)
+    description = models.CharField(max_length=100, unique=False, null=True, blank=True)
+    movies = models.ManyToManyField(
+        MovieVO,
+        blank=True,
+    )
+    user = models.ForeignKey(
+        User,
+        related_name="lists",
+        on_delete=models.CASCADE,
+        null=True,
+    )
+
+class WishList(models.Model):
+    name = models.CharField(max_length=100, unique=False, null=True, blank=True)
+    description = models.CharField(max_length=100, unique=False, null=True, blank=True)
     movies = models.ManyToManyField(
         MovieVO,
         blank=True,
