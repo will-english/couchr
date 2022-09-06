@@ -32,7 +32,7 @@ class LikedList(models.Model):
     )
     user = models.ForeignKey(
         User,
-        related_name="lists",
+        related_name="likedlist",
         on_delete=models.CASCADE,
         null=True,
     )
@@ -46,7 +46,7 @@ class WatchedList(models.Model):
     )
     user = models.ForeignKey(
         User,
-        related_name="lists",
+        related_name="watchedlist",
         on_delete=models.CASCADE,
         null=True,
     )
@@ -60,7 +60,7 @@ class WishList(models.Model):
     )
     user = models.ForeignKey(
         User,
-        related_name="lists",
+        related_name="wishlist",
         on_delete=models.CASCADE,
         null=True,
     )

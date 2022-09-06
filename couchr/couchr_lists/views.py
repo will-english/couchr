@@ -196,7 +196,7 @@ def list_encoder_for_default_lists(list):
 
 # get all liked lists from a user
 # @auth.jwt_login_required
-@require_http_methods(["GET", "POST", "PUT"])
+@require_http_methods(["GET", "PUT"])
 def api_list_liked(request, username):
     user = User.objects.get(username=username)
 
@@ -211,31 +211,11 @@ def api_list_liked(request, username):
             {"lists": response}
         )
 
-    elif request.method == "POST":
-        try:
-            content = json.loads(request.body)
-            list = LikedList.objects.create(**content)
-            list.user = user
-            list.save()
-
-            return JsonResponse(
-                content,
-                safe=False,
-            )
-
-        except Exception as e:
-            response = JsonResponse(
-                {"message": "Could not create the list"}
-            )
-            response.status_code = 400
-
-            return response
-
     # PUT
     else:
         # PUT method to update a list's name/description
         try:
-            list = WatchedList.objects.get(user=user)
+            list = LikedList.objects.get(user=user)
             content = json.loads(request.body)
 
             # JSON body needs to have an "add" key with a value of "true" or "false"
@@ -278,7 +258,7 @@ def api_list_liked(request, username):
                 {"list": response}
             )
 
-        except WatchedList.DoesNotExist:
+        except LikedList.DoesNotExist:
                 response = JsonResponse({"message": "Does not exist"})
                 response.status_code = 404
 
@@ -286,7 +266,7 @@ def api_list_liked(request, username):
 
 # get all watched lists from a user
 # @auth.jwt_login_required
-@require_http_methods(["GET", "POST", "PUT"])
+@require_http_methods(["GET", "PUT"])
 def api_list_watched(request, username):
     user = User.objects.get(username=username)
 
@@ -300,26 +280,6 @@ def api_list_watched(request, username):
         return JsonResponse(
             {"lists": response}
         )
-
-    elif request.method == "POST":
-        try:
-            content = json.loads(request.body)
-            list = WatchedList.objects.create(**content)
-            list.user = user
-            list.save()
-
-            return JsonResponse(
-                content,
-                safe=False,
-            )
-
-        except Exception as e:
-            response = JsonResponse(
-                {"message": "Could not create the list"}
-            )
-            response.status_code = 400
-
-            return response
     
     # PUT
     else:
@@ -376,7 +336,7 @@ def api_list_watched(request, username):
 
 # get all wish lists from a user
 # @auth.jwt_login_required
-@require_http_methods(["GET", "POST", "PUT"])
+@require_http_methods(["GET", "PUT"])
 def api_list_wish(request, username):
     user = User.objects.get(username=username)
 
@@ -390,26 +350,6 @@ def api_list_wish(request, username):
         return JsonResponse(
             {"lists": response}
         )
-
-    elif request.method == "POST":
-        try:
-            content = json.loads(request.body)
-            list = WishList.objects.create(**content)
-            list.user = user
-            list.save()
-
-            return JsonResponse(
-                content,
-                safe=False,
-            )
-
-        except Exception as e:
-            response = JsonResponse(
-                {"message": "Could not create the list"}
-            )
-            response.status_code = 400
-
-            return response
     
     # PUT
     else:
