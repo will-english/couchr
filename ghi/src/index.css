@@ -184,8 +184,10 @@ code {
 }
 
 .carousel {
-  margin: 10px;
+  align-self: center;
+  margin: 50px;
   height: 700px;
+  /* padding: 20px */
 } 
 
 .carousel_caption {
@@ -195,7 +197,7 @@ code {
   top: 0;
   color: white;
   text-align: center;
-  background-color: #181c24;
+  /* background-color: #181c24; */
 }
 
 .carousel-slide {
@@ -204,6 +206,7 @@ code {
 }
 
 .slide-photo {
+  align-self: center;
   height: 500px;
   left: auto;
   right: auto;
@@ -219,3 +222,12 @@ code {
   width: 50px;
   height: 50px;
 }
+
+
+/* SideBar */
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1000px 1fr;
+  margin: 50px;
+}
+

@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import './index.css'
 import { useToken, useAuthContext } from './auth/auth_provider';
+import Search from './ListingMovies/Search'
 
 
 function Nav() {
@@ -72,7 +73,9 @@ function Nav() {
               </ul>
             </li>
             <ul>
-              <input type="search" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+              <Search  />
+
+              {/* <input type="search" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" /> */}
             </ul>
           </ul>
           {isSignedIn()}
