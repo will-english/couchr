@@ -1,3 +1,7 @@
+09/06/2022
+
+09/02/2022
+Overall, today we were able to successfully work on the sidebar that listed all available genres as links to the movies under that selected genre.  We have a current blocker of the movie list page not repopulating with the list of movies for the selected genre.  The third party api is hit via genre id and then gets the list of those movies to be displayed on the website.  
 8/31/2022
 Today we were able to render the popular movies within the main page only once by using length of the popular movies.  With that resolved, we moved onto creating a carousel.js file and added it into the main page.  While working on the carousel, we ran into a blocker of the list of popular movies overlapping onto the carousel.  We were able to overcome the blocker by changing the css of the overall carousel to match the height of the carousel image. At the end of the day dried up the code and gathered everyone favorite movies for our Couchr top picks to be displayed on the main page.
 8/30/2022

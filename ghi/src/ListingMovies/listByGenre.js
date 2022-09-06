@@ -53,6 +53,7 @@ class MovieList extends React.Component {
 
         this.setState({ movies: movielist })
         this.setState({ totalMovies: movielist.length })
+        // this.setState({ genre_id: genre_id})
         const indexOfLastMovie = this.state.currentPage * this.state.moviesPerPage;
         const indexOfFirstMovie = indexOfLastMovie - this.state.moviesPerPage;
         const currentMovies = movielist.slice(indexOfFirstMovie, indexOfLastMovie);
