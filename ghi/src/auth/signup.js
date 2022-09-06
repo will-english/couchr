@@ -5,6 +5,7 @@ import { useToken } from './auth_provider';
 export default function Signup() {
     const funcs = useToken();
     const signup = funcs[3];
+    const createLists = funcs[6];
 
     const [username, setUsername] = useState([]);
     const [password, setPassword] = useState([]);
@@ -18,13 +19,11 @@ export default function Signup() {
         // setErrors(validation(values))
         // console.log('login inside', login)
        
-        await signup(username, password, email, firstName, lastName);
+        await signup(username, password, email, firstName, lastName, createLists);
 
         };
     
-    const createLists = async => {
-        const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/${userName}/`;
-    }
+    
     
     
     return (
