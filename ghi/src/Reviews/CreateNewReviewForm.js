@@ -1,18 +1,19 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
+import React, { useEffect } from 'react'
+import { useState } from 'react';
 import { useAuthContext } from '../auth/auth_provider';
 
-function NewReviewForm() {
+function NewReviewForm(props) {
     // get token and userName from Auth Context
     const { token, userName } = useAuthContext();
-    const [input, setInput] = useState({
-        name: '',
+    const [state, setState] = useState({
+        title: '',
         description: '',
-        movie_id: 1,
+        movie_title: '',
+        api_id: '',
     })
 
-    function handleInput(e) {
-        setInput({...input, [e.target.name]:e.target.value})
+    function handleState(e) {
+        setState({...state, [e.target.name]:e.target.value})
     }
 
     async function handleSubmit(e) {
@@ -21,7 +22,7 @@ function NewReviewForm() {
         const response = await fetch(
             url, {
             method: 'POST',
-            body: JSON.stringify(input),
+            body: JSON.stringify(state),
             credentials: "include",
             headers: {
                 'Content-Type': 'application/json',
@@ -34,9 +35,10 @@ function NewReviewForm() {
             const cleared = {
                 name: '',
                 description: '',
-                movie_id: 1,
+                movie_title: '',
+                api_id: '',
             };
-            setInput(cleared);
+            setState(cleared);
         }
     }
 
@@ -49,21 +51,21 @@ function NewReviewForm() {
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">New List</h5>
+                            <h5 className="modal-title" id="exampleModalLabel">New Review</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
                             <form onSubmit={handleSubmit}>
                                 <div className="mb-3">
-                                    <label htmlFor="name" className="col-form-label">name</label>
-                                    <input onChange={handleInput} value={input.name} type="text" className="form-control" name="name" placeholder="name"/>
+                                    <label htmlFor="title" className="col-form-label">Title</label>
+                                    <input onChange={handleState} value={state.title} type="text" className="form-control" name="title" placeholder="Title"/>
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="description">description</label>
-                                    <input onChange={handleInput} value={input.description} type="text" className="form-control" name="description" placeholder="description"/>
+                                    <label htmlFor="description">Description</label>
+                                    <textarea onChange={handleState} value={state.description} type="text" className="form-control" name="description" placeholder="Description" rows="10"></textarea>
                                 </div>
                                 <button type="button" className="btn btn-danger create_list_form_close_button" data-bs-dismiss="modal">Close</button>
-                                <button className="btn btn-primary" data-bs-dismiss="modal">Create</button>
+                                <button className="btn btn-primary create_list_form_create_button" data-bs-dismiss="modal">Create</button>
                             </form>
                         </div>
                     </div>

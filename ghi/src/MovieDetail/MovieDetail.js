@@ -39,16 +39,19 @@ class MovieDetail extends React.Component {
         const response_credit = await fetch(movie_credit_rul);
 
         
-        const movie_lists_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/${this.context.userName}/`;
+        const movie_lists_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${this.context.userName}/`;
+        console.log("movie_lists_url: ", movie_lists_url)
         const request = await fetch(movie_lists_url, {
             credentials: "include",
             headers: {
                 Authorization: `Bearer ${this.context.token}`
             },
         });
+        console.log("request: ", request)
 
         const response_lists = await request.json();
         if (response_lists.ok) {
+            console.log("~~~~~response_lists.ok~~~~~")
             const lists_data = await response_lists.json();
             this.setState({ movie_lists: lists_data.lists });
 
@@ -110,7 +113,7 @@ class MovieDetail extends React.Component {
 
         // get the URL to send the JSON to
         const list_id = event.target.id;
-        const movie_list_url = `http://localhost:8000/api/lists/${list_id}/movies/`;
+        const movie_list_url = `http://localhost:8000/api/lists/users/${list_id}/movies/`;
 
         // get the movie ID
         const currentURL = window.location.href
@@ -174,7 +177,7 @@ class MovieDetail extends React.Component {
                 {/* Detail area */}
                 <div className="detail_content_area">
                     <DetailLeftArea movie={this.state.movie_detail} />
-                    <DetailMiddleArea movie={this.state.movie_detail} movie_list={this.state.movie_lists} add_list={this.addList} handleAddMovie={this.handleAddMovie} />
+                    <DetailMiddleArea movie={this.state.movie_detail} movie_lists={this.state.movie_lists} add_list={this.addList} handleAddMovie={this.handleAddMovie} />
                     <DetailRightArea actors={this.state.actors} genres={this.state.genres} />
                 </div>
 
