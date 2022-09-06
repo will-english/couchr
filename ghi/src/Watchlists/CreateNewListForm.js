@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
+import { AuthContext } from '../auth/auth_provider';
 
 
 export default class NewList extends Component {
-    constructor() {
-      super();
-      this.state = {
-          name: '',
-          description: '',
-      };
-      this.handleChange = this.handleChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
+  static contextType = AuthContext
+
+  constructor() {
+    super();
+    this.state = {
+      name: '',
+      description: '',
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -21,29 +24,32 @@ export default class NewList extends Component {
     event.preventDefault();
     let data = { ...this.state };
 
-    const url = "http://localhost:8000/api/lists/";
+    const url = `http://localhost:8000/api/lists/user/${this.context.userName}/`;
     const fetchConfig = {
       method: "POST",
       body: JSON.stringify(data),
+      credentials: "include",
       headers: {
-          'Content-Type': 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.context.token}`
       },
     };
 
     const response = await fetch(url, fetchConfig);
     if (response.ok) {
+      console.log("~~~~~response ok~~~~~")
       const newList = await response.json();
       this.props.afterSubmit(newList);
       const cleared = {
-          name: '',
-          description: '',
+        name: '',
+        description: '',
       };
       this.setState(cleared);
     }
   }
 
-  render(){
-  return (
+  render() {
+    return (
       <div className="modal fade create_list_form" id="listForm" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
@@ -64,7 +70,7 @@ export default class NewList extends Component {
 
                 <button type="button" className="btn btn-danger create_list_form_close_button" data-bs-dismiss="modal">Close</button>
                 <button className="btn btn-primary create_list_form_create_button" data-bs-dismiss="modal">Create</button>
-                
+
               </form>
             </div>
           </div>

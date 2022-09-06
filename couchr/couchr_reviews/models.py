@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Review(models.Model):
-    name = models.CharField(max_length=100, unique=False, null=True, blank=True)
+    title = models.CharField(max_length=100, unique=False, null=True, blank=True)
     description = models.TextField(unique=False, null=True, blank=True)
     movie = models.ForeignKey(
         MovieVO,

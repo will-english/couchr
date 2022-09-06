@@ -28,12 +28,18 @@ def api_reviews(request, username):
     else:
         try:
             content = json.loads(request.body)
-            movie_id = content["movie_id"]
-            movie = MovieVO.objects.get(id=movie_id)
-            content["movie"] = movie
 
-            review = Review.objects.create(**content)
+            # get MovieVO or create one (using attribute api_id) if it doesn't already exist in the DB
+            movie, created = MovieVO.objects.get_or_create(api_id=content["api_id"])
+            movie.title = content["movie_title"]
+            movie.save()
+
+            review = Review.objects.create(
+                title = content["title"],
+                description = content["description"]
+            )
             review.user = user
+            review.movie = movie
             review.save()
 
             return JsonResponse(
@@ -52,7 +58,7 @@ def api_reviews(request, username):
 
 
 # get a specific reviews from a user
-# @auth.jwt_login_required
+@auth.jwt_login_required
 @require_http_methods(["DELETE", "GET", "PUT"])
 def api_review(request, pk, username):
     user = User.objects.get(username=username)
@@ -89,13 +95,14 @@ def api_review(request, pk, username):
             response.status_code = 404
 
             return response
-            
+    
+    # PUT
     else:
         try:
             content = json.loads(request.body)
             review = Review.objects.get(id=pk, user=user)
 
-            props = ["name", "description"]
+            props = ["title", "description"]
             for prop in props:
                 if prop in content:
                     setattr(review, prop, content[prop])
