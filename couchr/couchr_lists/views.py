@@ -196,8 +196,8 @@ def list_encoder_for_default_lists(list):
 
 # get all liked lists from a user
 # @auth.jwt_login_required
-@require_http_methods(["GET", "POST"])
-def api_lists_liked(request, username):
+@require_http_methods(["GET", "POST", "PUT"])
+def api_list_liked(request, username):
     user = User.objects.get(username=username)
 
     if request.method == "GET":
@@ -211,8 +211,7 @@ def api_lists_liked(request, username):
             {"lists": response}
         )
 
-    # POST
-    else:
+    elif request.method == "POST":
         try:
             content = json.loads(request.body)
             list = LikedList.objects.create(**content)
@@ -232,34 +231,11 @@ def api_lists_liked(request, username):
 
             return response
 
-# get a specific list from a user
-# @auth.jwt_login_required
-@require_http_methods(["DELETE", "GET", "PUT"])
-def api_list_liked(request, pk, username):
-    user = User.objects.get(username=username)
-
-    if request.method == "GET":
-        try:
-            list = LikedList.objects.get(id=pk, user=user)
-
-            response = []
-            list_dict = list_encoder_for_default_lists(list)
-            response.append(list_dict)
-
-            return JsonResponse(
-                {"list": response}
-            )
-
-        except LikedList.DoesNotExist:
-            response = JsonResponse({"message" : "Does not exist"})
-            response.status_code = 404
-
-            return response
-
-    # PUT method to update a list's name/description
+    # PUT
     else:
+        # PUT method to update a list's name/description
         try:
-            list = LikedList.objects.get(id=pk, user=user)
+            list = WatchedList.objects.get(user=user)
             content = json.loads(request.body)
 
             # JSON body needs to have an "add" key with a value of "true" or "false"
@@ -302,7 +278,186 @@ def api_list_liked(request, pk, username):
                 {"list": response}
             )
 
-        except LikedList.DoesNotExist:
+        except WatchedList.DoesNotExist:
+                response = JsonResponse({"message": "Does not exist"})
+                response.status_code = 404
+
+                return response
+
+# get all watched lists from a user
+# @auth.jwt_login_required
+@require_http_methods(["GET", "POST", "PUT"])
+def api_list_watched(request, username):
+    user = User.objects.get(username=username)
+
+    if request.method == "GET":
+        lists = WatchedList.objects.filter(user=user)
+        response = []
+        for list in lists:
+            list_dict = list_encoder_for_default_lists(list)
+            response.append(list_dict)
+
+        return JsonResponse(
+            {"lists": response}
+        )
+
+    elif request.method == "POST":
+        try:
+            content = json.loads(request.body)
+            list = WatchedList.objects.create(**content)
+            list.user = user
+            list.save()
+
+            return JsonResponse(
+                content,
+                safe=False,
+            )
+
+        except Exception as e:
+            response = JsonResponse(
+                {"message": "Could not create the list"}
+            )
+            response.status_code = 400
+
+            return response
+    
+    # PUT
+    else:
+        # PUT method to update a list's name/description
+        try:
+            list = WatchedList.objects.get(user=user)
+            content = json.loads(request.body)
+
+            # JSON body needs to have an "add" key with a value of "true" or "false"
+            # true adds the movie
+            if content['add'] == True:
+
+                # get MovieVO or create one (using attribute api_id) if it doesn't already exist in the DB
+                movie, created = MovieVO.objects.get_or_create(api_id=content["api_id"])
+                movie.title = content["title"]
+                movie.save()
+
+                # if MovieVO isn't already in the list, then add it
+                if movie not in list.movies.all():
+                        list.movies.add(movie)
+
+                # if MovieVO is already in the list, then send an error response
+                else:
+                    response = JsonResponse({"message": "Movie already in list"})
+                    response.status_code = 409
+
+                    return response
+
+            # false removes the movie
+            elif content['add'] == False:
+                try:
+                    movie = MovieVO.objects.get(api_id=content["api_id"])
+                    list.movies.remove(movie)
+
+                except MovieVO.DoesNotExist:
+                    response = JsonResponse({"message": "Movie does not exist"})
+                    response.status_code = 404
+
+                    return response
+
+            response = []
+            list_dict = list_encoder_for_default_lists(list)
+            response.append(list_dict)
+
+            return JsonResponse(
+                {"list": response}
+            )
+
+        except WatchedList.DoesNotExist:
+                response = JsonResponse({"message": "Does not exist"})
+                response.status_code = 404
+
+                return response
+
+# get all wish lists from a user
+# @auth.jwt_login_required
+@require_http_methods(["GET", "POST", "PUT"])
+def api_list_wish(request, username):
+    user = User.objects.get(username=username)
+
+    if request.method == "GET":
+        lists = WishList.objects.filter(user=user)
+        response = []
+        for list in lists:
+            list_dict = list_encoder_for_default_lists(list)
+            response.append(list_dict)
+
+        return JsonResponse(
+            {"lists": response}
+        )
+
+    elif request.method == "POST":
+        try:
+            content = json.loads(request.body)
+            list = WishList.objects.create(**content)
+            list.user = user
+            list.save()
+
+            return JsonResponse(
+                content,
+                safe=False,
+            )
+
+        except Exception as e:
+            response = JsonResponse(
+                {"message": "Could not create the list"}
+            )
+            response.status_code = 400
+
+            return response
+    
+    # PUT
+    else:
+        try:
+            list = WishList.objects.get(user=user)
+            content = json.loads(request.body)
+
+            # JSON body needs to have an "add" key with a value of "true" or "false"
+            # true adds the movie
+            if content['add'] == True:
+
+                # get MovieVO or create one (using attribute api_id) if it doesn't already exist in the DB
+                movie, created = MovieVO.objects.get_or_create(api_id=content["api_id"])
+                movie.title = content["title"]
+                movie.save()
+
+                # if MovieVO isn't already in the list, then add it
+                if movie not in list.movies.all():
+                        list.movies.add(movie)
+
+                # if MovieVO is already in the list, then send an error response
+                else:
+                    response = JsonResponse({"message": "Movie already in list"})
+                    response.status_code = 409
+
+                    return response
+
+            # false removes the movie
+            elif content['add'] == False:
+                try:
+                    movie = MovieVO.objects.get(api_id=content["api_id"])
+                    list.movies.remove(movie)
+
+                except MovieVO.DoesNotExist:
+                    response = JsonResponse({"message": "Movie does not exist"})
+                    response.status_code = 404
+
+                    return response
+
+            response = []
+            list_dict = list_encoder_for_default_lists(list)
+            response.append(list_dict)
+
+            return JsonResponse(
+                {"list": response}
+            )
+
+        except WishList.DoesNotExist:
                 response = JsonResponse({"message": "Does not exist"})
                 response.status_code = 404
 
