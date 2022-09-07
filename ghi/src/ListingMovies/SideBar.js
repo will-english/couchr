@@ -46,7 +46,7 @@ const Sidebar = () => {
     useEffect(() => {
         getGenres()
     }, [genres.length],
-    console.log(genres)
+    // console.log(genres)
     )
     
     const sidebarNavItems = []
