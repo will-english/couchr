@@ -14,7 +14,7 @@ import UserDetail from './auth/UserDetail'
 import {useAuthContext} from './auth/auth_provider'
 import SearchResults from './ListingMovies/SearchResults';
 import Sidebar from './ListingMovies/SideBar';
-
+import UserPage from './UserPageTest/UserPage'
 
 
 
