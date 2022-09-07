@@ -9,17 +9,14 @@ import MovieList from './ListingMovies/listByGenre';
 import Login from './auth/login';
 import Signup from './auth/signup';
 import MyMovieLists from './Watchlists/MyMovieLists';
-import NewReviewForm from './Reviews/CreateNewReviewForm';
 import UserDetail from './auth/UserDetail'
-import {useAuthContext} from './auth/auth_provider'
 import SearchResults from './ListingMovies/SearchResults';
 import Sidebar from './ListingMovies/SideBar';
-import UserPage from './UserPageTest/UserPage'
+
 
 
 
 function App() {
-  const { token } = useAuthContext();
   return (
     <AuthProvider>
       <Nav />
@@ -32,9 +29,9 @@ function App() {
           <Route path='login/' element={<Login />} />
           <Route path='signup/' element={<Signup />} />
           <Route path='mylists/' element={<MyMovieLists />} />
-          <Route path='newreview/' element={<NewReviewForm />} />
           <Route path='user_detail/' element={<UserDetail /> }/>
           <Route path='user_page/' element={<UserPage /> }/>
+          <Route path='public_lists/' element={<PublicLists /> }/>
         </Routes>
       </div>
     </AuthProvider>
