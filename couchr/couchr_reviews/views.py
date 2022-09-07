@@ -10,6 +10,7 @@ from couchr_lists.models import MovieVO
 
 # Create your views here.
 
+
 # get all reviews from a user
 @auth.jwt_login_required
 @require_http_methods(["GET", "POST"])

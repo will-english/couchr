@@ -24,7 +24,7 @@ def list_encoder(list):
     return dict
 
 # get all movie lists from a user
-# @auth.jwt_login_required
+@auth.jwt_login_required
 @require_http_methods(["GET", "POST"])
 def api_lists(request, username):
     user = User.objects.get(username=username)
@@ -62,7 +62,7 @@ def api_lists(request, username):
             return response
 
 # get a specific list from a user
-# @auth.jwt_login_required
+@auth.jwt_login_required
 @require_http_methods(["DELETE", "GET", "PUT"])
 def api_list(request, pk, username):
     user = User.objects.get(username=username)
@@ -194,7 +194,7 @@ def list_encoder_for_default_lists(list):
         dict["movies"].append(movie.id)
     return dict
 
-# get all liked lists from a user
+# get liked list from a user
 @auth.jwt_login_required
 @require_http_methods(["GET", "PUT"])
 def api_list_liked(request, username):
@@ -208,12 +208,11 @@ def api_list_liked(request, username):
             response.append(list_dict)
 
         return JsonResponse(
-            {"lists": response}
+            {"list": response}
         )
 
     # PUT
     else:
-        # PUT method to update a list's name/description
         try:
             list = LikedList.objects.get(user=user)
             content = json.loads(request.body)
@@ -264,8 +263,8 @@ def api_list_liked(request, username):
 
                 return response
 
-# get all watched lists from a user
-# @auth.jwt_login_required
+# get watched list from a user
+@auth.jwt_login_required
 @require_http_methods(["GET", "PUT"])
 def api_list_watched(request, username):
     user = User.objects.get(username=username)
@@ -278,12 +277,11 @@ def api_list_watched(request, username):
             response.append(list_dict)
 
         return JsonResponse(
-            {"lists": response}
+            {"list": response}
         )
     
     # PUT
     else:
-        # PUT method to update a list's name/description
         try:
             list = WatchedList.objects.get(user=user)
             content = json.loads(request.body)
@@ -334,8 +332,8 @@ def api_list_watched(request, username):
 
                 return response
 
-# get all wish lists from a user
-# @auth.jwt_login_required
+# get wish list from a user
+@auth.jwt_login_required
 @require_http_methods(["GET", "PUT"])
 def api_list_wish(request, username):
     user = User.objects.get(username=username)
@@ -348,7 +346,7 @@ def api_list_wish(request, username):
             response.append(list_dict)
 
         return JsonResponse(
-            {"lists": response}
+            {"list": response}
         )
     
     # PUT
@@ -430,7 +428,8 @@ def api_movies(request):
         return JsonResponse(
             {"movies: ": response}
         )
-        
+
+    # POST    
     else:
         try:
             content = json.loads(request.body)

@@ -1,3 +1,9 @@
+### 9/6
+- I added the CreateReviewForm modal over the weekend, but was having issues with actually POSTing the data
+- I believe the blocker was how I was incorrectly mounting a prop into the component's state
+- Today Will and I worked on the backend to automatically create a Liked, Watched, and Wish list for every user after signup
+- We tried to create this feature from the frontend, but found a way to do it through the backend without having to pass user-auth credentials
+- We also fixed the drop-down list to show the current user's movie lists with user-auth credentials
 ### 9/2
 - I was going to add the Create New Review modal that I created yesterday onto Movie Detail page, but we ran into some issues with Auth
 - We worked with the SEIRs for a bit before we had to go to Mandatory Fun
