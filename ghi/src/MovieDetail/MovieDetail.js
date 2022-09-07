@@ -85,6 +85,7 @@ class MovieDetail extends React.Component {
             //set movie picture url
             if (detail_data.poster_path !== null) {
                 detail_data.poster_path = "https://image.tmdb.org/t/p/original" + detail_data.poster_path
+                console.log(detail_data.poster_path)
             } else {
                 detail_data.poster_path = "/couchr-no-photo.png"
             }
@@ -140,7 +141,7 @@ class MovieDetail extends React.Component {
         // call the PUT method
         const response = await fetch(movie_list_url, fetchConfig)
         if (response.ok) {
-            console.log("response ok")
+            // console.log("response ok")
             document.getElementById("popup_message_id").className = "alert alert-success popup_message"
             setTimeout(function () {
                 document.getElementById("popup_message_id").className = "d-none";
