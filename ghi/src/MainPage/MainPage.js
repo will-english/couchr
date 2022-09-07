@@ -57,7 +57,7 @@ function MainPage() {
 
   return (
     <div className="wrapper">
-      <div>
+      <div className="sidebar">
         <SideBar />
       </div>
       <div className="container">

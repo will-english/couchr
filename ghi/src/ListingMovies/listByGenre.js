@@ -3,6 +3,8 @@ import "../index.css";
 import MovieColumn from './MovieColumns';
 import Pagination from './pagination';
 import Sidebar from './SideBar';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 class MovieList extends React.Component {
     constructor(props) {
@@ -80,18 +82,19 @@ class MovieList extends React.Component {
         let newPage = this.state.currentPage - 1
         this.setState({currentPage: newPage})
     }
-    async componentDidUpdate(prevPage) {
-        const currentURL = window.location.href;
-        const urlWords = currentURL.split("/")
-        const getgenre_id = urlWords[4]
-        this.setState({ genre_id: getgenre_id })
-        this.setState({ prevGenre: getgenre_id})
-        for (let genre of this.state.genres){
-            if ( genre["id"] == this.state.genre_id){
-                this.setState({genreTitle: genre["name"]})
+
+    async componentDidUpdate() {
+        if (this.state.prevPage !== this.state.currentPage || this.state.prevGenre !== window.location.href.split("/")[4] ) {
+            const currentURL = window.location.href;
+            const urlWords = currentURL.split("/")
+            const getgenre_id = urlWords[4]
+            this.setState({ genre_id: getgenre_id })
+            this.setState({ prevGenre: getgenre_id})
+            for (let genre of this.state.genres){
+                if ( genre["id"] == this.state.genre_id){
+                    this.setState({genreTitle: genre["name"]})
+                }
             }
-        }
-        if (prevPage !== this.state.currentPage || this.state.prevGenre !== window.location.href.split("/")[4] ) {
             const listByGenreUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${this.state.currentPage}&with_genres=${this.state.genre_id}&with_watch_monetization_types=flatrate`
             const response = await fetch(listByGenreUrl);
             if (response.ok) {
@@ -123,9 +126,6 @@ class MovieList extends React.Component {
 
         }
     }
-
-
-
     render() {
         let previous = "btn btn-secondary"
         if (this.state.currentPage === 1) {
@@ -134,7 +134,11 @@ class MovieList extends React.Component {
         return (
             <div className='wrapper'>
                 <div>
-                    <Sidebar />
+                    <DropdownButton id="dropdown-basic-button" title="Dropdown button">
+                        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                    </DropdownButton>
                 </div>
                 <div className='container' >
                     <h1>{this.state.genreTitle}</h1>

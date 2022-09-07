@@ -74,7 +74,7 @@ const Sidebar = () => {
             ></div>
             {
                 sidebarNavItems.map((item, index) => (
-                            <Link to={item.to} key={index}>
+                            <Link to={item.to} key={index} className="text-large">
                                 <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
                                     <div className="sidebar__menu__item__icon">
                                         {item.icon}
