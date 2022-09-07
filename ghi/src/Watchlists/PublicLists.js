@@ -1,11 +1,12 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { useAuthContext } from '../auth/auth_provider';
+// import { useAuthContext } from '../auth/auth_provider';
+import PublicListColumn from './PublicListColumn';
 
 
-export default function MyMovieLists() {
-    const { token } = useAuthContext();
-    const { userName } = useAuthContext();
+export default function PublicLists() {
+    // const { token } = useAuthContext();
+    // const { userName } = useAuthContext();
     const [publicLists, setPublicLists] = useState([])
 
     // fetch user auth credentials
@@ -42,13 +43,17 @@ export default function MyMovieLists() {
         const response = await fetch(url, fetchConfig);
 
         if (response.ok) {
-            setPublicLists(response.lists)
+            const data = await response.json();
+            // console.log("data: ", data)
+            setPublicLists(data.lists)
         }
     };
 
     useEffect(() => {
         fetchData();
     },[]);
+
+    console.log("publicLists: ", publicLists)
 
     const ListColumn = [[], [], [], []]
     let i = 0;
@@ -59,9 +64,19 @@ export default function MyMovieLists() {
             i = 0;
         };
     };
+    console.log("ListColumn: ", ListColumn)
+    // setPublicLists(ListColumn);
 
 
     return (
-        <h1>{ListColumn}</h1>
+        <>
+            <div className="row">
+                {ListColumn.map((list, index) => {
+                    return (
+                        <PublicListColumn key={index} list={list}/>
+                    )
+                })}
+            </div>
+        </>
     )
 }
