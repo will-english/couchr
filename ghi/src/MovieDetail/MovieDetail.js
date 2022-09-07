@@ -30,6 +30,8 @@ class MovieDetail extends React.Component {
         const currentURL = window.location.href
         const words = currentURL.split("/")
         const movie_id = words[5]
+        // console.log(this.props)
+        // const movie_id = this.props.id
 
 
         const movie_detail_url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`;
