@@ -17,6 +17,7 @@ import Sidebar from './ListingMovies/SideBar';
 
 
 
+
 function App() {
   const { token } = useAuthContext();
   return (
