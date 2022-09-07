@@ -8,7 +8,7 @@ const Search = () => {
   const navigate = useNavigate();
 
   const searchHandler = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     if (SearchResults.trim()) {
       navigate(`/search/${SearchResults}`);
@@ -16,6 +16,7 @@ const Search = () => {
       navigate("/search");
     }
   };
+
 
   console.log("movie", SearchResults);
 
@@ -31,7 +32,7 @@ const Search = () => {
         />
         <div className="input-group-append">
           <button id="search_btn" className="btn">
-            <i className="fa fa-search" aria-hidden="true"></i>
+            <i className="fa fa-search" aria-hidden="false"></i>
           </button>
         </div>
       </div>
