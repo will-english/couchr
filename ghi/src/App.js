@@ -23,9 +23,6 @@ function App() {
   return (
     <AuthProvider>
       <Nav />
-      <div>
-        <Sidebar />
-      </div>
       <div className="container">
         <Routes>
           <Route path='/search/:query' element={<SearchResults />} />
