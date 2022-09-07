@@ -11,15 +11,11 @@ import Signup from './auth/signup';
 import MyMovieLists from './Watchlists/MyMovieLists';
 import NewReviewForm from './Reviews/CreateNewReviewForm';
 import UserDetail from './auth/UserDetail'
-import {useAuthContext} from './auth/auth_provider'
 import SearchResults from './ListingMovies/SearchResults';
 import Sidebar from './ListingMovies/SideBar';
-
-
-
+import UserPage from './UserPageTest/UserPage';
 
 function App() {
-  const { token } = useAuthContext();
   return (
     <AuthProvider>
       <Nav />
