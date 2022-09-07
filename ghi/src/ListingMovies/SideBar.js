@@ -14,11 +14,6 @@ const Sidebar = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-
-    // handleClick() {
-    //     this.
-    // }
-
     const getGenres = async () => {
         const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US`
         const response = await fetch(url);
@@ -53,7 +48,7 @@ const Sidebar = () => {
     }, [genres.length],
     // console.log(genres)
     )
-
+    
     const sidebarNavItems = []
     for (let genre of genres) { 
         const d = {

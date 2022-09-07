@@ -14,8 +14,12 @@ import UserDetail from './auth/UserDetail'
 import {useAuthContext} from './auth/auth_provider'
 import SearchResults from './ListingMovies/SearchResults';
 import Sidebar from './ListingMovies/SideBar';
+<<<<<<< HEAD
 import UserPage from "./UserPageTest/UserPage"
 
+=======
+import UserPage from './UserPageTest/UserPage'
+>>>>>>> 74c3418cef13e75901b61f3063316ebd80845be3
 
 
 

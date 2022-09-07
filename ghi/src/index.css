@@ -283,3 +283,15 @@ code {
 }
 
 /* Search */
+.search {
+  margin: 0px !important;
+  height: 40px
+}
+
+.input-group {
+  font-size: 1em;
+}
+
+.btn {
+  size: 40px;
+}
