@@ -10,56 +10,47 @@ class MovieList extends React.Component {
         this.state = {
             MovieColumn: [[], [], [], []],
             currentPage: 1,
-            moviesPerPage: 28,
-            indexOfLastMovie: 0,
-            indexOfFirstMovie: 0,
-            currentMovies: 0,
-            totalMovies: 0,
+            moviesPerPage: 20,
             movies: [],
             genre_id: '',
+            prevPage: 1,
+            prevGenre: "",
+            genres: [],
+            genreTitle: "",
         }
-        this.paginate = this.paginate.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        this.handleClickBack = this.handleClickBack.bind(this)
     }
 
     async componentDidMount() {
-        // let movie_id;
-        // // const MTDB_KET = "742276fc88b89a452ad9c04ac04df00e"
-        // const movies = []
-        // for (let i = 2; i < 100; i++) {
-        //     movie_id = i;
-        //     const movie_url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`
-        //     const response = await fetch(movie_url);
-        //     if (response.ok && response.status === 200) {
-        //         const data = await response.json();
-        //         // set movie picture url
-        //         if (data.poster_path === null) {
-        //             data.poster_path = "/couchr-no-photo.png"
-        //         } else {
-        //             data.poster_path = "https://image.tmdb.org/t/p/original" + data.poster_path
-        //         }
-        //         data.vote_average = data.vote_average.toFixed(1)
-        //         data.release_date = data.release_date.slice(0, 4)
 
-        //         movies.push(data)
 
         const currentURL = window.location.href;
         const urlWords = currentURL.split("/")
-        const genre_id = urlWords[4]
+        const getgenre_id = urlWords[4]
+        this.setState({ genre_id: getgenre_id })
+        this.setState({ prevGenre: getgenre_id})
+        const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US`
+        const genreResponse = await fetch(genreUrl);
+        if( genreResponse.ok){
+            const genreData = await genreResponse.json();
+            this.setState({ genres: genreData["genres"]})
+            for ( let genre of genreData["genres"]){
+                if (genre["id"] == this.state.genre_id){
+                    this.setState({genreTitle: genre["name"]})
+                }
+            }
+        } else {
+            console.log("Error fetching genres")
+        }
 
-        const listByGenreUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genre_id}&with_watch_monetization_types=flatrate`
+        const listByGenreUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${this.state.currentPage}&with_genres=${this.state.genre_id}&with_watch_monetization_types=flatrate`
         const response = await fetch(listByGenreUrl);
         if (response.ok) {
             const data = await response.json()
 
             const movielist = data["results"]
 
-            this.setState({ movies: movielist })
-            this.setState({ totalMovies: movielist.length })
-            // this.setState({ genre_id: genre_id})
-            const indexOfLastMovie = this.state.currentPage * this.state.moviesPerPage;
-            const indexOfFirstMovie = indexOfLastMovie - this.state.moviesPerPage;
-            const currentMovies = movielist.slice(indexOfFirstMovie, indexOfLastMovie);
-            this.setState({ currentMovies: currentMovies })
             for (let movie of movielist) {
                 if (movie.poster_path === null) {
                     movie.poster_path = "couchr-no-photo.png"
@@ -69,10 +60,11 @@ class MovieList extends React.Component {
                 movie.vote_average = movie.vote_average.toFixed(1)
                 movie.release_date = movie.release_date.slice(0, 4)
             }
+            this.setState({ movies: movielist })
 
             const MovieColumn = [[], [], [], []]
             let i = 0
-            for (let data of currentMovies) {
+            for (let data of movielist) {
                 MovieColumn[i].push(data)
                 i = i + 1
                 if (i > 3) { i = 0 }
@@ -80,29 +72,68 @@ class MovieList extends React.Component {
             this.setState({ MovieColumn: MovieColumn });
         }
     }
-    paginate(pageNumber) {
-        this.setState({ currentPage: pageNumber });
-        const indexOfLastMovie = pageNumber * this.state.moviesPerPage;
-        const indexOfFirstMovie = indexOfLastMovie - this.state.moviesPerPage;
-        const movies = this.state.movies;
-        console.log(movies);
-        console.log(indexOfFirstMovie);
-        const currentMovies = movies?.slice(indexOfFirstMovie, indexOfLastMovie);
-        console.log(currentMovies)
-        const MovieColumn = [[], [], [], []]
-        let i = 0
-        for (let data of currentMovies) {
-            MovieColumn[i].push(data)
-            i = i + 1
-            if (i > 3) { i = 0 }
+    handleClick() {
+        let newPage = this.state.currentPage + 1
+        this.setState({ currentPage: newPage })
+    }
+    handleClickBack() {
+        let newPage = this.state.currentPage - 1
+        this.setState({currentPage: newPage})
+    }
+    async componentDidUpdate(prevPage) {
+        const currentURL = window.location.href;
+        const urlWords = currentURL.split("/")
+        const getgenre_id = urlWords[4]
+        this.setState({ genre_id: getgenre_id })
+        this.setState({ prevGenre: getgenre_id})
+        for (let genre of this.state.genres){
+            if ( genre["id"] == this.state.genre_id){
+                this.setState({genreTitle: genre["name"]})
+            }
         }
-        this.setState({ MovieColumn: MovieColumn });
+        if (prevPage !== this.state.currentPage || this.state.prevGenre !== window.location.href.split("/")[4] ) {
+            const listByGenreUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${this.state.currentPage}&with_genres=${this.state.genre_id}&with_watch_monetization_types=flatrate`
+            const response = await fetch(listByGenreUrl);
+            if (response.ok) {
+                const data = await response.json()
+
+                const movielist = data["results"]
+                for (let movie of movielist) {
+                    if (movie.poster_path === null) {
+                        movie.poster_path = "couchr-no-photo.png"
+                    } else {
+                        movie.poster_path = "https://image.tmdb.org/t/p/original" + movie.poster_path
+                    }
+                    movie.vote_average = movie.vote_average.toFixed(1)
+                    movie.release_date = movie.release_date.slice(0, 4)
+                }
+                this.setState({ movies: movielist })
+
+                const MovieColumn = [[], [], [], []]
+                let i = 0
+                for (let data of movielist) {
+                    MovieColumn[i].push(data)
+                    i = i + 1
+                    if (i > 3) { i = 0 }
+                }
+                this.setState({ MovieColumn: MovieColumn });
+                this.setState({prevPage: this.state.currentPage})
+                this.setState({ prevGenre: this.state.genre_id})
+            }
+
+        }
     }
 
 
+
     render() {
+        let previous = "btn btn-secondary"
+        if (this.state.currentPage === 1) {
+            previous = previous + "d-none"
+        }
         return (
             <>
+                <h1>{this.state.genreTitle} Movies</h1>
                 <div className="row">
                     {this.state.MovieColumn.map((movie, index) => {
                         return (
@@ -110,7 +141,10 @@ class MovieList extends React.Component {
                         );
                     })}
                     <div>
-                        <Pagination moviesPerPage={this.state.moviesPerPage} totalMovies={this.state.totalMovies} paginate={this.paginate} />
+                        <div className="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" className={previous} onClick={this.handleClickBack}>Previous Page</button>
+                            <button type="button" className="btn btn-secondary" onClick={this.handleClick}>Next Page</button>
+                        </div>
                     </div>
                 </div>
             </>
