@@ -56,7 +56,10 @@ function MainPage() {
 
 
   return (
-    <div>
+    <div className="wrapper">
+      <div>
+        <SideBar />
+      </div>
       <div className="container">
         <div className="carousel">
           <h1 className="main-page-header text-center">Today's Top Movies</h1>
