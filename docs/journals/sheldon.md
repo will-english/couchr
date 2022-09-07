@@ -1,3 +1,6 @@
+## 9/6
+Spend whole day to make user page bearbone, include user avatar, unser information, user list age, user page options(which include profile, list, review, subscription and contact etc.)
+Today I only finished list page for user, will work on profile and reviews page tomorrow.
 ## 9/1
 Fixed the actor name and image div display for detail page by changed CSS. Maked it show all the information by hover on actor's name div. Make favorite/wish/history icon hover can show the hint text. Organized detail page's code to three components and detail's CSS code.
 ## 8/31

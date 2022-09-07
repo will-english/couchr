@@ -132,7 +132,7 @@ export function useToken() {
         return handleErrorMessage(error);
     }
 
-    async function signup(username, password, email, firstName, lastName) {
+    async function signup(username, password, email, firstName, lastName, callback) {
         const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/accounts/signup/`;
         const response = await fetch(url, {
             method: "POST",
@@ -149,10 +149,25 @@ export function useToken() {
         });
         console.log(response.json());
         if (response.ok) {
-            // await login(username, password);
-            // console.log(response.json());
+            callback();
+            await login(username, password);
+            navigate("/user_detail"); 
+            console.log(response.json());
         }
         return false;
+    }
+
+    async function createLists() {
+        const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/user/${userName}/`;
+        const request = await fetch(url, {
+            method: 'post',
+            credentials: "include",
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+        });
+        const response = await request.json();
+        // console.log('waited for signup')
     }
 
     async function update(username, password, email, firstName, lastName) {
@@ -176,5 +191,5 @@ export function useToken() {
         return false;
     }
 
-    return [token, login, logout, signup, update, userName];
+    return [token, login, logout, signup, update, userName, createLists];
 }
