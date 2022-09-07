@@ -1,5 +1,9 @@
 ### 9/7
 - Will and I did pair programming to test whether or not our lists can be made public/private
+- Will primarily coded, and I provided support
+- I started working on the Public Lists page on the frontend
+- I tried to mimic some of our other pages and practice my React knowledge/skills
+- While doing this, I had to tweak some backend views so I could get the data that was needed from the JSON response
 ### 9/6
 - I added the CreateReviewForm modal over the weekend, but was having issues with actually POSTing the data
 - I believe the blocker was how I was incorrectly mounting a prop into the component's state
