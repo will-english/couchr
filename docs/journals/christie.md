@@ -1,3 +1,12 @@
+## 9/6/22
+Today Jamie and I got the search bar to work! It was a lot of fun figuring out how to hit that api endpoint and put the query into it. We spent a lot of time trying to make sense of transferring props from one page to the other but ended up being fine with getting the id's from the URLs instead. We are still having the reload issue but Allisha spoke with us and we agreed changing our sidebar to have a onClick handler that will help reset the state when a genre is chosen.
+
+## 9/2/22
+Today Jamie and I were able to get the sidebar rendered in the App.js so that it will show up on all pages! Getting it to scroll with each page was a small challenge but we got it to work. Our current blocker is that when we are already looking at a genre, if we select a new one, it won't repopulate the list of movies without the user refreshing.
+
+## 9/1/22
+Today I made another carousel for our main page with the list of our favorite movies. I also recoded our movie list page into a list by genre page since there was no need for a page of random movies with no rhyme or reason. Jamie is working on a sidebar with a list of the genres that will bring the user to this page for each genre.
+
 ## 8/31/22
 Today felt very productive. Jamie, Sheldon, and I finally got the continuous loop of rendering to stop and added a carousel of the popular movies to our main page! I gathered a list of everyone's favorite movies and got the corresponding movie id's from our third api and look forward to applying what I learned today into a new carousel of our favorite movies tomorrow!
 

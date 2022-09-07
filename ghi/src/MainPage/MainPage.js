@@ -2,6 +2,7 @@ import MovieColumn from "../ListingMovies/MovieColumns";
 import { useState, useEffect } from 'react';
 import ControlledCarousel from "./PopularCarousel";
 import ControlledCarousel2 from "./CouchrCarousel";
+import SideBar from "../ListingMovies/SideBar";
 
 
 function MainPage() {
@@ -57,14 +58,19 @@ function MainPage() {
   return (
     <div>
       <div className="container">
-      <h1 className="main-page-header">Today's Top Movies</h1>
         <div className="carousel">
+          <h1 className="main-page-header text-center">Today's Top Movies</h1>
           <ControlledCarousel />
         </div>
       </div>
+      <div>
+        Ads
+      </div>
+      <div>
+      </div>
       <div className="container">
-        <h1 className="main-page-header">Couchr's Picks</h1>
         <div className="carousel">
+        <h1 className="main-page-header text-center">Couchr's Picks</h1>
           <ControlledCarousel2 />
         </div>
       </div>

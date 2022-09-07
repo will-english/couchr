@@ -2,6 +2,7 @@ import React from 'react';
 import "../index.css";
 import MovieColumn from './MovieColumns';
 import Pagination from './pagination';
+import Sidebar from './SideBar';
 
 class MovieList extends React.Component {
     constructor(props) {
@@ -44,38 +45,41 @@ class MovieList extends React.Component {
         const currentURL = window.location.href;
         const urlWords = currentURL.split("/")
         const genre_id = urlWords[4]
+
         const listByGenreUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genre_id}&with_watch_monetization_types=flatrate`
         const response = await fetch(listByGenreUrl);
-        if (response.ok){
+        if (response.ok) {
             const data = await response.json()
 
             const movielist = data["results"]
 
-        this.setState({ movies: movielist })
-        this.setState({ totalMovies: movielist.length })
-        const indexOfLastMovie = this.state.currentPage * this.state.moviesPerPage;
-        const indexOfFirstMovie = indexOfLastMovie - this.state.moviesPerPage;
-        const currentMovies = movielist.slice(indexOfFirstMovie, indexOfLastMovie);
-        this.setState({ currentMovies: currentMovies })
-        for (let movie of movielist){
-            if (movie.poster_path === null){
-                movie.poster_path = "couchr-no-photo.png"
-            } else {
-                movie.poster_path = "https://image.tmdb.org/t/p/original" + movie.poster_path
+            this.setState({ movies: movielist })
+            this.setState({ totalMovies: movielist.length })
+            // this.setState({ genre_id: genre_id})
+            const indexOfLastMovie = this.state.currentPage * this.state.moviesPerPage;
+            const indexOfFirstMovie = indexOfLastMovie - this.state.moviesPerPage;
+            const currentMovies = movielist.slice(indexOfFirstMovie, indexOfLastMovie);
+            this.setState({ currentMovies: currentMovies })
+            for (let movie of movielist) {
+                if (movie.poster_path === null) {
+                    movie.poster_path = "couchr-no-photo.png"
+                } else {
+                    movie.poster_path = "https://image.tmdb.org/t/p/original" + movie.poster_path
+                }
+                movie.vote_average = movie.vote_average.toFixed(1)
+                movie.release_date = movie.release_date.slice(0, 4)
             }
-            movie.vote_average = movie.vote_average.toFixed(1)
-            movie.release_date = movie.release_date.slice(0,4)
-        }
 
-        const MovieColumn = [[], [], [], []]
-        let i = 0
-        for (let data of currentMovies) {
-            MovieColumn[i].push(data)
-            i = i + 1
-            if (i > 3) { i = 0 }
+            const MovieColumn = [[], [], [], []]
+            let i = 0
+            for (let data of currentMovies) {
+                MovieColumn[i].push(data)
+                i = i + 1
+                if (i > 3) { i = 0 }
+            }
+            this.setState({ MovieColumn: MovieColumn });
         }
-        this.setState({ MovieColumn: MovieColumn });
-    }}
+    }
     paginate(pageNumber) {
         this.setState({ currentPage: pageNumber });
         const indexOfLastMovie = pageNumber * this.state.moviesPerPage;
@@ -109,7 +113,6 @@ class MovieList extends React.Component {
                         <Pagination moviesPerPage={this.state.moviesPerPage} totalMovies={this.state.totalMovies} paginate={this.paginate} />
                     </div>
                 </div>
-            
             </>
         )
     }

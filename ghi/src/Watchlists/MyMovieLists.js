@@ -12,7 +12,7 @@ export default function MyMovieLists() {
         console.log(userName)
         if (userName && token) {
 
-            const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/${userName}/`;
+            const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${userName}/wish/`;
             const request = await fetch(url, {
                 credentials: "include",
                 headers: {
@@ -20,16 +20,16 @@ export default function MyMovieLists() {
                 },
             });
             const response = await request.json();
-            console.log(response.lists[0].name);
-            setTitle(response.lists[0].name)
+            console.log(response);
+            // setTitle(response.lists[0].name)
         }
     }
 
     useEffect(() => {
         fetchData();
-    }, [{ token }]);
+    }, [{token}]);
 
     return (
-        <h1>{title}</h1>
+        <h1>title</h1>
     )
 }
