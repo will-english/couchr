@@ -132,22 +132,27 @@ class MovieList extends React.Component {
             previous = previous + "d-none"
         }
         return (
-            <>
-                <h1>{this.state.genreTitle} Movies</h1>
-                <div className="row">
-                    {this.state.MovieColumn.map((movie, index) => {
-                        return (
-                            <MovieColumn key={index} list={movie} />
-                        );
-                    })}
-                    <div>
-                        <div className="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" className={previous} onClick={this.handleClickBack}>Previous Page</button>
-                            <button type="button" className="btn btn-secondary" onClick={this.handleClick}>Next Page</button>
+            <div className='wrapper'>
+                <div>
+                    <Sidebar />
+                </div>
+                <div className='container' >
+                    <h1>{this.state.genreTitle}</h1>
+                    <div className="row">
+                        {this.state.MovieColumn.map((movie, index) => {
+                            return (
+                                <MovieColumn key={index} list={movie} />
+                            );
+                        })}
+                        <div>
+                            <div className="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" className={previous} onClick={this.handleClickBack}>Previous Page</button>
+                                <button type="button" className="btn btn-secondary" onClick={this.handleClick}>Next Page</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </>
+            </ div>
         )
     }
 }
