@@ -1,5 +1,5 @@
 09/06/2022
-
+A search bar feature that is located in the nav was linked up to a search results when text is entered.  Any movies with the same word(s) are listed once a term is searched.  Prevent default was in the code causing it to not reload the page with the desired movie title, but once removed it was working fine.  We have a blocker of the sidebar not reloading when on the movie list page already.  After discussing this blocker with a SEIR, we believe an onClick event handler might be the best option.  
 09/02/2022
 Overall, today we were able to successfully work on the sidebar that listed all available genres as links to the movies under that selected genre.  We have a current blocker of the movie list page not repopulating with the list of movies for the selected genre.  The third party api is hit via genre id and then gets the list of those movies to be displayed on the website.  
 8/31/2022
