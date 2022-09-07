@@ -12,6 +12,7 @@ import MyMovieLists from './Watchlists/MyMovieLists';
 import NewReviewForm from './Reviews/CreateNewReviewForm';
 import UserDetail from './auth/UserDetail';
 import { useAuthContext } from './auth/auth_provider';
+import UserPage from './UserPageTest/UserPage';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path='mylists/' element={<MyMovieLists />} />
           <Route path='newreview/' element={<NewReviewForm />} />
           <Route path='user_detail/' element={<UserDetail /> }/>
+          <Route path='user_page/' element={<UserPage /> }/>
         </Routes>
       </div>
     </AuthProvider>

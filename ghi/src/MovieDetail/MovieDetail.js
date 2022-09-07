@@ -40,18 +40,18 @@ class MovieDetail extends React.Component {
 
         
         const movie_lists_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${this.context.userName}/`;
-        console.log("movie_lists_url: ", movie_lists_url)
+        // console.log("movie_lists_url: ", movie_lists_url)
         const request = await fetch(movie_lists_url, {
             credentials: "include",
             headers: {
                 Authorization: `Bearer ${this.context.token}`
             },
         });
-        console.log("request: ", request)
+        // console.log("request: ", request)
 
         const response_lists = await request.json();
         if (response_lists.ok) {
-            console.log("~~~~~response_lists.ok~~~~~")
+            // console.log("~~~~~response_lists.ok~~~~~")
             const lists_data = await response_lists.json();
             this.setState({ movie_lists: lists_data.lists });
 
@@ -84,6 +84,7 @@ class MovieDetail extends React.Component {
             //set movie picture url
             if (detail_data.poster_path !== null) {
                 detail_data.poster_path = "https://image.tmdb.org/t/p/original" + detail_data.poster_path
+                console.log(detail_data.poster_path)
             } else {
                 detail_data.poster_path = "/couchr-no-photo.png"
             }
@@ -139,7 +140,7 @@ class MovieDetail extends React.Component {
         // call the PUT method
         const response = await fetch(movie_list_url, fetchConfig)
         if (response.ok) {
-            console.log("response ok")
+            // console.log("response ok")
             document.getElementById("popup_message_id").className = "alert alert-success popup_message"
             setTimeout(function () {
                 document.getElementById("popup_message_id").className = "d-none";
