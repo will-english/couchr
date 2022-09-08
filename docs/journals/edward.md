@@ -1,3 +1,9 @@
+### 9/8
+- The add movie to list button on the frontend stopped working ever since we added the user auth feature, and I forgot to update it, so I added the credentials to allow this functionality to work again
+- I did pair programming with Will and Sheldon for our component that lists a User's movie lists
+- Will primarily coded, and I provided support
+- We had some issues with React re-rendering our state multiple times and changing the data, which we didn't fully understand
+- Zach helped us correct our props and state
 ### 9/7
 - Will and I did pair programming to test whether or not our lists can be made public/private
 - Will primarily coded, and I provided support
