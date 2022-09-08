@@ -1,3 +1,6 @@
+## 9/7/22
+I feel that we made a lot of progress today. Jamie worked on fixing the search bar whiile I worked on fixing the sidebar issues. I thought I had fixed it completely before I realized it was re-rendering on a continuous loop. I was very disappointed. We decided that on the list by genre page, instead of the same sidebar that lists the genres, we would add a dropdown with the other genres to look at. I look forward to getting it to work tomorrow.
+
 ## 9/6/22
 Today Jamie and I got the search bar to work! It was a lot of fun figuring out how to hit that api endpoint and put the query into it. We spent a lot of time trying to make sense of transferring props from one page to the other but ended up being fine with getting the id's from the URLs instead. We are still having the reload issue but Allisha spoke with us and we agreed changing our sidebar to have a onClick handler that will help reset the state when a genre is chosen.
 

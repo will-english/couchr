@@ -14,11 +14,6 @@ const Sidebar = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-
-    // handleClick() {
-    //     this.
-    // }
-
     const getGenres = async () => {
         const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US`
         const response = await fetch(url);
@@ -51,9 +46,9 @@ const Sidebar = () => {
     useEffect(() => {
         getGenres()
     }, [genres.length],
-    console.log(genres)
+    // console.log(genres)
     )
-
+    
     const sidebarNavItems = []
     for (let genre of genres) { 
         const d = {
@@ -79,7 +74,7 @@ const Sidebar = () => {
             ></div>
             {
                 sidebarNavItems.map((item, index) => (
-                            <Link to={item.to} key={index}>
+                            <Link to={item.to} key={index} className="text-large">
                                 <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
                                     <div className="sidebar__menu__item__icon">
                                         {item.icon}

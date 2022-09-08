@@ -11,7 +11,6 @@ import Signup from './auth/signup';
 import MyMovieLists from './Watchlists/MyMovieLists';
 import UserDetail from './auth/UserDetail'
 import SearchResults from './ListingMovies/SearchResults';
-import Sidebar from './ListingMovies/SideBar';
 import UserPage from './UserPageTest/UserPage';
 import PublicLists from './Watchlists/PublicLists';
 
@@ -20,9 +19,6 @@ function App() {
     <AuthProvider>
       <Nav />
       <div>
-        <Sidebar />
-      </div>
-      <div className="container">
         <Routes>
           <Route path='/search/:query' element={<SearchResults />} />
           <Route path='/' element={<MainPage />} />
