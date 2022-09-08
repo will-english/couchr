@@ -48,18 +48,28 @@ class SearchResults extends React.Component {
         }
     }
     render() {
-        return (
-            <>
-                <div className="row">
-                    {this.state.MovieColumn.map((movie, index) => {
-                        return (
-                            <MovieColumn key={index} list={movie} />
-                        );
-                    })}
+        if (this.state.search_results.length > 0){
+            return (
+                <>
+                    <div className="row">
+                        {this.state.MovieColumn.map((movie, index) => {
+                            return (
+                                <MovieColumn key={index} list={movie} />
+                            );
+                        })}
+                    </div>
+                
+                </>
+            )
+        } else {
+            return (
+                <div className="no-results">
+                <h1>Couchr could not find any movies with that name</h1>
+                <h3>Are you sure you spelled everything correctly?</h3>
+                <img src="/sad-couchr-transparent.png" alt="img" width="400px" />
                 </div>
-            
-            </>
-        )
+            )
+        }
     }
 }
 export default SearchResults;

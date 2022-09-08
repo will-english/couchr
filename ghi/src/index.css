@@ -281,3 +281,7 @@ code {
 .col {
   height: fit-content;
 }
+
+.no-results {
+  text-align: center;
+}
