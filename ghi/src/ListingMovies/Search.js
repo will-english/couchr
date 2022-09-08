@@ -20,7 +20,6 @@ const Search = () => {
   };
 
 
-  console.log("movie", SearchResults);
 
   return (
     <form className="input-group input-group-append " onSubmit={searchHandler}>

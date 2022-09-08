@@ -220,7 +220,7 @@ code {
 }
 
 .sidebar__logo {
-  padding-bottom: 20px;
+  padding-bottom: 15px;
 }
 
 
@@ -280,4 +280,9 @@ code {
 
 .col {
   height: fit-content;
+}
+
+.no-results {
+  padding-top: 100px;
+  text-align: center;
 }

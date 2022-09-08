@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import MovieColumn from "./MovieColumns";
 import { useEffect } from "react";
+import Sidebar from "./SideBar"
 
 
 class SearchResults extends React.Component {
@@ -45,21 +46,40 @@ class SearchResults extends React.Component {
             if (i > 3) { i = 0 }
         }
         this.setState({ MovieColumn: MovieColumn });
-         }
+        }
     }
     render() {
-        return (
-            <>
-                <div className="row">
-                    {this.state.MovieColumn.map((movie, index) => {
-                        return (
-                            <MovieColumn key={index} list={movie} />
-                        );
-                    })}
+        if (this.state.search_results.length > 0){
+            return (
+                <div className="wrapper ">
+                    <div>
+                        <Sidebar/>
+                    </div>
+                    <div className="container">
+                        <div className="row">
+                            {this.state.MovieColumn.map((movie, index) => {
+                                return (
+                                    <MovieColumn key={index} list={movie} />
+                                );
+                            })}
+                        </div>
+                    </div>
                 </div>
-            
-            </>
-        )
+            )
+        } else {
+            return (
+                <>
+                <div>
+                    <Sidebar />
+                </div>
+                <div className="no-results">
+                <h1>Couchr could not find any movies with that name</h1>
+                <h3>Are you sure you spelled everything correctly?</h3>
+                <img src="/sad-couchr-transparent.png" alt="img" width="400px" />
+                </div>
+                </>
+            )
+        }
     }
 }
 export default SearchResults;
