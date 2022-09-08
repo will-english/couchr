@@ -7,6 +7,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #181c24;
   color: white;
+  /* background-color: white;
+  color: #181c24; */
 }
 
 code {
@@ -94,13 +96,13 @@ code {
 
 /* ---------↓↓↓↓↓-------Detail page area--------↓↓↓↓↓-------- */
 
-.detail_page { background-color: #181c24; color: white; }
+.detail_page { background-color: #181c24; color: white;}
 
 .detail_logo_area { height: 200px; text-align: center; padding-top: 50px; }
 
 .detail_header_logo { width: 50px; }
 
-.detail_content_area { border-style: solid; border-color: grey; border-width: 3px; }
+.detail_content_area { border-style: solid; border-color: grey; border-width: 3px;}
 
 .detail_image_area { display: inline-block; width: 25%; height:100%; padding: 30px; vertical-align: top; text-align: center; }
 
@@ -163,27 +165,33 @@ code {
 /* ---------↓↓↓↓↓-------User page area--------↓↓↓↓↓-------- */
 
 /* ------↓↓↓------list area------↓↓↓------ */
+.user_page {margin-left: 16%; margin-right: 16%; width: 68%;}
+
 .user_imfo_area {height: 300px; text-align: center;}
 
 .user_avatar {display: inline-block; margin: 20px 0 20px 0; width: 150px; height: 150px; border-radius: 50%;}
 
-.user_page_blockline {margin: 50px 0 30px 0; border: 1px solid lightgrey;}
+.user_page_blockline {margin: 0px 0 30px 0; border: 1px solid lightgrey;}
 
 .user_list_area {text-align: center; height: 500px;}
 
-.userpage_right_option_area {display: inline-block; margin-top: 15px; text-align: left; width: 20%; color: lightgrey;
-  vertical-align: top; background-color: #20232b; border-radius: 1%; height: 500px;}
+/* .userpage_right_option_area1 {display: inline-block; margin-top: 15px; text-align: left; width: 20%; color: lightgrey;
+  vertical-align: top; background-color: #20232b; border-radius: 1%; height: 500px;} */
 
-.userpage_right_option_area_option {margin: 20px;}
+.userpage_right_option_area {text-align: center;}
 
-.userpage_right_option_area_option:hover {color: white; transform: scale(1.1); transition: 0.5s ease;}
+.userpage_right_option_area_option {margin: 50px 60px 10px 60px; display: inline-block; vertical-align: bottom;}
 
-.userpage_left_content_area {display: inline-block; width: 80%;}
+.userpage_right_option_area_option:hover {color: white; transform: scale(1.5); transition: 0.5s ease;}
 
-.movie_user_list_card{margin: 2% 5%; display: inline-block; width: 20%; height: 330px;
+.userpage_right_option_area_option_pick {margin: 50px 60px 7px 60px; display: inline-block; vertical-align: bottom; font-size: 24px;}
+
+.userpage_left_content_area {display: inline-block; width: 100%;}
+
+.movie_user_list_card{margin: 2% 5%; display: inline-block; width: 20%; height: 400px;
   text-align: center; background-color: #181c24; border-radius: 2%; box-shadow: 0px 0px 10px lightgrey;}
 
-.movie_user_list_card:hover{filter: drop-shadow(0px 0px 16px lightgrey); transform: scale(1.02); transition: 0.5s ease;}
+.movie_user_list_card:hover{filter: drop-shadow(0px 0px 16px white); transform: scale(1.02); transition: 0.5s ease;}
 
 .movie_create_user_list_card {vertical-align: top;}
 
@@ -193,6 +201,8 @@ code {
   color: white; transition: 0.5s ease;}
 
 .user_list_card_image {width: 40%; margin: 10px; margin-top: 15px; border-radius: 4%;}
+
+
 /* ------↑↑↑------list area------↑↑↑------ */
 
 /* ------↓↓↓------profile area------↓↓↓------ */
@@ -205,10 +215,11 @@ code {
   margin-top: 15px;
   margin-bottom: 15px;
 }
+
+
 /* ------↑↑↑------profile area------↑↑↑------ */
 
 /* ---------↑↑↑↑↑-------User page area--------↑↑↑↑↑-------- */
-
 
 
 .create_list_form {
