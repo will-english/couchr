@@ -35,9 +35,10 @@ function DetailRightArea(props) {
             {/* list geners */}
 
             {props.genres.map((genre, index) => {
+                let genre_link = "/movies/" + genre.id + "/"
                 return (
                     <div className="" key={index}>
-                        <NavLink className="detail_area_link" to="#">{genre.name}</NavLink>
+                        <NavLink className="detail_area_link" to={genre_link}>{genre.name}</NavLink>
                     </div>
                 );
             })}
