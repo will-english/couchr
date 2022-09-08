@@ -11,7 +11,7 @@ function MovieColumn(props) {
               <div key={movie.id} className="movie-card mb-3 shadow">
                   {/* clickable image => movie detail page */}
                   <Link to={movie_link}>
-                    <img src={movie.poster_path} className="card-img-top list-card-image" width="50" alt="img" />
+                    <img src={movie.poster_path} className="card-img-top list-card-image position-top" width="50" alt="img" />
                   </Link>
                   <div className="card-body">
                     {/* movie title */}
