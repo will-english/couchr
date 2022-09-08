@@ -54,7 +54,7 @@ class MovieList extends React.Component {
 
             for (let movie of movielist) {
                 if (movie.poster_path === null) {
-                    movie.poster_path = "couchr-no-photo.png"
+                    movie.poster_path = "/couchr-no-photo.png"
                 } else {
                     movie.poster_path = "https://image.tmdb.org/t/p/original" + movie.poster_path
                 }

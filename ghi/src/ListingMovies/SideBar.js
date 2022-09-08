@@ -62,7 +62,7 @@ const Sidebar = () => {
 
     return <div id='sticky-sidebar' className='position-fixed'>
         <div className="sidebar__logo">
-            Movie Genres
+            <h2>Explore by Genre</h2>
         </div>
         <div ref={sidebarRef} className="sidebar__menu">
             <div

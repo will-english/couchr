@@ -27,7 +27,7 @@ class SearchResults extends React.Component {
             
             for (let movie of search_results){
                 if (movie.poster_path === null){
-                    movie.poster_path = "couchr-no-photo.png"
+                    movie.poster_path = "/couchr-no-photo.png"
                 } else {
                     movie.poster_path = "https://image.tmdb.org/t/p/original" + movie.poster_path
                 }
