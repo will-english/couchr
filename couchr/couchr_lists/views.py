@@ -428,6 +428,7 @@ def movie_encoder(movie):
     dict["title"] = movie.title
     dict["api_url"] = movie.api_url
     dict["api_id"] = movie.api_id
+    dict['poster'] = movie.poster
     return dict
 
 # get all movie VOs in DB

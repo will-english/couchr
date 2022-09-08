@@ -32,7 +32,6 @@ function UserPageLists() {
                 },
             });
             console.log("liked request")
-            console.log(liked_request)
             if (liked_request.ok) {
                 const liked_response = await liked_request.json();
                 console.log('*******************',liked_response);
@@ -85,43 +84,11 @@ function UserPageLists() {
         // <div>
             <div className="userpage_left_content_area">
                 <div>
-                    <ListCard title={defaultLists[0]?.list.name} />
-                    <ListCard title={defaultLists[1]?.list.name} />
-                    <ListCard title={defaultLists[2]?.list.name} />
+                    <ListCard title={defaultLists[0]?.list.name} movies={defaultLists[0]?.list?.movies} />
+                    <ListCard title={defaultLists[1]?.list.name} movies={defaultLists[1]?.list?.movies} />
+                    <ListCard title={defaultLists[2]?.list.name} movies={defaultLists[2]?.list?.movies} />
                     {/* ------------------------------------ */}
-                    <div className="movie_user_list_card">
-                        <div>
-                            <img src="https://image.tmdb.org/t/p/original/ujr5pztc1oitbe7ViMUOilFaJ7s.jpg" className="user_list_card_image" alt="img" />
-                            <img src="https://image.tmdb.org/t/p/original/ujr5pztc1oitbe7ViMUOilFaJ7s.jpg" className="user_list_card_image" alt="img" />
-                        </div>
-                        <div>
-                            <img src="https://image.tmdb.org/t/p/original/ujr5pztc1oitbe7ViMUOilFaJ7s.jpg" className="user_list_card_image" alt="img" />
-                            <img src="https://image.tmdb.org/t/p/original/ujr5pztc1oitbe7ViMUOilFaJ7s.jpg" className="user_list_card_image" alt="img" />
-                        </div>
-                        <div className="">
-                            {/* movie title */}
-                            <p className="">
-                                <i>list 1</i>
-                            </p>
-                        </div>
-                    </div>
-                    {/* ------------------------------------ */}
-                    <div className="movie_user_list_card">
-                        <div>
-                            <img src="https://image.tmdb.org/t/p/original/ujr5pztc1oitbe7ViMUOilFaJ7s.jpg" className="user_list_card_image" alt="img" />
-                            <img src="https://image.tmdb.org/t/p/original/lr11mCT85T1JanlgjMuhs9nMht4.jpg" className="user_list_card_image" alt="img" />
-                        </div>
-                        <div>
-                            <img src="https://image.tmdb.org/t/p/original/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg" className="user_list_card_image" alt="img" />
-                            <img src="https://image.tmdb.org/t/p/original/rugyJdeoJm7cSJL1q4jBpTNbxyU.jpg" className="user_list_card_image" alt="img" />
-                        </div>
-                        <div className="">
-                            {/* movie title */}
-                            <p className="">
-                                <i>list 2</i>
-                            </p>
-                        </div>
-                    </div>
+                    {/* loop to list the custom list cards */}
                     {/* ------------------------------------ */}
                     <div className="movie_user_list_card movie_create_user_list_card">
                         <div className="movie_create_user_list_card_icon">
