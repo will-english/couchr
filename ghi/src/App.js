@@ -12,10 +12,14 @@ import MyMovieLists from './Watchlists/MyMovieLists';
 import UserDetail from './auth/UserDetail'
 import SearchResults from './ListingMovies/SearchResults';
 import Sidebar from './ListingMovies/SideBar';
+<<<<<<<<< Temporary merge branch 1
+import UserPage from './UserPageTest/UserPage';
+import PublicLists from './Watchlists/PublicLists';
+=========
 import UserPage from './UserPageTest/UserPage'
-import PublicLists from './Watchlists/PublicLists'
 
 
+>>>>>>>>> Temporary merge branch 2
 
 function App() {
   return (
