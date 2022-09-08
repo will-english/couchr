@@ -205,20 +205,18 @@ def list_encoder_for_default_lists(list):
 # get liked list from a user
 
 
-@auth.jwt_login_required
+# @auth.jwt_login_required
 @require_http_methods(["GET", "PUT"])
 def api_list_liked(request, username):
     user = User.objects.get(username=username)
 
     if request.method == "GET":
-        lists = LikedList.objects.filter(user=user)
-        response = []
-        for list in lists:
-            list_dict = list_encoder_for_default_lists(list)
-            response.append(list_dict)
+        list = LikedList.objects.get(user=user)
+        list_dict = list_encoder_for_default_lists(list)
+        
 
         return JsonResponse(
-            {"list": response}
+            {"list": list_dict}
         )
 
     # PUT
@@ -279,20 +277,18 @@ def api_list_liked(request, username):
 # get watched list from a user
 
 
-@auth.jwt_login_required
+# @auth.jwt_login_required
 @require_http_methods(["GET", "PUT"])
 def api_list_watched(request, username):
     user = User.objects.get(username=username)
 
     if request.method == "GET":
-        lists = WatchedList.objects.filter(user=user)
-        response = []
-        for list in lists:
-            list_dict = list_encoder_for_default_lists(list)
-            response.append(list_dict)
+        list = WatchedList.objects.get(user=user)
+        list_dict = list_encoder_for_default_lists(list)
+        
 
         return JsonResponse(
-            {"list": response}
+            {"list": list_dict}
         )
 
     # PUT
@@ -359,14 +355,12 @@ def api_list_wish(request, username):
     user = User.objects.get(username=username)
 
     if request.method == "GET":
-        lists = WishList.objects.filter(user=user)
-        response = []
-        for list in lists:
-            list_dict = list_encoder_for_default_lists(list)
-            response.append(list_dict)
+        list = WishList.objects.get(user=user)
+        list_dict = list_encoder_for_default_lists(list)
+        
 
         return JsonResponse(
-            {"list": response}
+            {"list": list_dict}
         )
 
     # PUT

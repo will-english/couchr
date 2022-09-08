@@ -8,6 +8,7 @@ class MovieVO(models.Model):
     title = models.CharField(max_length=100, unique=False, null=True, blank=True)
     api_url = models.URLField(unique=True, null=True, blank=True)
     api_id = models.CharField(max_length=100, unique=False, null=True, blank=True)
+    poster = models.URLField(blank=True,null=True)
 
 class List(models.Model):
     name = models.CharField(max_length=100, unique=False, null=True, blank=True)

@@ -17,6 +17,7 @@ class MovieDetail extends React.Component {
             movie_lists: [],
             genres: [],
             actors: [],
+            poster: '',
         }
 
         this.handleStateChange = this.handleStateChange.bind(this);
@@ -86,6 +87,7 @@ class MovieDetail extends React.Component {
             if (detail_data.poster_path !== null) {
                 detail_data.poster_path = "https://image.tmdb.org/t/p/original" + detail_data.poster_path
                 console.log(detail_data.poster_path)
+                this.setState({'poster': detail_data.poster_path})
             } else {
                 detail_data.poster_path = "/couchr-no-photo.png"
             }
@@ -125,6 +127,7 @@ class MovieDetail extends React.Component {
         // create the JSON object body
         const movie = {
             "title": this.state.movie_detail.title,
+            'poster': this.state.poster,
             "api_id": api_id,
             "add": true
         }

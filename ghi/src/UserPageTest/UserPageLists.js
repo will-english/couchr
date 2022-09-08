@@ -22,6 +22,7 @@ function UserPageLists() {
         const defaultList = []
         console.log(userName)
         if (userName && token) {
+            console.log(token);
             // * grabing the liked list information from our API
             const liked_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${userName}/liked/`;
             const liked_request = await fetch(liked_url, {
@@ -31,6 +32,7 @@ function UserPageLists() {
                 },
             });
             console.log("liked request")
+            console.log(liked_request)
             if (liked_request.ok) {
                 const liked_response = await liked_request.json();
                 console.log('*******************',liked_response);
@@ -38,7 +40,7 @@ function UserPageLists() {
                 console.log(defaultList)
             }
 
-            // ? grabing the liked list information from our API
+            // ? grabing the watched list information from our API
             const watched_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${userName}/watched/`;
             const watched_request = await fetch(watched_url, {
                 credentials: "include",
@@ -54,7 +56,7 @@ function UserPageLists() {
                 console.log(defaultList)
             }
 
-            // ! grabing the liked list information from our API
+            // ! grabing the wish list information from our API
             const wish_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${userName}/wish/`;
             const wish_request = await fetch(wish_url, {
                 credentials: "include",
@@ -83,9 +85,9 @@ function UserPageLists() {
         // <div>
             <div className="userpage_left_content_area">
                 <div>
-                    <ListCard title={defaultLists[0]?.list[0].name} />
-                    <ListCard title={defaultLists[1]?.list[0].name} />
-                    <ListCard title={defaultLists[2]?.list[0].name} />
+                    <ListCard title={defaultLists[0]?.list.name} />
+                    <ListCard title={defaultLists[1]?.list.name} />
+                    <ListCard title={defaultLists[2]?.list.name} />
                     {/* ------------------------------------ */}
                     <div className="movie_user_list_card">
                         <div>
