@@ -41,29 +41,26 @@ class MovieDetail extends React.Component {
         const response_detail = await fetch(movie_detail_url);
         const response_credit = await fetch(movie_credit_rul);
 
-        // try {
-        const movie_lists_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${this.context.userName}/`;
-        const request = await fetch(movie_lists_url, {
-            credentials: "include",
-            headers: {
-                Authorization: `Bearer ${this.context.token}`
-            },
-        });
-        if (request.ok) {
-            const response_lists = await request.json();
-            this.setState({ movie_lists: response_lists.lists });
+        try {
+            const movie_lists_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${this.context.userName}/`;
+            const request = await fetch(movie_lists_url, {
+                credentials: "include",
+                headers: {
+                    Authorization: `Bearer ${this.context.token}`
+                },
+            });
+            if (request.ok) {
+                const response_lists = await request.json();
+                this.setState({ movie_lists: response_lists.lists });
+            }
         }
-        // }
-        // catch(err) {
-        //     console.log("error")
-        // }
-
-
+        catch(err) {
+            console.log("error")
+        }
 
         if (response_detail.ok && response_credit.ok) {
             const detail_data = await response_detail.json();
             const credit_data = await response_credit.json();
-
 
             //set actors
             let actors = [];
@@ -117,7 +114,7 @@ class MovieDetail extends React.Component {
 
         // get the URL to send the JSON to
         const list_id = event.target.id;
-        const movie_list_url = `http://localhost:8000/api/lists/users/${list_id}/movies/`;
+        const movie_list_url = `http://localhost:8000/api/lists/user/${this.context.userName}/${list_id}/movies/`;
 
         // get the movie ID
         const currentURL = window.location.href
@@ -136,8 +133,10 @@ class MovieDetail extends React.Component {
         const fetchConfig = {
             method: "PUT",
             body: JSON.stringify(movie),
+            credentials: "include",
             headers: {
                 'Content-Type': 'application/json',
+                Authorization: `Bearer ${this.context.token}`
             },
         };
 
