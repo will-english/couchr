@@ -37,7 +37,7 @@ function Nav() {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark mb-5">
+    <nav className="navbar navbar-expand-lg navbar-dark mb-5 sticky-top">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
           <img src="/couchr-logo.png" className=""

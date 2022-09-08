@@ -63,7 +63,7 @@ const Sidebar = () => {
     return <div id='sticky-sidebar' className='position-fixed'>
         <div className="sidebar">
             <div className="sidebar__logo">
-                Movie Genres
+                <h3>Explore by Genre</h3>
             </div>
             <div ref={sidebarRef} className="sidebar__menu">
                 <div
@@ -75,7 +75,7 @@ const Sidebar = () => {
                 ></div>
                 {
                     sidebarNavItems.map((item, index) => (
-                                <Link to={item.to} key={index} className="text-large">
+                                <Link to={item.to} key={index} className="sidebar_link">
                                     <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
                                         <div className="sidebar__menu__item__icon">
                                             {item.icon}
