@@ -1,3 +1,5 @@
+09/08/2022
+Today we added more css to the buttons in the nav and the list by genre page.  The css was completely finished for the sidebar with links that will take the user to the genre list page.  If no results are found for a movie search, then a message will appear saying no movies with the name was found.  No real blockers today, mostly styling was added. 
 09/07/2022
 The search bar in the nav was completed and css added for it.  The side bar was also completed and added into the main page.  We decided to create a dropdown for the genres on the list by genre page, rather than having the sidebar.  At the moment we are needing to get the dropdown to link to the corresponding genre page.  
 09/06/2022
