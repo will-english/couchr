@@ -61,7 +61,7 @@ function UserPage() {
     }, []);
 
     return (
-        <>
+        <div className="user_page">
             <div>
                 <div className="user_imfo_area mt-5">
                     <div className="">
@@ -94,7 +94,7 @@ function UserPage() {
                     <p>HR-couchr@gmail.com</p>
                 </footer>
             </div> */}
-        </>
+        </div>
 
 
     )

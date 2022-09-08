@@ -165,6 +165,8 @@ code {
 /* ---------↓↓↓↓↓-------User page area--------↓↓↓↓↓-------- */
 
 /* ------↓↓↓------list area------↓↓↓------ */
+.user_page {margin-left: 16%; margin-right: 16%; width: 68%;}
+
 .user_imfo_area {height: 300px; text-align: center;}
 
 .user_avatar {display: inline-block; margin: 20px 0 20px 0; width: 150px; height: 150px; border-radius: 50%;}
@@ -189,7 +191,7 @@ code {
 .movie_user_list_card{margin: 2% 5%; display: inline-block; width: 20%; height: 400px;
   text-align: center; background-color: #181c24; border-radius: 2%; box-shadow: 0px 0px 10px lightgrey;}
 
-.movie_user_list_card:hover{filter: drop-shadow(0px 0px 16px lightgrey); transform: scale(1.02); transition: 0.5s ease;}
+.movie_user_list_card:hover{filter: drop-shadow(0px 0px 16px white); transform: scale(1.02); transition: 0.5s ease;}
 
 .movie_create_user_list_card {vertical-align: top;}
 
@@ -200,14 +202,6 @@ code {
 
 .user_list_card_image {width: 40%; margin: 10px; margin-top: 15px; border-radius: 4%;}
 
-/* .movie_user_list_card_title {
-  vertical-align: bottom;
-} */
-/* .user_list_area {
-  overflow: hidden;
-} */
-
-/* .user_list_area:after{content:''; clear:both; display:table;} */
 
 /* ------↑↑↑------list area------↑↑↑------ */
 
