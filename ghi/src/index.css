@@ -254,7 +254,7 @@ code {
 .carousel {
   align-self: center;
   margin: 50px;
-  height: 700px;
+  height: 1000px;
   /* padding: 20px */
 } 
 
@@ -269,13 +269,13 @@ code {
 }
 
 .carousel-slide {
-  height: 700px;
+  height: 1000px;
   text-align: center;
 }
 
 .slide-photo {
   align-self: center;
-  height: 500px;
+  height: 800px;
   left: auto;
   right: auto;
 }
@@ -295,8 +295,27 @@ code {
 /* SideBar */
 .wrapper {
   display: grid;
-  grid-template-columns: 1fr 1000px 1fr;
+  grid-template-columns: 1fr 1400px 1fr;
   margin: 50px;
+  padding: 10px;
+
 }
 
+.sidebar {
+  align-content: stretch;
+}
+
+
 /* Search */
+.search {
+  margin: 0px !important;
+  height: 40px
+}
+
+.input-group {
+  font-size: 1em;
+}
+
+.btn {
+  size: 40px;
+}
