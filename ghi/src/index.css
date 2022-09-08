@@ -279,6 +279,5 @@ code {
 }
 
 .col {
-  flex: 1 0 0 ;
-  height: 2000px;
+  height: fit-content;
 }

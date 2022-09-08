@@ -4,6 +4,7 @@ import MovieColumn from './MovieColumns';
 // import Sidebar from './SideBar';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import DetailLeftArea from '../MovieDetail/DetailLeftArea';
 
 class MovieList extends React.Component {
     constructor(props) {
@@ -149,8 +150,8 @@ class MovieList extends React.Component {
                         {this.state.MovieColumn.map((movie, index) => {
                             return (
                                 <MovieColumn key={index} list={movie} />
-                            );
-                        })}
+                                );
+                            })}
                         <div className='list-btn-div'>
                             <div className="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" className={previous} onClick={this.handleClickBack}>Previous Page</button>
