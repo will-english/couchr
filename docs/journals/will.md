@@ -1,3 +1,13 @@
+## 9/6
+Worked through the list creation for the three main lists, and a blocker on the custom
+list display on the movie detail page.
+## 9/2
+Fixed a blocker for accessing the username and token from the context.
+## 9/1
+Worked with Edward on accessing our api from the front end by passing the username 
+through the url.
+## 8/31
+Worked on fixing the last issues with the authentication with edward.
 ## 8/30
 I ran into a blocker with the authenitcation not sending the requests correctly, but
 we were able to get that solved. I worked with sheldon and edward to implement a form
