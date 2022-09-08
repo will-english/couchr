@@ -285,8 +285,14 @@ code {
 }
 
 .sidebar {
-  align-content: stretch;
-}
+  /* height: 100%; */
+  /* width: 150px; */
+  position: fixed;
+  /* left: 0; */
+  /* top: 0; */
+  /* padding-top: 40px; */
+  background-color: #3d3d3d;
+  }
 
 
 /* Search */
