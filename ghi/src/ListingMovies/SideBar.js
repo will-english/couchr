@@ -1,10 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
-
-
-
 const Sidebar = () => {
     const [genres, setGenres] = useState([]);
     const [activeIndex, setActiveIndex] = useState(0);
@@ -13,7 +9,6 @@ const Sidebar = () => {
     const indicatorRef = useRef();
     const location = useLocation();
     const navigate = useNavigate();
-
     const getGenres = async () => {
         const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US`
         const response = await fetch(url);
@@ -25,8 +20,6 @@ const Sidebar = () => {
             console.log("Error fetching genres")
         }
     }
-
-
     useEffect(() => {
         setTimeout(() => {
             const sidebarItem = sidebarRef.current.querySelector('.sidebar__menu__item');
@@ -34,23 +27,19 @@ const Sidebar = () => {
             setStepHeight(sidebarItem.clientHeight);
         }, 50);
     }, []);
-
     // change active index
     useEffect(() => {
         const curPath = window.location.pathname.split('/')[1];
         const activeItem = sidebarNavItems.findIndex(item => item.section === curPath);
         setActiveIndex(curPath.length === 0 ? 0 : activeItem);
-
     }, [location]);
-
     useEffect(() => {
         getGenres()
     }, [genres.length],
     // console.log(genres)
     )
-    
     const sidebarNavItems = []
-    for (let genre of genres) { 
+    for (let genre of genres) {
         const d = {
             display: genre.name,
             icon: <i className='bx bx-home'></i>,
@@ -59,7 +48,6 @@ const Sidebar = () => {
         }
         sidebarNavItems.push(d)
     }
-
     return <div id='sticky-sidebar' className='position-fixed'>
         <div className="sidebar">
             <div className="sidebar__logo">
@@ -91,6 +79,4 @@ const Sidebar = () => {
         </div>
     </div>;
 };
-
 export default Sidebar;
-

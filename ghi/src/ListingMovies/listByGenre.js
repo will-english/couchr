@@ -136,7 +136,7 @@ class MovieList extends React.Component {
         return (
             <>
                 <div className='container'>
-                    <DropdownButton id="dropdown-basic-button" title="Explore Other Genres">
+                    <DropdownButton className="dropdown-basic-button " title="Explore Other Genres">
                         {this.state.genres.map((genre, index) => {
                             return (
                                 <Dropdown.Item key={index} onClick={() => this.handleClickGenre(genre.id)}>{genre.name}</Dropdown.Item>
@@ -152,7 +152,7 @@ class MovieList extends React.Component {
                                 <MovieColumn key={index} list={movie} />
                             );
                         })}
-                        <div>
+                        <div className='list-btn-div'>
                             <div className="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" className={previous} onClick={this.handleClickBack}>Previous Page</button>
                                 <button type="button" className="btn btn-secondary" onClick={this.handleClick}>Next Page</button>

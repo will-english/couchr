@@ -32,7 +32,7 @@ const Search = () => {
               placeholder="Search movies"
               onChange={(e) => setSearchResults(e.target.value)}
             />
-            <button id="search-button" className="btn">
+            <button id="search-button" className=" btn search-btn">
               <i className="search"></i>Search
             </button>
       </div>
