@@ -1,8 +1,7 @@
 import React from 'react';
 import "../index.css";
 import MovieColumn from './MovieColumns';
-import Pagination from './pagination';
-import Sidebar from './SideBar';
+// import Sidebar from './SideBar';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
@@ -83,13 +82,15 @@ class MovieList extends React.Component {
         this.setState({currentPage: newPage})
     }
 
+    handleClickGenre(id) {
+        let newGenreId = id
+        this.setState({genre_id: newGenreId})
+    }
+
     async componentDidUpdate() {
-        if (this.state.prevPage !== this.state.currentPage || this.state.prevGenre !== window.location.href.split("/")[4] ) {
-            const currentURL = window.location.href;
-            const urlWords = currentURL.split("/")
-            const getgenre_id = urlWords[4]
-            this.setState({ genre_id: getgenre_id })
-            this.setState({ prevGenre: getgenre_id})
+        if (this.state.prevPage !== this.state.currentPage || this.state.genre_id !== this.state.prevGenre ) {
+            this.setState({ prevGenre: this.state.genre_id})
+            this.setState({prevPage: this.state.currentPage})
             for (let genre of this.state.genres){
                 if ( genre["id"] == this.state.genre_id){
                     this.setState({genreTitle: genre["name"]})
@@ -127,17 +128,20 @@ class MovieList extends React.Component {
         }
     }
     render() {
+        console.log('render')
         let previous = "btn btn-secondary"
         if (this.state.currentPage === 1) {
             previous = previous + "d-none"
         }
         return (
-            <div className='wrapper'>
-                <div>
-                    <DropdownButton id="dropdown-basic-button" title="Dropdown button">
-                        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+            <>
+                <div className='container'>
+                    <DropdownButton id="dropdown-basic-button" title="Explore Other Genres">
+                        {this.state.genres.map((genre, index) => {
+                            return (
+                                <Dropdown.Item key={index} onClick={() => this.handleClickGenre(genre.id)}>{genre.name}</Dropdown.Item>
+                            )
+                        })}
                     </DropdownButton>
                 </div>
                 <div className='container' >
@@ -156,7 +160,7 @@ class MovieList extends React.Component {
                         </div>
                     </div>
                 </div>
-            </ div>
+            </>
         )
     }
 }
