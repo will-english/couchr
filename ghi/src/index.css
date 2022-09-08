@@ -16,7 +16,6 @@ code {
 
 .navbar {
   background-color: #415A77;
-  /* background-color: #1B263B; */
   color: white;
   height: 10vh;
 }
@@ -75,11 +74,11 @@ code {
   padding: 3px 10px;
 }
 
-.pagination {
+/* .pagination {
   cursor: pointer;
   margin: 1em 0;
   margin-left: 25em;
-}
+} */
 
 .all_actors_link:hover { 
   text-decoration: none; 
@@ -275,7 +274,7 @@ code {
 }
 
 
-/* SideBar */
+/* Columns */
 .wrapper {
   display: grid;
   grid-template-columns: 1fr 1400px 1fr;
@@ -284,12 +283,33 @@ code {
 
 }
 
+/* sidebar */
 .sidebar {
-  align-content: stretch;
+  height: 100%;
+  /* width: 150px; */
+  position: fixed;
+  left: 0;
+  top: 71px;
+  /* padding-top: 40px; */
+  background-color: #415A77;
+  padding-left: 25px;
+  padding-right: 25px;
+  text-align: center;
+  color: white;
+  }
+
+.sidebar_link {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
 }
 
+.sidebar_link:hover {
+  text-decoration: underline;
+  color: #780e0e;
+}
 
-/* Search */
+/* search */
 .search {
   margin: 0px !important;
   height: 40px
@@ -300,5 +320,15 @@ code {
 }
 
 .btn {
-  size: 40px;
+  bottom: 3px;
+  color:white;
+  border: #780e0e 10px;
+  background-color: #181c24;
 }
+
+.btn:hover {
+  text-decoration: solid;
+  color: white;
+  background-color: #780e0e;
+}
+

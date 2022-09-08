@@ -61,31 +61,33 @@ const Sidebar = () => {
     }
 
     return <div id='sticky-sidebar' className='position-fixed'>
-        <div className="sidebar__logo">
-            <h2>Explore by Genre</h2>
-        </div>
-        <div ref={sidebarRef} className="sidebar__menu">
-            <div
-                ref={indicatorRef}
-                className="sidebar__menu__indicator"
-                style={{
-                    transform: `translateX(-50%) translateY(${activeIndex * stepHeight}px)`
-                }}
-            ></div>
-            {
-                sidebarNavItems.map((item, index) => (
-                            <Link to={item.to} key={index} className="text-large">
-                                <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
-                                    <div className="sidebar__menu__item__icon">
-                                        {item.icon}
+        <div className="sidebar">
+            <div className="sidebar__logo">
+                <h3>Explore by Genre</h3>
+            </div>
+            <div ref={sidebarRef} className="sidebar__menu">
+                <div
+                    ref={indicatorRef}
+                    className="sidebar__menu__indicator"
+                    style={{
+                        transform: `translateX(-50%) translateY(${activeIndex * stepHeight}px)`
+                    }}
+                ></div>
+                {
+                    sidebarNavItems.map((item, index) => (
+                                <Link to={item.to} key={index} className="sidebar_link">
+                                    <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
+                                        <div className="sidebar__menu__item__icon">
+                                            {item.icon}
+                                        </div>
+                                        <div className="sidebar__menu__item__text">
+                                            {item.display}
+                                        </div>
                                     </div>
-                                    <div className="sidebar__menu__item__text">
-                                        {item.display}
-                                    </div>
-                                </div>
-                        </Link>
-                ))
-            }
+                            </Link>
+                    ))
+                }
+            </div>
         </div>
     </div>;
 };
