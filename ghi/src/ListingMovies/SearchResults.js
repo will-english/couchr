@@ -45,7 +45,7 @@ class SearchResults extends React.Component {
             if (i > 3) { i = 0 }
         }
         this.setState({ MovieColumn: MovieColumn });
-         }
+        }
     }
     render() {
         return (

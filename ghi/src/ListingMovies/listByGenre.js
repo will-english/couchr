@@ -128,7 +128,6 @@ class MovieList extends React.Component {
         }
     }
     render() {
-        console.log('render')
         let previous = "btn btn-secondary"
         if (this.state.currentPage === 1) {
             previous = previous + "d-none"

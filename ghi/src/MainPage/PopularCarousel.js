@@ -21,9 +21,7 @@ export default class ControlledCarousel extends Component {
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
-            // console.log("xxxxxxxxx",data)
             const popular = data["results"].slice(0, 19)
-            console.log(popular)
             for (let movie of popular){
                 movie.poster_path = "https://image.tmdb.org/t/p/original" + movie.poster_path
             }
