@@ -35,7 +35,7 @@ code {
 .movie-card {
   background-color: #415A77;
   text-align: center;
-  height: 14%;
+  height: 525px;
 }
 .movie-card:hover {
   background-color: #415A77;
