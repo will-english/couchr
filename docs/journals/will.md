@@ -1,3 +1,7 @@
+## 9/7
+Worked on the rendering of the users default lists with Sheldon on the user page. Wrote
+the view function that filters and returns all of the public lists. Looking to tomorrow
+we will render the individual list cards from the list data.
 ## 9/6
 Worked through the list creation for the three main lists, and a blocker on the custom
 list display on the movie detail page.

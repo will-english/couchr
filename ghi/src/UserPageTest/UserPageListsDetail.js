@@ -1,13 +1,13 @@
 import React from 'react';
 
-export default function ListCard(props) {
+export default function ListCardDetail(props) {
 
 
     return (
         <div className="movie_user_list_card">
             <div className='movie_user_list_card_content'>
                 {props.movies.map(movie => {
-                    let default_pic = 'https://image.tmdb.org/t/p/original/14lQfkLDgEIrEtyUMfj5rJEKVlS.jpg';
+                    let default_pic = 'https://image.tmdb.org/t/p/original/r7XifzvtezNt31ypvsmb6Oqxw49.jpg';
                     console.log(movie)
                     if (movie.poster){
                         default_pic = movie.poster
