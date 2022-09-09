@@ -6,6 +6,8 @@ function UserPageLists() {
     const { token } = useAuthContext();
     const { userName } = useAuthContext();
     const [defaultLists, setDefaultlists] = useState([]);
+    const [selected, setSelected] = useState(false);
+    const [list, setList] = useState([])
 
     const getDefaultLists = async () => {
         let defaultList = [];
@@ -93,31 +95,61 @@ function UserPageLists() {
         getDefaultLists();
     }, [token]);
 
-    if (defaultLists.length == 0) {
-        return;
+    function handleBack() {
+        setSelected(false);
+    }
+
+    function handleListSelect(e) {
+        setSelected(true)
+        const json_list = e.currentTarget.id
+        const new_list = JSON.parse(json_list);
+        setList(new_list.li)
+        // console.log(e.currentTarget.value);
+        // console.log(e.currentTarget.id);
+        console.log(new_list.li);
+    }
+
+    function renderLists() {
+        if (selected) {
+            return (
+                <div>
+                    <button onClick={handleBack} >Back to lists</button>
+                    <h1>{list[1]}</h1>
+                </div>
+            )
+
+        } else {
+            return (
+                <div>
+                    {defaultLists.map(list => {
+                        console.log([list.list.id, list.list.name]);
+                        const li = JSON.stringify({li: [list.list.id, list.list.name]})
+                        return (
+                            <div onClick={handleListSelect} id={li}>
+                                <ListCard  title={list.list.name} movies={list.list.movies} />
+                            </div>
+                        )
+                    })}
+                    {/* ------------------------------------ */}
+                    {/* loop to list the custom list cards */}
+                    {/* ------------------------------------ */}
+                    <div className="movie_user_list_card movie_create_user_list_card">
+                        <div className="movie_create_user_list_card_icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" className="bi bi-plus" viewBox="0 0 16 16">
+                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+
     }
 
     return (
         // <div>
         <div className="userpage_left_content_area">
-            <div>
-                {defaultLists.map(list => {
-                    console.log(list);
-                    return (
-                        <ListCard title={list.list.name} movies={list.list.movies} />
-                    )
-                })}
-                {/* ------------------------------------ */}
-                {/* loop to list the custom list cards */}
-                {/* ------------------------------------ */}
-                <div className="movie_user_list_card movie_create_user_list_card">
-                    <div className="movie_create_user_list_card_icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" className="bi bi-plus" viewBox="0 0 16 16">
-                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                        </svg>
-                    </div>
-                </div>
-            </div>
+            {renderLists()}
         </div>
 
     )

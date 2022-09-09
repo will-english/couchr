@@ -209,7 +209,7 @@ def list_encoder_for_default_lists(list):
 # get liked list from a user
 
 
-# @auth.jwt_login_required
+@auth.jwt_login_required
 @require_http_methods(["GET", "PUT"])
 def api_list_liked(request, username):
     user = User.objects.get(username=username)
@@ -282,7 +282,7 @@ def api_list_liked(request, username):
 # get watched list from a user
 
 
-# @auth.jwt_login_required
+@auth.jwt_login_required
 @require_http_methods(["GET", "PUT"])
 def api_list_watched(request, username):
     user = User.objects.get(username=username)
