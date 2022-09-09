@@ -5,21 +5,11 @@ import { useAuthContext } from '../auth/auth_provider';
 function UserPageLists() {
     const { token } = useAuthContext();
     const { userName } = useAuthContext();
-    const [UserPageListsContent, setUserPageListsContent] = useState([]);
     const [defaultLists, setDefaultlists] = useState([]);
 
-    // const getUserPageListsContent = async () => {
-    //     const listsUrl = ``;
-    //     const response = await fetch(listsUrl)
-    //     if (response.ok) {
-    //         const data = await response.json()
-    //         console.log(data)
-    //         setUserPageContent(data)
-    //     }
-    // }
-
     const getDefaultLists = async () => {
-        const defaultList = []
+        let defaultList = [];
+        let defaultArr = [{}, {}, {}, {}];
         console.log(userName)
         if (userName && token) {
             console.log(token);
@@ -34,8 +24,17 @@ function UserPageLists() {
             console.log("liked request")
             if (liked_request.ok) {
                 const liked_response = await liked_request.json();
-                console.log('*******************',liked_response);
+                console.log('*******************', liked_response);
+                let liked_movies = liked_response.list.movies
+                const difference = 4 - liked_movies.length
+                if (difference > 0) {
+                    liked_response.list.movies = liked_movies.concat(defaultArr.slice(0, difference))
+                } else {
+                    liked_response.list.movies = liked_movies.slice(0, 4)
+                }
+                console.log(liked_response)
                 defaultList.push(liked_response);
+
                 console.log(defaultList)
             }
 
@@ -50,7 +49,14 @@ function UserPageLists() {
             console.log("watched request")
             if (watched_request.ok) {
                 const watched_response = await watched_request.json();
-                console.log('*******************',watched_response);
+                console.log('*******************', watched_response);
+                let watched_movies = watched_response.list.movies
+                const difference = 4 - watched_movies.length
+                if (difference > 0) {
+                    watched_response.list.movies = watched_movies.concat(defaultArr.slice(0, difference))
+                } else {
+                    watched_response.list.movies = watched_movies.slice(0, 4)
+                }
                 defaultList.push(watched_response);
                 console.log(defaultList)
             }
@@ -66,7 +72,14 @@ function UserPageLists() {
             console.log("wish request")
             if (wish_request.ok) {
                 const wish_response = await wish_request.json();
-                console.log('*******************',wish_response);
+                console.log('*******************', wish_response);
+                let wish_movies = wish_response.list.movies
+                const difference = 4 - wish_movies.length
+                if (difference > 0) {
+                    wish_response.list.movies = wish_movies.concat(defaultArr.slice(0, difference))
+                } else {
+                    wish_response.list.movies = wish_movies.slice(0, 4)
+                }
                 defaultList.push(wish_response);
                 console.log(defaultList)
                 setDefaultlists(defaultList);
@@ -80,26 +93,33 @@ function UserPageLists() {
         getDefaultLists();
     }, [token]);
 
+    if (defaultLists.length == 0) {
+        return;
+    }
+
     return (
         // <div>
-            <div className="userpage_left_content_area">
-                <div>
-                    <ListCard title={defaultLists[0]?.list.name} movies={defaultLists[0]?.list?.movies} />
-                    <ListCard title={defaultLists[1]?.list.name} movies={defaultLists[1]?.list?.movies} />
-                    <ListCard title={defaultLists[2]?.list.name} movies={defaultLists[2]?.list?.movies} />
-                    {/* ------------------------------------ */}
-                    {/* loop to list the custom list cards */}
-                    {/* ------------------------------------ */}
-                    <div className="movie_user_list_card movie_create_user_list_card">
-                        <div className="movie_create_user_list_card_icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" className="bi bi-plus" viewBox="0 0 16 16">
-                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                            </svg>
-                        </div>
+        <div className="userpage_left_content_area">
+            <div>
+                {defaultLists.map(list => {
+                    console.log(list);
+                    return (
+                        <ListCard title={list.list.name} movies={list.list.movies} />
+                    )
+                })}
+                {/* ------------------------------------ */}
+                {/* loop to list the custom list cards */}
+                {/* ------------------------------------ */}
+                <div className="movie_user_list_card movie_create_user_list_card">
+                    <div className="movie_create_user_list_card_icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" className="bi bi-plus" viewBox="0 0 16 16">
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                        </svg>
                     </div>
                 </div>
             </div>
-           
+        </div>
+
     )
 }
 export default UserPageLists;

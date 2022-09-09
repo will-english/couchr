@@ -149,6 +149,7 @@ def api_list_movies(request, pk, username):
             movie, created = MovieVO.objects.get_or_create(
                 api_id=content["api_id"])
             movie.title = content["title"]
+            movie.poster = content['poster']
             movie.save()
 
             # if MovieVO isn't already in the list, then add it
@@ -199,7 +200,10 @@ def list_encoder_for_default_lists(list):
     dict["description"] = list.description
     dict["movies"] = []
     for movie in list.movies.all():
-        dict["movies"].append(movie.id)
+        movie_dict = {}
+        movie_dict["id"] = movie.id
+        movie_dict['poster'] = movie.poster
+        dict['movies'].append(movie_dict)
     return dict
 
 # get liked list from a user
@@ -233,6 +237,7 @@ def api_list_liked(request, username):
                 movie, created = MovieVO.objects.get_or_create(
                     api_id=content["api_id"])
                 movie.title = content["title"]
+                movie.poster = content['poster']
                 movie.save()
 
                 # if MovieVO isn't already in the list, then add it
@@ -377,6 +382,7 @@ def api_list_wish(request, username):
                 movie, created = MovieVO.objects.get_or_create(
                     api_id=content["api_id"])
                 movie.title = content["title"]
+                movie.poster = content['poster']
                 movie.save()
 
                 # if MovieVO isn't already in the list, then add it
