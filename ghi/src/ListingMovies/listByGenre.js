@@ -4,6 +4,7 @@ import MovieColumn from './MovieColumns';
 // import Sidebar from './SideBar';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import DetailLeftArea from '../MovieDetail/DetailLeftArea';
 
 class MovieList extends React.Component {
     constructor(props) {
@@ -54,7 +55,7 @@ class MovieList extends React.Component {
 
             for (let movie of movielist) {
                 if (movie.poster_path === null) {
-                    movie.poster_path = "couchr-no-photo.png"
+                    movie.poster_path = "/couchr-no-photo.png"
                 } else {
                     movie.poster_path = "https://image.tmdb.org/t/p/original" + movie.poster_path
                 }
@@ -128,7 +129,6 @@ class MovieList extends React.Component {
         }
     }
     render() {
-        console.log('render')
         let previous = "btn btn-secondary"
         if (this.state.currentPage === 1) {
             previous = previous + "d-none"
@@ -136,7 +136,7 @@ class MovieList extends React.Component {
         return (
             <>
                 <div className='container'>
-                    <DropdownButton id="dropdown-basic-button" title="Explore Other Genres">
+                    <DropdownButton className="dropdown-basic-button " title="Explore Other Genres">
                         {this.state.genres.map((genre, index) => {
                             return (
                                 <Dropdown.Item key={index} onClick={() => this.handleClickGenre(genre.id)}>{genre.name}</Dropdown.Item>
@@ -150,9 +150,9 @@ class MovieList extends React.Component {
                         {this.state.MovieColumn.map((movie, index) => {
                             return (
                                 <MovieColumn key={index} list={movie} />
-                            );
-                        })}
-                        <div>
+                                );
+                            })}
+                        <div className='list-btn-div'>
                             <div className="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" className={previous} onClick={this.handleClickBack}>Previous Page</button>
                                 <button type="button" className="btn btn-secondary" onClick={this.handleClick}>Next Page</button>

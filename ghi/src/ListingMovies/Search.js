@@ -20,7 +20,6 @@ const Search = () => {
   };
 
 
-  console.log("movie", SearchResults);
 
   return (
     <form className="input-group input-group-append " onSubmit={searchHandler}>
@@ -32,7 +31,7 @@ const Search = () => {
               placeholder="Search movies"
               onChange={(e) => setSearchResults(e.target.value)}
             />
-            <button id="search-button" className="btn btn-outline-primary">
+            <button id="search-button" className=" btn search-btn">
               <i className="search"></i>Search
             </button>
       </div>

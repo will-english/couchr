@@ -1,3 +1,5 @@
+09/07/2022
+The search bar in the nav was completed and css added for it.  The side bar was also completed and added into the main page.  We decided to create a dropdown for the genres on the list by genre page, rather than having the sidebar.  At the moment we are needing to get the dropdown to link to the corresponding genre page.  
 09/06/2022
 A search bar feature that is located in the nav was linked up to a search results when text is entered.  Any movies with the same word(s) are listed once a term is searched.  Prevent default was in the code causing it to not reload the page with the desired movie title, but once removed it was working fine.  We have a blocker of the sidebar not reloading when on the movie list page already.  After discussing this blocker with a SEIR, we believe an onClick event handler might be the best option.  
 09/02/2022
