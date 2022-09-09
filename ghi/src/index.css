@@ -29,13 +29,13 @@ code {
 }
 .list-card-image {
   width: 100%;
-  height: 85%;
+  height: 375px;
   overflow: hidden;
 }
 .movie-card {
   background-color: #415A77;
   text-align: center;
-  height: 525px;
+  height: 500px;
 }
 .movie-card:hover {
   background-color: #415A77;
@@ -49,7 +49,7 @@ code {
   font-size: 15px;
 }
 .card-body {
-  height: 120px;
+  height: 60px;
   text-align: center;
 }
 .row {
