@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SearchResults from "./SearchResults";
+import "../index.css";
+
 
 
 const Search = () => {
@@ -18,23 +20,20 @@ const Search = () => {
   };
 
 
-  console.log("movie", SearchResults);
 
   return (
-    <form onSubmit={searchHandler}>
+    <form className="input-group input-group-append " onSubmit={searchHandler}>
       <div className="input-group">
-        <input
-          type="text"
-          id="search_field"
-          className="form-control"
-          placeholder="Enter a movie title ..."
-          onChange={(e) => setSearchResults(e.target.value)}
-        />
-        <div className="input-group-append">
-          <button id="search_btn" className="btn">
-            <i className="fa fa-search" aria-hidden="false"></i>
-          </button>
-        </div>
+            <input
+              className="search rounded"
+              type="search"
+              id="search_field"
+              placeholder="Search movies"
+              onChange={(e) => setSearchResults(e.target.value)}
+            />
+            <button id="search-button" className=" btn search-btn">
+              <i className="search"></i>Search
+            </button>
       </div>
     </form>
   );

@@ -15,14 +15,13 @@ import Sidebar from './ListingMovies/SideBar';
 import UserPage from './UserPageTest/UserPage';
 import PublicLists from './Watchlists/PublicLists';
 
+
+
 function App() {
   return (
     <AuthProvider>
       <Nav />
       <div>
-        <Sidebar />
-      </div>
-      <div className="container">
         <Routes>
           <Route path='/search/:query' element={<SearchResults />} />
           <Route path='/' element={<MainPage />} />
