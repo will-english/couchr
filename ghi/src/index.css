@@ -76,12 +76,12 @@ code {
 }
 /* ---------↓↓↓↓↓-------Detail page area--------↓↓↓↓↓-------- */
 
-.detail_page { background-color: #181c24; color: white;}
+.detail_page { background-color: #181c24; color: white; width: 68%; margin-left: 16%; margin-right: 16%;}
 
 .detail_logo_area { height: 200px; text-align: center; padding-top: 50px; }
 .detail_header_logo { width: 50px; }
-
-.detail_content_area { border-style: solid; border-color: grey; border-width: 3px;}
+/* 
+.detail_content_area { border-style: solid; border-color: grey; border-width: 3px;} */
 
 .detail_image_area { display: inline-block; width: 25%; height:100%; padding: 30px; vertical-align: top; text-align: center; }
 .detail_image_area_image { border-radius: 3%; width: 200px;  height: 300px; overflow: hidden; }
@@ -96,7 +96,10 @@ code {
 .detail_movie_rating { display: inline-block; margin-left: 15px; vertical-align: middle; }
 .detail_movie_originaltitle { font-size: 12px; color: lightgrey; }
 .detail_movie_year { display: inline-block; }
-.detail_movie_addtolist { margin-left: 20px; }
+.detail_movie_addtolist_area {
+  display: inline-block; margin-left: 20px; 
+}
+.detail_movie_addtolist {display: inline-block; margin-left: 20px; }
 .detail_movie_addtolist:hover { margin-left: 20px; transform: scale(1.1); transition: 0.5s ease; }
 .detail_dropdown_list_ul { background-color: #2A2E36; color: white; margin: 10px; text-align: center;}
 .detail_dropdown_list_li { height:25px; }
@@ -138,6 +141,8 @@ code {
 
 .movie_user_list_card{margin: 2% 5%; display: inline-block; width: 20%; height: 400px;
   text-align: center; background-color: #181c24; border-radius: 2%; box-shadow: 0px 0px 10px lightgrey;}
+
+/* .movie_user_list_card:hover { width: 90%; height: 600px;} */
 
 .movie_user_list_card:hover{filter: drop-shadow(0px 0px 16px white); transform: scale(1.02); transition: 0.5s ease;}
 

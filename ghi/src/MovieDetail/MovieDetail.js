@@ -113,6 +113,8 @@ class MovieDetail extends React.Component {
 
             this.setState({ movie: movie })
         };
+
+
     }
 
     handleStateChange(event) {

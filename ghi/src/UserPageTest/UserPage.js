@@ -6,6 +6,7 @@ import UserPageReview from "./UserPageReview";
 import UserPageContact from "./UserPageContact";
 
 
+
 function UserPage() {
     const [UserPageContent, setUserPageContent] = useState([]);
 
@@ -54,6 +55,7 @@ function UserPage() {
             }
         }
     }
+
 
 
     useEffect(() => {
