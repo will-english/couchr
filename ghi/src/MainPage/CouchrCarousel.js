@@ -2,6 +2,8 @@ import React from "react";
 import Carousel from "react-bootstrap/Carousel"
 import { Component } from "react"
 import CarouselItem from "react-bootstrap/esm/CarouselItem";
+import shuffleArray from "./shuffle";
+
 
 export default class ControlledCarousel2 extends Component {
     constructor () {
@@ -18,7 +20,8 @@ export default class ControlledCarousel2 extends Component {
     async componentDidMount() {
         let movie_id;
         const movielist = []
-        const couchr_ids = [673, 316029, 264660, 120467, 857, 64690, 2501, 324857, 313369, 447332, 27205, 1726, 278, 129, 11688]
+        const ordered_couchr_ids = [673, 316029, 264660, 120467, 857, 64690, 2501, 324857, 313369, 447332, 27205, 1726, 278, 129, 11688]
+        const couchr_ids = shuffleArray(ordered_couchr_ids)
         for (let id of couchr_ids){
             const movie_url = `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`
             const response = await fetch(movie_url);
@@ -31,6 +34,7 @@ export default class ControlledCarousel2 extends Component {
                 }
                 data.vote_average = data.vote_average.toFixed(1)
                 data.release_date = data.release_date.slice(0, 4)
+                data.link = "movies/movie/" + data.id + "/"
 
                 movielist.push(data)
             }
@@ -47,13 +51,16 @@ export default class ControlledCarousel2 extends Component {
             <div>
                 <Carousel activeIndex={this.state.index} onSelect={this.handleSelect}>
                     {this.state.movies.map((movie, index) => (
-                        <Carousel.Item key={index} className="carousel-slide">
-                            <div className="mydiv">
-                                <img className="slide-photo"
-                                    src={movie.poster_path}
-                                    alt="movie_poster"
-                                />
-                            </div>
+                        <Carousel.Item key={index} className="carousel-slide" to={movie.link}>
+                            <a href={movie.link}>
+                                <div className="mydiv">
+                                    <img className="slide-photo"
+                                        src={movie.poster_path} 
+                                        to={movie.link}
+                                        alt="movie_poster"
+                                    />
+                                </div>
+                            </a>
                             <div>
                                 <Carousel.Caption className="carousel-caption">
                                     <p>{movie.overview}</p>
