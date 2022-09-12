@@ -1,10 +1,9 @@
 from django.urls import path
 from .views import (
-    api_movies, 
-    api_movie, 
     api_lists, 
     api_list, 
     api_list_movies, 
+    get_public_lists,
     api_list_liked, 
     api_list_watched, 
     api_list_wish,
@@ -31,6 +30,9 @@ urlpatterns = [
 
     # get a specific list from a user to add/remove movies
     path("user/<str:username>/<int:pk>/movies/", api_list_movies, name="api_list_movies"),
+
+    # get all public lists
+    path("public/", get_public_lists, name="get_public_lists"),
 
 
     # liked/watched/wish list views ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
