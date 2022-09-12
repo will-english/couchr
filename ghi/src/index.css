@@ -48,11 +48,13 @@ code {
 .card-title {
   padding-top: 20px;
   padding-bottom: 0;
+  height:60px;
   font-size: 15px;
 }
 .card-body {
   height: 60px;
   text-align: center;
+  vertical-align: top;
 }
 .row {
   height: 350px;
