@@ -27,7 +27,7 @@ def list_encoder(list):
 # get all movie lists from a user
 
 
-@auth.jwt_login_required
+# @auth.jwt_login_required
 @require_http_methods(["GET", "POST"])
 def api_lists(request, username):
     user = User.objects.get(username=username)
@@ -67,7 +67,7 @@ def api_lists(request, username):
 # get a specific list from a user
 
 
-@auth.jwt_login_required
+# @auth.jwt_login_required
 @require_http_methods(["DELETE", "GET", "PUT"])
 def api_list(request, pk, username):
     user = User.objects.get(username=username)
@@ -535,7 +535,7 @@ def list_encoder_for_movieVOs(list):
         dict['movies'].append(movie_dict)
     return dict
 
-@auth.jwt_login_required
+# @auth.jwt_login_required
 @require_http_methods(["GET"])
 def api_list_movieVO(request, pk, username, name):
     user = User.objects.get(username=username)
