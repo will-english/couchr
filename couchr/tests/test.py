@@ -27,7 +27,6 @@ def signup(self):
 
     if response.ok:
         token = login(self)
-        print("token: ", token)
         return token
 
 def login(self):
