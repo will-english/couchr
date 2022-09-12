@@ -31,13 +31,13 @@ code {
 }
 .list-card-image {
   width: 100%;
-  height: 85%;
+  height: 375px;
   overflow: hidden;
 }
 .movie-card {
   background-color: #415A77;
   text-align: center;
-  height: 14%;
+  height: 500px;
 }
 .movie-card:hover {
   background-color: #415A77;
@@ -46,11 +46,15 @@ code {
   transition: 0.5s ease;
 }
 .card-title {
+  padding-top: 20px;
+  padding-bottom: 0;
+  height:60px;
   font-size: 15px;
 }
 .card-body {
-  height: 80px;
+  height: 60px;
   text-align: center;
+  vertical-align: top;
 }
 .row {
   height: 350px;
@@ -189,9 +193,16 @@ code {
 }
 .carousel {
   align-self: center;
-  margin: 50px;
-  height: 1000px;
+  margin: 30px;
+  height: 1020px;
   /* padding: 20px */
+}
+
+.couchr-carousel {
+  align-self: center;
+  margin: 30px;
+  height: 1020px;
+  padding-top: 80px;
 }
 .carousel_caption {
   position: fixed;
@@ -200,17 +211,30 @@ code {
   top: 0;
   color: white;
   text-align: center;
+  vertical-align: middle;
   /* background-color: #181C24; */
 }
 .carousel-slide {
   height: 1000px;
   text-align: center;
+  vertical-align: middle;
+  margin-top: 30px;
 }
+
+.slide-photo:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 10px lightgray;
+  transition: 0.5s;
+}
+
+
 .slide-photo {
   align-self: center;
-  height: 800px;
+  vertical-align: middle;
+  height: 770px;
   left: auto;
   right: auto;
+  transition: 0.5s;
 }
 .main-page-header {
   align-self: center;
@@ -287,15 +311,18 @@ code {
   --bs-btn-hover-color: #fff;
   --bs-btn-hover-bg: #780E0E;
   --bs-btn-hover-border-color: #780E0E;
-  --bs-btn-focus-shadow-rgb: 49,132,253;
+  --bs-btn-focus-shadow-rgb: none;
   --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: #780E0E;
-  --bs-btn-active-border-color: #780E0E;
-  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-active-bg: #415A77;
+  --bs-btn-active-border-color: none;
+  --bs-btn-active-shadow: none;
+  --bs-btn-active-scale: 1.0;
   --bs-btn-disabled-color: #fff;
   --bs-btn-disabled-bg: #415A77;
   --bs-btn-disabled-border-color: #415A77;
 }
+
+
 
 .list-btn-div {
   height:300px
@@ -319,6 +346,28 @@ code {
   text-align: center;
 }
 
+.detail_icon_my-tip_list {
+  display: inline-block; 
+  position: relative; 
+  line-height: 1; 
+  height: 10px; 
+}
+
+.detail_icon_my-tip_list .detail_icon_tip_list { 
+   display: none;
+   position: absolute; 
+   border-radius: 0;
+   top: 350%; 
+   left: 50%;
+   opacity: 0;
+   transition: all .5s ease; 
+   transform: translate(-50%, -10px);
+   padding: 0px; 
+ }
+
+.list-icons {
+   padding-bottom: 50px;
+}
 
 
 
@@ -574,3 +623,4 @@ a {
 .container1.container1.right-panel-active .overlay-right {
   transform: translateY(20%);
 }
+/* --------------------------------------------------------------- */

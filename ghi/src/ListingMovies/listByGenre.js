@@ -129,9 +129,9 @@ class MovieList extends React.Component {
         }
     }
     render() {
-        let previous = "btn btn-secondary"
+        let previous = "btn btn-primary"
         if (this.state.currentPage === 1) {
-            previous = previous + "d-none"
+            previous = "d-none"
         }
         return (
             <>
@@ -155,7 +155,7 @@ class MovieList extends React.Component {
                         <div className='list-btn-div'>
                             <div className="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" className={previous} onClick={this.handleClickBack}>Previous Page</button>
-                                <button type="button" className="btn btn-secondary" onClick={this.handleClick}>Next Page</button>
+                                <button type="button" className="btn btn-primary" onClick={this.handleClick}>Next Page</button>
                             </div>
                         </div>
                     </div>
