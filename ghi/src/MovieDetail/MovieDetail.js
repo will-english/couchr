@@ -15,8 +15,10 @@ class MovieDetail extends React.Component {
             movie_credit: {},
             movie_list_id: '',
             movie_lists: [],
+            movie: {},
             genres: [],
             actors: [],
+            poster: '',
         }
 
         this.handleStateChange = this.handleStateChange.bind(this);
@@ -26,7 +28,7 @@ class MovieDetail extends React.Component {
 
 
     async componentDidMount() {
-        
+
         const currentURL = window.location.href
         const words = currentURL.split("/")
         const movie_id = words[5]
@@ -40,29 +42,26 @@ class MovieDetail extends React.Component {
         const response_detail = await fetch(movie_detail_url);
         const response_credit = await fetch(movie_credit_rul);
 
-        // try {
-        const movie_lists_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${this.context.userName}/`;
-        const request = await fetch(movie_lists_url, {
-            credentials: "include",
-            headers: {
-                Authorization: `Bearer ${this.context.token}`
-            },
-        });
-        if (request.ok) {
-            const response_lists = await request.json();
-            this.setState({ movie_lists: response_lists.lists });
+        try {
+            const movie_lists_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${this.context.userName}/`;
+            const request = await fetch(movie_lists_url, {
+                credentials: "include",
+                headers: {
+                    Authorization: `Bearer ${this.context.token}`
+                },
+            });
+            if (request.ok) {
+                const response_lists = await request.json();
+                this.setState({ movie_lists: response_lists.lists });
+            }
         }
-        // }
-        // catch(err) {
-        //     console.log("error")
-        // }
-
-
+        catch (err) {
+            console.log("error")
+        }
 
         if (response_detail.ok && response_credit.ok) {
             const detail_data = await response_detail.json();
             const credit_data = await response_credit.json();
-
 
             //set actors
             let actors = [];
@@ -83,9 +82,12 @@ class MovieDetail extends React.Component {
             this.setState({ genres: genres_list })
 
             //set movie picture url
+            let poster = ''
             if (detail_data.poster_path !== null) {
                 detail_data.poster_path = "https://image.tmdb.org/t/p/original" + detail_data.poster_path
                 console.log(detail_data.poster_path)
+                this.setState({ 'poster': detail_data.poster_path })
+                poster  = detail_data.poster_path;
             } else {
                 detail_data.poster_path = "/couchr-no-photo.png"
             }
@@ -93,12 +95,23 @@ class MovieDetail extends React.Component {
             detail_data.vote_average = detail_data.vote_average.toFixed(1)
             detail_data.release_date = detail_data.release_date.slice(0, 4)
 
+            const title = detail_data.title
             this.setState(
                 {
                     movie_detail: detail_data,
                     movie_credit: credit_data,
                     genres: genres_list,
                 });
+            console.log(this.state.poster)
+            const movie = {
+                "title": title,
+                'poster': poster,
+                "api_id": movie_id,
+                "add": true
+            }
+            console.log(movie)
+
+            this.setState({ movie: movie })
         };
     }
 
@@ -115,7 +128,7 @@ class MovieDetail extends React.Component {
 
         // get the URL to send the JSON to
         const list_id = event.target.id;
-        const movie_list_url = `http://localhost:8000/api/lists/users/${list_id}/movies/`;
+        const movie_list_url = `http://localhost:8000/api/lists/user/${this.context.userName}/${list_id}/movies/`;
 
         // get the movie ID
         const currentURL = window.location.href
@@ -125,16 +138,21 @@ class MovieDetail extends React.Component {
         // create the JSON object body
         const movie = {
             "title": this.state.movie_detail.title,
+            'poster': this.state.poster,
             "api_id": api_id,
             "add": true
         }
+
+        this.setState({ movie: movie })
 
         // Turn the JSON object into a JSON string and then send it in the PUT method
         const fetchConfig = {
             method: "PUT",
             body: JSON.stringify(movie),
+            credentials: "include",
             headers: {
                 'Content-Type': 'application/json',
+                Authorization: `Bearer ${this.context.token}`
             },
         };
 
@@ -178,7 +196,7 @@ class MovieDetail extends React.Component {
 
                 {/* Detail area */}
                 <div className="detail_content_area">
-                    <DetailLeftArea movie={this.state.movie_detail} />
+                    <DetailLeftArea movie={this.state.movie_detail} movie_obj={this.state.movie} />
                     <DetailMiddleArea movie={this.state.movie_detail} movie_lists={this.state.movie_lists} add_list={this.addList} handleAddMovie={this.handleAddMovie} />
                     <DetailRightArea actors={this.state.actors} genres={this.state.genres} />
                 </div>

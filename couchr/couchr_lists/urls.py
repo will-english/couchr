@@ -8,7 +8,8 @@ from .views import (
     api_list_liked, 
     api_list_watched, 
     api_list_wish,
-    get_public_lists
+    get_public_lists,
+    api_list_movieVO
 )
 
 urlpatterns = [
@@ -46,4 +47,7 @@ urlpatterns = [
 
     # get public lists
     path("public/", get_public_lists, name="get_public_lists"),
+
+    # get moviesVOs from a user's list
+    path("user/<str:username>/<int:pk>/<str:name>/", api_list_movieVO, name="get_movieVOs"),
 ]

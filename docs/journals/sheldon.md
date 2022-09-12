@@ -1,3 +1,5 @@
+## 9/7
+Today we focus on connect list page for front-end and back-end. We spend some time to pull the data out and make it show on the website page. That's a big step. Tomorrow we will still work on it and try to get all the information we need.
 ## 9/6
 Spend whole day to make user page bearbone, include user avatar, unser information, user list age, user page options(which include profile, list, review, subscription and contact etc.)
 Today I only finished list page for user, will work on profile and reviews page tomorrow.
