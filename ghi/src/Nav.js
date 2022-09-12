@@ -21,7 +21,7 @@ function Nav() {
     if (token) {
       return (
         <ul className="nav justify-content-end">
-          <NavLink className="nav-link" to="/user_detail">User Page</NavLink>
+          <NavLink className="nav-link" to="/user_page">User Page</NavLink>
           <NavLink onClick={handleLogout} className="nav-link" to="">Logout</NavLink>
         </ul>
       )

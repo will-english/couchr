@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ListCard from "./ListCard";
 import { useAuthContext } from '../auth/auth_provider';
+import MovieVOList from "../ListingMovies/MovieVOList";
 
 function UserPageLists() {
     const { token } = useAuthContext();
@@ -36,7 +37,7 @@ function UserPageLists() {
                 }
                 console.log(liked_response)
                 defaultList.push(liked_response);
-
+                defaultList[0]['list']['name']='liked';
                 console.log(defaultList)
             }
 
@@ -60,6 +61,7 @@ function UserPageLists() {
                     watched_response.list.movies = watched_movies.slice(0, 4)
                 }
                 defaultList.push(watched_response);
+                defaultList[1]['list']['name']='watched';
                 console.log(defaultList)
             }
 
@@ -83,6 +85,7 @@ function UserPageLists() {
                     wish_response.list.movies = wish_movies.slice(0, 4)
                 }
                 defaultList.push(wish_response);
+                defaultList[2]['list']['name']='want-to-watch';
                 console.log(defaultList)
                 setDefaultlists(defaultList);
                 console.log(defaultList);
@@ -114,7 +117,7 @@ function UserPageLists() {
             return (
                 <div>
                     <button onClick={handleBack} >Back to lists</button>
-                    <h1>{list[1]}</h1>
+                    <MovieVOList id={list[0]} name={list[1]}/>
                 </div>
             )
 
@@ -125,7 +128,7 @@ function UserPageLists() {
                         console.log([list.list.id, list.list.name]);
                         const li = JSON.stringify({li: [list.list.id, list.list.name]})
                         return (
-                            <div onClick={handleListSelect} id={li}>
+                            <div onClick={handleListSelect} id={li} className="movie_user_list_card">
                                 <ListCard  title={list.list.name} movies={list.list.movies} />
                             </div>
                         )
