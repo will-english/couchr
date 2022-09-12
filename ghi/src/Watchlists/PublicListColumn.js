@@ -14,9 +14,9 @@ export default function PublicListColumn(props) {
                             </Link> */}
                             <div className="card-body">
                                 <h5 className="card-title align-middle">
-                                    {list.name}
-                                    {list.description}
-                                    {list.user}
+                                    <div>{list.name}</div>
+                                    <div>{list.description}</div>
+                                    <div>{list.user}</div>
                                     <br />
                                 </h5>
                             </div>
