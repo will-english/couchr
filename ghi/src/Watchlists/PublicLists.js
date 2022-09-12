@@ -7,7 +7,7 @@ export default function PublicLists() {
     const [publicLists, setPublicLists] = useState([])
 
     // fetch all public lists
-    const fetchData = async () => {
+    const getPublicLists = async () => {
         const url = `http://localhost:8000/api/lists/public/`
         const fetchConfig = {
             method: "GET",
@@ -24,7 +24,7 @@ export default function PublicLists() {
     };
 
     useEffect(() => {
-        fetchData();
+        getPublicLists();
     },[]);
 
     const ListColumn = [[], [], [], []]

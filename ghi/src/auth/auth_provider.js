@@ -124,7 +124,7 @@ export function useToken() {
             console.log(token1);
             localStorage.setItem('userName', JSON.stringify(username))
             setUserName(username);
-            navigate("/user_detail");
+            navigate("/user_page");
             return;
         }
         let error = await response.json();
@@ -151,7 +151,7 @@ export function useToken() {
         if (response.ok) {
             callback();
             await login(username, password);
-            navigate("/user_detail"); 
+            navigate("/user_page"); 
             console.log(response.json());
         }
         return false;
