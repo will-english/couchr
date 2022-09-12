@@ -4,8 +4,9 @@ export default function ListCard(props) {
 
 
     return (
+        // <div className="movie_user_list_card">
         <>
-            <div>
+            <div className='movie_user_list_card_content'>
                 {props.movies.map(movie => {
                     let default_pic = 'https://image.tmdb.org/t/p/original/14lQfkLDgEIrEtyUMfj5rJEKVlS.jpg';
                     console.log(movie)
@@ -23,5 +24,6 @@ export default function ListCard(props) {
                 </p>
             </div>
         </>
+        // </div>
     )
 }

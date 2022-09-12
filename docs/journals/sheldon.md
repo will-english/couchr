@@ -1,3 +1,6 @@
+## 9/12
+Design the login and sign up page, add a lot of CSS to this page. Put them in a same box, and when we click sign up button it will switch to sign up page, login button also. Try to write test file for detail page.
+
 ## 9/8
 Today we worked on userpage, we met some block when we tried to catch the information from back-end. Zach helped us finally we got that worked! Tomorrow we will still working on userpage, will try to make every card clickable. 
 ## 9/7

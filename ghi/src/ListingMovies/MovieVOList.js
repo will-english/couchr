@@ -28,6 +28,44 @@ export default function MovieVOList(props) {
         }
 
     }
+    async function handleRemove(e) {
+        console.log(e.currentTarget.id)
+        const body = {api_id:Number(e.currentTarget.id), add: false}
+        const defaults = ['liked', 'watched', 'want-to-watch']
+        console.log(body)
+        let def = false;
+        for (const item of defaults) {
+            if (item == props.name){
+                def = true;
+            }
+        }
+        if (def) {
+            console.log('default list movie remove try')
+            const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${userName}/${props.name}/`;
+            const request = await fetch(url, {
+                credentials: "include",
+                method: 'put',
+                body: JSON.stringify(body),
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+            });
+            console.log(request)
+        } else {
+            console.log('custom list movie remove try')
+            const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${userName}/${props.id}/movies/`;
+            const request = await fetch(url, {
+                credentials: "include",
+                method: 'put',
+                body: JSON.stringify(body),
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+            });
+            console.log(request)
+
+        }
+    }
 
     useEffect(() => {
         fetchMovies();
@@ -38,7 +76,7 @@ export default function MovieVOList(props) {
             <div className="row">
                 {MovieColumns.map((movie, index) => {
                     return (
-                        <MovieColumn key={index} list={movie} />
+                        <MovieColumn key={index} list={movie} delete={true} handleRemove={handleRemove}/>
                     );
                 })}
             </div>

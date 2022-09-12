@@ -12,6 +12,14 @@ from .views import (
 )
 
 urlpatterns = [
+    # movie list views ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    # get all movie VOs in DB
+    path("movies/", api_movies, name="api_movies"),
+
+    # get a specific movie VO in DB
+    path("movies/<int:pk>/", api_movie, name="api_movie"),
+
+
     # list views not including liked/watched/wish ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     # get all lists from a user
@@ -27,7 +35,7 @@ urlpatterns = [
     path("public/", get_public_lists, name="get_public_lists"),
 
 
-    # liked/watched/wish list views ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    # liked/watched/wish list views ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     # get liked list from a user
     path("user/<str:username>/liked/", api_list_liked, name="api_lists_liked"),
