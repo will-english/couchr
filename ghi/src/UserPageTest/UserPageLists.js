@@ -87,7 +87,6 @@ function UserPageLists() {
                 defaultList.push(wish_response);
                 defaultList[2]['list']['name']='want-to-watch';
                 // console.log(defaultList)
-                // setDefaultlists(defaultList);
                 // console.log(defaultList);
             }
 
@@ -112,8 +111,8 @@ function UserPageLists() {
                         list.movies = custom_movies.slice(0, 4)
                     }
                     defaultList.push({list: list});
-                    setDefaultlists(defaultList);
                 }
+                setDefaultlists(defaultList);
                 console.log(defaultList);
             }
 
@@ -152,7 +151,7 @@ function UserPageLists() {
             return (
                 <div>
                     {defaultLists.map(list => {
-                        console.log(list.list.movies)
+                        console.log(list.list.name, list.list.movies)
                         console.log([list.list.id, list.list.name]);
                         const li = JSON.stringify({li: [list.list.id, list.list.name]})
                         return (

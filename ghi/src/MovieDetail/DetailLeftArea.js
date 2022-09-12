@@ -1,7 +1,9 @@
 import * as React from "react";
 import { useAuthContext } from '../auth/auth_provider';
+import { useState, useEffect } from "react";
 
 function DetailLeftArea(props) {
+    const [Status, setStatus] = useState([]);
     const { token } = useAuthContext();
     const { userName } = useAuthContext();
 
@@ -23,7 +25,11 @@ function DetailLeftArea(props) {
             console.log(response);
             // setTitle(response.lists[0].name)
         }
+
+        
     }
+
+
     return (
         <div className="detail_image_area">
             <img className="detail_image_area_image" src={props.movie?.poster_path} alt="movie_image" />

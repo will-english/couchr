@@ -10,7 +10,14 @@ from .models import MovieVO, List, LikedList, WatchedList, WishList
 
 
 # list views not including liked/watched/wish ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+def movie_encoder(movie):
+    dict = {}
+    dict["id"] = movie.id
+    dict["title"] = movie.title
+    dict["api_url"] = movie.api_url
+    dict["api_id"] = movie.api_id
+    dict['poster'] = movie.poster
+    return dict
 # list encoder
 def list_encoder(list):
     dict = {}
@@ -21,7 +28,7 @@ def list_encoder(list):
     dict["user"] = list.user.username
     dict["movies"] = []
     for movie in list.movies.all():
-        dict["movies"].append(movie.id)
+        dict["movies"].append(movie_encoder(movie))
     return dict
 
 # get all movie lists from a user
@@ -67,7 +74,7 @@ def api_lists(request, username):
 # get a specific list from a user
 
 
-# @auth.jwt_login_required
+@auth.jwt_login_required
 @require_http_methods(["DELETE", "GET", "PUT"])
 def api_list(request, pk, username):
     user = User.objects.get(username=username)
