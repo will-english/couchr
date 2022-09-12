@@ -1,3 +1,9 @@
+## 9/9
+Worked on making the list cards clickable and to take the user to a different component
+that lists the movies in this list.
+## 9/8
+Sheldon and I worked on getting the list cards to display the first 4 images of the list, 
+this took nearly all of the time to figure out.
 ## 9/7
 Worked on the rendering of the users default lists with Sheldon on the user page. Wrote
 the view function that filters and returns all of the public lists. Looking to tomorrow
