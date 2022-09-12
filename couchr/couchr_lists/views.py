@@ -10,7 +10,14 @@ from .models import MovieVO, List, LikedList, WatchedList, WishList
 
 
 # list views not including liked/watched/wish ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+def movie_encoder(movie):
+    dict = {}
+    dict["id"] = movie.id
+    dict["title"] = movie.title
+    dict["api_url"] = movie.api_url
+    dict["api_id"] = movie.api_id
+    dict['poster'] = movie.poster
+    return dict
 # list encoder
 def list_encoder(list):
     dict = {}
@@ -21,13 +28,13 @@ def list_encoder(list):
     dict["user"] = list.user.username
     dict["movies"] = []
     for movie in list.movies.all():
-        dict["movies"].append(movie.id)
+        dict["movies"].append(movie_encoder(movie))
     return dict
 
 # get all movie lists from a user
 
 
-@auth.jwt_login_required
+# @auth.jwt_login_required
 @require_http_methods(["GET", "POST"])
 def api_lists(request, username):
     user = User.objects.get(username=username)
@@ -65,8 +72,6 @@ def api_lists(request, username):
             return response
 
 # get a specific list from a user
-
-
 @auth.jwt_login_required
 @require_http_methods(["DELETE", "GET", "PUT"])
 def api_list(request, pk, username):
@@ -130,8 +135,6 @@ def api_list(request, pk, username):
             return response
 
 # get a specific list from a user to add/remove movies
-
-
 @auth.jwt_login_required
 @require_http_methods(["PUT"])
 def api_list_movies(request, pk, username):
@@ -189,6 +192,20 @@ def api_list_movies(request, pk, username):
 
         return response
 
+# get all public lists
+@require_http_methods(["GET"])
+def get_public_lists(request):
+    lists = List.objects.filter(public=True)
+
+    response = []
+    for list in lists:
+        list_dict = list_encoder(list)
+        response.append(list_dict)
+
+    return JsonResponse(
+        {"lists": response}
+    )
+
 
 # liked/watched/wish list views ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -198,6 +215,7 @@ def list_encoder_for_default_lists(list):
     dict["id"] = list.id
     dict["name"] = list.name
     dict["description"] = list.description
+    dict["user"] = list.user.username
     dict["movies"] = []
     for movie in list.movies.all():
         movie_dict = {}
@@ -351,8 +369,6 @@ def api_list_watched(request, username):
             return response
 
 # get wish list from a user
-
-
 @auth.jwt_login_required
 @require_http_methods(["GET", "PUT"])
 def api_list_wish(request, username):
@@ -436,8 +452,6 @@ def movie_encoder(movie):
     return dict
 
 # get all movie VOs in DB
-
-
 @require_http_methods(["GET", "POST"])
 def api_movies(request):
     print("request: ", request)
@@ -473,8 +487,6 @@ def api_movies(request):
             return response
 
 # get a specific movie VO in DB
-
-
 @require_http_methods(["DELETE", "GET"])
 def api_movie(request, pk):
     if request.method == "GET":
@@ -535,7 +547,7 @@ def list_encoder_for_movieVOs(list):
         dict['movies'].append(movie_dict)
     return dict
 
-@auth.jwt_login_required
+# @auth.jwt_login_required
 @require_http_methods(["GET"])
 def api_list_movieVO(request, pk, username, name):
     user = User.objects.get(username=username)

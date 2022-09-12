@@ -1,3 +1,15 @@
+### 9/12
+- Zach helped me work through unit tests for the backend, we also consulted with Alissha and Dalonte
+- After importing the correct libraries and using the correct built-in functions, we were able to successfully pass user auth-credentials through a new user, and then test whether or not that user can create a list using our backend View functions
+- This took a long time, and I don't think I would have been able to write this unit test without the help of the SEIRs/instructor, however I learned a lot from this process and I'm happy I didn't choose to test our features that didn't require auth-credentials
+### 9/9
+- Zach helped me work through unit tests for the backend, however most of our features require a user login, and we were having issues creating a user and passing through their auth-credentials
+### 9/8
+- The add movie to list button on the frontend stopped working ever since we added the user auth feature, and I forgot to update it, so I added the credentials to allow this functionality to work again
+- I did pair programming with Will and Sheldon for our component that lists a User's movie lists
+- Will primarily coded, and I provided support
+- We had some issues with React re-rendering our state multiple times and changing the data, which we didn't fully understand
+- Zach helped us correct our props and state
 ### 9/7
 - Will and I did pair programming to test whether or not our lists can be made public/private
 - Will primarily coded, and I provided support
