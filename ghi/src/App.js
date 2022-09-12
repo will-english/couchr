@@ -30,7 +30,6 @@ function App() {
           <Route path='login/' element={<Login />} />
           <Route path='signup/' element={<Signup />} />
           <Route path='mylists/' element={<MyMovieLists />} />
-          <Route path='user_detail/' element={<UserDetail /> }/>
           <Route path='user_page/' element={<UserPage /> }/>
           <Route path='public_lists/' element={<PublicLists /> }/>
         </Routes>

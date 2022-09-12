@@ -4,10 +4,12 @@ import UserPageProfile from "./UserPageProfile";
 import UserPageSubscription from "./UserPageSubscription";
 import UserPageReview from "./UserPageReview";
 import UserPageContact from "./UserPageContact";
+import { useAuthContext } from '../auth/auth_provider';
 
 
 
 function UserPage() {
+    const { userName } = useAuthContext();
     const [UserPageContent, setUserPageContent] = useState([]);
 
     const list = [
@@ -69,7 +71,7 @@ function UserPage() {
                     <div className="">
                         <img className="user_avatar" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXPI745tFSS8cjMg-joaypGsVzQPpRTGWetg&usqp=CAU" alt="UserImage" />
                     </div>
-                    <h3 className="">User name</h3>
+                    <h3 className="">{userName}</h3>
                     <p>most like geners</p>
                     <p>Hello</p>
                 </div>

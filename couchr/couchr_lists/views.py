@@ -216,6 +216,8 @@ def list_encoder_for_default_lists(list):
     return dict
 
 # get liked list from a user
+
+
 @auth.jwt_login_required
 @require_http_methods(["GET", "PUT"])
 def api_list_liked(request, username):
@@ -224,7 +226,6 @@ def api_list_liked(request, username):
     if request.method == "GET":
         list = LikedList.objects.get(user=user)
         list_dict = list_encoder_for_default_lists(list)
-        
 
         return JsonResponse(
             {"list": list_dict}
@@ -287,6 +288,8 @@ def api_list_liked(request, username):
             return response
 
 # get watched list from a user
+
+
 @auth.jwt_login_required
 @require_http_methods(["GET", "PUT"])
 def api_list_watched(request, username):
@@ -295,7 +298,6 @@ def api_list_watched(request, username):
     if request.method == "GET":
         list = WatchedList.objects.get(user=user)
         list_dict = list_encoder_for_default_lists(list)
-        
 
         return JsonResponse(
             {"list": list_dict}
@@ -315,6 +317,7 @@ def api_list_watched(request, username):
                 movie, created = MovieVO.objects.get_or_create(
                     api_id=content["api_id"])
                 movie.title = content["title"]
+                movie.poster = content['poster']
                 movie.save()
 
                 # if MovieVO isn't already in the list, then add it
@@ -365,7 +368,6 @@ def api_list_wish(request, username):
     if request.method == "GET":
         list = WishList.objects.get(user=user)
         list_dict = list_encoder_for_default_lists(list)
-        
 
         return JsonResponse(
             {"list": list_dict}
@@ -506,3 +508,67 @@ def api_movie(request, pk):
 
         except MovieVO.DoesNotExist:
             return JsonResponse({"message": "Does not exist"})
+
+
+def get_public_lists(request):
+    lists = List.objects.filter(public=True)
+
+    response = []
+    for list in lists:
+        list_dict = list_encoder(list)
+        response.append(list_dict)
+
+    return JsonResponse(
+        {"lists": response}
+    )
+
+# list encoder for liked/watched/wish
+def list_encoder_for_movieVOs(list):
+    dict = {}
+    dict["id"] = list.id
+    dict["name"] = list.name
+    dict["description"] = list.description
+    dict["movies"] = []
+    for movie in list.movies.all():
+        movie_dict = {}
+        movie_dict["vo_id"] = movie.id
+        movie_dict["title"] = movie.title
+        movie_dict['poster_path'] = movie.poster
+        movie_dict["id"] = movie.api_id
+        dict['movies'].append(movie_dict)
+    return dict
+
+@auth.jwt_login_required
+@require_http_methods(["GET"])
+def api_list_movieVO(request, pk, username, name):
+    user = User.objects.get(username=username)
+    print(user.username)
+    if name == 'liked':
+        list = LikedList.objects.get(user=user)
+        list_dict = list_encoder_for_movieVOs(list)
+        print(list_dict)
+        movies = list_dict['movies']
+        return JsonResponse(
+            {"movies": movies}
+        )
+    elif name == 'watched':
+        list = WatchedList.objects.get(user=user)
+        list_dict = list_encoder_for_movieVOs(list)
+        movies = list_dict['movies']
+        return JsonResponse(
+            {"movies": movies}
+        )
+    elif name == 'want-to-watch':
+        list = WishList.objects.get(user=user)
+        list_dict = list_encoder_for_movieVOs(list)
+        movies = list_dict['movies']
+        return JsonResponse(
+            {"movies": movies}
+        )
+    else:
+        list = List.objects.get(user=user, pk=pk)
+        list_dict = list_encoder_for_movieVOs(list)
+        movies = list_dict['movies']
+        return JsonResponse(
+            {"movies": movies}
+        )
