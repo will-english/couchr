@@ -44,9 +44,9 @@ function NewReviewForm(props) {
 
     return (
         <>
-            <button type="button" className="btn dropdown_list_button" data-bs-toggle="modal" data-bs-target="#reviewForm">
+            {/* <button type="button" className="btn dropdown_list_button" data-bs-toggle="modal" data-bs-target="#reviewForm">
                 + New review
-            </button>
+            </button> */}
             <div className="modal fade create_list_form" id="reviewForm" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">

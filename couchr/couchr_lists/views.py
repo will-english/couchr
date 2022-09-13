@@ -72,8 +72,6 @@ def api_lists(request, username):
             return response
 
 # get a specific list from a user
-
-
 @auth.jwt_login_required
 @require_http_methods(["DELETE", "GET", "PUT"])
 def api_list(request, pk, username):
@@ -137,8 +135,6 @@ def api_list(request, pk, username):
             return response
 
 # get a specific list from a user to add/remove movies
-
-
 @auth.jwt_login_required
 @require_http_methods(["PUT"])
 def api_list_movies(request, pk, username):
@@ -196,6 +192,20 @@ def api_list_movies(request, pk, username):
 
         return response
 
+# get all public lists
+@require_http_methods(["GET"])
+def get_public_lists(request):
+    lists = List.objects.filter(public=True)
+
+    response = []
+    for list in lists:
+        list_dict = list_encoder(list)
+        response.append(list_dict)
+
+    return JsonResponse(
+        {"lists": response}
+    )
+
 
 # liked/watched/wish list views ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -205,6 +215,7 @@ def list_encoder_for_default_lists(list):
     dict["id"] = list.id
     dict["name"] = list.name
     dict["description"] = list.description
+    dict["user"] = list.user.username
     dict["movies"] = []
     for movie in list.movies.all():
         movie_dict = {}
@@ -358,8 +369,6 @@ def api_list_watched(request, username):
             return response
 
 # get wish list from a user
-
-
 @auth.jwt_login_required
 @require_http_methods(["GET", "PUT"])
 def api_list_wish(request, username):
@@ -443,8 +452,6 @@ def movie_encoder(movie):
     return dict
 
 # get all movie VOs in DB
-
-
 @require_http_methods(["GET", "POST"])
 def api_movies(request):
     print("request: ", request)
@@ -480,8 +487,6 @@ def api_movies(request):
             return response
 
 # get a specific movie VO in DB
-
-
 @require_http_methods(["DELETE", "GET"])
 def api_movie(request, pk):
     if request.method == "GET":
