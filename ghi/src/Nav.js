@@ -73,11 +73,9 @@ function Nav() {
                 <li><NavLink className="dropdown-item" to="/services/new">New list</NavLink></li>
               </ul>
             </li>
-            <ul>
-              <Search  />
-
-              {/* <input type="search" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" /> */}
-            </ul>
+            <li>
+              <Search />
+            </li>
           </ul>
           {isSignedIn()}
         </div>

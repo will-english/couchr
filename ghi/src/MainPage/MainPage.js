@@ -71,8 +71,8 @@ function MainPage() {
       </div>
       <div>
       </div>
-      <div className="container">
-        <div className="couchr-carousel">
+      <div className="container" id="test">
+        <div className="couchr-carousel" id="couchr-carousel">
         <h1 className="main-page-header text-center">Couchr's Picks</h1>
           <ControlledCarousel2 />
         </div>
