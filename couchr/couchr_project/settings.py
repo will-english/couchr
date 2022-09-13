@@ -148,3 +148,8 @@ DJWTO_ACCESS_TOKEN_LIFETIME = timedelta(days=1)
 
 # Your DEBUG value MUST be False in production
 DJWTO_SAME_SITE = "LAX" if DEBUG else "NONE"
+
+# added for backend unit tests
+AUTHENTICATION_BACKENDS = (
+    ('django.contrib.auth.backends.ModelBackend'),
+)
