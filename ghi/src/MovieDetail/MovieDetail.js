@@ -5,9 +5,9 @@ import DetailLeftArea from "./DetailLeftArea";
 import DetailMiddleArea from "./DetailMiddleArea";
 import DetailRightArea from "./DetailRightArea";
 
+
 class MovieDetail extends React.Component {
     static contextType = AuthContext;
-
     constructor(props) {
         super(props)
         this.state = {
@@ -41,6 +41,7 @@ class MovieDetail extends React.Component {
 
         const response_detail = await fetch(movie_detail_url);
         const response_credit = await fetch(movie_credit_rul);
+  
 
         try {
             const movie_lists_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${this.context.userName}/`;
@@ -113,8 +114,6 @@ class MovieDetail extends React.Component {
 
             this.setState({ movie: movie })
         };
-
-
     }
 
     handleStateChange(event) {
