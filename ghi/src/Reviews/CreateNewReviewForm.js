@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { useAuthContext } from '../auth/auth_provider';
 
 function NewReviewForm(props) {
+    console.log("props: ", props)
+
     // get token and userName from Auth Context
     const { token, userName } = useAuthContext();
     const [state, setState] = useState({
@@ -18,7 +20,7 @@ function NewReviewForm(props) {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/reviews/${userName}/`;
+        const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/reviews/user/${userName}/`;
         const response = await fetch(
             url, {
             method: 'POST',
