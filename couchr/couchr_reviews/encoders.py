@@ -15,5 +15,6 @@ class ReviewEncoder(ModelEncoder):
             "movie_id": o.movie.id,
             "movie_api_id": o.movie.api_id,
             "movie_title": o.movie.title,
+            "movie_poster": o.movie.poster,
             "user": o.user.username,
         }
