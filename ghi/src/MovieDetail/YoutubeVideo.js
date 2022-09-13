@@ -1,11 +1,16 @@
 import {useEffect, useState} from "react"
 import Youtube from 'react-youtube'
+// import Movie from "./Movies"
+import axios from 'axios'
+import DetailMiddleArea from "./DetailMiddleArea"
 
-function YoutubeVideo() {
+function YoutubeVideo(props) {
     const MOVIE_API = "https://api.themoviedb.org/3/"
     const SEARCH_API = MOVIE_API + "search/movie"
     const DISCOVER_API = MOVIE_API + "discover/movie"
     const API_KEY = process.env.REACT_APP_MOVIE_API_KEY
+    const BACKDROP_PATH = "https://image.tmdb.org/t/p/w1280"
+    const MOVIE_STATE = "{props.movie?.title}"
 
     const [playing, setPlaying] = useState(false)
     const [trailer, setTrailer] = useState(null)
@@ -22,7 +27,7 @@ function YoutubeVideo() {
             event.preventDefault()
         }
 
-        const {data} = await fetch(`${searchKey ? SEARCH_API : DISCOVER_API}`, {
+        const {data} = await axios(`${searchKey ? SEARCH_API : DISCOVER_API}`, {
             params: {
                 api_key: API_KEY,
                 query: searchKey
@@ -39,7 +44,7 @@ function YoutubeVideo() {
     }
     
     const fetchMovie = async (id) => {
-        const {data} = await fetch(`${MOVIE_API}movie/${id}`, {
+        const {data} = await axios(`${MOVIE_API}movie/${id}`, {
             params: {
                 api_key: API_KEY,
                 append_to_response: "videos"
@@ -62,19 +67,28 @@ function YoutubeVideo() {
         window.scrollTo(0, 0)
     }
 
+    // const renderMovies = () => (
+    //     movies.map(movie => (
+    //         <Movie
+    //             selectMovie={selectMovie}
+    //             key={movie.id}
+    //             movie={movie}
+    //         />
+    //     ))
+    // )
+
 
     return (
         <div className="Youtube">
             <header className="center-max-size header">
-                <span className={"brand"}>Movie Trailer App</span>
                 <form className="form" onSubmit={fetchMovies}>
                     <input className="search" type="text" id="search"
-                           onInput={(event) => setSearchKey(event.target.value)}/>
+                           onInput={(event) => setSearchKey(event.target.value)} placeholder="Search Movie Trailer"/>
                     <button className="submit-search" type="submit"><i className="fa fa-search"></i></button>
                 </form>
             </header>
             {movies.length ?
-                <main>
+                <main className="trailer">
                     {movie ?
                         <div className="poster"
                              style={{backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url(${BACKDROP_PATH}${movie.backdrop_path})`}}>
@@ -86,8 +100,8 @@ function YoutubeVideo() {
                                         containerClassName={"youtube-container amru"}
                                         opts={
                                             {
-                                                width: '100%',
-                                                height: '100%',
+                                                width: '900px',
+                                                height: '800px',
                                                 playerVars: {
                                                     autoplay: 1,
                                                     controls: 0,
@@ -119,9 +133,9 @@ function YoutubeVideo() {
                         </div>
                         : null}
 
-                    <div className={"center-max-size container"}>
+                    {/* <div className={"center-max-size container"}>
                         {renderMovies()}
-                    </div>
+                    </div> */}
                 </main>
                 : 'Sorry, no movies found'}
         </div>
