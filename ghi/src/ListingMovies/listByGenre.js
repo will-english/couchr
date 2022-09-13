@@ -36,7 +36,13 @@ class MovieList extends React.Component {
         const genreResponse = await fetch(genreUrl);
         if( genreResponse.ok){
             const genreData = await genreResponse.json();
-            this.setState({ genres: genreData["genres"]})
+            const genres = genreData["genres"]
+            for (let i = 0; i < genres.length; i++){
+                if (genres[i]["name"] === "Romance" || genres[i]["name"]==="Documentary"){
+                    genres.splice(i,1)
+                }
+            }
+            this.setState({ genres: genres})
             for ( let genre of genreData["genres"]){
                 if (genre["id"] == this.state.genre_id){
                     this.setState({genreTitle: genre["name"]})
@@ -149,7 +155,7 @@ class MovieList extends React.Component {
                     <div className="row">
                         {this.state.MovieColumn.map((movie, index) => {
                             return (
-                                <MovieColumn key={index} list={movie} />
+                                <MovieColumn key={index} list={movie} default={true}/>
                                 );
                             })}
                         <div className='list-btn-div'>
