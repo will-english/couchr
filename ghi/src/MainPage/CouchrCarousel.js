@@ -1,7 +1,6 @@
 import React from "react";
 import Carousel from "react-bootstrap/Carousel"
 import { Component } from "react"
-import CarouselItem from "react-bootstrap/esm/CarouselItem";
 import shuffleArray from "./shuffle";
 
 
