@@ -1,8 +1,5 @@
 from django.test import TestCase
-from django.contrib.auth.models import User
-from django.test import Client
-import json
-from couchr_lists.models import List, MovieVO
+from couchr_lists.models import List
 import requests
 
 # Test written by Edward Nguyen
@@ -59,18 +56,19 @@ class CreateListTestCase(TestCase):
         # Setup run before every test method.
         self.username = 'test_username'
         self.token = signup(self)
+        print("self.token: ", self.token)
 
     def test_something_that_will_pass(self):
         pass
 
     def test_something_that_will_fail(self):
         url = f'http://localhost:8000/api/lists/user/{self.username}/'
-
+        print("url: ", url)
         json = {
             "name": "list_name_test",
             "description": "list_description_test",
         }
-
+        print("json: ", json)
         sess = requests.Session()
         sess.verify = False
         sess.headers.update(
@@ -78,14 +76,17 @@ class CreateListTestCase(TestCase):
                 'Authorization': f'Bearer {self.token}',
             }
         )
-
+        print("sess: ", sess)
         response = sess.post(
             url,
             json=json,
         )
 
         response.json()
-
+        print("response: ", response)
+        lists = List.objects.all()
+        print("lists: ", lists)
         if response:
             list = List.objects.get(name='list_name_test')
+            print("list: ", list)
             self.assertEqual(list.length, 0)
