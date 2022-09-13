@@ -155,7 +155,7 @@ function UserPageLists() {
                         console.log([list.list.id, list.list.name]);
                         const li = JSON.stringify({li: [list.list.id, list.list.name]})
                         return (
-                            <div onClick={handleListSelect} id={li} className="movie_user_list_card">
+                            <div key={list.list.name} onClick={handleListSelect} id={li} className="movie_user_list_card">
                                 <ListCard  title={list.list.name} movies={list.list.movies} />
                             </div>
                         )
