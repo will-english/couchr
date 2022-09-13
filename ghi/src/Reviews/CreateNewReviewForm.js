@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useAuthContext } from '../auth/auth_provider';
 
 function NewReviewForm(props) {
+    // props coming from DetailMiddleArea.js
     console.log("props: ", props)
 
     // get token and userName from Auth Context
@@ -11,13 +12,16 @@ function NewReviewForm(props) {
         title: '',
         description: '',
         movie_title: '',
-        api_id: '',
+        movie_api_id: '',
+        movie_poster: '',
     })
 
+    // automatically changes state when typing in modal form
     function handleState(e) {
         setState({...state, [e.target.name]:e.target.value})
     }
 
+    // call POST method for reviews
     async function handleSubmit(e) {
         e.preventDefault()
         const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/reviews/user/${userName}/`;
@@ -31,14 +35,18 @@ function NewReviewForm(props) {
                 Authorization: `Bearer ${token}`,
             }
         })
+        console.log("response: ", response)
         
         if (response.ok) {
             console.log("response ok")
+            const new_review = await response.json();
+            setState(new_review)
             const cleared = {
                 name: '',
                 description: '',
                 movie_title: '',
-                api_id: '',
+                movie_api_id: '',
+                movie_poster: '',
             };
             setState(cleared);
         }
