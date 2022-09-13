@@ -125,6 +125,7 @@ class MovieDetail extends React.Component {
 
     //How to add the current move to one of the lists
     async handleAddMovie(event) {
+        console.log("@@@@@@@@@@@@@@@@");
         event.preventDefault();
 
         // get the URL to send the JSON to

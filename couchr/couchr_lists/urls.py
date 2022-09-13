@@ -22,20 +22,17 @@ urlpatterns = [
     # get a specific movie VO in DB
     path("movies/<int:pk>/", api_movie, name="api_movie"),
 
-    # get moviesVOs from a user's list
-    path("user/<str:username>/<int:pk>/<str:name>/", api_list_movieVO, name="get_movieVOs"),
-
-
-    # list views not including liked/watched/wish ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    # # list views not including liked/watched/wish ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     # get all lists from a user
     path("user/<str:username>/", api_lists, name="api_lists"),
 
+    # get a specific list from a user to add/remove movies
+    path("user/<str:username>/<int:pk>/movies/", api_list_movies, name="api_list_movies"),
+
     # get a specific list from a user
     path("user/<str:username>/<int:pk>/", api_list, name="api_list"),
 
-    # get a specific list from a user to add/remove movies
-    path("user/<str:username>/<int:pk>/movies/", api_list_movies, name="api_list_movies"),
 
     # get all public lists
     path("public/", get_public_lists, name="get_public_lists"),
@@ -51,4 +48,7 @@ urlpatterns = [
 
     # get wish list from a user
     path("user/<str:username>/wish/", api_list_wish, name="api_lists_wish"),
+
+    # get moviesVOs from a user's list
+    path("user/<str:username>/<int:pk>/<str:name>/", api_list_movieVO, name="get_movieVOs"),
 ]
