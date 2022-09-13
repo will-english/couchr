@@ -28,7 +28,7 @@ class MovieDetail extends React.Component {
 
 
     async componentDidMount() {
-
+        console.log('@@@@@@@@@@@@@@@@@@@@@@@@@',this.context.userName)
         const currentURL = window.location.href
         const words = currentURL.split("/")
         const movie_id = words[5]
@@ -51,6 +51,8 @@ class MovieDetail extends React.Component {
                     Authorization: `Bearer ${this.context.token}`
                 },
             });
+            console.log('@@@@@@@@@@@@@@@@@@@@@@@@@',this.context.userName)
+            console.log('&&&&&&&&&&&&&&&&',request)
             if (request.ok) {
                 const response_lists = await request.json();
                 this.setState({ movie_lists: response_lists.lists });
@@ -125,7 +127,6 @@ class MovieDetail extends React.Component {
 
     //How to add the current move to one of the lists
     async handleAddMovie(event) {
-        console.log("@@@@@@@@@@@@@@@@");
         event.preventDefault();
 
         // get the URL to send the JSON to

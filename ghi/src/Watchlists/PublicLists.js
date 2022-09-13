@@ -1,52 +1,106 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import PublicListColumn from './PublicListColumn';
+import { useAuthContext } from '../auth/auth_provider';
+import MovieVOList from "../ListingMovies/MovieVOList";
+import ListCard from "../UserPageTest/ListCard";
 
 
-export default function PublicLists() {
-    const [publicLists, setPublicLists] = useState([])
+function PublicLists() {
+    const { token } = useAuthContext();
+    const { userName } = useAuthContext();
+    const [lists, setLists] = useState([]);
+    const [selected, setSelected] = useState(false);
+    const [list, setList] = useState([])
 
     // fetch all public lists
     const getPublicLists = async () => {
-        const url = `http://localhost:8000/api/lists/public/`
-        const fetchConfig = {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        };
-        const response = await fetch(url, fetchConfig);
-
-        if (response.ok) {
-            const data = await response.json();
-            setPublicLists(data.lists)
+        let lists = [];
+        let defaultArr = [{}, {}, {}, {}];
+        if (userName && token) {
+            // console.log(token);
+            // * grabing the custom list information from our API
+            const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${userName}/`;
+            const request = await fetch(url, {
+                credentials: "include",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+            });
+            console.log("&&&&&&&&&&& request")
+            if (request.ok) {
+                const response = await request.json();
+                console.log('*******************', response);
+                for (const list of response.lists) {
+                    let movies = list.movies
+                    const difference = 4 - movies.length
+                    if (difference > 0) {
+                        list.movies = movies.concat(defaultArr.slice(0, difference))
+                    } else {
+                        list.movies = movies.slice(0, 4)
+                    }
+                    lists.push({ list: list });
+                }
+                setLists(lists);
+                console.log(lists);
+            }
         }
-    };
-
+    }
     useEffect(() => {
+        // getUserPageListsContent();
         getPublicLists();
-    },[]);
+    }, [token]);
 
-    const ListColumn = [[], [], [], []]
-    let i = 0;
-    for (let publicList of publicLists) {
-        ListColumn[i].push(publicList)
-        i += 1
-        if (i > 3) {
-            i = 0;
-        };
-    };
+    function handleBack() {
+        setSelected(false);
+    }
 
+    function handleListSelect(e) {
+        setSelected(true)
+        const json_list = e.currentTarget.id
+        const new_list = JSON.parse(json_list);
+        setList(new_list.li)
+        // console.log(e.currentTarget.value);
+        // console.log(e.currentTarget.id);
+        console.log(new_list.li);
+    }
+
+    function renderLists() {
+        if (selected) {
+            return (
+                <div>
+                    <button onClick={handleBack} >Back to lists</button>
+                    <MovieVOList id={list[0]} name={list[1]} />
+                </div>
+            )
+
+        } else {
+            return (
+                <div>
+                    {lists.map(list => {
+                        console.log(list.list.name, list.list.movies)
+                        console.log([list.list.id, list.list.name]);
+                        const li = JSON.stringify({ li: [list.list.id, list.list.name] })
+                        return (
+                            <div key={list.list.name} onClick={handleListSelect} id={li} className="movie_user_list_card">
+                                <ListCard title={list.list.name} movies={list.list.movies} />
+                            </div>
+                        )
+                    })}
+                    
+                </div>
+            )
+        }
+
+    }
 
     return (
-        <>
-            <div className="row">
-                {ListColumn.map((list, index) => {
-                    return (
-                        <PublicListColumn key={index} list={list}/>
-                    )
-                })}
-            </div>
-        </>
+        // <div>
+        <div className="userpage_left_content_area">
+            {renderLists()}
+        </div>
+
     )
+
 }
+export default PublicLists;
