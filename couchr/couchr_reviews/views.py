@@ -12,7 +12,7 @@ from couchr_lists.models import MovieVO
 
 
 # get all reviews from a user
-@auth.jwt_login_required
+# @auth.jwt_login_required
 @require_http_methods(["GET", "POST"])
 def api_reviews(request, username):
     user = User.objects.get(username=username)
@@ -60,7 +60,7 @@ def api_reviews(request, username):
 
 
 # get a specific reviews from a user
-@auth.jwt_login_required
+# @auth.jwt_login_required
 @require_http_methods(["DELETE", "GET", "PUT"])
 def api_review(request, pk, username):
     user = User.objects.get(username=username)
@@ -122,3 +122,16 @@ def api_review(request, pk, username):
             response.status_code = 404
 
             return response
+
+
+# get all reviews
+@require_http_methods(["GET"])
+def api_reviews_all(request, api_id):
+    if request.method == "GET":
+        movie_api_id = MovieVO.objects.get(api_id=api_id)
+        reviews = Review.objects.filter(movie=movie_api_id)
+
+        return JsonResponse(
+            {"reviews": reviews},
+            encoder=ReviewEncoder,
+        )
