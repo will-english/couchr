@@ -10,7 +10,7 @@ function MovieColumn(props) {
         const movie = data;
         let trash = '';
         if (props.delete) {
-          trash = '"bi bi-trash3"';
+          trash = "bi bi-trash3";
         } else {
           trash = 'd-none';
         }
