@@ -4,6 +4,7 @@ import { AuthContext } from '../auth/auth_provider';
 import DetailLeftArea from "./DetailLeftArea";
 import DetailMiddleArea from "./DetailMiddleArea";
 import DetailRightArea from "./DetailRightArea";
+import YoutubeVideo from "./YoutubeVideo";
 
 class MovieDetail extends React.Component {
     static contextType = AuthContext;
@@ -202,6 +203,8 @@ class MovieDetail extends React.Component {
                     <DetailMiddleArea movie={this.state.movie_detail} movie_lists={this.state.movie_lists} add_list={this.addList} handleAddMovie={this.handleAddMovie} />
                     <DetailRightArea actors={this.state.actors} genres={this.state.genres} />
                 </div>
+
+                <YoutubeVideo />
 
                 {/* Footer area */}
                 <footer className="detail_footer">
