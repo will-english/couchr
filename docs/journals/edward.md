@@ -1,3 +1,7 @@
+### 9/13
+- I got the create review form modal to be fully functional today
+- I learned that it's not "correct" to change a component's state based on the props passed into the modal, so instead I just passed the props into the API call, and I didn't define a state for those attributes
+- We also ran into some GIT issues that we're still trying to solve, for some reason some functions/features have stopped working after we merge with main
 ### 9/12
 - Zach helped me work through unit tests for the backend, we also consulted with Alissha and Dalonte
 - After importing the correct libraries and using the correct built-in functions, we were able to successfully pass user auth-credentials through a new user, and then test whether or not that user can create a list using our backend View functions

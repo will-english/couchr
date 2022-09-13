@@ -33,6 +33,7 @@ def api_reviews(request, username):
             # get MovieVO or create one (using attribute api_id) if it doesn't already exist in the DB
             movie, created = MovieVO.objects.get_or_create(api_id=content["api_id"])
             movie.title = content["movie_title"]
+            movie.poster = content['poster']
             movie.save()
 
             review = Review.objects.create(
