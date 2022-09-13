@@ -5,8 +5,10 @@ import MovieColumn from './MovieColumns';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import DetailLeftArea from '../MovieDetail/DetailLeftArea';
+import { AuthContext } from '../auth/auth_provider';
 
 class MovieList extends React.Component {
+    static contextType = AuthContext;
     constructor(props) {
         super(props)
         this.state = {
@@ -19,6 +21,7 @@ class MovieList extends React.Component {
             prevGenre: "",
             genres: [],
             genreTitle: "",
+            movie_lists: []
         }
         this.handleClick = this.handleClick.bind(this);
         this.handleClickBack = this.handleClickBack.bind(this)
@@ -26,7 +29,7 @@ class MovieList extends React.Component {
 
     async componentDidMount() {
 
-
+        
         const currentURL = window.location.href;
         const urlWords = currentURL.split("/")
         const getgenre_id = urlWords[4]
@@ -51,7 +54,23 @@ class MovieList extends React.Component {
         } else {
             console.log("Error fetching genres")
         }
-
+        try {
+            const movie_lists_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${this.context.userName}/`;
+            const request = await fetch(movie_lists_url, {
+                credentials: "include",
+                headers: {
+                    Authorization: `Bearer ${this.context.token}`
+                },
+            });
+            if (request.ok) {
+                const response_lists = await request.json();
+                this.setState({ movie_lists: response_lists.lists });
+            }
+        }
+        catch (err) {
+            console.log("error")
+        }
+        
         const listByGenreUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${this.state.currentPage}&with_genres=${this.state.genre_id}&with_watch_monetization_types=flatrate`
         const response = await fetch(listByGenreUrl);
         if (response.ok) {
@@ -151,11 +170,11 @@ class MovieList extends React.Component {
                     </DropdownButton>
                 </div>
                 <div className='container' >
-                    <h1>{this.state.genreTitle}</h1>
+                    <h1 className='genre-title'>{this.state.genreTitle}</h1>
                     <div className="row">
                         {this.state.MovieColumn.map((movie, index) => {
                             return (
-                                <MovieColumn key={index} list={movie} default={true}/>
+                                <MovieColumn key={index} list={movie} default={true} movie_lists={this.state.movie_lists}/>
                                 );
                             })}
                         <div className='list-btn-div'>

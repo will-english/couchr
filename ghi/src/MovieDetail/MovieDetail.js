@@ -41,8 +41,7 @@ class MovieDetail extends React.Component {
 
         const response_detail = await fetch(movie_detail_url);
         const response_credit = await fetch(movie_credit_rul);
-        console.log('???????????', this.context.token)
-        console.log('@@@@@@@@@@@@@@@@@@@@@@@@@',this.context.userName)
+
 
         try {
             const movie_lists_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${this.context.userName}/`;
