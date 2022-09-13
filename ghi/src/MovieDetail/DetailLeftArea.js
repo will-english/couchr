@@ -22,6 +22,7 @@ function DetailLeftArea(props) {
                 },
             });
             const response = await request.json();
+            console.log(response)
             console.log(response);
             // setTitle(response.lists[0].name)
         }

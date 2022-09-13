@@ -1,5 +1,11 @@
+## 9/9/22
+Today Jamie and I worked on making the site pretty! We worked on the color scheme some more and added it to the buttons on the pages. We also worked on the side bar some more to have it match the nav bar. I also implemented a function that shuffles the list of our favorite movies so that each time you view our main page, you see them in a different order! We fixed the issues with our buttons hovering oddly as well as made all of the posters in the carousels links to their pertaining movie's detail page
+
+## 9/8/22
+Today we got the dropdown on the list by genre to work and removed the sidebar from the app.js, and instead only added the component to the pages we wanted it on. It was surprising to me how difficult it was to format even though it looked fine when it was in the App.js. I am a little concerned that our buttons still have their hover effect active even after clicking the button and moving the mouse away. We also realized that the list by genre endpoint we have been using only gives 20 movies at a time. Our way around this was by making a "fake" pagination that re-fetches when you click "next page" or "previous page" and pulls new movies.
+
 ## 9/7/22
-I feel that we made a lot of progress today. Jamie worked on fixing the search bar whiile I worked on fixing the sidebar issues. I thought I had fixed it completely before I realized it was re-rendering on a continuous loop. I was very disappointed. We decided that on the list by genre page, instead of the same sidebar that lists the genres, we would add a dropdown with the other genres to look at. I look forward to getting it to work tomorrow.
+I feel that we made a lot of progress today. Jamie worked on fixing the search bar while I worked on fixing the sidebar issues. I thought I had fixed it completely before I realized it was re-rendering on a continuous loop. I was very disappointed. We decided that on the list by genre page, instead of the same sidebar that lists the genres, we would add a dropdown with the other genres to look at. I look forward to getting it to work tomorrow.
 
 ## 9/6/22
 Today Jamie and I got the search bar to work! It was a lot of fun figuring out how to hit that api endpoint and put the query into it. We spent a lot of time trying to make sense of transferring props from one page to the other but ended up being fine with getting the id's from the URLs instead. We are still having the reload issue but Allisha spoke with us and we agreed changing our sidebar to have a onClick handler that will help reset the state when a genre is chosen.
