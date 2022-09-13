@@ -3,40 +3,65 @@ import { useState } from 'react';
 import { useAuthContext } from '../auth/auth_provider';
 
 function NewReviewForm(props) {
+    // props coming from DetailMiddleArea.js
+    console.log("props.movie: ", props.movie)
+    console.log("props.movie.title: ", props.movie.title)
+    console.log("props.movie.id: ", props.movie.id)
+    console.log("props.movie.poster_path: ", props.movie.poster_path)
+
     // get token and userName from Auth Context
     const { token, userName } = useAuthContext();
     const [state, setState] = useState({
+        // review detail
         title: '',
         description: '',
-        movie_title: '',
-        api_id: '',
     })
 
-    function handleState(e) {
-        setState({...state, [e.target.name]:e.target.value})
+    console.log("state: ", state)
+
+    // automatically changes state when typing in modal form
+    function handleChange(event) {
+        const value = event.target.value
+        setState({...state, [event.target.name]: value})
     }
 
+    // call POST method for reviews
     async function handleSubmit(e) {
         e.preventDefault()
-        const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/reviews/${userName}/`;
-        const response = await fetch(
-            url, {
+
+        const body = {
+            ...state,
+            movie_title: props.movie.title,
+            api_id: props.movie.id,
+            poster: props.movie.poster_path,
+        }
+        console.log("body: ", body)
+
+        const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/reviews/user/${userName}/`;
+        const fetchConfig = {
             method: 'POST',
-            body: JSON.stringify(state),
+            body: JSON.stringify(body),
             credentials: "include",
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`,
-            }
-        })
+            },
+        };
+
+        const response = await fetch(
+            url,
+            fetchConfig,
+        )
+        console.log("response: ", response)
+        const data = await response.json()
+        console.log("data: ", data)
         
         if (response.ok) {
             console.log("response ok")
+            setState(data)
             const cleared = {
                 name: '',
                 description: '',
-                movie_title: '',
-                api_id: '',
             };
             setState(cleared);
         }
@@ -58,11 +83,11 @@ function NewReviewForm(props) {
                             <form onSubmit={handleSubmit}>
                                 <div className="mb-3">
                                     <label htmlFor="title" className="col-form-label">Title</label>
-                                    <input onChange={handleState} value={state.title} type="text" className="form-control" name="title" placeholder="Title"/>
+                                    <input onChange={handleChange} value={state.title} type="text" className="form-control" name="title" placeholder="Title"/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="description">Description</label>
-                                    <textarea onChange={handleState} value={state.description} type="text" className="form-control" name="description" placeholder="Description" rows="10"></textarea>
+                                    <textarea onChange={handleChange} value={state.description} type="text" className="form-control" name="description" placeholder="Description" rows="10"></textarea>
                                 </div>
                                 <button type="button" className="btn btn-danger create_list_form_close_button" data-bs-dismiss="modal">Close</button>
                                 <button className="btn btn-primary create_list_form_create_button" data-bs-dismiss="modal">Create</button>
