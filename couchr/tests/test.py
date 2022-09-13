@@ -5,7 +5,7 @@ import json
 from couchr_lists.models import List, MovieVO
 import requests
 
-# Edward created this test
+# Test written by Edward Nguyen
 # open couchr terminal from docker
 # run python manage.py test
 
