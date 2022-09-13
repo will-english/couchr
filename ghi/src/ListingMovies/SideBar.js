@@ -14,7 +14,13 @@ const Sidebar = () => {
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
-            setGenres(data["genres"])
+            const genrelist = data["genres"]
+            for (var i = 0; i < genrelist.length; i++){
+                if (genrelist[i]["name"] === "Romance" || genrelist[i]["name"] == "Documentary"){
+                    genrelist.splice(i,1)
+                }
+            }
+            setGenres(genrelist)
         }
         else {
             console.log("Error fetching genres")

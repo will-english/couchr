@@ -13,7 +13,7 @@ export default function ListCard(props) {
                     if (movie.poster) {
                         default_pic = movie.poster
                     }
-                    return <img src={default_pic} className="user_list_card_image" alt="img" />
+                    return <img key={movie.id} src={default_pic} className="user_list_card_image" alt="img" />
                 })}
             </div>
 
