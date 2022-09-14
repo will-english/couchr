@@ -19,12 +19,11 @@ those indecisive people who watch movies together.
 
 MVP:
 
-- display a large libary of films
 - user creation and authentication
+- display a large libary of films
 - track a users liked, watched, and want-to-watch movies
 - movie search feature: by title
-- allow users to create new movie lists, which can be public or private, 
-or visible to friends
+- allow users to create new movie lists, which can be public or private
 - a movie details page, that provides in depth information on each title
     - average rating per title
 
@@ -45,3 +44,9 @@ Stretch Goals:
 * [Integrations](docs/integrations.md)
 
 **test change**
+
+## Instructions for building the application
+## Tests for each group member
+## Instructions for getting the api key
+
+## each persons best moments and challenges
