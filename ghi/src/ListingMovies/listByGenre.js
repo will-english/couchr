@@ -138,10 +138,10 @@ class MovieList extends React.Component {
         const response = await fetch(movie_list_url, fetchConfig)
         if (response.ok) {
             // console.log("response ok")
-            document.getElementById("confirmation-check").className = "bi bi-check2"
+            document.getElementById("confirmation-check").className = ""
             setTimeout(function () {
                 document.getElementById("confirmation-check").className = "d-none";
-            }, 5000);
+            }, 3000);
         }
         }
         // console.log(e)

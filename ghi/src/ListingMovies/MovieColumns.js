@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import MovieDetail from "../MovieDetail/MovieDetail";
 import DetailLeftArea from '../MovieDetail/DetailLeftArea';
 import Dropdown from 'react-bootstrap/Dropdown';
+import "../CSSfile/MovieColumns.css";
 
 
 function MovieColumn(props) {
@@ -41,15 +42,17 @@ function MovieColumn(props) {
                               <path fillRule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
                             </svg>
                           </Dropdown.Toggle>
-
                           <Dropdown.Menu>
                             {props.movie_lists?.map((list, index) => {
                               return (
                                 <Dropdown.Item className="detail_dropdown_list_li" id={movie.id} key={index}>
-                                  <p onClick={e => props.handleAddMovie(e, movie)} accessKey={list.id} id={movie.id}>{list.name}</p>
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" id="confirmation-check" class="d-none" viewBox="0 0 16 16">
+                                  <p onClick={e => props.handleAddMovie(e, movie)} accessKey={list.id} id={movie.id}>{list.name}
+                                  <i id="confirmation-check" className="d-none">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check2"  viewBox="0 0 16 16">
                                     <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
                                   </svg>
+                                  </i>
+                                  </p>
                                 </Dropdown.Item>
                               );
                             })}

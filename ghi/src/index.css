@@ -36,41 +36,7 @@ code {
   display: inline-block;
 }
 
-.genre-title{
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-.list-card-image {
-  width: 100%;
-  height: 375px;
-  overflow: hidden;
-}
 
-.movie-card {
-  background-color: #415A77;
-  text-align: center;
-  height: 500px;
-}
-
-.movie-card:hover {
-  background-color: #415A77;
-  text-align: center;
-  transform: scale(1.05);
-  transition: 0.5s ease;
-}
-
-.card-title {
-  padding-top: 20px;
-  padding-bottom: 0;
-  height: 60px;
-  font-size: 17px;
-}
-
-.card-body {
-  height: 60px;
-  text-align: center;
-  vertical-align: top;
-}
 
 .row {
   height: 350px;
@@ -108,55 +74,55 @@ code {
 }
 
 .carousel {
-align-self: center;
-margin: 30px;
-height: 1020px;
-/* padding: 20px */
+  align-self: center;
+  margin: 30px;
+  height: 1020px;
+  /* padding: 20px */
 }
 
 .couchr-carousel {
-align-self: center;
-margin: 30px;
-height: 1020px;
-padding-top: 80px;
+  align-self: center;
+  margin: 30px;
+  height: 1020px;
+  padding-top: 80px;
 }
 
 .carousel_caption {
-position: fixed;
-left: auto;
-right: auto;
-top: 0;
-color: white;
-text-align: center;
-vertical-align: middle;
+  position: fixed;
+  left: auto;
+  right: auto;
+  top: 0;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .carousel-slide {
-height: 1000px;
-text-align: center;
-vertical-align: middle;
-margin-top: 30px;
+  height: 1000px;
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 30px;
 }
 
 .slide-photo:hover {
-transform: scale(1.05);
-box-shadow: 0px 0px 10px lightgray;
-transition: 0.5s;
+  transform: scale(1.05);
+  box-shadow: 0px 0px 10px lightgray;
+  transition: 0.5s;
 }
 
 
 .slide-photo {
-align-self: center;
-vertical-align: middle;
-height: 770px;
-left: auto;
-right: auto;
-transition: 0.5s;
+  align-self: center;
+  vertical-align: middle;
+  height: 770px;
+  left: auto;
+  right: auto;
+  transition: 0.5s;
 }
 
 .main-page-header {
-align-self: center;
-color: white;
+  align-self: center;
+  color: white;
 }
 
 /* sidebar */
