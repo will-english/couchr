@@ -1,10 +1,9 @@
 import * as React from "react";
-import "../index.css";
 import { AuthContext } from '../auth/auth_provider';
 import DetailLeftArea from "./DetailLeftArea";
 import DetailMiddleArea from "./DetailMiddleArea";
 import DetailRightArea from "./DetailRightArea";
-import DetailBottomArea from "./DetailBottomArea";
+import "../CSSfile/DetailPage.css";
 
 
 class MovieDetail extends React.Component {

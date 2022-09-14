@@ -1,0 +1,195 @@
+.user_page {
+    margin-left: 16%;
+    margin-right: 16%;
+    width: 68%;
+}
+
+.user_imfo_area {
+    height: 300px;
+    text-align: center;
+}
+
+.user_avatar {
+display: inline-block;
+margin: 20px 0 20px 0;
+width: 150px;
+height: 150px;
+border-radius: 50%;
+}
+
+.user_page_blockline {
+margin: 0px 0 30px 0;
+border: 1px solid lightgrey;
+}
+
+.user_list_area {
+    text-align: center;
+    height: 500px;
+}
+
+.userpage_right_option_area {
+text-align: center;
+}
+
+.userpage_right_option_area_option {
+margin: 50px 60px 10px 60px;
+display: inline-block;
+vertical-align: bottom;
+}
+
+.userpage_right_option_area_option:hover {
+color: white;
+transform: scale(1.5);
+transition: 0.5s ease;
+}
+
+.userpage_right_option_area_option_pick {
+margin: 50px 60px 7px 60px;
+display: inline-block;
+vertical-align: bottom;
+font-size: 24px;
+}
+
+.userpage_left_content_area {
+display: inline-block;
+width: 100%;
+}
+
+/* -------------↓↓↓↓↓↓-------------list area-------------↓↓↓↓↓↓------------- */
+
+.movie_user_list_card {
+margin: 2% 5%;
+display: inline-block;
+width: 20%;
+height: 400px;
+text-align: center;
+background-color: #181c24;
+border-radius: 2%;
+box-shadow: 0px 0px 10px lightgrey;
+}
+
+.movie_user_list_card:hover {
+filter: drop-shadow(0px 0px 16px white);
+transform: scale(1.02);
+transition: 0.5s ease;
+}
+
+.movie_user_list_card_title {
+    margin-top: 7px
+}
+
+.movie_create_user_list_card {
+vertical-align: top;
+}
+
+.movie_create_user_list_card_icon {
+display: inline-block;
+padding-top: 120px;
+color: grey;
+}
+
+.movie_create_user_list_card:hover .movie_create_user_list_card_icon {
+color: white;
+transition: 0.5s ease;
+}
+
+.user_list_card_image {
+width: 40%;
+margin: 10px;
+margin-top: 15px;
+border-radius: 4%;
+height: 150px;
+box-shadow: 0px 0px 1px lightgrey;
+}
+/* -------------↑↑↑↑↑↑-------------list area-------------↑↑↑↑↑↑------------- */
+
+
+/* -------------↓↓↓↓↓↓-------------profile area-------------↓↓↓↓↓↓------------- */
+.userpage_left_content_area_content {
+margin: 20px 100px;
+text-align: center;
+}
+
+.userpage_left_content_area_content_each {
+margin-top: 15px;
+margin-bottom: 15px;
+}
+
+/* -------------↑↑↑↑↑↑-------------profile area-------------↑↑↑↑↑↑------------- */
+
+
+/* -------------↓↓↓↓↓↓-------------subscription area-------------↓↓↓↓↓↓------------- */
+.subscription_card {
+    background-color: white;
+    display: inline-block;
+    margin:60px 15px;
+    width: 30%;
+    height: 400px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px white;
+    opacity: 90%;
+    color: black;
+    vertical-align: top;
+    text-align: left;
+    padding: 20px;
+}
+
+.subscription_card:hover {
+    opacity: 100%;
+    transform: scale(1.05);
+    transition: 0.4s ease;
+    background-color: #181c24;
+    color: white;
+}
+
+.price_text {
+    display: inline-block;
+}
+
+.subscription_discription {
+    font-size: 12px;
+    color: gray;
+}
+
+.subscription_page_block_line {
+    border: 1px solid lightgrey;
+    margin: 40px 0 30px 0;
+}
+
+.subscription_feature_discription {
+    font-size: 15px;
+    color: gray;
+}
+
+.subscrib_button {
+    margin-left:25%;
+    width: 150px;
+    background-color: black;
+}
+
+.subscription_card:hover .subscription_discription{
+    color: white;
+}
+
+.subscription_card:hover .subscription_feature_discription{
+    color: white;
+}
+
+.subscription_card:hover .subscription_title{
+    color: #6659de;
+}
+
+.subscription_card:hover .subscrib_button{
+    color: white;
+    background-color: #6659de;
+    border: 0;
+}
+
+.subscrib_button:hover {
+    transform: scale(0.95);
+    transition: 0.3s ease;
+}
+
+
+
+/* -------------↑↑↑↑↑↑-------------subscription area-------------↑↑↑↑↑↑------------- */

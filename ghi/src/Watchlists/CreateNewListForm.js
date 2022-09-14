@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { AuthContext } from '../auth/auth_provider';
-
+import "../CSSfile/CreateNewListForm.css";
 
 export default class NewList extends Component {
   static contextType = AuthContext
