@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import MovieDetail from "../MovieDetail/MovieDetail";
 import DetailLeftArea from '../MovieDetail/DetailLeftArea';
+import Dropdown from 'react-bootstrap/Dropdown';
+
 
 function MovieColumn(props) {
   return (
@@ -33,19 +35,27 @@ function MovieColumn(props) {
                   return (
                     <div>
                       <i className="detail_icon_my-tip_list">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" fill="currentColor" id="list-icon" className="bi bi-plus-lg detail_image_area_icon detail_movie_addtolist" viewBox="0 0 16 16" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
-                      </svg>
-                        <ul className="dropdown-menu detail_dropdown_list_ul">
-                          {props.movie_lists?.map((list, index) => {
-                            return (
-                              <li className="detail_dropdown_list_li" key={index}><p key={list.id} id={list.id}>
-                                {list.name}
-                              </p></li>
-                            );
-                          })}
-                        </ul>
-                          <span className="detail_icon_tip_list"><i>Like</i></span>
+                        <Dropdown className="d-inline mx-2" autoClose="outside">
+                          <Dropdown.Toggle id="dropdown-autoclose-outside">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" fill="currentColor" id="list-icon" className="bi bi-plus-lg detail_image_area_icon detail_movie_addtolist" viewBox="0 0 16 16" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <path fillRule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+                            </svg>
+                          </Dropdown.Toggle>
+
+                          <Dropdown.Menu>
+                            {props.movie_lists?.map((list, index) => {
+                              return (
+                                <Dropdown.Item className="detail_dropdown_list_li" id={movie.id} key={index}>
+                                  <p onClick={e => props.handleAddMovie(e, movie)} accessKey={list.id} id={movie.id}>{list.name}</p>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" id="confirmation-check" class="d-none" viewBox="0 0 16 16">
+                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                                  </svg>
+                                </Dropdown.Item>
+                              );
+                            })}
+                          </Dropdown.Menu>
+                        </Dropdown>
+                        <span className="detail_icon_tip_list"><i>Like</i></span>
                       </i>
                     </div>
                   )

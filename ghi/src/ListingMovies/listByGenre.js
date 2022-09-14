@@ -25,6 +25,7 @@ class MovieList extends React.Component {
         }
         this.handleClick = this.handleClick.bind(this);
         this.handleClickBack = this.handleClickBack.bind(this)
+        this.handleAddMovie = this.handleAddMovie.bind(this)
     }
 
     async componentDidMount() {
@@ -113,6 +114,38 @@ class MovieList extends React.Component {
         this.setState({genre_id: newGenreId})
     }
 
+    async handleAddMovie(e, movie) {
+        e.preventDefault();
+
+        const list_id = e.target.accessKey;
+        const movie_list_url =  `http://localhost:8000/api/lists/user/${this.context.userName}/${list_id}/movies/`;
+        const movieVO = {
+            "title": movie.title,
+            "poster": movie.poster_path,
+            "api_id": movie.id,
+            "add": true
+        }
+        const fetchConfig = {
+            method: "PUT",
+            body: JSON.stringify(movieVO),
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${this.context.token}`
+            },
+        };
+
+        const response = await fetch(movie_list_url, fetchConfig)
+        if (response.ok) {
+            // console.log("response ok")
+            document.getElementById("confirmation-check").className = "bi bi-check2"
+            setTimeout(function () {
+                document.getElementById("confirmation-check").className = "d-none";
+            }, 5000);
+        }
+        }
+        // console.log(e)
+
     async componentDidUpdate() {
         if (this.state.prevPage !== this.state.currentPage || this.state.genre_id !== this.state.prevGenre ) {
             this.setState({ prevGenre: this.state.genre_id})
@@ -174,7 +207,7 @@ class MovieList extends React.Component {
                     <div className="row">
                         {this.state.MovieColumn.map((movie, index) => {
                             return (
-                                <MovieColumn key={index} list={movie} default={true} movie_lists={this.state.movie_lists}/>
+                                <MovieColumn key={index} list={movie} default={true} movie_lists={this.state.movie_lists} handleAddMovie={this.handleAddMovie}/>
                                 );
                             })}
                         <div className='list-btn-div'>
