@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ListCard from "./ListCard";
 import { useAuthContext } from '../auth/auth_provider';
 import MovieVOList from "../ListingMovies/MovieVOList";
+import NewList from '../Watchlists/CreateNewListForm';
 
 
 function UserPageLists() {
@@ -139,6 +140,14 @@ function UserPageLists() {
         console.log(new_list.li);
     }
 
+    function addList(new_list) {
+        let lists = list;
+        console.log('list in state', list);
+        console.log('lists local variable',lists);
+        console.log('new list to add to local',new_list);
+        getDefaultLists();
+    }
+
     function renderLists() {
         if (selected) {
             return (
@@ -161,16 +170,14 @@ function UserPageLists() {
                             </div>
                         )
                     })}
-                    {/* ------------------------------------ */}
-                    {/* loop to list the custom list cards */}
-                    {/* ------------------------------------ */}
-                    <div className="movie_user_list_card movie_create_user_list_card">
+                    <div data-bs-toggle="modal" data-bs-target="#listForm" className="movie_user_list_card movie_create_user_list_card">
                         <div className="movie_create_user_list_card_icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" className="bi bi-plus" viewBox="0 0 16 16">
                                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                             </svg>
                         </div>
                     </div>
+                    <NewList afterSubmit={addList} />
                 </div>
             )
         }

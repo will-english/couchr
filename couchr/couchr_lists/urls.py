@@ -49,6 +49,8 @@ urlpatterns = [
     # get wish list from a user
     path("user/<str:username>/wish/", api_list_wish, name="api_lists_wish"),
 
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     # get moviesVOs from a user's list
     path("user/<str:username>/<int:pk>/<str:name>/", api_list_movieVO, name="get_movieVOs"),
 ]
