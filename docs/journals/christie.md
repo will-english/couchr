@@ -1,3 +1,11 @@
+## 9/14/22
+Today I spent the whole day making the dropdowns functional on the listByGenre page! First for the custom lists then for the default lists. I also added a little checkmark that would appear next to the list name once it was added that would go away again after 3 seconds. 
+
+## 9/13/22
+Today I took a break from the unit testing and did some more work on the front ends. I removed the Documentary and Romance genres from our side bar and genre drop down since they had innapropriate content. I then worked on the movie column page to make the columns show different icons depending on what page you are viewing the columns on. After that I worked on adding a drop down icon on the movie cards to add the movie to the user's lists.
+
+## 9/12/22
+
 ## 9/9/22
 Today Jamie and I worked on making the site pretty! We worked on the color scheme some more and added it to the buttons on the pages. We also worked on the side bar some more to have it match the nav bar. I also implemented a function that shuffles the list of our favorite movies so that each time you view our main page, you see them in a different order! We fixed the issues with our buttons hovering oddly as well as made all of the posters in the carousels links to their pertaining movie's detail page
 
