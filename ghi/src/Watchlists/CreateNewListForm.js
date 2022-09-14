@@ -39,6 +39,7 @@ export default class NewList extends Component {
     if (response.ok) {
       console.log("~~~~~response ok~~~~~")
       const newList = await response.json();
+      console.log('new list', newList)
       this.props.afterSubmit(newList);
       const cleared = {
         name: '',
