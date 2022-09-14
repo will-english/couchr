@@ -3,6 +3,7 @@ import Youtube from 'react-youtube'
 // import Movie from "./Movies"
 import axios from 'axios'
 import DetailMiddleArea from "./DetailMiddleArea"
+import "../CSSfile/YouTube.css";
 
 function YoutubeVideo(props) {
     const MOVIE_API = "https://api.themoviedb.org/3/"

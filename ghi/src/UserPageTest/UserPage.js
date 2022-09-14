@@ -5,7 +5,7 @@ import UserPageSubscription from "./UserPageSubscription";
 import UserPageReview from "./UserPageReview";
 import UserPageContact from "./UserPageContact";
 import { useAuthContext } from '../auth/auth_provider';
-
+import "../CSSfile/UserPage.css";
 
 
 function UserPage() {
