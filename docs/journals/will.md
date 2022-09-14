@@ -1,5 +1,5 @@
 ## 9/14
-Made the add list card functional on the users private list page.
+Made the add list card functional on the users private list page. Helped with various problems.
 ## 9/13
 Helped with the icon rendering on the movies and added the public lists page that lists
 all of the public lists from all of the users.

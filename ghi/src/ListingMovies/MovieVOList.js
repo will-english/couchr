@@ -8,7 +8,13 @@ export default function MovieVOList(props) {
 
     const [MovieColumns, setMovieColumns] = useState([[], [], [], []])
     async function fetchMovies() {
-        const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${userName}/${props.id}/${props.name}/`;
+        let url = '';
+        if (props.username) {
+            url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${props.username}/${props.id}/${props.name}/`;
+        } else {
+            url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${userName}/${props.id}/${props.name}/`;
+        }
+        
         const request = await fetch(url, {
             credentials: "include",
             headers: {
