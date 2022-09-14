@@ -17,33 +17,32 @@ function PublicLists() {
     const getPublicLists = async () => {
         let lists = [];
         let defaultArr = [{}, {}, {}, {}];
-        if (userName && token) {
-            // console.log(token);
-            // * grabing the custom list information from our API
-            const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${userName}/`;
-            const request = await fetch(url, {
-                credentials: "include",
-                headers: {
-                    Authorization: `Bearer ${token}`
-                },
-            });
-            console.log("&&&&&&&&&&& request")
-            if (request.ok) {
-                const response = await request.json();
-                console.log('*******************', response);
-                for (const list of response.lists) {
-                    let movies = list.movies
-                    const difference = 4 - movies.length
-                    if (difference > 0) {
-                        list.movies = movies.concat(defaultArr.slice(0, difference))
-                    } else {
-                        list.movies = movies.slice(0, 4)
-                    }
-                    lists.push({ list: list });
+        // console.log(token);
+        // * grabing the public lists
+        const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/public/`;
+        const request = await fetch(url, {
+            credentials: "include",
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+        });
+        console.log("&&&&&&&&&&& request")
+        if (request.ok) {
+            const response = await request.json();
+            console.log('*******************', response);
+            for (const list of response.lists) {
+                let movies = list.movies
+                const difference = 4 - movies.length
+                if (difference > 0) {
+                    list.movies = movies.concat(defaultArr.slice(0, difference))
+                } else {
+                    list.movies = movies.slice(0, 4)
                 }
-                setLists(lists);
-                console.log(lists);
+                lists.push({ list: list });
             }
+            setLists(lists);
+            console.log(lists);
+
         }
     }
     useEffect(() => {
@@ -70,7 +69,7 @@ function PublicLists() {
             return (
                 <div>
                     <button onClick={handleBack} >Back to lists</button>
-                    <MovieVOList id={list[0]} name={list[1]} />
+                    <MovieVOList id={list[0]} name={list[1]} username={list[2]}/>
                 </div>
             )
 
@@ -80,14 +79,14 @@ function PublicLists() {
                     {lists.map(list => {
                         console.log(list.list.name, list.list.movies)
                         console.log([list.list.id, list.list.name]);
-                        const li = JSON.stringify({ li: [list.list.id, list.list.name] })
+                        const li = JSON.stringify({ li: [list.list.id, list.list.name, list.list.user] })
                         return (
                             <div key={list.list.name} onClick={handleListSelect} id={li} className="movie_user_list_card">
                                 <ListCard title={list.list.name} movies={list.list.movies} />
                             </div>
                         )
                     })}
-                    
+
                 </div>
             )
         }
