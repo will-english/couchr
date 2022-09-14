@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useAuthContext } from '../auth/auth_provider';
 import { useState, useEffect } from "react";
+import "../CSSfile/DetailBottomArea.css";
 
 function DetailBottomArea(props) {
 
@@ -18,23 +19,32 @@ function DetailBottomArea(props) {
             .then((res) => setReviews(res))
     },[props])
 
-    console.log("reviews: ", reviews)
 
     return (
         <>
             <div className="review_area">
-                <div className="review">
-                    <div>
-                        {reviews.reviews?.map((review, index) => {
-                        return (
-                            <li className="review" key={index}>
-                                {review.user}
-                                {review.title}
-                                {review.description}
-                            </li>
-                        );
-                    })}
-                    </div>
+                <div>
+                    {reviews.reviews?.map((review, index) => {
+                    return (
+                        <div className="review" key={index}>
+                            <div className="review_user">
+                                <img style={{width: '100px'}} src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXPI745tFSS8cjMg-joaypGsVzQPpRTGWetg&usqp=CAU'>
+                                </img>
+                                <div>
+                                    {review.user}
+                                </div>
+                            </div>
+                            <div className="review_body">
+                                <h4>
+                                    {review.title}
+                                </h4>
+                                <p>
+                                    {review.description}
+                                </p>
+                            </div>
+                        </div>
+                    );
+                })}
                 </div>
             </div>
         </>
