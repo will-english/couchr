@@ -4,6 +4,7 @@ import MovieDetail from "../MovieDetail/MovieDetail";
 import DetailLeftArea from '../MovieDetail/DetailLeftArea';
 import Dropdown from 'react-bootstrap/Dropdown';
 import "../CSSfile/MovieColumns.css";
+import DropdownItem from "react-bootstrap/esm/DropdownItem";
 
 
 function MovieColumn(props) {
@@ -18,6 +19,9 @@ function MovieColumn(props) {
           trash = 'd-none';
         }
         let movie_link = "/movies/movie/" + movie.id + "/"
+        let likedCheck = "liked " + movie.id 
+        let watchedCheck = "watched " + movie.id
+        let wishCheck = "wish " + movie.id
         return (
           <div key={movie.id} className="movie-card mb-3 shadow">
             {/* clickable image => movie detail page */}
@@ -36,22 +40,53 @@ function MovieColumn(props) {
                   return (
                     <div>
                       <i className="detail_icon_my-tip_list">
-                        <Dropdown className="d-inline mx-2" autoClose="outside">
+                        <Dropdown className="" autoClose="outside">
                           <Dropdown.Toggle id="dropdown-autoclose-outside">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" fill="currentColor" id="list-icon" className="bi bi-plus-lg detail_image_area_icon detail_movie_addtolist" viewBox="0 0 16 16" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <path fillRule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
                             </svg>
                           </Dropdown.Toggle>
                           <Dropdown.Menu>
-                            {props.movie_lists?.map((list, index) => {
-                              return (
-                                <Dropdown.Item className="detail_dropdown_list_li" id={movie.id} key={index}>
-                                  <p onClick={e => props.handleAddMovie(e, movie)} accessKey={list.id} id={movie.id}>{list.name}
-                                  <i id="confirmation-check" className="d-none">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check2"  viewBox="0 0 16 16">
+                            <DropdownItem>
+                              <p id="liked" onClick={e => props.handleAddMovie2(e, movie)}>
+                                Liked
+                                <i id={likedCheck} className="d-none">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check2" viewBox="0 0 16 16">
                                     <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
                                   </svg>
-                                  </i>
+                                </i>
+                              </p>
+                            </DropdownItem>
+                            <DropdownItem>
+                            <p id="watched" onClick={e => props.handleAddMovie2(e, movie)}>
+                                Watched
+                                <i id={watchedCheck} className="d-none">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check2" viewBox="0 0 16 16">
+                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                                  </svg>
+                                </i>
+                              </p>
+                            </DropdownItem>
+                            <DropdownItem>
+                            <p id="wish" onClick={e => props.handleAddMovie2(e, movie)}>
+                                Want-to-Watch
+                                <i id={wishCheck} className="d-none">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check2" viewBox="0 0 16 16">
+                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                                  </svg>
+                                </i>
+                              </p>
+                            </DropdownItem>
+                            {props.movie_lists?.map((list, index) => {
+                              let checkId = `confirmation-check ${list.id} ${movie.id}`
+                              return (
+                                <Dropdown.Item id={movie.id} key={index}>
+                                  <p onClick={e => props.handleAddMovie(e, movie)} accessKey={list.id} id={movie.id}>{list.name}
+                                    <i id={checkId} className="d-none">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check2" viewBox="0 0 16 16">
+                                        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                                      </svg>
+                                    </i>
                                   </p>
                                 </Dropdown.Item>
                               );

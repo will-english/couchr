@@ -26,6 +26,7 @@ class MovieList extends React.Component {
         this.handleClick = this.handleClick.bind(this);
         this.handleClickBack = this.handleClickBack.bind(this)
         this.handleAddMovie = this.handleAddMovie.bind(this)
+        this.handleAddMovie2 = this.handleAddMovie2.bind(this)
     }
 
     async componentDidMount() {
@@ -134,17 +135,42 @@ class MovieList extends React.Component {
                 Authorization: `Bearer ${this.context.token}`
             },
         };
-
         const response = await fetch(movie_list_url, fetchConfig)
         if (response.ok) {
-            // console.log("response ok")
-            document.getElementById("confirmation-check").className = ""
+            document.getElementById(`confirmation-check ${list_id} ${movie.id}`).className = ""
             setTimeout(function () {
-                document.getElementById("confirmation-check").className = "d-none";
+                document.getElementById(`confirmation-check ${list_id} ${movie.id}`).className = "d-none";
             }, 3000);
         }
+    };
+
+    async handleAddMovie2(e, movie) {
+        e.preventDefault();
+
+        const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${this.context.userName}/${e.target.id}/`;
+        const movieObj= {
+            "title": movie.title,
+            "poster": movie.poster_path,
+            "api_id": movie.id,
+            "add": true
         }
-        // console.log(e)
+        const request = await fetch(url, {
+            method: "put",
+            credentials: "include",
+            body: JSON.stringify(movieObj),
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${this.context.token}`
+            },
+        });
+        if (request.ok) {
+            document.getElementById(`${e.target.id} ${movie.id}`).className = ""
+            setTimeout(function () {
+                document.getElementById(`${e.target.id} ${movie.id}`).className = "d-none";
+            }, 3000);
+        }
+
+        }
 
     async componentDidUpdate() {
         if (this.state.prevPage !== this.state.currentPage || this.state.genre_id !== this.state.prevGenre ) {
@@ -207,7 +233,7 @@ class MovieList extends React.Component {
                     <div className="row">
                         {this.state.MovieColumn.map((movie, index) => {
                             return (
-                                <MovieColumn key={index} list={movie} default={true} movie_lists={this.state.movie_lists} handleAddMovie={this.handleAddMovie}/>
+                                <MovieColumn key={index} list={movie} default={true} movie_lists={this.state.movie_lists} handleAddMovie={this.handleAddMovie} handleAddMovie2={this.handleAddMovie2}/>
                                 );
                             })}
                         <div className='list-btn-div'>
