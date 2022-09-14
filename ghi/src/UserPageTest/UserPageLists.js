@@ -4,6 +4,7 @@ import { useAuthContext } from '../auth/auth_provider';
 import MovieVOList from "../ListingMovies/MovieVOList";
 import NewList from '../Watchlists/CreateNewListForm';
 
+
 function UserPageLists() {
     const { token } = useAuthContext();
     const { userName } = useAuthContext();
