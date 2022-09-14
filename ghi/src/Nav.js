@@ -50,29 +50,9 @@ function Nav() {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            {/* <li className='nav-item me-auto mb-2 mg-lg-0'>Public Couchr Lists</li> */}
-            <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Movies
-              </a>
-              <ul className="dropdown-menu">
-                <li><NavLink className="dropdown-item" to="/sales_records">Genre1</NavLink></li>
-                <li><NavLink className="dropdown-item" to="/sales_records/history">Genre2</NavLink></li>
-                <li><NavLink className="dropdown-item" to="/sales_records/new">Genre3</NavLink></li>
-              </ul>
-            </li>
-            <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                My Movies
-              </a>
-              <ul className="dropdown-menu">
-                <li><NavLink className="dropdown-item" to="/services">Watchlist</NavLink></li>
-                <li><NavLink className="dropdown-item" to="/services/history">My favorites</NavLink></li>
-                <li><NavLink className="dropdown-item" to="/services/new">Recently watched</NavLink></li>
-                <li><NavLink className="dropdown-item" to="/services/new">My lists</NavLink></li>
-                <li><NavLink className="dropdown-item" to="/services/new">New list</NavLink></li>
-              </ul>
-            </li>
+          <li>
+          <NavLink className="navbar-brand" to="public_lists/">Community Lists</NavLink>
+          </li>
             <li>
               <Search />
             </li>

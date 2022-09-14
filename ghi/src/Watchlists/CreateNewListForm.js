@@ -41,7 +41,7 @@ export default class NewList extends Component {
     const response = await fetch(url, fetchConfig);
     if (response.ok) {
       const newList = await response.json();
-      console.log("newList: ", newList)
+      console.log('new list', newList)
       this.props.afterSubmit(newList);
       const cleared = {
         name: '',
