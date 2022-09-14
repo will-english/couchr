@@ -1,0 +1,22 @@
+.create_list_form {
+    color: black;
+    }
+    
+.create_list_form_close_button {
+    margin-right: 250px;
+}
+
+.create_list_form_create_button {
+    display: flex;
+    float: right;
+}
+
+.create_list_success {
+    display: inline-block;
+        margin-right: 5px;
+}
+
+.create_list_error {
+    display: inline-block;
+    margin-right: 5px;
+}

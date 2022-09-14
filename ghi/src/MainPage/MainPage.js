@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import ControlledCarousel from "./PopularCarousel";
 import ControlledCarousel2 from "./CouchrCarousel";
 import SideBar from "../ListingMovies/SideBar";
+import "../index.css";
 
 
 function MainPage() {
