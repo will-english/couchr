@@ -34,11 +34,11 @@ def list_encoder(list):
 # get all movie lists from a user
 
 
-# @auth.jwt_login_required
+@auth.jwt_login_required
 @require_http_methods(["GET", "POST"])
 def api_lists(request, username):
     user = User.objects.get(username=username)
-
+    print("user: ", user)
     if request.method == "GET":
         lists = List.objects.filter(user=user)
         response = []
@@ -57,10 +57,14 @@ def api_lists(request, username):
             list = List.objects.create(**content)
             list.user = user
             list.save()
+            response = {
+                'name': content['name'],
+                'description': content['description'],
+                'id': list.id
+            }
 
             return JsonResponse(
-                content,
-                safe=False,
+                response
             )
 
         except Exception as e:
