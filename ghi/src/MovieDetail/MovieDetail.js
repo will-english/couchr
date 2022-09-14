@@ -4,6 +4,7 @@ import { AuthContext } from '../auth/auth_provider';
 import DetailLeftArea from "./DetailLeftArea";
 import DetailMiddleArea from "./DetailMiddleArea";
 import DetailRightArea from "./DetailRightArea";
+import DetailBottomArea from "./DetailBottomArea";
 
 
 class MovieDetail extends React.Component {
@@ -118,16 +119,12 @@ class MovieDetail extends React.Component {
     }
 
 
-    //How to add the current move to one of the lists
+    // add movie to a list
     async handleAddMovie(event) {
         event.preventDefault();
-        // this.setState({ movie_list_id: event.target.id })
-        console.log("event: ", event)
-        console.log("event.target: ", event.target)
 
         // get the URL to send the JSON to
         const list_id = event.target.id;
-        console.log("list_id: ", list_id)
         const movie_list_url = `http://localhost:8000/api/lists/user/${this.context.userName}/${list_id}/movies/`;
 
         // get the movie ID
@@ -171,12 +168,12 @@ class MovieDetail extends React.Component {
         }
     }
 
-    async handleCreateList(event) {
-        event.preventDefault();
-        alert("Hello")
-    }
+    // async handleCreateList(event) {
+    //     event.preventDefault();
+    //     alert("Hello")
+    // }
 
-    //create a new list
+    // add newly created list to drop-down
     addList(list) {
         const lists = this.state.movie_lists
         lists.push(list)
@@ -198,6 +195,9 @@ class MovieDetail extends React.Component {
                     <DetailLeftArea movie={this.state.movie_detail} movie_obj={this.state.movie} />
                     <DetailMiddleArea movie={this.state.movie_detail} movie_lists={this.state.movie_lists} add_list={this.addList} handleAddMovie={this.handleAddMovie} movie_add={this.state.movie}/>
                     <DetailRightArea actors={this.state.actors} genres={this.state.genres} />
+                </div>
+                <div>
+                    <DetailBottomArea movie={this.state.movie_detail} />
                 </div>
 
                 {/* Footer area */}
