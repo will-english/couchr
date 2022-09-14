@@ -4,10 +4,6 @@ import { useAuthContext } from '../auth/auth_provider';
 
 function NewReviewForm(props) {
     // props coming from DetailMiddleArea.js
-    console.log("props.movie: ", props.movie)
-    console.log("props.movie.title: ", props.movie.title)
-    console.log("props.movie.id: ", props.movie.id)
-    console.log("props.movie.poster_path: ", props.movie.poster_path)
 
     // get token and userName from Auth Context
     const { token, userName } = useAuthContext();
@@ -16,8 +12,6 @@ function NewReviewForm(props) {
         title: '',
         description: '',
     })
-
-    console.log("state: ", state)
 
     // automatically changes state when typing in modal form
     function handleChange(event) {
@@ -35,7 +29,6 @@ function NewReviewForm(props) {
             api_id: props.movie.id,
             poster: props.movie.poster_path,
         }
-        console.log("body: ", body)
 
         const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/reviews/user/${userName}/`;
         const fetchConfig = {
@@ -52,9 +45,7 @@ function NewReviewForm(props) {
             url,
             fetchConfig,
         )
-        console.log("response: ", response)
         const data = await response.json()
-        console.log("data: ", data)
         
         if (response.ok) {
             console.log("response ok")

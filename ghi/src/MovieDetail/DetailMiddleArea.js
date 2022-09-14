@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom'
 
 function DetailMiddleArea(props) {
 
-    console.log("props: ", props)
-
     return (
         <div className="detail-information-area">
             <div className="">
@@ -68,7 +66,7 @@ function DetailMiddleArea(props) {
                             </button>
                         </li>
                     </ul>
-                            <NewList afterSubmit={props.add_list} />
+                            <NewList afterSubmit={props.add_list} movie={props.movie_add} />
                 </div>
 
                  {/* add review button */}

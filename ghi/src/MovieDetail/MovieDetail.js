@@ -32,9 +32,6 @@ class MovieDetail extends React.Component {
         const currentURL = window.location.href
         const words = currentURL.split("/")
         const movie_id = words[5]
-        // console.log(this.props)
-        // const movie_id = this.props.id
-
 
         const movie_detail_url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`;
         const movie_credit_rul = `https://api.themoviedb.org/3/movie/${movie_id}/credits?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`;
@@ -42,7 +39,7 @@ class MovieDetail extends React.Component {
         const response_detail = await fetch(movie_detail_url);
         const response_credit = await fetch(movie_credit_rul);
 
-
+        
         try {
             const movie_lists_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${this.context.userName}/`;
             const request = await fetch(movie_lists_url, {
@@ -88,7 +85,6 @@ class MovieDetail extends React.Component {
             let poster = ''
             if (detail_data.poster_path !== null) {
                 detail_data.poster_path = "https://image.tmdb.org/t/p/original" + detail_data.poster_path
-                console.log(detail_data.poster_path)
                 this.setState({ 'poster': detail_data.poster_path })
                 poster  = detail_data.poster_path;
             } else {
@@ -105,15 +101,12 @@ class MovieDetail extends React.Component {
                     movie_credit: credit_data,
                     genres: genres_list,
                 });
-            console.log(this.state.poster)
             const movie = {
                 "title": title,
                 'poster': poster,
                 "api_id": movie_id,
                 "add": true
             }
-            console.log(movie)
-
             this.setState({ movie: movie })
         };
     }
@@ -128,9 +121,13 @@ class MovieDetail extends React.Component {
     //How to add the current move to one of the lists
     async handleAddMovie(event) {
         event.preventDefault();
+        // this.setState({ movie_list_id: event.target.id })
+        console.log("event: ", event)
+        console.log("event.target: ", event.target)
 
         // get the URL to send the JSON to
         const list_id = event.target.id;
+        console.log("list_id: ", list_id)
         const movie_list_url = `http://localhost:8000/api/lists/user/${this.context.userName}/${list_id}/movies/`;
 
         // get the movie ID
@@ -145,7 +142,6 @@ class MovieDetail extends React.Component {
             "api_id": api_id,
             "add": true
         }
-
         this.setState({ movie: movie })
 
         // Turn the JSON object into a JSON string and then send it in the PUT method
@@ -200,7 +196,7 @@ class MovieDetail extends React.Component {
                 {/* Detail area */}
                 <div className="detail_content_area">
                     <DetailLeftArea movie={this.state.movie_detail} movie_obj={this.state.movie} />
-                    <DetailMiddleArea movie={this.state.movie_detail} movie_lists={this.state.movie_lists} add_list={this.addList} handleAddMovie={this.handleAddMovie} />
+                    <DetailMiddleArea movie={this.state.movie_detail} movie_lists={this.state.movie_lists} add_list={this.addList} handleAddMovie={this.handleAddMovie} movie_add={this.state.movie}/>
                     <DetailRightArea actors={this.state.actors} genres={this.state.genres} />
                 </div>
 

@@ -5,8 +5,8 @@ import { AuthContext } from '../auth/auth_provider';
 export default class NewList extends Component {
   static contextType = AuthContext
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       name: '',
       description: '',
@@ -18,11 +18,14 @@ export default class NewList extends Component {
   handleChange(event) {
     const value = event.target.value;
     this.setState({ [event.target.name]: value })
+    console.log("this.props: ", this.props)
   }
 
   async handleSubmit(event) {
     event.preventDefault();
-    let data = { ...this.state };
+    let data = {
+      ...this.state,
+    };
 
     const url = `http://localhost:8000/api/lists/user/${this.context.userName}/`;
     const fetchConfig = {
@@ -37,14 +40,53 @@ export default class NewList extends Component {
 
     const response = await fetch(url, fetchConfig);
     if (response.ok) {
-      console.log("~~~~~response ok~~~~~")
       const newList = await response.json();
+      console.log("newList: ", newList)
       this.props.afterSubmit(newList);
       const cleared = {
         name: '',
         description: '',
       };
       this.setState(cleared);
+
+
+      // if list successfully created with POST, then call PUT and add movie to list
+
+      // get new list ID
+      const new_list_id = newList.id
+
+      // get URL
+      const url_put = `http://localhost:8000/api/lists/user/${this.context.userName}/${new_list_id}/movies/`
+
+      // get movie details
+      const movie = this.props.movie
+
+      // setup JSON
+      const fetchConfig = {
+        method: "PUT",
+        body: JSON.stringify(movie),
+        credentials: "include",
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${this.context.token}`
+        },
+      };
+
+      // call PUT method
+      const response_put = await fetch(url_put, fetchConfig)
+
+      if (response_put.ok) {
+        console.log("response ok~~~~~~~~~~~~~~~")
+        document.getElementById("popup_message_id").className = "alert alert-success popup_message"
+        setTimeout(function () {
+          document.getElementById("popup_message_id").className = "d-none";
+        }, 5000);
+      } else {
+        document.getElementById("popup_error_message_id").className = "alert alert-danger popup_message"
+        setTimeout(function () {
+          document.getElementById("popup_error_message_id").className = "d-none";
+        }, 3000);
+      }
     }
   }
 
