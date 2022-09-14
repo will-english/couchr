@@ -17,10 +17,23 @@ function UserPageSubscription() {
 
     return (
         <div className="userpage_left_content_area">
-                <div className="userpage_left_content_area_content">
-                    <p>Subscription Page</p>
+
+            <div className="userpage_left_content_area_content">
+                <h1>Subscription Page</h1>
+
+                <div className="subscription_card">
 
                 </div>
+
+                <div className="subscription_card">
+
+                </div>
+
+                <div className="subscription_card">
+
+                </div>
+
+            </div>
                 
         </div>
     )
