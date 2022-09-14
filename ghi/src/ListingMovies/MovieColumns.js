@@ -41,7 +41,7 @@ function MovieColumn(props) {
                     <div>
                       <i className="detail_icon_my-tip_list">
                         <Dropdown className="" autoClose="outside">
-                          <Dropdown.Toggle id="dropdown-autoclose-outside">
+                          <Dropdown.Toggle id="dropdown">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" fill="currentColor" id="list-icon" className="bi bi-plus-lg detail_image_area_icon detail_movie_addtolist" viewBox="0 0 16 16" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <path fillRule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
                             </svg>
