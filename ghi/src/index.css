@@ -127,12 +127,12 @@ code {
 
 /* sidebar */
 .sidebar {
-  height: 100%;
+  height: 100vh;
   /* width: 150px; */
   position: fixed;
   left: 0;
-  top: 50px;
-  padding-top: 60px;
+  top: 0px;
+  padding-top: 120px;
   /* padding-top: 40px; */
   background-color: #415A77;
   padding-left: 25px;
@@ -140,6 +140,7 @@ code {
   text-align: center;
   color: white;
   font-weight: 500;
+  overflow: auto;
 }
 
 .sidebar_link {
@@ -248,8 +249,8 @@ code {
   padding-bottom: 50px;
 }
 
-#list-icon {
+/* #list-icon {
   margin-top: 10px;
   margin-left: 200px;
   margin-right: 5px;
-}
+} */
