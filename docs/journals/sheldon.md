@@ -1,5 +1,7 @@
+## 9/15
+Show reviews on detail page, set the style of them.
 ## 9/14
-Builded subscribe page, put three options inside. We also set the default page for detail list. Organized  CSS code, put them in different files for each different page. For now we almost finish the MVP function, for next two days we will working on organize our code and add more CSS to our project.
+Builded subscribe page, put three options inside. We also set the default page for detail list. Organized CSS code, put them in different files for each different page. For now we almost finish the MVP function, for next two days we will working on organize our code and add more CSS to our project.
 ## 9/13
 Today I stuck on how to change the liked/wish/watched icon style after we clicked it. The main point which I stucked on is how to get the username by this page. 
 ## 9/12

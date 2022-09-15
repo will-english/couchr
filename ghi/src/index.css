@@ -18,7 +18,7 @@ code {
 
 
 .navbar {
-  background-color: #415A77;
+  background-color: #181C24;
   color: white;
   height: 10vh;
 }
@@ -120,6 +120,7 @@ code {
   left: auto;
   right: auto;
   transition: 0.5s;
+  border-radius: 10px;
 }
 
 .main-page-header {
@@ -137,7 +138,7 @@ code {
   top: 0px;
   padding-top: 110px;
   /* padding-top: 40px; */
-  background-color: #415A77;
+  background-color: #181C24;
   padding-left: 25px;
   padding-right: 25px;
   text-align: center;
@@ -257,6 +258,11 @@ code {
   margin-left: 200px;
   margin-right: 5px;
 } */
+
+.community_page {
+  margin-left: 15%;
+  margin-right: 15%;
+}
 
 .ad {
   background-image: 

@@ -18,7 +18,7 @@ export default function ListCard(props) {
                 })}
             </div>
 
-            <div className="movie_user_list_card_title">
+            <div className="movie_user_list_card_content">
                 {/* movie title */}
                 <p className="">
                     <i>{props.title}</i>
