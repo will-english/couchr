@@ -1,3 +1,6 @@
+### 9/15
+- Today I worked with Will and reviewed our backend unit tests that use pytest
+- We had issues that we weren't exactly able to solve, but we found other ways of testing our features. For example, our tests could not query object instances directly from the test file. We had to query them from our views instead.
 ### 9/14
 - We had a bug with the add-movie-to-list button (again) due to an issue with how the props were being sent to different components. I changed the functionality to automatically add movies to new lists.
 - I realized my unit test wasn't actually working with the user-auth credentials, so Zach helped me through some of that

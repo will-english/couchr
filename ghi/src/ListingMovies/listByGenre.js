@@ -6,6 +6,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import DetailLeftArea from '../MovieDetail/DetailLeftArea';
 import { AuthContext } from '../auth/auth_provider';
+import DropdownItem from "react-bootstrap/DropdownItem";
+import "../CSSfile/MovieColumns.css";
 
 class MovieList extends React.Component {
     static contextType = AuthContext;
@@ -31,26 +33,26 @@ class MovieList extends React.Component {
 
     async componentDidMount() {
 
-        
+
         const currentURL = window.location.href;
         const urlWords = currentURL.split("/")
         const getgenre_id = urlWords[4]
         this.setState({ genre_id: getgenre_id })
-        this.setState({ prevGenre: getgenre_id})
+        this.setState({ prevGenre: getgenre_id })
         const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US`
         const genreResponse = await fetch(genreUrl);
-        if( genreResponse.ok){
+        if (genreResponse.ok) {
             const genreData = await genreResponse.json();
             const genres = genreData["genres"]
-            for (let i = 0; i < genres.length; i++){
-                if (genres[i]["name"] === "Romance" || genres[i]["name"]==="Documentary"){
-                    genres.splice(i,1)
+            for (let i = 0; i < genres.length; i++) {
+                if (genres[i]["name"] === "Romance" || genres[i]["name"] === "Documentary") {
+                    genres.splice(i, 1)
                 }
             }
-            this.setState({ genres: genres})
-            for ( let genre of genreData["genres"]){
-                if (genre["id"] == this.state.genre_id){
-                    this.setState({genreTitle: genre["name"]})
+            this.setState({ genres: genres })
+            for (let genre of genreData["genres"]) {
+                if (genre["id"] == this.state.genre_id) {
+                    this.setState({ genreTitle: genre["name"] })
                 }
             }
         } else {
@@ -72,7 +74,7 @@ class MovieList extends React.Component {
         catch (err) {
             console.log("error")
         }
-        
+
         const listByGenreUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${this.state.currentPage}&with_genres=${this.state.genre_id}&with_watch_monetization_types=flatrate`
         const response = await fetch(listByGenreUrl);
         if (response.ok) {
@@ -107,24 +109,26 @@ class MovieList extends React.Component {
     }
     handleClickBack() {
         let newPage = this.state.currentPage - 1
-        this.setState({currentPage: newPage})
+        this.setState({ currentPage: newPage })
     }
 
     handleClickGenre(id) {
         let newGenreId = id
-        this.setState({genre_id: newGenreId})
+        this.setState({ genre_id: newGenreId })
     }
 
     async handleAddMovie(e, movie) {
         e.preventDefault();
 
         const list_id = e.target.accessKey;
-        const movie_list_url =  `http://localhost:8000/api/lists/user/${this.context.userName}/${list_id}/movies/`;
+        const movie_list_url = `http://localhost:8000/api/lists/user/${this.context.userName}/${list_id}/movies/`;
         const movieVO = {
             "title": movie.title,
             "poster": movie.poster_path,
             "api_id": movie.id,
-            "add": true
+            "add": true,
+            "release_date": movie.release_date,
+            "vote_average": movie.vote_average
         }
         const fetchConfig = {
             method: "PUT",
@@ -148,11 +152,13 @@ class MovieList extends React.Component {
         e.preventDefault();
 
         const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${this.context.userName}/${e.target.id}/`;
-        const movieObj= {
+        const movieObj = {
             "title": movie.title,
             "poster": movie.poster_path,
             "api_id": movie.id,
-            "add": true
+            "add": true,
+            "release_date": movie.release_date,
+            "vote_average": movie.vote_average
         }
         const request = await fetch(url, {
             method: "put",
@@ -170,15 +176,15 @@ class MovieList extends React.Component {
             }, 3000);
         }
 
-        }
+    }
 
     async componentDidUpdate() {
-        if (this.state.prevPage !== this.state.currentPage || this.state.genre_id !== this.state.prevGenre ) {
-            this.setState({ prevGenre: this.state.genre_id})
-            this.setState({prevPage: this.state.currentPage})
-            for (let genre of this.state.genres){
-                if ( genre["id"] == this.state.genre_id){
-                    this.setState({genreTitle: genre["name"]})
+        if (this.state.prevPage !== this.state.currentPage || this.state.genre_id !== this.state.prevGenre) {
+            this.setState({ prevGenre: this.state.genre_id })
+            this.setState({ prevPage: this.state.currentPage })
+            for (let genre of this.state.genres) {
+                if (genre["id"] == this.state.genre_id) {
+                    this.setState({ genreTitle: genre["name"] })
                 }
             }
             const listByGenreUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${this.state.currentPage}&with_genres=${this.state.genre_id}&with_watch_monetization_types=flatrate`
@@ -206,8 +212,8 @@ class MovieList extends React.Component {
                     if (i > 3) { i = 0 }
                 }
                 this.setState({ MovieColumn: MovieColumn });
-                this.setState({prevPage: this.state.currentPage})
-                this.setState({ prevGenre: this.state.genre_id})
+                this.setState({ prevPage: this.state.currentPage })
+                this.setState({ prevGenre: this.state.genre_id })
             }
 
         }
@@ -218,33 +224,38 @@ class MovieList extends React.Component {
             previous = "d-none"
         }
         return (
-            <>
-                <div className='container'>
-                    <DropdownButton className="dropdown-basic-button " title="Explore Other Genres">
-                        {this.state.genres.map((genre, index) => {
-                            return (
-                                <Dropdown.Item key={index} onClick={() => this.handleClickGenre(genre.id)}>{genre.name}</Dropdown.Item>
-                            )
-                        })}
-                    </DropdownButton>
+            <div className='wrapper'>
+                <div id="genre-header">
+                        <DropdownButton id="genre-dropdown" className="dropdown-basic-button " title="Explore Other Genres" autoClose="outside">
+                            {this.state.genres.map((genre, index) => {
+                                return (
+                                    <Dropdown.Item key={index} onClick={() => this.handleClickGenre(genre.id)}>{genre.name}</Dropdown.Item>
+                                )
+                            })}
+                        </DropdownButton>
                 </div>
-                <div className='container' >
-                    <h1 className='genre-title'>{this.state.genreTitle}</h1>
-                    <div className="row">
-                        {this.state.MovieColumn.map((movie, index) => {
-                            return (
-                                <MovieColumn key={index} list={movie} default={true} movie_lists={this.state.movie_lists} handleAddMovie={this.handleAddMovie} handleAddMovie2={this.handleAddMovie2}/>
+                <div>
+                    <div id="genre-header" className='container'>
+                        <h1 className='genre-title'>{this.state.genreTitle}</h1>
+                    </div>
+                    <div className='container' >
+                        <div className="row">
+                            {this.state.MovieColumn.map((movie, index) => {
+                                return (
+                                    <MovieColumn key={index} list={movie} default={true} movie_lists={this.state.movie_lists} handleAddMovie={this.handleAddMovie} handleAddMovie2={this.handleAddMovie2} />
                                 );
                             })}
-                        <div className='list-btn-div'>
-                            <div className="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" className={previous} onClick={this.handleClickBack}>Previous Page</button>
-                                <button type="button" className="btn btn-primary" onClick={this.handleClick}>Next Page</button>
+                            <div className='list-btn-div'>
+                                <div className="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" className={previous} onClick={this.handleClickBack}>Previous Page</button>
+                                    <button type="button" className="btn btn-primary" onClick={this.handleClick}>Next Page</button>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
-            </>
+            </div>
         )
     }
 }
