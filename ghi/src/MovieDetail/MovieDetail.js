@@ -4,6 +4,7 @@ import DetailLeftArea from "./DetailLeftArea";
 import DetailMiddleArea from "./DetailMiddleArea";
 import DetailRightArea from "./DetailRightArea";
 import DetailBottomArea from "./DetailBottomArea";
+import "../CSSfile/DetailPage.css";
 
 
 
