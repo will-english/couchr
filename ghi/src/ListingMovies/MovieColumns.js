@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import MovieDetail from "../MovieDetail/MovieDetail";
-import DetailLeftArea from '../MovieDetail/DetailLeftArea';
 import Dropdown from 'react-bootstrap/Dropdown';
 import "../CSSfile/MovieColumns.css";
-import DropdownItem from "react-bootstrap/esm/DropdownItem";
+import DropdownItem from "react-bootstrap/DropdownItem";
 
 
 function MovieColumn(props) {

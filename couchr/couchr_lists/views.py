@@ -17,6 +17,8 @@ def movie_encoder(movie):
     dict["api_url"] = movie.api_url
     dict["api_id"] = movie.api_id
     dict['poster'] = movie.poster
+    dict["release_date"] = movie.release_date
+    dict["vote_average"] = movie.vote_average
     return dict
 # list encoder
 def list_encoder(list):
@@ -157,6 +159,8 @@ def api_list_movies(request, pk, username):
                 api_id=content["api_id"])
             movie.title = content["title"]
             movie.poster = content['poster']
+            movie.release_date = content["release_date"]
+            movie.vote_average = content["vote_average"]
             movie.save()
 
             # if MovieVO isn't already in the list, then add it
@@ -225,6 +229,8 @@ def list_encoder_for_default_lists(list):
         movie_dict = {}
         movie_dict["id"] = movie.id
         movie_dict['poster'] = movie.poster
+        movie_dict["release_date"] = movie.release_date
+        movie_dict["vote_average"] = movie.vote_average
         dict['movies'].append(movie_dict)
     return dict
 
@@ -259,6 +265,8 @@ def api_list_liked(request, username):
                     api_id=content["api_id"])
                 movie.title = content["title"]
                 movie.poster = content['poster']
+                movie.release_date = content["release_date"]
+                movie.vote_average = content["vote_average"]
                 movie.save()
 
                 # if MovieVO isn't already in the list, then add it
@@ -331,6 +339,8 @@ def api_list_watched(request, username):
                     api_id=content["api_id"])
                 movie.title = content["title"]
                 movie.poster = content['poster']
+                movie.vote_average = content["vote_average"]
+                movie.release_date = content["release_date"]
                 movie.save()
 
                 # if MovieVO isn't already in the list, then add it
@@ -401,6 +411,8 @@ def api_list_wish(request, username):
                     api_id=content["api_id"])
                 movie.title = content["title"]
                 movie.poster = content['poster']
+                movie.vote_average = content["vote_average"]
+                movie.release_date = content["release_date"]
                 movie.save()
 
                 # if MovieVO isn't already in the list, then add it
@@ -453,6 +465,8 @@ def movie_encoder(movie):
     dict["api_url"] = movie.api_url
     dict["api_id"] = movie.api_id
     dict['poster'] = movie.poster
+    dict["release_date"] = movie.release_date
+    dict["vote_average"] = movie.vote_average
     return dict
 
 # get all movie VOs in DB
@@ -548,6 +562,8 @@ def list_encoder_for_movieVOs(list):
         movie_dict["title"] = movie.title
         movie_dict['poster_path'] = movie.poster
         movie_dict["id"] = movie.api_id
+        movie_dict["release_date"] = movie.release_date
+        movie_dict["vote_average"] = movie.vote_average
         dict['movies'].append(movie_dict)
     return dict
 
