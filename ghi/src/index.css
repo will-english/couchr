@@ -40,6 +40,8 @@ code {
 
 .row {
   height: 350px;
+  /* padding-right: 150px;
+  padding-left: 150px; */
 }
 
 .h-sm {
@@ -68,23 +70,23 @@ code {
 /* Columns */
 .wrapper {
   display: grid;
-  grid-template-columns: 1fr 1400px 1fr;
+  grid-template-columns: 0.6fr 3fr 0.7fr;
   margin: 50px;
   padding: 10px;
 }
 
 .carousel {
   align-self: center;
-  margin: 30px;
-  height: 1020px;
+  margin: 20px;
+  height: 800px;
   /* padding: 20px */
 }
 
 .couchr-carousel {
   align-self: center;
   margin: 30px;
-  height: 1020px;
-  padding-top: 80px;
+  height: 800px;
+  padding-top: 60px;
 }
 
 .carousel_caption {
@@ -98,10 +100,10 @@ code {
 }
 
 .carousel-slide {
-  height: 1000px;
+  height: 780px;
   text-align: center;
   vertical-align: middle;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .slide-photo:hover {
@@ -114,7 +116,7 @@ code {
 .slide-photo {
   align-self: center;
   vertical-align: middle;
-  height: 770px;
+  height: 550px;
   left: auto;
   right: auto;
   transition: 0.5s;
@@ -123,6 +125,7 @@ code {
 .main-page-header {
   align-self: center;
   color: white;
+  font-size: 27pt;
 }
 
 /* sidebar */
@@ -132,7 +135,7 @@ code {
   position: fixed;
   left: 0;
   top: 0px;
-  padding-top: 120px;
+  padding-top: 110px;
   /* padding-top: 40px; */
   background-color: #415A77;
   padding-left: 25px;
@@ -146,12 +149,12 @@ code {
 .sidebar_link {
   color: white;
   text-decoration: none;
-  font-size: 18px;
-  line-height: 38px;
+  font-size: 13px;
+  line-height: 33px;
 }
 
 .sidebar__logo {
-  padding-bottom: 15px;
+  padding-bottom: 10px;
 }
 
 

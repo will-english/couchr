@@ -32,7 +32,7 @@ function App() {
           <Route path='mylists/' element={<MyMovieLists />} />
           <Route path='user_page/' element={<UserPage /> }/>
           <Route path='public_lists/' element={<PublicLists /> }/>
-          <Route path='movie_trailer/' element={<YouTube /> }/>
+          <Route path='movie_trailer/:id/' element={<YouTube /> }/>
         </Routes>
       </div>
     </AuthProvider>

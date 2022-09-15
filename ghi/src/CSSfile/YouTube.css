@@ -1,5 +1,5 @@
 .poster {
-    height: 600px;
+    height: 500px;
     width: 800px;
     align-self: center;
 }
@@ -7,9 +7,23 @@
 .Youtube {
 text-align: center;
 align-self: center; 
-margin-left: 20%;
+display: flex;
+justify-content: center;
+align-items: center;
+
 }
 
 .trailer {
 align-self: center;
+}
+
+.play {
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle !important;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: 125px;
 }
