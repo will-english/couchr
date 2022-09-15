@@ -3,6 +3,7 @@ import MovieColumn from "./MovieColumns";
 import { useEffect } from "react";
 import Sidebar from "./SideBar"
 import { AuthContext } from '../auth/auth_provider';
+import "../CSSfile/MovieColumns.css"
 
 
 

@@ -3,9 +3,7 @@ import { AuthContext } from '../auth/auth_provider';
 import DetailLeftArea from "./DetailLeftArea";
 import DetailMiddleArea from "./DetailMiddleArea";
 import DetailRightArea from "./DetailRightArea";
-import DetailBottomArea from "./DetailBottomArea";
 import "../CSSfile/DetailPage.css";
-
 
 
 class MovieDetail extends React.Component {
@@ -41,7 +39,7 @@ class MovieDetail extends React.Component {
         const response_detail = await fetch(movie_detail_url);
         const response_credit = await fetch(movie_credit_rul);
 
-        
+
         try {
             const movie_lists_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${this.context.userName}/`;
             const request = await fetch(movie_lists_url, {
@@ -87,6 +85,7 @@ class MovieDetail extends React.Component {
             let poster = ''
             if (detail_data.poster_path !== null) {
                 detail_data.poster_path = "https://image.tmdb.org/t/p/original" + detail_data.poster_path
+                console.log(detail_data.poster_path)
                 this.setState({ 'poster': detail_data.poster_path })
                 poster  = detail_data.poster_path;
             } else {
@@ -103,12 +102,15 @@ class MovieDetail extends React.Component {
                     movie_credit: credit_data,
                     genres: genres_list,
                 });
+            console.log(this.state.poster)
             const movie = {
                 "title": title,
                 'poster': poster,
                 "api_id": movie_id,
                 "add": true
             }
+            console.log(movie)
+
             this.setState({ movie: movie })
         };
     }
@@ -120,7 +122,7 @@ class MovieDetail extends React.Component {
     }
 
 
-    // add movie to a list
+    //How to add the current move to one of the lists
     async handleAddMovie(event) {
         event.preventDefault();
 
@@ -140,6 +142,7 @@ class MovieDetail extends React.Component {
             "api_id": api_id,
             "add": true
         }
+
         this.setState({ movie: movie })
 
         // Turn the JSON object into a JSON string and then send it in the PUT method
@@ -169,12 +172,12 @@ class MovieDetail extends React.Component {
         }
     }
 
-    // async handleCreateList(event) {
-    //     event.preventDefault();
-    //     alert("Hello")
-    // }
+    async handleCreateList(event) {
+        event.preventDefault();
+        alert("Hello")
+    }
 
-    // add newly created list to drop-down
+    //create a new list
     addList(list) {
         const lists = this.state.movie_lists
         lists.push(list)
@@ -194,14 +197,10 @@ class MovieDetail extends React.Component {
                 {/* Detail area */}
                 <div className="detail_content_area">
                     <DetailLeftArea movie={this.state.movie_detail} movie_obj={this.state.movie} />
-                    <DetailMiddleArea movie={this.state.movie_detail} movie_lists={this.state.movie_lists} add_list={this.addList} handleAddMovie={this.handleAddMovie} movie_add={this.state.movie}/>
+                    <DetailMiddleArea movie={this.state.movie_detail} movie_lists={this.state.movie_lists} add_list={this.addList} handleAddMovie={this.handleAddMovie} />
                     <DetailRightArea actors={this.state.actors} genres={this.state.genres} />
-
-                    <div>
-                        <DetailBottomArea movie={this.state.movie_detail} />
-                    </div>
-                    
                 </div>
+
                 {/* Footer area */}
                 <footer className="detail_footer">
                     <p>@Coucher team&nbsp;&nbsp;2022</p>
