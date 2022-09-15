@@ -4,10 +4,14 @@ from django.contrib.auth.models import User
 import requests
 
 # Test written by Edward Nguyen
-# open couchr terminal from docker
-# open couchr_lists.views.py
-# comment out the auth.jwt_login_required decorator from the api_lists function
-# run python manage.py test
+
+
+# INSTRUCTIONS: ~~~~
+
+# open couchr-1 port 8000 terminal from docker
+# open <<couchr_lists.views.py>>
+# comment out the <<auth.jwt_login_required>> decorator from the <<api_lists>> function
+# run <<python manage.py test>>
 
 
 class CreateListTestCase(TestCase):

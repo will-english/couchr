@@ -1,3 +1,8 @@
+### 9/14
+- We had a bug with the add-movie-to-list button (again) due to an issue with how the props were being sent to different components. I changed the functionality to automatically add movies to new lists.
+- I realized my unit test wasn't actually working with the user-auth credentials, so Zach helped me through some of that
+- However, we never actually figured out the issue. So my unit test only works without the auth decorator in the backend views. Therefore, the unit test only tests that the views work and a List can be created.
+- Then I worked on putting together the component that renders the Movie Reviews. I was able to fetch the right information and display it, but we still need to finalize the styling and layout.
 ### 9/13
 - I got the create review form modal to be fully functional today
 - I learned that it's not "correct" to change a component's state based on the props passed into the modal, so instead I just passed the props into the API call, and I didn't define a state for those attributes
