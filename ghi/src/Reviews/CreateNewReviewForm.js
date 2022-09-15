@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useAuthContext } from '../auth/auth_provider';
 
+
 function NewReviewForm(props) {
     // props coming from DetailMiddleArea.js
 
@@ -12,6 +13,7 @@ function NewReviewForm(props) {
         title: '',
         description: '',
     })
+    
 
     // automatically changes state when typing in modal form
     function handleChange(event) {

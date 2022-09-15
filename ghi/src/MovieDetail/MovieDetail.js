@@ -196,11 +196,12 @@ class MovieDetail extends React.Component {
                     <DetailLeftArea movie={this.state.movie_detail} movie_obj={this.state.movie} />
                     <DetailMiddleArea movie={this.state.movie_detail} movie_lists={this.state.movie_lists} add_list={this.addList} handleAddMovie={this.handleAddMovie} movie_add={this.state.movie}/>
                     <DetailRightArea actors={this.state.actors} genres={this.state.genres} />
-                </div>
-                <div>
-                    <DetailBottomArea movie={this.state.movie_detail} />
-                </div>
 
+                    <div>
+                        <DetailBottomArea movie={this.state.movie_detail} />
+                    </div>
+                    
+                </div>
                 {/* Footer area */}
                 <footer className="detail_footer">
                     <p>@Coucher team&nbsp;&nbsp;2022</p>
