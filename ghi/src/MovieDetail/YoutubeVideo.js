@@ -1,9 +1,6 @@
 import {useEffect, useState} from "react"
 import Youtube from 'react-youtube'
-// import Movie from "./Movies"
 import axios from 'axios'
-import DetailMiddleArea from "./DetailMiddleArea"
-import "../CSSfile/YouTube.css";
 
 function YoutubeVideo(props) {
     const MOVIE_API = "https://api.themoviedb.org/3/"
@@ -11,7 +8,6 @@ function YoutubeVideo(props) {
     const DISCOVER_API = MOVIE_API + "discover/movie"
     const API_KEY = process.env.REACT_APP_MOVIE_API_KEY
     const BACKDROP_PATH = "https://image.tmdb.org/t/p/w1280"
-    const MOVIE_STATE = "{props.movie?.title}"
 
     const [playing, setPlaying] = useState(false)
     const [trailer, setTrailer] = useState(null)
@@ -23,29 +19,36 @@ function YoutubeVideo(props) {
         fetchMovies()
     }, [])
 
+    
     const fetchMovies = async (event) => {
         if (event) {
             event.preventDefault()
         }
-
+        
+        
         const {data} = await axios(`${searchKey ? SEARCH_API : DISCOVER_API}`, {
             params: {
                 api_key: API_KEY,
                 query: searchKey
             }
         })
-
-        console.log(data.results[0])
+        
+        // console.log(data.results.id)
         setMovies(data.results)
-        setMovie(data.results[0])
-
+        setMovie(data.results.id)
+        
         if (data.results.length) {
             await fetchMovie(data.results[0].id)
         }
     }
     
-    const fetchMovie = async (id) => {
-        const {data} = await axios(`${MOVIE_API}movie/${id}`, {
+    const fetchMovie = async () => {
+        const currentURL = window.location.href
+        // console.log(currentURL)
+        const words = currentURL.split("/")
+        const movie_id = words[4]
+        console.log(movie_id)
+        const {data} = await axios(`${MOVIE_API}movie/${movie_id}`, {
             params: {
                 api_key: API_KEY,
                 append_to_response: "videos"
@@ -85,7 +88,7 @@ function YoutubeVideo(props) {
                 <form className="form" onSubmit={fetchMovies}>
                     <input className="search" type="text" id="search"
                            onInput={(event) => setSearchKey(event.target.value)} placeholder="Search Movie Trailer"/>
-                    <button className="submit-search" type="submit"><i className="fa fa-search"></i></button>
+                    <button className="submit-search" type="submit"><i className="fa fa-search">{selectMovie}</i></button>
                 </form>
             </header>
             {movies.length ?
