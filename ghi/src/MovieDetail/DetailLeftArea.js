@@ -9,6 +9,7 @@ function DetailLeftArea(props) {
 
     async function handleAddList(e) {
         console.log(props.movie_obj)
+        const dict = {'liked': 'is_in_liked_list', 'watched': 'is_in_watched_list', 'want-to-watch': 'is_in_wished_list',}
         if (userName && token) {
             console.log('inside movie add')
             const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${userName}/${e.target.id}/`;
@@ -22,8 +23,9 @@ function DetailLeftArea(props) {
                 },
             });
             const response = await request.json();
-            console.log(response);
-            // setTitle(response.lists[0].name)
+            console.log(e.target.id);
+
+           props.afterSubmit(dict[e.target.id])
         }
 
 
@@ -57,7 +59,7 @@ function DetailLeftArea(props) {
                 </span>
 
                 <span className="detail_icon_my-tip">
-                    <svg onClick={handleAddList} id="wish" xmlns="http://www.w3.org/2000/svg" width="50" height="23" fill="currentColor" className="bi bi-bookmark detail_image_area_icon" viewBox="0 0 16 16">
+                    <svg onClick={handleAddList} id="want-to-watch" xmlns="http://www.w3.org/2000/svg" width="50" height="23" fill="currentColor" className="bi bi-bookmark detail_image_area_icon" viewBox="0 0 16 16">
                         {props.is_in_wished_list ? <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/> : <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />}
                     </svg>
                     <span className="detail_icon_tip"><i>want-to-watch</i></span>

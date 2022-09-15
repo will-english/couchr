@@ -264,23 +264,10 @@ code {
   margin-right: 15%;
 }
 
-.ad {
-  background-image: 
-    linear-gradient(
-      rgba(0, 0, 0, 0.5),
-      #415A77
-    ),
-    url('../public/Ad.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 100vh;
-  width: 100%;
-  /* position: fixed; */
-} 
+.navigation_item {
+  vertical-align: middle;
+}
 
-.ad-btn {
-  position: absolute;
-  right:    125px;
-  bottom:   5px;
+.couchr-title {
+  font-size: 30px;
 }
