@@ -1,5 +1,6 @@
 import MovieColumn from "../ListingMovies/MovieColumns";
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import ControlledCarousel from "./PopularCarousel";
 import ControlledCarousel2 from "./CouchrCarousel";
 import SideBar from "../ListingMovies/SideBar";
@@ -68,7 +69,13 @@ function MainPage() {
         </div>
       </div>
       <div>
-        Ads
+        <div id='sticky-sidebar' className='ad'>
+          <a href="https://www.hackreactor.com/learn-python-learn-javascript">
+            <button className="ad-btn btn btn-danger">Join Today
+              {/* <Link to='https://www.hackreactor.com/learn-python-learn-javascript' /> */}
+            </button>
+          </a>
+          </div> 
       </div>
       <div>
       </div>
