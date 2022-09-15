@@ -67,7 +67,6 @@ class CreateListTestCase(TestCase):
 
     def test_create_list(self):
         url = f'http://localhost:8000/api/lists/user/{self.username}/'
-        print("url: ", url)
         json = {
             "name": "list_name_test",
             "description": "list_description_test",
