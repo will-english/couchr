@@ -120,6 +120,7 @@ code {
   left: auto;
   right: auto;
   transition: 0.5s;
+  border-radius: 10px;
 }
 
 .main-page-header {
