@@ -9,6 +9,8 @@ class MovieVO(models.Model):
     api_url = models.URLField(unique=True, null=True, blank=True)
     api_id = models.CharField(max_length=100, unique=False, null=True, blank=True)
     poster = models.URLField(blank=True,null=True)
+    release_date = models.CharField(max_length=15, unique=False, null=True, blank=True)
+    vote_average = models.FloatField(unique=False, null=True, blank=True)
 
 class List(models.Model):
     name = models.CharField(max_length=100, unique=False, null=True, blank=True)

@@ -3,7 +3,8 @@ import MovieColumn from "./MovieColumns";
 import { useEffect } from "react";
 import Sidebar from "./SideBar"
 import { AuthContext } from '../auth/auth_provider';
-import "../CSSfile/MovieColumns.css"
+import "../CSSfile/MovieColumns.css";
+
 
 
 
@@ -80,7 +81,9 @@ class SearchResults extends React.Component {
             "title": movie.title,
             "poster": movie.poster_path,
             "api_id": movie.id,
-            "add": true
+            "add": true,
+            "vote_average": movie.vote_average,
+            "release_date": movie.release_date
         }
         const fetchConfig = {
             method: "PUT",
