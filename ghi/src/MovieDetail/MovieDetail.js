@@ -7,6 +7,7 @@ import DetailBottomArea from "./DetailBottomArea";
 import "../CSSfile/DetailPage.css";
 
 
+
 class MovieDetail extends React.Component {
     static contextType = AuthContext;
     constructor(props) {

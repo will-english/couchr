@@ -35,3 +35,37 @@
     vertical-align: top;
 }
 
+.add-dropdown {
+    width: fit-content;
+    margin-right: 0;
+    margin-left: auto;
+    vertical-align: bottom;
+}
+
+.btn-secondary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: transparent;
+    --bs-btn-border-color: #415A77;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #415A77;
+    --bs-btn-hover-border-color: #415A77;
+    --bs-btn-focus-shadow-rgb: none;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #415A77;
+    --bs-btn-active-border-color: none;
+    --bs-btn-active-shadow: none;
+    --bs-btn-active-scale: 1.0;
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #415A77;
+    --bs-btn-disabled-border-color: #415A77;
+}
+
+.btn:hover {
+    text-decoration: solid;
+    color: white;
+    background-color: #415A77;
+}
+
+.card-dropdown-div {
+    margin-top: 15px;
+}
