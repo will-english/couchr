@@ -77,12 +77,18 @@ export default function MovieVOList(props) {
         fetchMovies();
     }, [])
 
+    let trash = true;
+
+    if (props.public) {
+        trash = false;
+    }
+
     return (
         <div className='container' >
             <div className="row">
                 {MovieColumns.map((movie, index) => {
                     return (
-                        <MovieColumn key={index} list={movie} delete={true} handleRemove={handleRemove}/>
+                        <MovieColumn key={index} list={movie} delete={trash} handleRemove={handleRemove}/>
                     );
                 })}
             </div>
