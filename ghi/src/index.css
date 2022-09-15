@@ -263,3 +263,11 @@ code {
   margin-left: 15%;
   margin-right: 15%;
 }
+
+.navigation_item {
+  vertical-align: middle;
+}
+
+.couchr-title {
+  font-size: 30px;
+}
