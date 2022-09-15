@@ -69,7 +69,7 @@ function PublicLists() {
             return (
                 <div>
                     <button onClick={handleBack} >Back to lists</button>
-                    <MovieVOList id={list[0]} name={list[1]} username={list[2]}/>
+                    <MovieVOList public = {true} id={list[0]} name={list[1]} username={list[2] }/>
                 </div>
             )
 
