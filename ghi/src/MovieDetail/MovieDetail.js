@@ -3,6 +3,7 @@ import { AuthContext } from '../auth/auth_provider';
 import DetailLeftArea from "./DetailLeftArea";
 import DetailMiddleArea from "./DetailMiddleArea";
 import DetailRightArea from "./DetailRightArea";
+import DetailBottomArea from "./DetailBottomArea";
 import "../CSSfile/DetailPage.css";
 
 
@@ -267,6 +268,10 @@ class MovieDetail extends React.Component {
                     <DetailLeftArea movie={this.state.movie_detail} movie_obj={this.state.movie} afterSubmit={this.changeIcon} is_in_liked_list={this.state.is_in_liked_list} is_in_watched_list={this.state.is_in_watched_list} is_in_wished_list={this.state.is_in_wished_list}/>
                     <DetailMiddleArea movie={this.state.movie_detail} movie_lists={this.state.movie_lists} add_list={this.addList} handleAddMovie={this.handleAddMovie} movie_add={this.state.movie}/>
                     <DetailRightArea actors={this.state.actors} genres={this.state.genres} />
+                </div>
+
+                <div>
+                    <DetailBottomArea movie={this.state.movie_detail}/>
                 </div>
 
                 {/* Footer area */}
