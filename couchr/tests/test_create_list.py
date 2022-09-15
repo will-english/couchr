@@ -86,4 +86,5 @@ class CreateListTestCase(TestCase):
 
         response.json()
         if response:
+            print("test_create_list.py passed")
             self.assertEqual(response.status_code, 200)
