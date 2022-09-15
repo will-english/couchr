@@ -26,6 +26,7 @@ export default function MovieVOList(props) {
             let mc = [[], [], [], []]
             let i = 0
             for (let data of response.movies) {
+                console.log(data)
                 mc[i].push(data)
                 i = i + 1
                 if (i > 3) { i = 0 }
