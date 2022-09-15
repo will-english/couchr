@@ -8,7 +8,8 @@ export default function ListCard(props) {
         <>
             <div className='movie_user_list_card_content'>
                 {props.movies.map(movie => {
-                    let default_pic = 'https://image.tmdb.org/t/p/original/14lQfkLDgEIrEtyUMfj5rJEKVlS.jpg';
+                    // let default_pic = 'https://image.tmdb.org/t/p/original/14lQfkLDgEIrEtyUMfj5rJEKVlS.jpg';
+                    let default_pic = '/default_blank_img.png';
                     console.log(movie)
                     if (movie.poster) {
                         default_pic = movie.poster
@@ -17,7 +18,7 @@ export default function ListCard(props) {
                 })}
             </div>
 
-            <div className="">
+            <div className="movie_user_list_card_title">
                 {/* movie title */}
                 <p className="">
                     <i>{props.title}</i>

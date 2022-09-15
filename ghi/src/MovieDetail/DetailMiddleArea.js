@@ -70,7 +70,7 @@ function DetailMiddleArea(props) {
                             </button>
                         </li>
                     </ul>
-                            <NewList afterSubmit={props.add_list} />
+                            <NewList afterSubmit={props.add_list} movie={props.movie_add} />
                 </div>
 
                  {/* add review button */}

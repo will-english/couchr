@@ -74,6 +74,10 @@ transform: scale(1.02);
 transition: 0.5s ease;
 }
 
+.movie_user_list_card_title {
+    margin-top: 7px
+}
+
 .movie_create_user_list_card {
 vertical-align: top;
 }
@@ -94,6 +98,8 @@ width: 40%;
 margin: 10px;
 margin-top: 15px;
 border-radius: 4%;
+height: 150px;
+box-shadow: 0px 0px 1px lightgrey;
 }
 /* -------------↑↑↑↑↑↑-------------list area-------------↑↑↑↑↑↑------------- */
 
@@ -101,7 +107,7 @@ border-radius: 4%;
 /* -------------↓↓↓↓↓↓-------------profile area-------------↓↓↓↓↓↓------------- */
 .userpage_left_content_area_content {
 margin: 20px 100px;
-text-align: left;
+text-align: center;
 }
 
 .userpage_left_content_area_content_each {
@@ -110,3 +116,81 @@ margin-bottom: 15px;
 }
 
 /* -------------↑↑↑↑↑↑-------------profile area-------------↑↑↑↑↑↑------------- */
+
+
+/* -------------↓↓↓↓↓↓-------------subscription area-------------↓↓↓↓↓↓------------- */
+.subscription_card {
+    background-color: white;
+    display: inline-block;
+    margin:60px 15px;
+    width: 30%;
+    height: 400px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px white;
+    opacity: 90%;
+    color: black;
+    vertical-align: top;
+    text-align: left;
+    padding: 20px;
+}
+
+
+.subscription_card:hover {
+    opacity: 100%;
+    transform: scale(1.05);
+    transition: 0.4s ease;
+    background-color: #181c24;
+    color: white;
+}
+
+.price_text {
+    display: inline-block;
+}
+
+.subscription_discription {
+    font-size: 12px;
+    color: gray;
+}
+
+.subscription_page_block_line {
+    border: 1px solid lightgrey;
+    margin: 40px 0 30px 0;
+}
+
+.subscription_feature_discription {
+    font-size: 15px;
+    color: gray;
+}
+
+.subscrib_button {
+    margin-left:25%;
+    width: 150px;
+    background-color: black;
+}
+
+.subscription_card:hover .subscription_discription{
+    color: white;
+}
+
+.subscription_card:hover .subscription_feature_discription{
+    color: white;
+}
+
+.subscription_card:hover .subscription_title{
+    color: #6659de;
+}
+
+.subscription_card:hover .subscrib_button{
+    color: white;
+    background-color: #6659de;
+    border: 0;
+}
+
+.subscrib_button:hover {
+    transform: scale(0.95);
+    transition: 0.3s ease;
+}
+
+
+
+/* -------------↑↑↑↑↑↑-------------subscription area-------------↑↑↑↑↑↑------------- */
