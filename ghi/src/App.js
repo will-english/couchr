@@ -29,7 +29,6 @@ function App() {
           <Route path='movies/:id' element={<MovieList />} />
           <Route path='movies/movie/:id/' element={<MovieDetail />} />
           <Route path='login/' element={<Login />} />
-          <Route path='signup/' element={<Signup />} />
           <Route path='mylists/' element={<MyMovieLists />} />
           <Route path='user_page/' element={<UserPage /> }/>
           <Route path='public_lists/' element={<PublicLists /> }/>
