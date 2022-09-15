@@ -264,6 +264,14 @@ code {
   margin-right: 15%;
 }
 
+.navigation_item {
+  vertical-align: middle;
+}
+
+.couchr-title {
+  font-size: 30px;
+}
+
 .ad {
   background-image: 
     linear-gradient(
