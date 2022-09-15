@@ -31,6 +31,6 @@ class CreateAccountsTestCase(TestCase):
             url,
             json=body,
         )
-
+        print(res['signup'])
         # ? Assert
         self.assertEqual(res['signup'], True)

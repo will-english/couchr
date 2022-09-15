@@ -68,7 +68,7 @@ function UserPageLists() {
             }
 
             // ! grabing the wish list information from our API
-            const wish_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${userName}/wish/`;
+            const wish_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${userName}/want-to-watch/`;
             const wish_request = await fetch(wish_url, {
                 credentials: "include",
                 headers: {
