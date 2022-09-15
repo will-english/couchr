@@ -75,7 +75,7 @@ function PublicLists() {
 
         } else {
             return (
-                <div>
+                <div className='community_page'>
                     {lists.map(list => {
                         console.log(list.list.name, list.list.movies)
                         console.log([list.list.id, list.list.name]);

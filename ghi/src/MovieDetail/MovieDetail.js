@@ -3,9 +3,7 @@ import { AuthContext } from '../auth/auth_provider';
 import DetailLeftArea from "./DetailLeftArea";
 import DetailMiddleArea from "./DetailMiddleArea";
 import DetailRightArea from "./DetailRightArea";
-import DetailBottomArea from "./DetailBottomArea";
 import "../CSSfile/DetailPage.css";
-
 
 
 class MovieDetail extends React.Component {
@@ -90,6 +88,7 @@ class MovieDetail extends React.Component {
             let poster = ''
             if (detail_data.poster_path !== null) {
                 detail_data.poster_path = "https://image.tmdb.org/t/p/original" + detail_data.poster_path
+                console.log(detail_data.poster_path)
                 this.setState({ 'poster': detail_data.poster_path })
                 poster  = detail_data.poster_path;
             } else {
@@ -106,6 +105,7 @@ class MovieDetail extends React.Component {
                     movie_credit: credit_data,
                     genres: genres_list,
                 });
+            console.log(this.state.poster)
             const movie = {
                 "title": title,
                 'poster': poster,
@@ -114,6 +114,8 @@ class MovieDetail extends React.Component {
                 "release_date": detail_data.release_date,
                 "vote_average": detail_data.vote_average
             }
+            console.log(movie)
+
             this.setState({ movie: movie })
         };
 
@@ -180,7 +182,7 @@ class MovieDetail extends React.Component {
     }
 
 
-    // add movie to a list
+    //How to add the current move to one of the lists
     async handleAddMovie(event) {
         event.preventDefault();
 
@@ -202,6 +204,7 @@ class MovieDetail extends React.Component {
             "release_date": this.state.movie.release_date,
             "vote_average": this.state.movie.vote_average
         }
+
         this.setState({ movie: movie })
 
         // Turn the JSON object into a JSON string and then send it in the PUT method
@@ -231,12 +234,12 @@ class MovieDetail extends React.Component {
         }
     }
 
-    // async handleCreateList(event) {
-    //     event.preventDefault();
-    //     alert("Hello")
-    // }
+    async handleCreateList(event) {
+        event.preventDefault();
+        alert("Hello")
+    }
 
-    // add newly created list to drop-down
+    //create a new list
     addList(list) {
         const lists = this.state.movie_lists
         lists.push(list)
@@ -263,12 +266,8 @@ class MovieDetail extends React.Component {
                     <DetailLeftArea movie={this.state.movie_detail} movie_obj={this.state.movie} afterSubmit={this.changeIcon} is_in_liked_list={this.state.is_in_liked_list} is_in_watched_list={this.state.is_in_watched_list} is_in_wished_list={this.state.is_in_wished_list}/>
                     <DetailMiddleArea movie={this.state.movie_detail} movie_lists={this.state.movie_lists} add_list={this.addList} handleAddMovie={this.handleAddMovie} movie_add={this.state.movie}/>
                     <DetailRightArea actors={this.state.actors} genres={this.state.genres} />
-
-                    <div>
-                        <DetailBottomArea movie={this.state.movie_detail} />
-                    </div>
-                    
                 </div>
+
                 {/* Footer area */}
                 <footer className="detail_footer">
                     <p>@Coucher team&nbsp;&nbsp;2022</p>
