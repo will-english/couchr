@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useToken } from './auth_provider';
 import { useAuthContext } from './auth_provider';
+import { Link } from 'react-router-dom'
 import "../CSSfile/SignInPage.css";
 
 function Login() {
@@ -103,7 +104,7 @@ function Login() {
                             <input onChange={(e) => setPassword(e.target.value)} onFocus={handleInputFocus} onBlur={handleInputBlur} required type="text" name="password" id="password" />
                             <span data-placeholder="Password"></span>
                         </div>
-                        <a href="#">Forgot your password?</a>
+                        <Link to="#">Forgot your password?</Link>
                         <button type="submit" className="signpageButton">Login</button>
                     </form>
                 </div>
