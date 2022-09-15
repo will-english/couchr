@@ -6,6 +6,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import DetailLeftArea from '../MovieDetail/DetailLeftArea';
 import { AuthContext } from '../auth/auth_provider';
+import DropdownItem from "react-bootstrap/DropdownItem";
+import "../CSSfile/MovieColumns.css";
 
 class MovieList extends React.Component {
     static contextType = AuthContext;
@@ -124,7 +126,9 @@ class MovieList extends React.Component {
             "title": movie.title,
             "poster": movie.poster_path,
             "api_id": movie.id,
-            "add": true
+            "add": true,
+            "release_date": movie.release_date,
+            "vote_average": movie.vote_average
         }
         const fetchConfig = {
             method: "PUT",
@@ -152,7 +156,9 @@ class MovieList extends React.Component {
             "title": movie.title,
             "poster": movie.poster_path,
             "api_id": movie.id,
-            "add": true
+            "add": true,
+            "release_date": movie.release_date,
+            "vote_average": movie.vote_average
         }
         const request = await fetch(url, {
             method: "put",
