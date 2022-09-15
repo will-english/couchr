@@ -30,6 +30,7 @@ class MovieDetail extends React.Component {
         this.handleStateChange = this.handleStateChange.bind(this);
         this.handleAddMovie = this.handleAddMovie.bind(this);
         this.addList = this.addList.bind(this);
+        this.changeIcon = this.changeIcon.bind(this);
     }
 
 
@@ -119,7 +120,7 @@ class MovieDetail extends React.Component {
         
         try {
             const liked_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${userName}/liked/`;
-            const wished_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${userName}/wish/`;
+            const wished_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${userName}/want-to-watch/`;
             const watched_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${userName}/watched/`;
             
             const likedrequest = await fetch(liked_url, {
@@ -242,6 +243,11 @@ class MovieDetail extends React.Component {
         this.setState({ movie_lists: lists });
     }
 
+    changeIcon(icon) {
+        const dict = { [icon] : true }
+        this.setState(dict);
+    }
+
     render() {
         return (
             <div className="detail_page">
@@ -254,7 +260,7 @@ class MovieDetail extends React.Component {
 
                 {/* Detail area */}
                 <div className="detail_content_area">
-                    <DetailLeftArea movie={this.state.movie_detail} movie_obj={this.state.movie} is_in_liked_list={this.state.is_in_liked_list} is_in_watched_list={this.state.is_in_watched_list} is_in_wished_list={this.state.is_in_wished_list}/>
+                    <DetailLeftArea movie={this.state.movie_detail} movie_obj={this.state.movie} afterSubmit={this.changeIcon} is_in_liked_list={this.state.is_in_liked_list} is_in_watched_list={this.state.is_in_watched_list} is_in_wished_list={this.state.is_in_wished_list}/>
                     <DetailMiddleArea movie={this.state.movie_detail} movie_lists={this.state.movie_lists} add_list={this.addList} handleAddMovie={this.handleAddMovie} movie_add={this.state.movie}/>
                     <DetailRightArea actors={this.state.actors} genres={this.state.genres} />
 

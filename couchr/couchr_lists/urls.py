@@ -47,7 +47,7 @@ urlpatterns = [
     path("user/<str:username>/watched/", api_list_watched, name="api_lists_watched"),
 
     # get wish list from a user
-    path("user/<str:username>/wish/", api_list_wish, name="api_lists_wish"),
+    path("user/<str:username>/want-to-watch/", api_list_wish, name="api_lists_wish"),
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
