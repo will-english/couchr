@@ -46,7 +46,29 @@ Stretch Goals:
 **test change**
 
 ## Instructions for building the application
+
+create the volume:
+    > docker volume create postgres-data
+build and run the containers:
+    > docker compose build
+    > docker compose up
+
 ## Tests for each group member
+Will:
+couchr/tests/test_account_create.py
+
+Sheldon:
+ghi/src/Reviews/CreateNewReviewForm.test.js
+
+Christie:
+ghi/src/ListingMovies/ListByGenre.test.js
+
+Jamie:
+ghi/src/Watchlists/MyMovieLists.test.js
+
+Edward:
+couchr/tests/test_list_create.py
+
 ## Instructions for getting the api key
 
 ## each persons best moments and challenges
