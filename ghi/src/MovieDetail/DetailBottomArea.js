@@ -23,29 +23,31 @@ function DetailBottomArea(props) {
     return (
         <>
             <div className="review_area">
-                <div>
+              
                     {reviews.reviews?.map((review, index) => {
                     return (
                         <div className="review" key={index}>
                             <div className="review_user">
-                                <img style={{width: '100px'}} src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXPI745tFSS8cjMg-joaypGsVzQPpRTGWetg&usqp=CAU'>
+                                <img className="review_user_img" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXPI745tFSS8cjMg-joaypGsVzQPpRTGWetg&usqp=CAU' alt="">
                                 </img>
-                                <div>
-                                    {review.user}
+                                <div className="review_info">
+                                    <h5 className="review_title">
+                                        {review.title}
+                                    </h5>
+                                    <p className="review_user_name">
+                                        <i>{review.user}</i>
+                                    </p>
                                 </div>
                             </div>
                             <div className="review_body">
-                                <h4>
-                                    {review.title}
-                                </h4>
                                 <p>
-                                    {review.description}
+                                    <i>{review.description}</i>
                                 </p>
                             </div>
                         </div>
                     );
                 })}
-                </div>
+                
             </div>
         </>
     ); 
