@@ -12,8 +12,6 @@ export default class ControlledCarousel extends Component {
             index: 0
         };
         this.handleSelect = this.handleSelect.bind(this);
-        // this.handleChange = this.handleChange.bind(this);
-        // this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     async componentDidMount() {
