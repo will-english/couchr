@@ -18,9 +18,7 @@ function DetailLeftArea(props) {
             movie['add'] = false
         }
         if (userName && token) {
-            console.log('inside movie add')
             const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${userName}/${e.currentTarget.id}/`;
-            console.log(movie)
             const request = await fetch(url, {
                 method: 'put',
                 credentials: "include",

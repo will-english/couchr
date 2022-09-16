@@ -27,12 +27,7 @@ function Login() {
 
     const handleSubmitSignUp = async e => {
         e.preventDefault()
-        console.log('signup try')
-        // setErrors(validation(values))
-        // console.log('login inside', login)
-        
         await signup(username, password, email, firstName, lastName, createLists);
-
         };
 
 
@@ -55,7 +50,6 @@ function Login() {
             e.target.className = ""
         }
     };
-
 
 
     return (
@@ -128,5 +122,6 @@ function Login() {
         </div>
     )
 }
+
 
 export default Login

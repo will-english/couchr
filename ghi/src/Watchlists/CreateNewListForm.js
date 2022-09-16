@@ -20,14 +20,7 @@ export default class NewList extends Component {
   handleChange(event) {
     const value = event.target.value;
     this.setState({ [event.target.name]: value })
-    console.log("this.props: ", this.props)
   }
-
-  // getInitialState() {
-  //   return {
-  //     public: false
-  //   }
-  // }
 
   handleClick(event) {
     this.setState({
@@ -55,7 +48,6 @@ export default class NewList extends Component {
     const response = await fetch(url, fetchConfig);
     if (response.ok) {
       const newList = await response.json();
-      console.log('new list', newList)
       this.props.afterSubmit(newList);
       const cleared = {
         name: '',
@@ -64,9 +56,7 @@ export default class NewList extends Component {
       };
       this.setState(cleared);
 
-
       // if list successfully created with POST, then call PUT and add movie to list
-
       // get new list ID
       const new_list_id = newList.id
 
@@ -91,7 +81,6 @@ export default class NewList extends Component {
       const response_put = await fetch(url_put, fetchConfig)
 
       if (response_put.ok) {
-        console.log("response ok~~~~~~~~~~~~~~~")
         document.getElementById("popup_message_id").className = "alert alert-success popup_message"
         setTimeout(function () {
           document.getElementById("popup_message_id").className = "d-none";
