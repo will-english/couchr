@@ -4,10 +4,14 @@ from django.contrib.auth.models import User
 import requests
 
 # Test written by Edward Nguyen
-# open couchr terminal from docker
-# open couchr_lists.views.py
-# comment out the auth.jwt_login_required decorator from the api_lists function
-# run python manage.py test
+
+
+# INSTRUCTIONS: ~~~~
+
+# open couchr-1 port 8000 terminal from docker
+# open <<couchr_lists.views.py>>
+# comment out the <<auth.jwt_login_required>> decorator from the <<api_lists>> function
+# run <<python manage.py test>>
 
 
 class CreateListTestCase(TestCase):
@@ -64,7 +68,6 @@ class CreateListTestCase(TestCase):
 
     def test_create_list(self):
         url = f'http://localhost:8000/api/lists/user/{self.username}/'
-        print("url: ", url)
         json = {
             "name": "list_name_test",
             "description": "list_description_test",
@@ -84,4 +87,5 @@ class CreateListTestCase(TestCase):
 
         response.json()
         if response:
+            print("test_create_list.py passed")
             self.assertEqual(response.status_code, 200)
