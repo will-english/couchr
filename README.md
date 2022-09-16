@@ -70,5 +70,8 @@ Edward:
 couchr/tests/test_list_create.py
 
 ## Instructions for getting the api key
+https://www.themoviedb.org/documentation/api
+Go to the link above, you will need to create an account and then you
+will be able to apply for an api key, there are no special requirements.
 
 ## each persons best moments and challenges
