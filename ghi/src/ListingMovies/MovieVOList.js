@@ -31,6 +31,7 @@ export default function MovieVOList(props) {
                 i = i + 1
                 if (i > 3) { i = 0 }
             }
+            console.log('******************',mc)
             setMovieColumns(mc)
         }
 

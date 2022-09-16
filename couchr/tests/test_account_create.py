@@ -12,12 +12,12 @@ class CreateAccountsTestCase(TestCase):
         sess.verify = False
 
         body = {
-                'username': 'test_username',
-                'password': 'test_password',
-                'email': 'test_email',
-                'first_name': 'test_first_name',
-                'last_name': 'test_last_name',
-            }
+            'username': 'test_username1',
+            'password': 'test_password',
+            'email': 'test_email',
+            'first_name': 'test_first_name',
+            'last_name': 'test_last_name',
+        }
 
         response = sess.post(
             url,
@@ -27,10 +27,11 @@ class CreateAccountsTestCase(TestCase):
         res = response.json()
         print(res)
 
-        response = sess.delete(
+        response2 = sess.delete(
             url,
             json=body,
         )
+        print('delete response', response2)
         print(res['signup'])
         # ? Assert
         self.assertEqual(res['signup'], True)
