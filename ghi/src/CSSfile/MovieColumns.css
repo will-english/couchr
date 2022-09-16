@@ -45,6 +45,11 @@
     vertical-align: bottom;
 }
 
+.add-dropdown:focus-within {
+    background-color: #415A77;
+    border: 0;
+  }
+
 .btn-secondary {
     --bs-btn-color: #fff;
     --bs-btn-bg: transparent;

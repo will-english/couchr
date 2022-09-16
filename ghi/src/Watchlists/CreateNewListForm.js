@@ -118,7 +118,7 @@ export default class NewList extends Component {
               <form onSubmit={this.handleSubmit}>
                 <div className="mb-3">
                   <label htmlFor="recipient-name" className="col-form-label">Name</label>
-                  <input value={this.state.name} onChange={this.handleChange} type="text" className="form-control" id="recipient-name" name="name" />
+                  <input value={this.state.name} required onChange={this.handleChange} type="text" className="form-control" id="recipient-name" name="name" />
                 </div>
                 <div className="mb-3">
                   <label htmlFor="message-text" className="col-form-label" >Description</label>
