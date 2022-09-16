@@ -70,7 +70,7 @@ function MainPage() {
       </div>
       <div>
         <div id='sticky-sidebar' className='ad'>
-          <a href="https://www.hackreactor.com/learn-python-learn-javascript">
+          <a href="https://www.hackreactor.com/learn-python-learn-javascript" target="blank">
             <button className="ad-btn btn btn-danger">Join Today
             </button>
           </a>
