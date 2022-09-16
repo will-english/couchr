@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
 import NewReviewForm from './CreateNewReviewForm';
 
 
@@ -19,6 +18,7 @@ export default function MyMovieReviews() {
         return
     }
 
+    
     return (
         <>  
             <NewReviewForm/>

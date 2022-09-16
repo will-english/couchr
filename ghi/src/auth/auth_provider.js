@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 let internalToken = null;
 
+
 export function getToken() {
     return internalToken;
 }
@@ -116,19 +117,14 @@ export function useToken() {
         });
         const tokens = await response.json()
         if (response.ok) {
-            console.log(tokens)
-
             const token = await getTokenInternal();
             setToken(token);
-            const token1 = tokens['msg'];
-            console.log(token1);
             localStorage.setItem('userName', JSON.stringify(username))
             setUserName(username);
             navigate("/user_page");
             return;
         }
         let error = await response.json();
-        console.log(error);
         return handleErrorMessage(error);
     }
 
@@ -147,12 +143,11 @@ export function useToken() {
                 "Content-Type": "application/json",
             },
         });
-        console.log(response.json());
+
         if (response.ok) {
             callback();
             await login(username, password);
             navigate("/user_page"); 
-            console.log(response.json());
         }
         return false;
     }
@@ -167,7 +162,6 @@ export function useToken() {
             },
         });
         const response = await request.json();
-        // console.log('waited for signup')
     }
 
     async function update(username, password, email, firstName, lastName) {
