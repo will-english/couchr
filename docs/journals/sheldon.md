@@ -1,4 +1,6 @@
 ## 9/15
+Organized code. Change login button size. Show reviews on user review page, add contact information. Our project is almost done today! So proud of it!
+## 9/15
 Show reviews on detail page, set the style of them. We also make liked/wish/watched icon on detail page worked. We change the navbar background, change the "back to list" button's style. All mvp task done, we will work on CSS part to make our website better.
 ## 9/14
 Builded subscribe page, put three options inside. We also set the default page for detail list. Organized CSS code, put them in different files for each different page. For now we almost finish the MVP function, for next two days we will working on organize our code and add more CSS to our project.
