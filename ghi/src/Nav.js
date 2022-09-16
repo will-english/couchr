@@ -28,7 +28,7 @@ function Nav() {
     } else {
       return (
         <ul className="nav justify-content-end">
-          <NavLink className="nav-link" to="/login">Login/Signup</NavLink>
+          <NavLink className="nav-link loginsignup_button" to="/login"><b>Login/Signup</b></NavLink>
         </ul>
       )
 
