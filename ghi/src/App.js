@@ -15,6 +15,7 @@ import Sidebar from './ListingMovies/SideBar';
 import UserPage from './UserPageTest/UserPage';
 import PublicLists from './Watchlists/PublicLists';
 import YouTube from './MovieDetail/YoutubeVideo'
+import CouchrTeam from './CouchrTeam';
 
 
 
@@ -33,6 +34,7 @@ function App() {
           <Route path='user_page/' element={<UserPage /> }/>
           <Route path='public_lists/' element={<PublicLists /> }/>
           <Route path='movie_trailer/:id/' element={<YouTube /> }/>
+          <Route path="couchr/team/" element={<CouchrTeam />} />
         </Routes>
       </div>
     </AuthProvider>
