@@ -65,25 +65,11 @@ function YoutubeVideo(props) {
     }
 
 
-    // const selectMovie = (movie) => {
-    //     fetchMovie(movie.id)
-    //     setPlaying(false)
-    //     setMovie(movie)
-    //     window.scrollTo(0, 0)
-    // }
-
-
     return (
         <>
             <button style={{display: 'flex', justifyContent: 'left'}} className="btn btn-danger m-3 " onClick={() => navigate(-1)}>Back</button>
             <div className="Youtube">
-                <header className="center-max-size header">
-                    {/* <form className="form" onSubmit={fetchMovies}>
-                        <input className="search" type="text" id="search"
-                            onInput={(event) => setSearchKey(event.target.value)} placeholder="Search Movie Trailer"/>
-                        <button className="submit-search" type="submit"><i className="fa fa-search">{selectMovie}</i></button>
-                    </form> */}
-                </header>
+                <header className="center-max-size header"></header>
                 {movies.length ?
                     <main className="trailer">
                         {movie ?

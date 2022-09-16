@@ -7,8 +7,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #181C24;
   color: white;
-  /* background-color: white;
-  color: #181c24; */
 }
 
 code {
@@ -40,8 +38,6 @@ code {
 
 .row {
   height: 350px;
-  /* padding-right: 150px;
-  padding-left: 150px; */
 }
 
 .h-sm {
@@ -53,11 +49,6 @@ code {
   padding: 3px 10px;
 }
 
-/* .pagination {
-  cursor: pointer;
-  margin: 1em 0;
-  margin-left: 25em;
-} */
 .all_actors_link:hover {
   text-decoration: none;
   color: white;
@@ -214,7 +205,6 @@ code {
 .btn-group {
   bottom: 500px;
   margin: 0;
-  /* position: absolute; */
   top: 50%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
@@ -253,11 +243,6 @@ code {
   padding-bottom: 50px;
 }
 
-/* #list-icon {
-  margin-top: 10px;
-  margin-left: 200px;
-  margin-right: 5px;
-} */
 
 .community_page {
   margin-left: 15%;
@@ -284,7 +269,6 @@ code {
   background-position: center;
   height: 100vh;
   width: 100%;
-  /* position: fixed; */
 } 
 
 .ad-btn {
