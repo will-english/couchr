@@ -72,7 +72,6 @@ function MainPage() {
         <div id='sticky-sidebar' className='ad'>
           <a href="https://www.hackreactor.com/learn-python-learn-javascript">
             <button className="ad-btn btn btn-danger">Join Today
-              {/* <Link to='https://www.hackreactor.com/learn-python-learn-javascript' /> */}
             </button>
           </a>
           </div> 
