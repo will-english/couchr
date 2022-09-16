@@ -126,4 +126,3 @@ function YoutubeVideo(props) {
 }
 
 export default YoutubeVideo;
-    

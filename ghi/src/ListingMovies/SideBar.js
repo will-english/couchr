@@ -26,14 +26,7 @@ const Sidebar = () => {
             console.log("Error fetching genres")
         }
     }
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         const sidebarItem = sidebarRef.current.querySelector('.sidebar__menu__item');
-    //         indicatorRef.current.style.height = `${sidebarItem.clientHeight}px`;
-    //         setStepHeight(sidebarItem.clientHeight);
-    //     }, 50);
-    // }, []);
-    // change active index
+    
     useEffect(() => {
         const curPath = window.location.pathname.split('/')[1];
         const activeItem = sidebarNavItems.findIndex(item => item.section === curPath);

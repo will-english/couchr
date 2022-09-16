@@ -1,20 +1,16 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useState } from 'react';
 import { useAuthContext } from '../auth/auth_provider';
 
 
 function NewReviewForm(props) {
-    // props coming from DetailMiddleArea.js
-
     // get token and userName from Auth Context
     const { token, userName } = useAuthContext();
     const [state, setState] = useState({
-        // review detail
         title: '',
         description: '',
     })
     
-
     // automatically changes state when typing in modal form
     function handleChange(event) {
         const value = event.target.value
@@ -24,7 +20,6 @@ function NewReviewForm(props) {
     // call POST method for reviews
     async function handleSubmit(e) {
         e.preventDefault()
-
         const body = {
             ...state,
             movie_title: props.movie.title,
@@ -48,9 +43,7 @@ function NewReviewForm(props) {
             fetchConfig,
         )
         const data = await response.json()
-        
         if (response.ok) {
-            console.log("response ok")
             setState(data)
             const cleared = {
                 name: '',
@@ -89,5 +82,6 @@ function NewReviewForm(props) {
         </>
     )
 }
+
 
 export default NewReviewForm;
