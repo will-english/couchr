@@ -72,6 +72,7 @@ export default function MovieVOList(props) {
                 },
             });
             console.log(request)
+            props.afterSubmit();
             fetchMovies();
 
         }

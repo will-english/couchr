@@ -133,6 +133,10 @@ function UserPageLists() {
         getDefaultLists();
     }
 
+    function refresh() {
+        getDefaultLists();
+    }
+
     function renderLists() {
         if (selected) {
             return (
@@ -144,7 +148,7 @@ function UserPageLists() {
                         </svg>
                         <i><p className="userpage_list_button" onClick={handleBack} >back to lists</p></i>
                     </div>
-                    <MovieVOList id={list[0]} name={list[1]}/>
+                    <MovieVOList afterSubmnit={refresh()} id={list[0]} name={list[1]}/>
                 </div>
             )
 
