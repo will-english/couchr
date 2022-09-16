@@ -276,3 +276,7 @@ code {
   right:    125px;
   bottom:   5px;
 }
+
+.form-check-input{
+  margin: 5px;
+}
