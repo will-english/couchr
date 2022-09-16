@@ -1,3 +1,5 @@
+## 9/16
+Organized code. Change login button size. Show reviews on user review page, add contact information. Our project is almost done today! So proud of it!
 ## 9/15
 Show reviews on detail page, set the style of them. We also make liked/wish/watched icon on detail page worked. We change the navbar background, change the "back to list" button's style. All mvp task done, we will work on CSS part to make our website better.
 ## 9/14
