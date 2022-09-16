@@ -13,7 +13,7 @@ class MovieVO(models.Model):
     vote_average = models.FloatField(unique=False, null=True, blank=True)
 
 class List(models.Model):
-    name = models.CharField(max_length=100, unique=False, null=True, blank=True)
+    name = models.CharField(max_length=100, unique=False, null=False, blank=True)
     description = models.CharField(max_length=100, unique=False, null=True, blank=True)
     public = models.BooleanField(default=False)
     movies = models.ManyToManyField(
