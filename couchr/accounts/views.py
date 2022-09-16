@@ -62,8 +62,8 @@ def api_user_signup(request):
         user = User.objects.get(username = content['username'])
         user.delete()
         print('@@@@@@@@@@@@@@@@@@@@@', user)
-        try:
-            print('@#@#@#@#@#@#@#@#@#@#@#', User.objects.get(username = content['username']))
-        except User.DoesNotExist:
-            print('@#$@#$@#$@#$ user was deleted')
+        # try:
+        #     print('@#@#@#@#@#@#@#@#@#@#@#', User.objects.get(username = content['username']))
+        # except User.DoesNotExist:
+        #     print('@#$@#$@#$@#$ user was deleted')
         return JsonResponse({'account deleted' : True})
