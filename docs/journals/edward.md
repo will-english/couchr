@@ -1,3 +1,7 @@
+### 9/16
+- Today I did pair programming with Sheldon to load each user's movie reviews
+- Sheldon primarily coded and I provided support with navigating the backend API responses
+- I also did pair programming with Christie to add a checkbox to our Create New List modal to set the list to Public/Private
 ### 9/15
 - Today I worked with Will and reviewed our backend unit tests that use pytest
 - We had issues that we weren't exactly able to solve, but we found other ways of testing our features. For example, our tests could not query object instances directly from the test file. We had to query them from our views instead.
