@@ -59,6 +59,7 @@ export default function MovieVOList(props) {
                 },
             });
             console.log(request)
+            fetchMovies();
         } else {
             console.log('custom list movie remove try')
             const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${userName}/${props.id}/movies/`;
@@ -71,6 +72,7 @@ export default function MovieVOList(props) {
                 },
             });
             console.log(request)
+            fetchMovies();
 
         }
     }
