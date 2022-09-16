@@ -52,7 +52,8 @@ class CreateListTestCase(TestCase):
                 url = 'http://localhost:8000/api/tokens/mine/'
                 token_response = sess.get(
                     url,
-                    cookies={'jwt_access_token': cookies['jwt_access_payload']},
+                    cookies={
+                        'jwt_access_token': cookies['jwt_access_payload']},
                 )
                 if token_response:
                     token = token_response.json()
