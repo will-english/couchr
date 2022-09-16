@@ -124,7 +124,6 @@ export default class NewList extends Component {
                   <label htmlFor="message-text" className="col-form-label" >Description</label>
                   <textarea value={this.state.description} onChange={this.handleChange} type="text" className="form-control" id="message-text" name="description"></textarea>
                 </div>
-                <button type="button" className="btn btn-danger create_list_form_close_button" data-bs-dismiss="modal">Close</button>
                 <input className="form-check-input" type="checkbox" value={this.state.public} onClick={this.handleClick} aria-label="Checkbox"/>
                 Make Public
                 <button className="btn btn-primary create_list_form_create_button" data-bs-dismiss="modal">Create</button>

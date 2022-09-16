@@ -186,7 +186,7 @@ class MovieDetail extends React.Component {
     //How to add the current move to one of the lists
     async handleAddMovie(event) {
         event.preventDefault();
-
+        console.log(('inside add movie movie detail'))
         // get the URL to send the JSON to
         const list_id = event.target.id;
         const movie_list_url = `http://localhost:8000/api/lists/user/${this.context.userName}/${list_id}/movies/`;
@@ -221,6 +221,7 @@ class MovieDetail extends React.Component {
 
         // call the PUT method
         const response = await fetch(movie_list_url, fetchConfig)
+        console.log(response)
         if (response.ok) {
             // console.log("response ok")
             document.getElementById("popup_message_id").className = "alert alert-success popup_message"
@@ -248,7 +249,12 @@ class MovieDetail extends React.Component {
     }
 
     changeIcon(icon) {
-        const dict = { [icon] : true }
+        const dict2 = {'is_in_liked_list': this.state.is_in_liked_list, 'is_in_watched_list': this.state.is_in_watched_list, 'is_in_wished_list': this.state.is_in_wished_list,}
+        let is_true = true;
+        if (dict2[icon]) {
+            is_true = false
+        }
+        const dict = { [icon] : is_true }
         this.setState(dict);
     }
 
