@@ -77,6 +77,7 @@ function MovieColumn(props) {
                             {props.movie_lists?.map((list, index) => {
                               let checkId = `confirmation-check ${list.id} ${movie.id}`
                               return (
+                             
                                 <Dropdown.Item id={movie.id} key={index}>
                                   <p onClick={e => props.handleAddMovie(e, movie)} accessKey={list.id} id={movie.id}>{list.name}
                                     <i id={checkId} className="d-none">
@@ -86,6 +87,7 @@ function MovieColumn(props) {
                                     </i>
                                   </p>
                                 </Dropdown.Item>
+                              
                               );
                             })}
                           </Dropdown.Menu>

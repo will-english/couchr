@@ -1,8 +1,6 @@
-
 .review_area {
     margin-top: 50px;
     padding: 10px 30px;
-    /* border: 2px solid grey; */
 }
 
 .review {
@@ -32,24 +30,8 @@
     text-align: center;
 }
 
-
 .review_body {
     width: 220px;
     margin-top: 5px;
     margin-left: 10px;
 }
-
-/* .review_user {
-    display: flex;
-    width: 100px;
-    flex-direction: column;
-    align-items: center;
-} */
-
-/* .review_body {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    margin-left: 50px;
-} */

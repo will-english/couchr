@@ -15,9 +15,8 @@ function UserPageLists() {
     const getDefaultLists = async () => {
         let defaultList = [];
         let defaultArr = [{}, {}, {}, {}];
-        // console.log(userName)
+
         if (userName && token) {
-            // console.log(token);
             // * grabing the liked list information from our API
             const liked_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${userName}/liked/`;
             const liked_request = await fetch(liked_url, {
@@ -26,21 +25,18 @@ function UserPageLists() {
                     Authorization: `Bearer ${token}`
                 },
             });
-            // console.log("liked request")
+
             if (liked_request.ok) {
                 const liked_response = await liked_request.json();
-                // console.log('*******************', liked_response);
-                let liked_movies = liked_response.list.movies
+                const liked_movies = liked_response.list.movies
                 const difference = 4 - liked_movies.length
                 if (difference > 0) {
                     liked_response.list.movies = liked_movies.concat(defaultArr.slice(0, difference))
                 } else {
                     liked_response.list.movies = liked_movies.slice(0, 4)
                 }
-                // console.log(liked_response)
                 defaultList.push(liked_response);
                 defaultList[0]['list']['name']='liked';
-                // console.log(defaultList)
             }
 
             // ? grabing the watched list information from our API
@@ -51,10 +47,9 @@ function UserPageLists() {
                     Authorization: `Bearer ${token}`
                 },
             });
-            console.log("watched request")
+
             if (watched_request.ok) {
                 const watched_response = await watched_request.json();
-                // console.log('*******************', watched_response);
                 let watched_movies = watched_response.list.movies
                 const difference = 4 - watched_movies.length
                 if (difference > 0) {
@@ -64,7 +59,6 @@ function UserPageLists() {
                 }
                 defaultList.push(watched_response);
                 defaultList[1]['list']['name']='watched';
-                // console.log(defaultList)
             }
 
             // ! grabing the wish list information from our API
@@ -75,10 +69,9 @@ function UserPageLists() {
                     Authorization: `Bearer ${token}`
                 },
             });
-            console.log("wish request")
+
             if (wish_request.ok) {
                 const wish_response = await wish_request.json();
-                // console.log('*******************', wish_response);
                 let wish_movies = wish_response.list.movies
                 const difference = 4 - wish_movies.length
                 if (difference > 0) {
@@ -88,8 +81,6 @@ function UserPageLists() {
                 }
                 defaultList.push(wish_response);
                 defaultList[2]['list']['name']='want-to-watch';
-                // console.log(defaultList)
-                // console.log(defaultList);
             }
 
             // * grabing the custom list information from our API
@@ -100,10 +91,9 @@ function UserPageLists() {
                     Authorization: `Bearer ${token}`
                 },
             });
-            console.log("custom request")
+
             if (custom_request.ok) {
                 const custom_response = await custom_request.json();
-                console.log('*******************', custom_response);
                 for (const list of custom_response.lists) {
                     let custom_movies = list.movies
                     const difference = 4 - custom_movies.length
@@ -115,14 +105,12 @@ function UserPageLists() {
                     defaultList.push({list: list});
                 }
                 setDefaultlists(defaultList);
-                console.log(defaultList);
             }
 
         }
     }
 
     useEffect(() => {
-        // getUserPageListsContent();
         getDefaultLists();
     }, [token]);
 
@@ -135,9 +123,6 @@ function UserPageLists() {
         const json_list = e.currentTarget.id
         const new_list = JSON.parse(json_list);
         setList(new_list.li)
-        // console.log(e.currentTarget.value);
-        // console.log(e.currentTarget.id);
-        console.log(new_list.li);
     }
 
     function addList(new_list) {
@@ -167,8 +152,6 @@ function UserPageLists() {
             return (
                 <div>
                     {defaultLists.map(list => {
-                        console.log(list.list.name, list.list.movies)
-                        console.log([list.list.id, list.list.name]);
                         const li = JSON.stringify({li: [list.list.id, list.list.name]})
                         return (
                             <div key={list.list.name} onClick={handleListSelect} id={li} className="movie_user_list_card">
@@ -187,15 +170,14 @@ function UserPageLists() {
                 </div>
             )
         }
-
     }
 
     return (
-        // <div>
         <div className="userpage_left_content_area">
             {renderLists()}
         </div>
-
     )
 }
+
+
 export default UserPageLists;
