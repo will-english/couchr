@@ -23,7 +23,6 @@ class MovieDetail extends React.Component {
             is_in_liked_list: false,
             is_in_watched_list: false,
             is_in_wished_list: false,
-
         }
 
         this.handleStateChange = this.handleStateChange.bind(this);
@@ -44,23 +43,17 @@ class MovieDetail extends React.Component {
         const response_detail = await fetch(movie_detail_url);
         const response_credit = await fetch(movie_credit_rul);
         
-        
         try {
             const movie_lists_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${this.context.userName}/`;
             const request = await fetch(movie_lists_url, {
                 credentials: "include",
-                headers: {
-                    Authorization: `Bearer ${this.context.token}`
-                },
+                headers: { Authorization: `Bearer ${this.context.token}` },
             });
             if (request.ok) {
                 const users_movie_lists = await request.json();
                 this.setState({ movie_lists: users_movie_lists.lists });
             }
-        }
-        catch (err) {
-            console.log("error")
-        }
+        }catch (err) { console.log("error") }
         
         const userName = this.context.userName
         if (response_detail.ok && response_credit.ok) {
@@ -89,7 +82,6 @@ class MovieDetail extends React.Component {
             let poster = ''
             if (detail_data.poster_path !== null) {
                 detail_data.poster_path = "https://image.tmdb.org/t/p/original" + detail_data.poster_path
-                console.log(detail_data.poster_path)
                 this.setState({ 'poster': detail_data.poster_path })
                 poster  = detail_data.poster_path;
             } else {
@@ -106,7 +98,7 @@ class MovieDetail extends React.Component {
                     movie_credit: credit_data,
                     genres: genres_list,
                 });
-            console.log(this.state.poster)
+
             const movie = {
                 "title": title,
                 'poster': poster,
@@ -115,12 +107,9 @@ class MovieDetail extends React.Component {
                 "release_date": detail_data.release_date,
                 "vote_average": detail_data.vote_average
             }
-            console.log(movie)
-
             this.setState({ movie: movie })
         };
 
-        
         try {
             const liked_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${userName}/liked/`;
             const wished_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${userName}/want-to-watch/`;
@@ -152,28 +141,16 @@ class MovieDetail extends React.Component {
                 const watched_movies = users_watched.list.movies
                 const wished_movies = users_wished.list.movies
                 for(let movie of liked_movies){
-                    console.log(movie)
-                    if (movie.poster == this.state.poster){
-                        this.setState({is_in_liked_list: true})
-                    }
+                    if (movie.poster === this.state.poster){this.setState({is_in_liked_list: true})}
                 }
                 for (let movie of watched_movies){
-                    if (movie.poster == this.state.poster){
-                        this.setState({is_in_watched_list: true})
-                    }
+                    if (movie.poster === this.state.poster){this.setState({is_in_watched_list: true})}
                 }
                 for (let movie of wished_movies){
-                    if(movie.poster == this.state.poster){
-                        this.setState({is_in_wished_list: true})
-                    }
+                    if(movie.poster === this.state.poster){this.setState({is_in_wished_list: true})}
                 }
             }
-        }
-        catch (err) {
-            console.log(err)
-        }
-
-        
+        }catch (err) {console.log(err)}
     }
 
     handleStateChange(event) {
@@ -182,11 +159,10 @@ class MovieDetail extends React.Component {
         this.setState({ [id]: value });
     }
 
-
     //How to add the current move to one of the lists
     async handleAddMovie(event) {
         event.preventDefault();
-        console.log(('inside add movie movie detail'))
+
         // get the URL to send the JSON to
         const list_id = event.target.id;
         const movie_list_url = `http://localhost:8000/api/lists/user/${this.context.userName}/${list_id}/movies/`;
@@ -205,7 +181,6 @@ class MovieDetail extends React.Component {
             "release_date": this.state.movie.release_date,
             "vote_average": this.state.movie.vote_average
         }
-
         this.setState({ movie: movie })
 
         // Turn the JSON object into a JSON string and then send it in the PUT method
@@ -221,9 +196,7 @@ class MovieDetail extends React.Component {
 
         // call the PUT method
         const response = await fetch(movie_list_url, fetchConfig)
-        console.log(response)
         if (response.ok) {
-            // console.log("response ok")
             document.getElementById("popup_message_id").className = "alert alert-success popup_message"
             setTimeout(function () {
                 document.getElementById("popup_message_id").className = "d-none";
@@ -261,7 +234,6 @@ class MovieDetail extends React.Component {
     render() {
         return (
             <div className="detail_page">
-
                 {/* LOGO area */}
                 <div className="detail_logo_area">
                     <img className="detail_header_logo" src="/couchr-logo.png" alt="LogoImage" />
@@ -274,7 +246,6 @@ class MovieDetail extends React.Component {
                     <DetailMiddleArea movie={this.state.movie_detail} movie_lists={this.state.movie_lists} add_list={this.addList} handleAddMovie={this.handleAddMovie} movie_add={this.state.movie}/>
                     <DetailRightArea actors={this.state.actors} genres={this.state.genres} />
                 </div>
-
                 <div>
                     <DetailBottomArea movie={this.state.movie_detail}/>
                 </div>
@@ -285,7 +256,6 @@ class MovieDetail extends React.Component {
                     <p>Contact us :</p>
                     <p>HR-couchr@gmail.com</p>
                 </footer>
-
             </div>
         )
     }

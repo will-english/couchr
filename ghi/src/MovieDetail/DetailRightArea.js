@@ -19,7 +19,6 @@ function DetailRightArea(props) {
                             <div className="detail_actor_name_div">
                                 &nbsp;&nbsp;{actor.name}&nbsp;&nbsp;... <br /> &nbsp;&#40;{actor.character}&#41;
                             </div>
-                            {/* &nbsp: space, &#40: left parenthesis, &#41: right parenthesis */}
                         </div>
                     );
                 })}
@@ -27,13 +26,11 @@ function DetailRightArea(props) {
             <div>
                 <NavLink className="detail_area_link" to="#">&nbsp;&nbsp;&nbsp;&nbsp;More...</NavLink>
             </div>
-
             <div className="mt-3 mb-2">
                 <h5>Genres</h5>
             </div>
 
             {/* list geners */}
-
             {props.genres.map((genre, index) => {
                 let genre_link = "/movies/" + genre.id + "/"
                 return (
@@ -42,7 +39,6 @@ function DetailRightArea(props) {
                     </div>
                 );
             })}
-
         </div>
     ); 
 }

@@ -1,12 +1,9 @@
 import React from 'react';
 import "../index.css";
 import MovieColumn from './MovieColumns';
-// import Sidebar from './SideBar';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import DetailLeftArea from '../MovieDetail/DetailLeftArea';
 import { AuthContext } from '../auth/auth_provider';
-import DropdownItem from "react-bootstrap/DropdownItem";
 import "../CSSfile/MovieColumns.css";
 
 class MovieList extends React.Component {
@@ -55,9 +52,8 @@ class MovieList extends React.Component {
                     this.setState({ genreTitle: genre["name"] })
                 }
             }
-        } else {
-            console.log("Error fetching genres")
-        }
+        } else {console.log("Error fetching genres")}
+
         try {
             const movie_lists_url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${this.context.userName}/`;
             const request = await fetch(movie_lists_url, {
@@ -71,9 +67,7 @@ class MovieList extends React.Component {
                 this.setState({ movie_lists: response_lists.lists });
             }
         }
-        catch (err) {
-            console.log("error")
-        }
+        catch (err) {console.log("error")}
 
         const listByGenreUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${this.state.currentPage}&with_genres=${this.state.genre_id}&with_watch_monetization_types=flatrate`
         const response = await fetch(listByGenreUrl);
@@ -175,7 +169,6 @@ class MovieList extends React.Component {
                 document.getElementById(`${e.target.id} ${movie.id}`).className = "d-none";
             }, 3000);
         }
-
     }
 
     async componentDidUpdate() {
@@ -215,7 +208,6 @@ class MovieList extends React.Component {
                 this.setState({ prevPage: this.state.currentPage })
                 this.setState({ prevGenre: this.state.genre_id })
             }
-
         }
     }
     render() {

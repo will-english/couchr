@@ -7,10 +7,6 @@ export default function UserDetail() {
   const { userName } = useAuthContext();
 
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, [{ token }]);
-
   return (
     <div>
       <div className='row'>

@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { useAuthContext } from '../auth/auth_provider';
 import MovieVOList from '../ListingMovies/MovieVOList';
-import ListCard from '../UserPageTest/ListCard';
+import ListCard from '../UserPage/ListCard';
 
 export default function PublicLists() {
     const { token } = useAuthContext();
