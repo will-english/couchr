@@ -1,3 +1,13 @@
+09/16/2022
+Final touches to the project were made today.  Mostly cleaned up the code and made the website look more appealing.  A meet the team page was added to the website that features each of our team member's head shots with our contact information.  
+09/15/2022
+The youtube trailer feature was completed with the back button added and a play icon added to the center of the video.  Also created an advertisement on the main page that has a link to redirect the user to the website related to the ad.    
+09/14/2022
+The blocker for the trailer feature of the website was finally overcome.  When on the detail page and the watch trailer button is clicked, the page is linked to the movie trailer that is the correct one.  The id from the previous page's state had to be passed into the youtube function.    
+09/13/2022
+Created the youtube trailer feature for the project, but ran into the blocker of it not changing to the correct movie trailer based off the id of the detail movie page.  Hopefully this can be finished by tomorrow.   
+09/12/2022
+Successfully added a unittest to the front end portion of the project.  It took hours to get it right, but eventually with trail and error, the test passed.  Started researching how react youtube works and plan to implement that tomorrow.  
 09/08/2022
 Today we added more css to the buttons in the nav and the list by genre page.  The css was completely finished for the sidebar with links that will take the user to the genre list page.  If no results are found for a movie search, then a message will appear saying no movies with the name was found.  No real blockers today, mostly styling was added. 
 09/07/2022
