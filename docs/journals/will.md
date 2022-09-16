@@ -1,3 +1,9 @@
+## 9/16
+Fixed a conflict with unit test error. Made the state update the color of icon for deletetion/
+removal of a list from the default list. State update change for when a movie is deleted from a list.
+## 9/15
+Made the state of the icon color for the default list icons update when the movie is clicked
+and added to a default list.
 ## 9/14
 Made the add list card functional on the users private list page. Helped with various problems.
 ## 9/13
