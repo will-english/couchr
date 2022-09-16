@@ -249,7 +249,12 @@ class MovieDetail extends React.Component {
     }
 
     changeIcon(icon) {
-        const dict = { [icon] : true }
+        const dict2 = {'is_in_liked_list': this.state.is_in_liked_list, 'is_in_watched_list': this.state.is_in_watched_list, 'is_in_wished_list': this.state.is_in_wished_list,}
+        let is_true = true;
+        if (dict2[icon]) {
+            is_true = false
+        }
+        const dict = { [icon] : is_true }
         this.setState(dict);
     }
 
