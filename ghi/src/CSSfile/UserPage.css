@@ -227,3 +227,18 @@
 .userpage_list_button:active {
     transform: scale(1);
 }
+
+.contact_footer {
+    margin-top: 80px;
+    color: grey
+}
+
+.review_movie_img {
+    width:50px;
+    margin-top:10px;
+    margin-right: 15px;
+}
+
+.review_page_movie_title {
+    color: white;
+}
