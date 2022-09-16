@@ -38,7 +38,7 @@ function MovieColumn(props) {
                   return (
                     <div className="card-dropdown-div">
                         <Dropdown className="add-dropdown" autoClose="outside">
-                          <Dropdown.Toggle id="dropdown" className="add-dropdown btn-secondary">
+                          <Dropdown.Toggle id="dropdown btn-secondary" className="add-dropdown">
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" id="list-icon" className="bi bi-plus-lg" viewBox="0 0 16 16" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <path fillRule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
                             </svg>
