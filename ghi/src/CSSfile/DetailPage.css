@@ -202,3 +202,10 @@
 .detail_trailer_button:hover {
     background-color: #780E0E;
 }
+
+.popup_message {
+    text-align: center;
+    width: 320px;
+    margin: 15px 20px 10px 60px;
+    padding: 5px;
+}
