@@ -75,3 +75,30 @@ Go to the link above, you will need to create an account and then you
 will be able to apply for an api key, there are no special requirements.
 
 ## each persons best moments and challenges
+<br>
+
+----
+
+Please see below for the **MainPage** preview.
+<br>
+
+![Semantic description of image](/ghi/public/mainPage.gif)
+<br>
+
+Please see below for the **DetailPage** preview.
+<br>
+
+![Semantic description of image](/ghi/public/detailPage.gif)
+<br>
+
+Please see below for the **UserPage** preview.
+<br>
+
+![Semantic description of image](/ghi/public/userPage.gif)
+<br>
+
+Please see below for the **LoginPage** preview.
+<br>
+
+![Semantic description of image](/ghi/public/loginPage.gif)
+<br>
