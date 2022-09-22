@@ -13,33 +13,32 @@ export default function PublicLists() {
 
     const getDefaultLists = async () => {
         console.log("get default lists")
-        console.log(userName, token)
+        // console.log(userName, token)
         let Lists = [];
         let defaultArr = [{}, {}, {}, {}];
         // console.log(userName)
-        if (userName && token) {
 
-            const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/public/`;
-            const request = await fetch(url);
-            console.log("request***********", request)
-            if (request.ok) {
-                const response = await request.json();
-                console.log('*******************', response);
-                for (const list of response.lists) {
-                    let custom_movies = list.movies
-                    const difference = 4 - custom_movies.length
-                    if (difference > 0) {
-                        list.movies = custom_movies.concat(defaultArr.slice(0, difference))
-                    } else {
-                        list.movies = custom_movies.slice(0, 4)
-                    }
-                    Lists.push({ list: list });
+        const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/public/`;
+        const request = await fetch(url);
+        console.log("request***********", request)
+        if (request.ok) {
+            const response = await request.json();
+            console.log('*******************', response);
+            for (const list of response.lists) {
+                let custom_movies = list.movies
+                const difference = 4 - custom_movies.length
+                if (difference > 0) {
+                    list.movies = custom_movies.concat(defaultArr.slice(0, difference))
+                } else {
+                    list.movies = custom_movies.slice(0, 4)
                 }
-                setLists(Lists);
-                console.log(Lists);
+                Lists.push({ list: list });
             }
-
+            setLists(Lists);
+            console.log(Lists);
         }
+
+
     }
 
     useEffect(() => {
