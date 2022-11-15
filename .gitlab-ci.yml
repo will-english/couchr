@@ -16,24 +16,24 @@
 # This specific template is located at:
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
 
-test:
-  script: echo "Hello World"
-# stages:
-#   - test
-#   - build
+# test:
+#   script: echo "Hello World"
+stages:
+  - test
+  - build
 
-# services:
-#   - postgres:14.2-bullseye
+services:
+  - postgres:14.2-bullseye
 
-# variables:
-#   POSTGRES_PASSWORD: test
-#   DATABASE_URL: postgresql://postgres:test@postgres:5432/postgres
-#   DJWTO_SIGNING_KEY: ac813301aaa92484adbc9d7cdc577df3464ece2624cd085e6b14dcac9d90fb42
+variables:
+  POSTGRES_PASSWORD: test
+  DATABASE_URL: postgresql://postgres:test@postgres:5432/postgres
+  DJWTO_SIGNING_KEY: ac813301aaa92484adbc9d7cdc577df3464ece2624cd085e6b14dcac9d90fb42
 
-# couchr-unit-test-job:
-#   image: python:3-bullseye
-#   stage: test
-#   script:
-#     - cd couchr
-#     - pip install -r requirements.txt
-#     - python manage.py test
+couchr-unit-test-job:
+  image: python:3-bullseye
+  stage: test
+  script:
+    - cd couchr
+    - pip install -r requirements.txt
+    - python manage.py test
