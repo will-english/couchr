@@ -29,8 +29,14 @@ variables:
   POSTGRES_PASSWORD: test
   DATABASE_URL: postgresql://postgres:test@postgres:5432/postgres
   DJWTO_SIGNING_KEY: ac813301aaa92484adbc9d7cdc577df3464ece2624cd085e6b14dcac9d90fb42
-
-couchr-unit-test-job:
+couchr-ghi-test-job:
+  stage: test
+  image: node:lts-bullseye     # this build-job to run
+  script:
+    - cd ghi
+    - npm install
+    - npm test
+couchr-django-unit-test-job:
   image: python:3-bullseye
   stage: test
   script:
