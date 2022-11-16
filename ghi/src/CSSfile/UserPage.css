@@ -65,8 +65,20 @@
 .movie_user_list_card {
     margin: 2% 5%;
     display: inline-block;
-    width: 20%;
-    height: 400px;
+    width: 275px;
+    height: 375px;
+    text-align: center;
+    background-color: #181c24;
+    border-radius: 2%;
+    box-shadow: 0px 0px 10px lightgrey;
+}
+
+.new_user_list_card{
+    margin: 2% 5%;
+    display: inline-block;
+    width: 275px;
+    max-height: 400px;
+    height: 375px;
     text-align: center;
     background-color: #181c24;
     border-radius: 2%;
@@ -99,12 +111,13 @@
 }
 
 .user_list_card_image {
-    width: 40%;
+    width: auto;
     margin: 10px;
     margin-top: 15px;
     border-radius: 4%;
-    height: 150px;
+    height: auto;
     box-shadow: 0px 0px 1px lightgrey;
+    max-width: 100px;
 }
 
 /* -------------↑↑↑↑↑↑-------------list area-------------↑↑↑↑↑↑------------- */
