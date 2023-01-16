@@ -10,7 +10,6 @@ those indecisive people who watch movies together.
 ## Functionality
 
 MVP:
-
 - display a large libary of films
 - user creation and authentication
 - track a users liked, watched, and want-to-watch movies
@@ -20,7 +19,7 @@ or visible to friends
 - a movie details page, that provides in depth information on each title
     - average rating per title
 
-Stretch Goals:
+SG:
 - user reviews for each title
 - users can leave reviews and ratings on the movies
 - user friends
