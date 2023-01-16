@@ -2,14 +2,6 @@
 
 A web application for tracking all of your new and favorite movies.
 
-## Team Members
-
-1. Christie
-2. Edward
-3. Jamie
-4. Sheldon
-5. Will
-
 ## Intended Market
 
 Anyone who enjoys movies and wants to track their watch history, and 
