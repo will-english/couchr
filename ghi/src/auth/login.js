@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useToken } from './auth_provider';
 import { useAuthContext } from './auth_provider';
-// import "./login.css";
+import { Link } from 'react-router-dom'
+import "../CSSfile/SignInPage.css";
 
 function Login() {
     const funcs = useToken();
@@ -26,12 +27,7 @@ function Login() {
 
     const handleSubmitSignUp = async e => {
         e.preventDefault()
-        console.log('signup try')
-        // setErrors(validation(values))
-        // console.log('login inside', login)
-        
         await signup(username, password, email, firstName, lastName, createLists);
-
         };
 
 
@@ -54,7 +50,6 @@ function Login() {
             e.target.className = ""
         }
     };
-
 
 
     return (
@@ -103,7 +98,7 @@ function Login() {
                             <input onChange={(e) => setPassword(e.target.value)} onFocus={handleInputFocus} onBlur={handleInputBlur} required type="text" name="password" id="password" />
                             <span data-placeholder="Password"></span>
                         </div>
-                        <a href="#">Forgot your password?</a>
+                        <Link to="#">Forgot your password?</Link>
                         <button type="submit" className="signpageButton">Login</button>
                     </form>
                 </div>
@@ -127,5 +122,6 @@ function Login() {
         </div>
     )
 }
+
 
 export default Login

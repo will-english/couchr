@@ -5,13 +5,12 @@ import UserPageSubscription from "./UserPageSubscription";
 import UserPageReview from "./UserPageReview";
 import UserPageContact from "./UserPageContact";
 import { useAuthContext } from '../auth/auth_provider';
-
+import "../CSSfile/UserPage.css";
 
 
 function UserPage() {
     const { userName } = useAuthContext();
     const [UserPageContent, setUserPageContent] = useState([]);
-
     const list = [
         <UserPageProfile />,
         <UserPageLists />,
@@ -19,22 +18,9 @@ function UserPage() {
         <UserPageSubscription />,
         <UserPageContact />
     ]
-
     const getUserPageContent = async () => {
-        //     const currentUrl = window.location.href
-        //     const list1 = currentUrl.split("/")
-        //     const instructorId = list1[5]
-        //     const detailUrl = `http://localhost:8100/api/instructors/${instructorId}`;
-        //     const response = await fetch(detailUrl)
-        //     if (response.ok) {
-        //         const data = await response.json()
-        //         console.log(data)
-        //         setUserPageContent(data)
-        //     }
         setUserPageContent(list[1])
     }
-
-
     const handleClick = (e) => {
         e.preventDefault();
         const list = [
@@ -45,7 +31,6 @@ function UserPage() {
             <UserPageContact />
         ]
         const value = Number(e.target.id);
-        console.log(e.target.id)
         setUserPageContent(list[value])
 
         for (const num of [0, 1, 2, 3, 4]) {
@@ -58,11 +43,10 @@ function UserPage() {
         }
     }
 
-
-
     useEffect(() => {
         getUserPageContent()
     }, []);
+
 
     return (
         <div className="user_page">
@@ -91,17 +75,9 @@ function UserPage() {
                 </div>
 
             </div>
-            {/* <div>
-                <footer className="user_page_footer">
-                    <p>@Coucher team&nbsp;&nbsp;2022</p>
-                    <p>Contact us :</p>
-                    <p>HR-couchr@gmail.com</p>
-                </footer>
-            </div> */}
         </div>
-
-
     )
 }
-export default UserPage;
 
+
+export default UserPage;

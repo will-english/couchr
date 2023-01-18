@@ -8,7 +8,13 @@ export default function MovieVOList(props) {
 
     const [MovieColumns, setMovieColumns] = useState([[], [], [], []])
     async function fetchMovies() {
-        const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${userName}/${props.id}/${props.name}/`;
+        let url = '';
+        if (props.username) {
+            url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${props.username}/${props.id}/${props.name}/`;
+        } else {
+            url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${userName}/${props.id}/${props.name}/`;
+        }
+        
         const request = await fetch(url, {
             credentials: "include",
             headers: {
@@ -20,6 +26,7 @@ export default function MovieVOList(props) {
             let mc = [[], [], [], []]
             let i = 0
             for (let data of response.movies) {
+                console.log(data)
                 mc[i].push(data)
                 i = i + 1
                 if (i > 3) { i = 0 }
@@ -52,6 +59,7 @@ export default function MovieVOList(props) {
                 },
             });
             console.log(request)
+            fetchMovies();
         } else {
             console.log('custom list movie remove try')
             const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/lists/user/${userName}/${props.id}/movies/`;
@@ -64,6 +72,8 @@ export default function MovieVOList(props) {
                 },
             });
             console.log(request)
+            props.afterSubmit();
+            fetchMovies();
 
         }
     }
@@ -72,12 +82,18 @@ export default function MovieVOList(props) {
         fetchMovies();
     }, [])
 
+    let trash = true;
+
+    if (props.public) {
+        trash = false;
+    }
+
     return (
         <div className='container' >
             <div className="row">
                 {MovieColumns.map((movie, index) => {
                     return (
-                        <MovieColumn key={index} list={movie} delete={true} handleRemove={handleRemove}/>
+                        <MovieColumn key={index} list={movie} delete={trash} handleRemove={handleRemove}/>
                     );
                 })}
             </div>

@@ -1,0 +1,211 @@
+/* ---------↓↓↓↓↓-------Detail page area--------↓↓↓↓↓-------- */
+.detail_page {
+    background-color: #181c24;
+    color: white;
+    width: 68%;
+    margin-left: 16%;
+    margin-right: 16%;
+}
+
+.detail_logo_area {
+    height: 200px;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.detail_header_logo {
+    width: 50px;
+}
+
+.detail_image_area {
+    display: inline-block;
+    width: 25%;
+    height: 100%;
+    padding: 30px;
+    vertical-align: top;
+    text-align: center;
+}
+
+.detail_image_area_image {
+    border-radius: 3%;
+    width: 200px;
+    height: 300px;
+    overflow: hidden;
+}
+
+.detail_icon_my-tip {
+    display: inline-block;
+    position: relative;
+    line-height: 1;
+    height: 20px;
+}
+
+.detail_icon_my-tip .detail_icon_tip {
+    display: none;
+    position: absolute;
+    border-radius: 5px;
+    top: 350%;
+    left: 50%;
+    opacity: 0;
+    transition: all .5s ease;
+    transform: translate(-50%, -10px);
+    padding: 10px;
+}
+
+.detail_icon_my-tip:hover .detail_icon_tip {
+    display: block;
+    width: 100px;
+    height: 20px;
+    opacity: 1;
+}
+
+.detail_image_area_icon {
+    margin-top: 22px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.detail_image_area_icon:hover {
+    margin-top: 22px;
+    margin-left: 10px;
+    margin-right: 10px;
+    transform: scale(1.2);
+    transition: 0.5s ease;
+}
+
+.detail-information-area {
+    display: inline-block;
+    width: 50%;
+    height: 550px;
+    padding: 30px;
+    vertical-align: top;
+    background-color: #20232B;
+}
+
+.detail_movie_name {
+    display: inline-block;
+}
+
+.detail_movie_rating {
+    display: inline-block;
+    margin-left: 15px;
+    vertical-align: middle;
+}
+
+.detail_movie_originaltitle {
+    font-size: 12px;
+    color: lightgrey;
+}
+
+.detail_movie_year {
+    display: inline-block;
+}
+
+.detail_movie_addtolist_area {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.detail_movie_addtolist {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.detail_movie_addtolist:hover {
+    margin-left: 20px;
+    transform: scale(1.1);
+    transition: 0.5s ease;
+}
+
+.detail_dropdown_list_ul {
+    background-color: #2A2E36;
+    color: white;
+    margin: 10px;
+    text-align: center;
+}
+
+.detail_dropdown_list_li {
+    height: 25px;
+}
+
+.detail_dropdown_list_li:hover {
+    height: 25px;
+    background-color: #3C3E45;
+    transform: scale(1.05);
+}
+
+.detail_dropdown_list_button {
+    color: white;
+}
+
+.detail_movie_plot {
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.detail-right-area {
+    display: inline-block;
+    width: 25%;
+    height: 100%;
+    padding: 30px;
+    vertical-align: top;
+}
+
+.detail_list_actors_area {
+    margin-bottom: 10px;
+}
+
+.detail_actor_img_div {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.detail_actor_name_div {
+    display: inline-block;
+    margin-top: 10px;
+    width: 167px;
+    max-height: 20px;
+    overflow: hidden;
+}
+
+.detail_actor_name_div:hover {
+    max-height: 2000px;
+    transition: 5s ease;
+}
+
+.detail_area_link {
+    text-decoration: none;
+    color: lightgray;
+    font-size: 15px;
+}
+
+.detail_footer {
+    margin-top: 70px;
+    margin-bottom: 70px;
+    border-top: 2px solid lightgray;
+    padding-top: 30px;
+    text-align: center;
+    font-style: italic;
+    color: lightgray;
+    opacity: 0.5;
+    font-size: 13px;
+}
+
+/* ---------↑↑↑↑↑-------Detail page area--------↑↑↑↑↑-------- */
+
+.detail_actor_img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.detail_trailer_button:hover {
+    background-color: #780E0E;
+}
+
+.popup_message {
+    text-align: center;
+    width: 320px;
+    margin: 15px 20px 10px 60px;
+    padding: 5px;
+}

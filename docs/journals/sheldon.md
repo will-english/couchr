@@ -1,6 +1,13 @@
+## 9/16
+Organized code. Change login button size. Show reviews on user review page, add contact information. Our project is almost done today! So proud of it!
+## 9/15
+Show reviews on detail page, set the style of them. We also make liked/wish/watched icon on detail page worked. We change the navbar background, change the "back to list" button's style. All mvp task done, we will work on CSS part to make our website better.
+## 9/14
+Builded subscribe page, put three options inside. We also set the default page for detail list. Organized CSS code, put them in different files for each different page. For now we almost finish the MVP function, for next two days we will working on organize our code and add more CSS to our project.
+## 9/13
+Today I stuck on how to change the liked/wish/watched icon style after we clicked it. The main point which I stucked on is how to get the username by this page. 
 ## 9/12
 Design the login and sign up page, add a lot of CSS to this page. Put them in a same box, and when we click sign up button it will switch to sign up page, login button also. Try to write test file for detail page.
-
 ## 9/8
 Today we worked on userpage, we met some block when we tried to catch the information from back-end. Zach helped us finally we got that worked! Tomorrow we will still working on userpage, will try to make every card clickable. 
 ## 9/7

@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useToken } from './auth_provider';
 
+
 export default function Signup() {
     const funcs = useToken();
     const signup = funcs[3];
@@ -16,16 +17,10 @@ export default function Signup() {
     const handleSubmit = async e => {
         e.preventDefault()
         console.log('signup try')
-        // setErrors(validation(values))
-        // console.log('login inside', login)
-       
         await signup(username, password, email, firstName, lastName, createLists);
-
         };
     
-    
-    
-    
+
     return (
         <div className="row">
             <div className="offset-3 col-6">

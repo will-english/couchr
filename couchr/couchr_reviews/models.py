@@ -1,6 +1,7 @@
 from django.db import models
 from couchr_lists.models import MovieVO
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 
@@ -20,3 +21,6 @@ class Review(models.Model):
         on_delete=models.CASCADE,
         null=True,
     )
+
+    def __str__(self):
+        return f'{self.title}'

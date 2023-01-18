@@ -1,0 +1,95 @@
+.genre-title {
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+
+.list-card-image {
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.movie-card {
+    background-color: #415A77;
+    text-align: center;
+    height: 440px;
+    border-radius: 8px;
+}
+
+.movie-card:hover {
+    background-color: #415A77;
+    text-align: center;
+    transform: scale(1.05);
+    transition: 0.5s ease;
+}
+
+.card-title {
+    padding-top: 15px;
+    padding-bottom: 0;
+    height: 50px;
+    font-size: 15px;
+}
+
+.card-body {
+    height: 50px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.add-dropdown {
+    width: fit-content;
+    margin-right: 0;
+    margin-left: auto;
+    vertical-align: bottom;
+}
+
+.add-dropdown:focus-within {
+    background-color: #415A77;
+    border: 0;
+  }
+
+.btn-secondary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: transparent;
+    --bs-btn-border-color: #415A77;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #415A77;
+    --bs-btn-hover-border-color: #415A77;
+    --bs-btn-focus-shadow-rgb: none;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #415A77;
+    --bs-btn-active-border-color: none;
+    --bs-btn-active-shadow: none;
+    --bs-btn-active-scale: 1.0;
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #415A77;
+    --bs-btn-disabled-border-color: #415A77;
+}
+
+.btn:hover {
+    text-decoration: solid;
+    color: white;
+    background-color: #415A77;
+}
+
+.card-dropdown-div {
+    margin-top: 0px;
+}
+
+#genre-dropdown {
+    margin-right: 40px;
+    align-self: center;
+    align-items: center;
+}
+
+#genre-header {
+    align-content: center;
+    text-align: center;
+}
+
+.trash-icon {
+    margin-top: 12px;
+    margin-bottom: 3px;
+}

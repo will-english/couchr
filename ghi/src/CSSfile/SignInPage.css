@@ -1,39 +1,41 @@
 * {
     box-sizing: border-box;
-  }
-  
-  * .loginPage {
+}
+
+* .loginPage {
     font-family: 'Montserrat', sans-serif;
-    background-image: linear-gradient(120deg, #3498db, #8e44ad);
-    background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: -20px 0 50px;
-  }
-  
-  .signinpageH1 {
+    margin: -120px 0 50px;
+}
+
+.signinpageH1 {
     font-weight: bold;
     margin: 0;
-  }
-  .signinpageP {
+}
+
+.signinpageP {
     font-size: 14px;
     line-height: 20px;
     letter-spacing: .5px;
     margin: 20px 0 30px;
-  }
-  span {
+}
+
+span {
     font-size: 12px;
-  }
-  a {
-    color:#333;
+}
+
+a {
+    color: #333;
     font-size: 14px;
     text-decoration: none;
     margin: 15px 0;
-  }
-  .container1 {
+}
+
+.container1 {
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .22);
@@ -42,23 +44,23 @@
     width: 768px;
     max-width: 100%;
     min-height: 480px;
-    /* box-shadow: 0px 0px 10px white; */
-  }
-  
-  .form-container form {
+}
+
+.form-container form {
     background: #fff;
     display: flex;
-    flex-direction: column;;
+    flex-direction: column;
     padding: 0 50px;
     height: 100%;
     justify-content: center;
     text-align: center;
-  }
-  .social-containe {
-    margin: 20px 0;
-  }
-  
-  .social-container a {
+}
+
+.social-containe {
+margin: 20px 0;
+}
+
+.social-container a {
     border: 1px solid #ddd;
     border-radius: 50%;
     display: inline-flex;
@@ -67,20 +69,19 @@
     margin: 0 5px;
     height: 40px;
     width: 40px;
-  }
-  
-  .social-container a:hover {
+}
+
+.social-container a:hover {
     background-color: #eee;
-  
-  }
-  
-  .txtb {
+}
+
+.txtb {
     border-bottom: 2px solid #adadad;
     position: relative;
     margin: 10px 0;
-  }
-  
-  .txtb input {
+}
+
+.txtb input {
     font-size: 15px;
     color: #333;
     border: none;
@@ -89,9 +90,9 @@
     background: none;
     padding: 0 3px;
     height: 35px;
-  }
-  
-  .txtb span::before {
+}
+
+.txtb span::before {
     content: attr(data-placeholder);
     position: absolute;
     top: 50%;
@@ -99,9 +100,9 @@
     color: #adadad;
     transform: translateY(-50%);
     transition: .5s;
-  
-  }
-  .txtb span::after {
+}
+
+.txtb span::after {
     content: '';
     position: absolute;
     left: 0%;
@@ -110,21 +111,20 @@
     height: 2px;
     background-image: linear-gradient(120deg, #3498db, #8e44ad);
     transition: .5s;
-  }
-  
-  
-  .focus + span::before {
+}
+
+.focus+span::before {
     top: -5px;
-  }
-  
-  .focus + span::after {
+}
+
+.focus+span::after {
     width: 100%;
-  }
-  
-  .signpageButton {
+}
+
+.signpageButton {
     border-radius: 20px;
-    border: 1px solid #ff4b2b;
-    background: #ff4b2b;
+    border: 1px solid #780E0E;
+    background: #780E0E;
     color: #fff;
     font-size: 12px;
     font-weight: bold;
@@ -133,59 +133,69 @@
     text-transform: uppercase;
     transition: transform 80ms ease-in;
     cursor: pointer;
-  }
-  
-  .signpageButton:active {
-    transform: scale(.95);
-  }
-  
-  .signpageButton:focus {
+}
+
+.signpageButton:hover {
+    /* transform: scale(.95); */
+    filter: drop-shadow(0px 0px 36px white);
+    transform: scale(1.02);
+}
+
+.signpageButton:active {
+    transform: scale(1);
+}
+
+.signpageButton:focus {
     outline: none;
-  }
-  
-  .signpageButton.ghost {
+}
+
+.signpageButton.ghost {
     background: transparent;
     border-color: #fff;
-  }
-  
-  .form-container {
+}
+
+.form-container {
     position: absolute;
     top: 0;
     height: 100%;
     transition: all .6s ease-in-out;
-  }
-  
-  .form-container .signpageButton {
+}
+
+.form-container .signpageButton {
     background: linear-gradient(120deg, #3498db, 8e44add);
     border: none;
     background-size: 200%;
     color: #fff;
     transition: .5s;
-  }
-  
-  .form-container .signpageButton:hover {
+}
+
+.form-container .signpageButton:hover {
     background-position: right;
-  }
-  
-  .sign-in-container {
+}
+
+.sign-in-container {
     left: 0;
     width: 50%;
     z-index: 2;
-  }
-  .sign-in-container form a {
+}
+
+.sign-in-container form a {
     position: relative;
     left: 100px;
-  }
-  .sign-up-container {
+}
+
+.sign-up-container {
     left: 0;
     width: 50%;
     z-index: 1;
     opacity: 0;
-  }
-  .sign-up-container .signpageButton {
+}
+
+.sign-up-container .signpageButton {
     margin-top: 20px;
-  }
-  .overlay-container {
+}
+
+.overlay-container {
     position: absolute;
     top: 0;
     left: 50%;
@@ -194,8 +204,9 @@
     overflow: hidden;
     transition: transform .6s ease-in-out;
     z-index: 100;
-  }
-  .overlay {
+}
+
+.overlay {
     background-image: linear-gradient(120deg, #3498db, #8e44ad);
     color: #fff;
     position: relative;
@@ -204,8 +215,9 @@
     width: 200%;
     transform: translateY(0);
     transition: transform .6s ease-in-out;
-  }
-  .overlay-panel {
+}
+
+.overlay-panel {
     position: absolute;
     top: 0;
     display: flex;
@@ -218,35 +230,39 @@
     text-align: center;
     transform: translateY(0);
     transition: transform .6s ease-in-out;
-  }
-  .overlay-right {
+}
+
+.overlay-right {
     right: 0;
     transform: translateY(0);
-  
-  }
-  
-  .overlay-left {
+}
+
+.overlay-left {
     transform: translateY(-20%);
-  }
-  
-  .container1.right-panel-active .sign-in-container {
+}
+
+.container1.right-panel-active .sign-in-container {
     transform: translateY(100%);
-  }
-  
-  .container1.container1.right-panel-active .overlay-container {
+}
+
+.container1.container1.right-panel-active .overlay-container {
     transform: translateX(-100%);
-  }
-  .container1.right-panel-active .sign-up-container {
+}
+
+.container1.right-panel-active .sign-up-container {
     transform: translateX(100%);
     opacity: 1;
     z-index: 5;
-  }
-  .container1.container1.right-panel-active .overlay {
+}
+
+.container1.container1.right-panel-active .overlay {
     transform: translateX(50%);
-  }
-  .container1.container1.right-panel-active .overlay-left {
+}
+
+.container1.container1.right-panel-active .overlay-left {
     transform: translateY(0);
-  }
-  .container1.container1.right-panel-active .overlay-right {
+}
+
+.container1.container1.right-panel-active .overlay-right {
     transform: translateY(20%);
-  }
+}

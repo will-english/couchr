@@ -1,3 +1,19 @@
+### 9/16
+- Today I did pair programming with Sheldon to load each user's movie reviews
+- Sheldon primarily coded and I provided support with navigating the backend API responses
+- I also did pair programming with Christie to add a checkbox to our Create New List modal to set the list to Public/Private
+### 9/15
+- Today I worked with Will and reviewed our backend unit tests that use pytest
+- We had issues that we weren't exactly able to solve, but we found other ways of testing our features. For example, our tests could not query object instances directly from the test file. We had to query them from our views instead.
+### 9/14
+- We had a bug with the add-movie-to-list button (again) due to an issue with how the props were being sent to different components. I changed the functionality to automatically add movies to new lists.
+- I realized my unit test wasn't actually working with the user-auth credentials, so Zach helped me through some of that
+- However, we never actually figured out the issue. So my unit test only works without the auth decorator in the backend views. Therefore, the unit test only tests that the views work and a List can be created.
+- Then I worked on putting together the component that renders the Movie Reviews. I was able to fetch the right information and display it, but we still need to finalize the styling and layout.
+### 9/13
+- I got the create review form modal to be fully functional today
+- I learned that it's not "correct" to change a component's state based on the props passed into the modal, so instead I just passed the props into the API call, and I didn't define a state for those attributes
+- We also ran into some GIT issues that we're still trying to solve, for some reason some functions/features have stopped working after we merge with main
 ### 9/12
 - Zach helped me work through unit tests for the backend, we also consulted with Alissha and Dalonte
 - After importing the correct libraries and using the correct built-in functions, we were able to successfully pass user auth-credentials through a new user, and then test whether or not that user can create a list using our backend View functions

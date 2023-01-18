@@ -1,3 +1,17 @@
+## 9/16
+Fixed a conflict with unit test error. Made the state update the color of icon for deletetion/
+removal of a list from the default list. State update change for when a movie is deleted from a list.
+## 9/15
+Made the state of the icon color for the default list icons update when the movie is clicked
+and added to a default list.
+## 9/14
+Made the add list card functional on the users private list page. Helped with various problems.
+## 9/13
+Helped with the icon rendering on the movies and added the public lists page that lists
+all of the public lists from all of the users.
+## 9/12
+Added the delete movie button that goes on the movie card when the movies are rendered 
+inside the users private page.
 ## 9/9
 Worked on making the list cards clickable and to take the user to a different component
 that lists the movies in this list.

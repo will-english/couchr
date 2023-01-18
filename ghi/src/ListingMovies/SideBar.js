@@ -26,14 +26,7 @@ const Sidebar = () => {
             console.log("Error fetching genres")
         }
     }
-    useEffect(() => {
-        setTimeout(() => {
-            const sidebarItem = sidebarRef.current.querySelector('.sidebar__menu__item');
-            indicatorRef.current.style.height = `${sidebarItem.clientHeight}px`;
-            setStepHeight(sidebarItem.clientHeight);
-        }, 50);
-    }, []);
-    // change active index
+    
     useEffect(() => {
         const curPath = window.location.pathname.split('/')[1];
         const activeItem = sidebarNavItems.findIndex(item => item.section === curPath);
@@ -56,7 +49,7 @@ const Sidebar = () => {
     return <div id='sticky-sidebar' className='position-fixed'>
         <div className="sidebar">
             <div className="sidebar__logo">
-                <h3>Explore by Genre</h3>
+                <h4>Explore by Genre</h4>
             </div>
             <div ref={sidebarRef} className="sidebar__menu">
                 <div
