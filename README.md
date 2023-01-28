@@ -1,5 +1,6 @@
 # Couchr
 
+
 A web application for tracking all of your new and favorite movies.
 
 ## Intended Market
